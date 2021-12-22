@@ -54,27 +54,27 @@ class Achievement():
     """
 
     def loveMaster(self):  # 情場浪子
-        print('唷，恭喜你達成“情場浪子”成就！')
+        print('唷，恭喜你達成「情場浪子」成就！')
         return
 
 
     def peko(self):  # 好油ㄛpeko
-        print('唷，恭喜你達成“好油ㄛpeko”成就！')
+        print('唷，恭喜你達成「好油ㄛpeko」成就！')
         return
 
 
     def superChieves(self):  # 超級絕命韭菜
-        print('唷，恭喜你達成“超級絕命韭菜”成就！')
+        print('唷，恭喜你達成「超級絕命韭菜」成就！')
         return
 
 
     def legendChallenger(self):  # 傳說挑戰者
-        print('唷，恭喜你達成“傳說挑戰者”成就！')
+        print('唷，恭喜你達成「傳說挑戰者」成就！')
         return
 
 
     def giftBirth(self):  # 送子鳥之禮
-        print('唷，恭喜你達成“送子鳥之禮”成就！')
+        print('唷，恭喜你達成「送子鳥之禮」成就！')
         return
 
 achievement = Achievement()
