@@ -44,12 +44,13 @@ class Status:
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
     def check_san(self, san_require):
         if self.san < san_require:
-            money_need = (san_require - self.san) *50
+            money_need = (san_require - self.san) * 5
             print(f"精力值不足是否消耗{money_need}金錢來購買咖啡...")
             a = input()  # 輸入是否喝咖啡
             if a:
                 self.money -= money_need
                 self.san += san_require
+                self.health -= (san_require * 0.1)
                 return False
             else:
                 return True
