@@ -40,7 +40,7 @@ class Status:
         return
 
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
-    def check_sen(self, san_require):
+    def check_san(self, san_require):
         if self.san < san_require:
             money_need = (san_require - self.san) *50
             print(f"精力值不足是否消耗{money_need}金錢來購買咖啡...")
@@ -56,7 +56,7 @@ class Status:
 
     # 甜課得函式
     def class_sweet(self):
-        if self.check_sen(5):
+        if self.check_san(5):
             return None
         self.sam -= 5
         self.wisdom += 5
@@ -66,7 +66,7 @@ class Status:
 
 
     def class_easy(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -75,7 +75,7 @@ class Status:
         self.health -= 1
 
     def class_hard(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -84,7 +84,7 @@ class Status:
         self.health -= 1
 
     def class_waste(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -93,7 +93,7 @@ class Status:
         self.health -= 1
 
     def workout(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -102,7 +102,7 @@ class Status:
         self.health -= 1
 
     def part_time(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -111,7 +111,7 @@ class Status:
         self.health -= 1
 
     def go_dating(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -120,7 +120,7 @@ class Status:
         self.health -= 1
 
     def social(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -129,7 +129,7 @@ class Status:
         self.health -= 1
 
     def rest(self):
-        if self.check_sen(3):
+        if self.check_san(3):
             return None
         self.san -= 3
         self.wisdom += 5
@@ -166,3 +166,4 @@ def act_check(status, i):
     elif i == "":
         status.rest()
     return
+
