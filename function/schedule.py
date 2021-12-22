@@ -34,7 +34,7 @@ class Schedule(tk.Frame):
                 else:
                     options[i].append(self.options)
 
-        self.imageNTU = ImageTk.PhotoImage(file = "function/ntu.png")
+        self.imageNTU = ImageTk.PhotoImage(file = "figure/ntu.png")
         self.NTUButton = tk.Button(self, image = self.imageNTU)
         self.MonLabel = tk.Label(self, text = "週一", height = 1, width = 4, font = f)
         self.TueLabel = tk.Label(self, text = "週二", height = 1, width = 4, font = f)
