@@ -70,7 +70,7 @@ def First_Date():  # 第一次約會
 
 def Marriage_or_not():  # 婚姻抉擇
     global abi
-    if abi.love_progress > 100:
+    if abi.love_progress >= 100:
         return True
 
 
@@ -95,7 +95,7 @@ def Bike_tow():  # 腳踏車被拖吊
     prob = random.randrange(1, 101)
     if abi.luck < 20 and Bike_tow_freq and prob < 81:
         Bike_tow_freq = False
-        return prob
+        return prob  # 這裡回傳機率，若小於80即被拖吊
 
 
 
