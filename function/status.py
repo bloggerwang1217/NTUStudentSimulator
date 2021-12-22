@@ -2,7 +2,7 @@
 class Status:
 
 
-    def __init__(self, wisdom, charm, fitness, social, health, money, san):
+    def __init__(self, wisdom, charm, fitness, social, health, money, san, rest_time):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
@@ -10,11 +10,12 @@ class Status:
         self.health = health
         self.money = money
         self.san = san
+        self.rest_time = rest_time
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
-        self.san = 50 + rest_time + self.fitness * 0.1 + self.health * 0.5
-        rest_time = 0
+        self.san = 50 + self.rest_time + self.fitness * 0.1 + self.health * 0.5
+        self.rest_time = 0
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
     def run_schedule(self, schedule):
@@ -130,11 +131,15 @@ class Status:
         self.health -= 1
 
     def rest(self):
-        rest_time += 1
+        self.rest_time += 1
         self.wisdom += 5
         self.charm -= 1
         self.social += 2
         self.health -= 1
+        
+        
+    def exam(self):
+        
 
 # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
@@ -166,4 +171,4 @@ def act_check(status, i):
         status.rest()
     return
 
-rest_time = 0
+
