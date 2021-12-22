@@ -50,7 +50,7 @@ def checkAchievement(number_of_sex, being_Vtuber, stocks, christmas, birth):
 class Achievement():
 
     """
-    成就程式（被處罰）
+    成就程式（被觸發）
     """
 
     def loveMaster(self):  # 情場浪子
