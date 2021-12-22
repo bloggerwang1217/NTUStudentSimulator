@@ -10,7 +10,7 @@ abi.luck = 15
 abi.charm = 70
 abi.Money = 0
 abi.health = 5
-pass_or_not = True
+pass_or_not = True  # 有沒有通過考試，還未決定
 
 
 
@@ -28,7 +28,7 @@ def To_New_World():  # 轉生異世界
     prob = random.randrange(1, 101)
     if abi.luck < 5 and prob < 2 and To_New_World_freq:
         return True
-    elif abi.luck < 5 and prob >1 and To_New_World_freq:
+    elif abi.luck < 5 and prob > 1 and To_New_World_freq:  # 一學期只會判定一次
         To_New_World_freq = False
 
 
