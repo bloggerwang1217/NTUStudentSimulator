@@ -1,5 +1,6 @@
 import function.input as ip
 import function.schedule as sch
+import function.status as status
 import tkinter as tk
 
 data = ip.input_basic_data()

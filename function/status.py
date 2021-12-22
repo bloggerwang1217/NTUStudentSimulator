@@ -1,3 +1,5 @@
+import tkinter as tk
+
 # 玩家除了評分值之外的數值都存在"status"名稱的Class(Status)裡面
 class Status:
 
@@ -45,8 +47,7 @@ class Status:
     def check_san(self, san_require):
         if self.san < san_require:
             money_need = (san_require - self.san) * 5
-            print(f"精力值不足是否消耗{money_need}金錢來購買咖啡...")
-            a = input()  # 輸入是否喝咖啡
+            a = self.coffee_or_not(money_need)  # 讓使用者選擇是否喝咖啡
             if a:
                 self.money -= money_need
                 self.san += san_require
@@ -139,12 +140,12 @@ class Status:
         self.health -= 1
         
         
-    def exam(self):
+    # def exam(self):
         
 
 # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
-    if i == "甜課"
+    if i == "甜課":
         status.class_sweet()
         return
     elif i == "":
@@ -172,4 +173,36 @@ def act_check(status, i):
         status.rest()
     return
 
+
+def coffee_or_not(money_need):
+    data = [""]
+    # Top level window
+    frame = tk.Tk()
+    frame.title("要喝咖啡嗎？")
+    frame.geometry('400x150')
+    f = tk.font.Font(size = 32, family = "lihsianti")
+
+    # Label Creation
+    lbl = tk.Label(frame, text = f"精力值不足是否消耗{money_need}金錢來購買咖啡...")
+    lbl.pack()
+
+
+    # Button Creation
+
+    var1 = tk.IntVar()
+    var2 = tk.IntVar()
+    c1 = tk.Button(frame, text = "要",width = 5, font = f, command = lambda: save_input(True, data, frame))
+    c1.place(x = 100, y = 50)
+    c2 = tk.Button(frame, text = "不要",width = 5, font = f, command = lambda: save_input(False, data, frame))
+    c2.place(x = 225, y = 50)
+
+      
+    frame.mainloop()
+
+    return data[0]
+
+
+def save_input(ans, data, frame):
+    data[0] = ans 
+    frame.destroy()
 
