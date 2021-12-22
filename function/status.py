@@ -13,15 +13,16 @@ class Status:
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
-        self.san = 50 + self.fitness * 0.1 + self.health * 0.5
+        self.san = 50 + rest_time + self.fitness * 0.1 + self.health * 0.5
+        rest_time = 0
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
     def run_schedule(self, schedule):
-        Mon = ["1-1", "1-2", "1-3"]
-        Tue = ["2-1", "2-2", "2-3"]
-        Wed = ["3-1", "3-2", "3-3"]
-        Thr = ["4-1", "4-2", "4-3"]
-        Fri = ["5-1", "5-2", "5-3"]
+        Mon = ["1-1", "1-2", "1-3", "1-4"]
+        Tue = ["2-1", "2-2", "2-3", "2-4"]
+        Wed = ["3-1", "3-2", "3-3", "3-4"]
+        Thr = ["4-1", "4-2", "4-3", "4-4"]
+        Fri = ["5-1", "5-2", "5-3", "5-4"]
         self.san_reset()
         for i in Mon:
             act_check(self, schedule[i])
@@ -33,10 +34,10 @@ class Status:
             act_check(self, schedule[i])
         self.san_reset()
         for i in Thr:
-            act_check(self, i)
+            act_check(self, schedule[i])
         self.san_reset()
         for i in Fri:
-            act_check(self, i)
+            act_check(self, schedule[i])
         return
 
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
@@ -129,9 +130,7 @@ class Status:
         self.health -= 1
 
     def rest(self):
-        if self.check_san(3):
-            return None
-        self.san -= 3
+        rest_time += 1
         self.wisdom += 5
         self.charm -= 1
         self.social += 2
@@ -167,3 +166,4 @@ def act_check(status, i):
         status.rest()
     return
 
+rest_time = 0
