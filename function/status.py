@@ -4,7 +4,7 @@ import tkinter as tk
 class Status:
 
 
-    def __init__(self, wisdom, charm, fitness, social, health, money, san, rest_time):
+    def __init__(self, wisdom, charm, fitness, social, health, money, san, luck, rest_time, score={}):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
@@ -13,6 +13,8 @@ class Status:
         self.money = money
         self.san = san
         self.rest_time = rest_time
+        self.score = score
+        self.luck = luck
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -140,39 +142,11 @@ class Status:
         self.health -= 1
         
         
-    # def exam(self):
+    def midterm(self, class_type_a, class_type_b, class_type_c):
+        self.score[a] = self.wisdom * 0.5 + self.san * 0.1 - (100 - self.luck) * 0.8
         
-
-# 判讀並執行行程表中"一項"行程的函式
-def act_check(status, i):
-    if i == "甜課":
-        status.class_sweet()
-        return
-    elif i == "":
-        status.class_easy()
-        return
-    elif i == "":
-        status.class_hard()
-        return
-    elif i == "":
-        status.class_waste()
-        return
-    elif i == "":
-        status.workout()
-        return
-    elif i == "":
-        status.part_time()
-        return
-    elif i == "":
-        status.go_dating()
-        return
-    elif i == "":
-        status.social()
-        return
-    elif i == "":
-        status.rest()
-    return
-
+        
+        
 
 def coffee_or_not(money_need):
     data = [""]
@@ -205,4 +179,32 @@ def coffee_or_not(money_need):
 def save_input(ans, data, frame):
     data[0] = ans 
     frame.destroy()
-
+# 判讀並執行行程表中"一項"行程的函式
+def act_check(status, i):
+    if i == "甜課":
+        status.class_sweet()
+        return
+    elif i == "":
+        status.class_easy()
+        return
+    elif i == "":
+        status.class_hard()
+        return
+    elif i == "":
+        status.class_waste()
+        return
+    elif i == "":
+        status.workout()
+        return
+    elif i == "":
+        status.part_time()
+        return
+    elif i == "":
+        status.go_dating()
+        return
+    elif i == "":
+        status.social()
+        return
+    elif i == "":
+        status.rest()
+    return
