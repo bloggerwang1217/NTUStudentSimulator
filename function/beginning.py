@@ -1,15 +1,16 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 
-def press_start_game(start_scene, start_button, window):
+def press_start_game(start_scene, start_button, name_list, window):
     start_scene.destroy()
     start_button.destroy()
+    name_list.destroy()
     beginning_story(window)
 
 
 def start_game(window):
 
-    f = tk.font.Font(size = 32)
+    f = tk.font.Font(size = 28)
 
     beginning = Image.open("figure/beginning.png")
     beginning = beginning.resize((1280, 720), Image.ANTIALIAS)
@@ -19,9 +20,13 @@ def start_game(window):
     start_scene.image = beginning
     start_scene.pack(fill = "both")
 
+    name_list = tk.Label(window, text = "製作者：王敏行、劉健榮、羅士軒、陳利煌、周匯森、何峻德", font = f)
+    name_list.place(x = 240, y = 660)
 
-    start_button = tk.Button(window, text = "開始遊戲",width = 7, font = f, command = lambda: press_start_game(start_scene, start_button, window))
+    start_button = tk.Button(window, text = "開始遊戲",width = 7, font = f, command = lambda: press_start_game(start_scene, start_button, name_list, window))
     start_button.place(x = 560, y = 300)
+
+
 
 
 def beginning_story(window):
