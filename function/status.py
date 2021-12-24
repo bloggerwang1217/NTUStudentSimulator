@@ -1,10 +1,11 @@
 import tkinter as tk
+import tkinter.font as tkFont
 
 # 玩家除了評分值之外的數值都存在"status"名稱的Class(Status)裡面
 class Status:
 
 
-    def __init__(self, wisdom, charm, fitness, social, health, money, san, luck, rest_time, score={}):
+    def __init__(self, wisdom, charm, fitness, social, health, money, san, luck, rest_time, score, window):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
@@ -14,6 +15,7 @@ class Status:
         self.san = san
         self.rest_time = rest_time
         self.score = score
+        self.display = window
         self.luck = luck
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
@@ -49,7 +51,7 @@ class Status:
     def check_san(self, san_require):
         if self.san < san_require:
             money_need = (san_require - self.san) * 5
-            a = self.coffee_or_not(money_need)  # 讓使用者選擇是否喝咖啡
+            a = self.coffee_or_not(self, money_need)  # 讓使用者選擇是否喝咖啡
             if a:
                 self.money -= money_need
                 self.san += san_require
@@ -148,37 +150,41 @@ class Status:
         
         
 
-def coffee_or_not(money_need):
-    data = [""]
+def coffee_or_not(status, money_need):
+    ans = [""]
     # Top level window
-    frame = tk.Tk()
-    frame.title("要喝咖啡嗎？")
-    frame.geometry('400x150')
-    f = tk.font.Font(size = 32, family = "lihsianti")
+    f = tkFont.Font(size = 20)
 
     # Label Creation
-    lbl = tk.Label(frame, text = f"精力值不足是否消耗{money_need}金錢來購買咖啡...")
-    lbl.pack()
+    lbl = tk.Label(window, text = f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font = f, bg = "#bebfbe", relief = "raised")
+    lbl.place(x = 960, y = 225)
 
 
     # Button Creation
 
     var1 = tk.IntVar()
     var2 = tk.IntVar()
-    c1 = tk.Button(frame, text = "要",width = 5, font = f, command = lambda: save_input(True, data, frame))
-    c1.place(x = 100, y = 50)
-    c2 = tk.Button(frame, text = "不要",width = 5, font = f, command = lambda: save_input(False, data, frame))
-    c2.place(x = 225, y = 50)
-
-      
-    frame.mainloop()
-
-    return data[0]
+    c1 = tk.Button(status.display, text = "要",width = 5, font = f, command = lambda: save_input(True, ans))
+    c1.place(x = 1005, y = 300)
+    c2 = tk.Button(status.display, text = "不要",width = 5, font = f, command = lambda: save_input(False, ans))
+    c2.place(x = 1130, y = 300)
 
 
-def save_input(ans, data, frame):
-    data[0] = ans 
-    frame.destroy()
+    # Cute Pic Creation
+
+    coffee_pic = Image.open("figure/coffee.jpeg")
+    coffee_pic = coffee_pic.resize((300,219), Image.ANTIALIAS)
+    coffee_pic = ImageTk.PhotoImage(coffee_pic)
+    coffee = tk.Label(window, image = coffee_pic, bd =4, relief ="raised")
+    coffee.image = coffee_pic
+    coffee.place(x = 947, y = 340)
+
+    return ans[0]
+
+
+def save_input(yn, ans):
+    ans[0] = yn 
+
 # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
     if i == "甜課":

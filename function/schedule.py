@@ -1,12 +1,11 @@
 import tkinter as tk
 import tkinter.font as tkFont
-from PIL import ImageTk
+from PIL import ImageTk, Image
+import function.status as status
 
-class Schedule(tk.Frame):
+class Schedule:
 
     def __init__(self, classes, picked, options):
-        tk.Frame.__init__(self)
-        self.grid()
         self.classes = classes
         self.picked = picked
         self.options = options
@@ -14,9 +13,10 @@ class Schedule(tk.Frame):
 
 
 
-    def createWidgets(self):
-        f = tkFont.Font(size = 32, family = "lihsianti")
-        small_f = tkFont.Font(size = 24, family = "lihsianti")
+    def createWidgets(self, window, data):
+        f = tkFont.Font(size = 24)
+        title_f = tkFont.Font(size = 48)
+        week_f = tkFont.Font(size = 16)
 
         clicked = []
         options = []
@@ -34,92 +34,108 @@ class Schedule(tk.Frame):
                 else:
                     options[i].append(self.options)
 
-        self.imageNTU = ImageTk.PhotoImage(file = "figure/ntu.png")
-        self.NTUButton = tk.Button(self, image = self.imageNTU)
-        self.MonLabel = tk.Label(self, text = "週一", height = 1, width = 4, font = f)
-        self.TueLabel = tk.Label(self, text = "週二", height = 1, width = 4, font = f)
-        self.WedLabel = tk.Label(self, text = "週三", height = 1, width = 4, font = f)
-        self.ThuLabel = tk.Label(self, text = "週四", height = 1, width = 4, font = f)
-        self.FriLabel = tk.Label(self, text = "週五", height = 1, width = 4, font = f)
+        schedule = Image.open("figure/schedule.png")
+        schedule = schedule.resize((916,480), Image.ANTIALIAS)
+        schedule = ImageTk.PhotoImage(schedule)
+        background = tk.Label(window, image = schedule)
 
-        self.MorningLabel = tk.Label(self, text = "早上", height = 1, width = 4, font = f)
-        self.MonMorningList = tk.OptionMenu(self, clicked[0][0], *options[0][0])
-        self.TueMorningList = tk.OptionMenu(self, clicked[0][1], *options[0][1])
-        self.WedMorningList = tk.OptionMenu(self, clicked[0][2], *options[0][2])
-        self.ThuMorningList = tk.OptionMenu(self, clicked[0][3], *options[0][3])
-        self.FriMorningList = tk.OptionMenu(self, clicked[0][4], *options[0][4])
+        # self.imageNTU = ImageTk.PhotoImage(file = "figure/ntu.png")
+        # self.NTUButton = tk.Button(window, image = self.imageNTU)
+        MonLabel = tk.Label(window, text = " 星期一 ", font = week_f, bg = "#3895b9", fg = "white")
+        TueLabel = tk.Label(window, text = " 星期二 ", font = week_f, bg = "#3895b9", fg = "white")
+        WedLabel = tk.Label(window, text = " 星期三 ", font = week_f, bg = "#3895b9", fg = "white")
+        ThuLabel = tk.Label(window, text = " 星期四 ", font = week_f, bg = "#3895b9", fg = "white")
+        FriLabel = tk.Label(window, text = " 星期五 ", font = week_f, bg = "#3895b9", fg = "white")
 
-        self.AfternoonLabel = tk.Label(self, text = "下午", height = 1, width = 4, font = f)
-        self.MonAfternoonList = tk.OptionMenu(self, clicked[1][0], *options[1][0])
-        self.TueAfternoonList = tk.OptionMenu(self, clicked[1][1], *options[1][1])
-        self.WedAfternoonList = tk.OptionMenu(self, clicked[1][2], *options[1][2])
-        self.ThuAfternoonList = tk.OptionMenu(self, clicked[1][3], *options[1][3])        
-        self.FriAfternoonList = tk.OptionMenu(self, clicked[1][4], *options[1][4])
+        MorningLabel = tk.Label(window, text = "早上", height = 1, width = 4, font = f, bg= "#eeefee")
+        MonMorningList = tk.OptionMenu(window, clicked[0][0], *options[0][0])
+        TueMorningList = tk.OptionMenu(window, clicked[0][1], *options[0][1])
+        WedMorningList = tk.OptionMenu(window, clicked[0][2], *options[0][2])
+        ThuMorningList = tk.OptionMenu(window, clicked[0][3], *options[0][3])
+        FriMorningList = tk.OptionMenu(window, clicked[0][4], *options[0][4])
 
-        self.EveningLabel = tk.Label(self, text = "晚上", height = 1, width = 4, font = f)
-        self.MonEveningList = tk.OptionMenu(self, clicked[2][0], *options[2][0])
-        self.TueEveningList = tk.OptionMenu(self, clicked[2][1], *options[2][1])
-        self.WedEveningList = tk.OptionMenu(self, clicked[2][2], *options[2][2])
-        self.ThuEveningList = tk.OptionMenu(self, clicked[2][3], *options[2][3])
-        self.FriEveningList = tk.OptionMenu(self, clicked[2][4], *options[2][4])
+        AfternoonLabel = tk.Label(window, text = "下午", height = 1, width = 4, font = f)
+        MonAfternoonList = tk.OptionMenu(window, clicked[1][0], *options[1][0])
+        TueAfternoonList = tk.OptionMenu(window, clicked[1][1], *options[1][1])
+        WedAfternoonList = tk.OptionMenu(window, clicked[1][2], *options[1][2])
+        ThuAfternoonList = tk.OptionMenu(window, clicked[1][3], *options[1][3])        
+        FriAfternoonList = tk.OptionMenu(window, clicked[1][4], *options[1][4])
 
-        self.MidnightLabel = tk.Label(self, text = "半夜", height = 1, width = 4, font = f)
-        self.MonMidnightList = tk.OptionMenu(self, clicked[3][0], *options[3][0])
-        self.TueMidnightList = tk.OptionMenu(self, clicked[3][1], *options[3][1])
-        self.WedMidnightList = tk.OptionMenu(self, clicked[3][2], *options[3][2])
-        self.ThuMidnightList = tk.OptionMenu(self, clicked[3][3], *options[3][3])
-        self.FriMidnightList = tk.OptionMenu(self, clicked[3][4], *options[3][4])
+        EveningLabel = tk.Label(window, text = "晚上", height = 1, width = 4, font = f, bg= "#eeefee")
+        MonEveningList = tk.OptionMenu(window, clicked[2][0], *options[2][0])
+        TueEveningList = tk.OptionMenu(window, clicked[2][1], *options[2][1])
+        WedEveningList = tk.OptionMenu(window, clicked[2][2], *options[2][2])
+        ThuEveningList = tk.OptionMenu(window, clicked[2][3], *options[2][3])
+        FriEveningList = tk.OptionMenu(window, clicked[2][4], *options[2][4])
 
-        self.FinishButton = tk.Button(self, text ="完成", height = 1, width = 4, font = small_f, command = lambda: self.save(clicked, self.result))
+        MidnightLabel = tk.Label(window, text = "半夜", height = 1, width = 4, font = f)
+        MonMidnightList = tk.OptionMenu(window, clicked[3][0], *options[3][0])
+        TueMidnightList = tk.OptionMenu(window, clicked[3][1], *options[3][1])
+        WedMidnightList = tk.OptionMenu(window, clicked[3][2], *options[3][2])
+        ThuMidnightList = tk.OptionMenu(window, clicked[3][3], *options[3][3])
+        FriMidnightList = tk.OptionMenu(window, clicked[3][4], *options[3][4])
+
+        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: self.save(clicked, self.result, data))
+
+        title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
+        subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
+        subtitle2 = tk.Label(window, text = "  只是變成你喜歡的樣子", font = f, bg = "#eeefee")
+        background.image = schedule
+        background.place(x=0, y=0)
+
+        # NTUButton.place(x=20, y=50)
+        MonLabel.place(x=150, y=8)
+        TueLabel.place(x=315, y=8)
+        WedLabel.place(x=478, y=8)
+        ThuLabel.place(x=642, y=8)
+        FriLabel.place(x=807, y=8)
+
+        MorningLabel.place(x=20, y=100)
+        MonMorningList.place(x=155, y=100)
+        TueMorningList.place(x=320, y=100)
+        WedMorningList.place(x=480, y=100)
+        ThuMorningList.place(x=640, y=100)
+        FriMorningList.place(x=810, y=100)
+
+        AfternoonLabel.place(x=20, y=210)
+        MonAfternoonList.place(x=155, y=210)
+        TueAfternoonList.place(x=320, y=210)
+        WedAfternoonList.place(x=480, y=210)
+        ThuAfternoonList.place(x=640, y=210)
+        FriAfternoonList.place(x=810, y=210)
+
+        EveningLabel.place(x=20, y=315)
+        MonEveningList.place(x=155, y=315)
+        TueEveningList.place(x=320, y=315)
+        WedEveningList.place(x=480, y=315)
+        ThuEveningList.place(x=640, y=315)
+        FriEveningList.place(x=810, y=315)
+
+        MidnightLabel.place(x=20, y=415)
+        MonMidnightList.place(x=155, y=415)
+        TueMidnightList.place(x=320, y=415)
+        WedMidnightList.place(x=480, y=415)
+        ThuMidnightList.place(x=640, y=415)
+        FriMidnightList.place(x=810, y=415)
+
+        FinishButton.place(x=810, y=500)
+        title.place(x=975, y=25)
+        subtitle1.place(x=975, y=100)
+        subtitle2.place(x=975, y=140)
 
 
-        self.NTUButton.grid(row = 0, column = 0, sticky = tk.NE + tk.SW)
-        self.MonLabel.grid(row = 0, column = 1)
-        self.TueLabel.grid(row = 0, column = 2)
-        self.WedLabel.grid(row = 0, column = 3)
-        self.ThuLabel.grid(row = 0, column = 4)
-        self.FriLabel.grid(row = 0, column = 5)
-
-        self.MorningLabel.grid(row = 1, column = 0)
-        self.MonMorningList.grid(row = 1, column = 1)
-        self.TueMorningList.grid(row = 1, column = 2)
-        self.WedMorningList.grid(row = 1, column = 3)
-        self.ThuMorningList.grid(row = 1, column = 4)
-        self.FriMorningList.grid(row = 1, column = 5)
-
-        self.AfternoonLabel.grid(row = 2, column = 0)
-        self.MonAfternoonList.grid(row = 2, column = 1)
-        self.TueAfternoonList.grid(row = 2, column = 2)
-        self.WedAfternoonList.grid(row = 2, column = 3)
-        self.ThuAfternoonList.grid(row = 2, column = 4)
-        self.FriAfternoonList.grid(row = 2, column = 5)
-
-        self.EveningLabel.grid(row = 3, column = 0)
-        self.MonEveningList.grid(row = 3, column = 1)
-        self.TueEveningList.grid(row = 3, column = 2)
-        self.WedEveningList.grid(row = 3, column = 3)
-        self.ThuEveningList.grid(row = 3, column = 4)
-        self.FriEveningList.grid(row = 3, column = 5)
-
-        self.MidnightLabel.grid(row = 4, column = 0)
-        self.MonMidnightList.grid(row = 4, column = 1)
-        self.TueMidnightList.grid(row = 4, column = 2)
-        self.WedMidnightList.grid(row = 4, column = 3)
-        self.ThuMidnightList.grid(row = 4, column = 4)
-        self.FriMidnightList.grid(row = 4, column = 5)
-
-        self.FinishButton.grid(row = 5, column = 5)
-
-
-    def save(self, clicked, result):
+    def save(self, clicked, result, data):
         for i in range(1, 6):
             for j in range(1, 5):
                 result[f"{i}-{j}"] = clicked[j-1][i-1].get()
-        self.quit()
+        # ans = data["status"].run_schedule(result)
+        # if ans is None:
+        #     data["picked_schedule"] = result
+        coffee_or_not(data["status"].display, 200)
 
 
         
-def get_new_schedule(selected_class, previous_picked):
+def get_new_schedule(window, selected_class, data):
     # # 傳入
     # selected_class = {"1-1":"A課", "2-2":"B課", "4-3":"C課"}
     selected_class_list = list(selected_class.items())
@@ -137,11 +153,41 @@ def get_new_schedule(selected_class, previous_picked):
         "社交",
         "休息",
     ]
+    window.configure(background="#eeefee")
+    sch = Schedule(selected_class, data["picked_schedule"], options)
+    sch.createWidgets(window, data)
 
-    sch = Schedule(selected_class, previous_picked, options)
-    sch.createWidgets()
-    sch.master.title("行程表")
-    sch.mainloop()
+def coffee_or_not(window, money_need):
+    ans = [""]
+    # Top level window
+    f = tkFont.Font(size = 20)
 
-    # 回傳
-    return(sch.result)
+    # Label Creation
+    lbl = tk.Label(window, text = f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font = f, bg = "#bebfbe", relief = "raised")
+    lbl.place(x = 960, y = 225)
+
+
+    # Button Creation
+
+    var1 = tk.IntVar()
+    var2 = tk.IntVar()
+    c1 = tk.Button(window, text = "要",width = 5, font = f, command = lambda: save_input(True, ans))
+    c1.place(x = 1005, y = 300)
+    c2 = tk.Button(window, text = "不要",width = 5, font = f, command = lambda: save_input(False, ans))
+    c2.place(x = 1130, y = 300)
+
+    # Cute Pic Creation
+
+    coffee_pic = Image.open("figure/coffee.jpeg")
+    coffee_pic = coffee_pic.resize((300,219), Image.ANTIALIAS)
+    coffee_pic = ImageTk.PhotoImage(coffee_pic)
+    coffee = tk.Label(window, image = coffee_pic, bd =4, relief ="raised")
+    coffee.image = coffee_pic
+    coffee.place(x = 947, y = 340)
+
+    return ans[0]
+
+
+def save_input(yn, ans):
+    ans[0] = yn 
+
