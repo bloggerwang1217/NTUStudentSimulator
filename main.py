@@ -1,8 +1,5 @@
-import function.schedule as sch
-import function.status as status
-import function.beginning as bg
+import system.beginning as bg
 import tkinter as tk
-from PIL import ImageTk, Image
 
 window = tk.Tk()
 window.geometry("1280x720")

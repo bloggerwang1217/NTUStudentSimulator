@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import font 
 from PIL import ImageTk, Image
 
 def press_start_game(start_scene, start_button, name_list, window, data):
@@ -161,4 +162,4 @@ def end_input(window, data, widgets):
     for widget in widgets:
         widget.destroy()
     print(data)
-    # 呼叫選課
+    # 呼叫初始能力值
