@@ -157,6 +157,7 @@ def get_new_schedule(window, selected_class, data):
     sch = Schedule(selected_class, data["picked_schedule"], options)
     sch.createWidgets(window, data)
 
+'''測試咖啡詢問介面
 def coffee_or_not(window, money_need):
     ans = [""]
     # Top level window
@@ -190,4 +191,4 @@ def coffee_or_not(window, money_need):
 
 def save_input(yn, ans):
     ans[0] = yn 
-
+'''

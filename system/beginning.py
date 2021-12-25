@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
+import function.read_file as read
 
 def press_start_game(start_scene, start_button, name_list, window, data):
     start_scene.destroy()
@@ -29,31 +30,24 @@ def start_game(window, data):
 
 
 def beginning_story(window, data):
-    f = tk.font.Font(size = 48, family = "lihsianti")
+    f = tk.font.Font(size = 42)
 
-    window.configure(bg="white")
+    # window.configure(bg="white")
+    night = Image.open("figure/night.png")
+    # night = night.resize((1280, 720), Image.ANTIALIAS) 
+    night = ImageTk.PhotoImage(night)
+    background = tk.Label(window, image = night)
+    background.image = night
+    background.pack()
 
-    text = [0, 1]  # 加入開場說明文字或圖片
-    text[0] = tk.Label(window, text = "你終於進入了理想中的大學\n台大\n帶著既期待又怕受傷害的心情\n你準備迎向這四年未知的生活...", font = f)
-    text[1] = tk.Label(window, text = "我為什麼在這裡", font = f)
-    text[0].place(x = 300, y = 100)
+    back_room_button = tk.Button(window, text = "回書房開信", font = f, relief = "solid", command = lambda: press_back_room_button(window, background, back_room_button, data))
+    back_room_button.place(x = 880, y = 500)
 
-    index = [0]
-    next_button = tk.Button(window, text = "下一頁",width = 6, font = f, command = lambda: press_next_button(window, text, next_button, index, data))
-    next_button.place(x = 1000, y = 500)
 
-    
-def press_next_button(window, text, next_button, index, data):
-    f = tk.font.Font(size = 32)
-    if index[0] == len(text)-1:
-        text[index[0]].destroy()
-        next_button.destroy()
-        # 呼叫輸入姓名函式
-        input_basic_data(window, data)
-        return
-    text[index[0]].destroy()
-    text[index[0]+1].place(x = 300, y = 100)
-    index[0] += 1
+def press_back_room_button(window, background, back_room_button, data):
+    background.destroy()
+    back_room_button.destroy()
+    input_basic_data(window, data)
 
 
 def input_basic_data(window, data):
@@ -104,7 +98,7 @@ def input_basic_data(window, data):
     widgets.append(small_bg)
 
     confirmation = tk.Label(window, text = "資料確認", font = f)
-    confirmation.place(x = 1013, y = 225)
+    confirmation.place(x = 975+small_bg.winfo_reqwidth()/2-confirmation.winfo_reqwidth()/2, y = 225)
     widgets.append(confirmation)
 
     var1 = tk.IntVar()
@@ -118,7 +112,7 @@ def input_basic_data(window, data):
 
     # Label Creation
     lbl = tk.Label(window)
-    lbl.place(x = 987, y = 365)
+    lbl.place(x = 992, y = 363)
     widgets.append(lbl)
 
     # Button Creation
@@ -131,11 +125,11 @@ def input_basic_data(window, data):
     printButton = tk.Button(window,
                             text = "確認",
                             font = check_f, 
-                            command = lambda: save_input(data, var1, var2, inputtxt, lbl, window, endButton, check_f))
-    printButton.place(x = 1057, y = 330)
+                            command = lambda: save_input(data, var1, var2, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()))
+    printButton.place(x = 975+small_bg.winfo_reqwidth()/2-printButton.winfo_reqwidth()/2, y = 330)
     widgets.append(printButton)
 
-def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f):
+def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, length):
     sex = ""
     if (var1.get() + var2.get() == 1) and inputtxt.get(1.0, "end-1c") != "":        
         if (var1.get() == 1) and (var2.get() == 0):
@@ -143,16 +137,16 @@ def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f):
         elif (var1.get() == 0) & (var2.get() == 1):
             sex =  "女性"
         inp = inputtxt.get(1.0, "end-1c")
-        lbl.config(text = f"  您的名字是「{inp}」\n{sex}\n  不想重新輸入請按結束", font=check_f)
-        endButton.place(x = 1057, y = 430)
+        lbl.config(text = f"您的名字是\n「{inp}」\n{sex}\n不想重新輸入請按結束", font=check_f)
+        endButton.place(x = 975+length/2-endButton.winfo_reqwidth()/2, y = 450)
 
     else:
         if inputtxt.get(1.0, "end-1c") == "":
-            lbl.config(text = f"           請輸入姓名", font=check_f)
+            lbl.config(text = f"          請輸入姓名", font=check_f)
             endButton.place_forget() 
         else:
             inp = inputtxt.get(1.0, "end-1c")
-            lbl.config(text = f" 您的名字是「{inp}」\n請苟選一個最認同的性別", font=check_f)
+            lbl.config(text = f"您的名字是\n「{inp}」\n請苟選一個最認同的性別", font=check_f)
             endButton.place_forget()
     data["sex"] = sex
     data["name"] = inp
@@ -161,5 +155,59 @@ def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f):
 def end_input(window, data, widgets):
     for widget in widgets:
         widget.destroy()
-    print(data)
-    # 呼叫初始能力值
+    read_letter(window, data)
+
+
+def read_letter(window, data):
+    desk = Image.open("figure/desk_texture.jpeg")
+    desk = desk.resize((1280, 720), Image.ANTIALIAS)
+    desk = ImageTk.PhotoImage(desk)
+    background = tk.Label(window, image = desk)
+    background.image = desk
+    background.pack()
+
+    white = Image.open("figure/white.png")
+    white = white.resize((960, 690), Image.ANTIALIAS)
+    white = ImageTk.PhotoImage(white)
+    small_bg = tk.Label(window, image = white, highlightthickness=2, highlightbackground="black")
+    small_bg.image = white
+    small_bg.place(x = 640-small_bg.winfo_reqwidth()/2, y = 10)
+
+    title_f = tk.font.Font(size = 36)
+    subtitle_f = tk.font.Font(size = 32)
+    f = tk.font.Font(size = 20)
+
+    read_data = read.read_beginning()
+    read_data.insert(0, f"受文者：{data['name']}")
+    read_data.insert(0, "國立臺灣大學學士班新生入學通知書")
+
+    text = []
+    for i in range(len(read_data)): 
+        if i == 0:
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+        elif i == 1:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+        else:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+
+        if i == 0:
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
+        elif i == 1:
+            text[i].place(x = 220, y = 100)
+        else:
+            text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
+
+    be_a_freshman_button = tk.Button(window, text = "正式成為新生！", font = f, command = lambda: press_next_button(window, data, text))
+    be_a_freshman_button.place(x = 900, y = 625)
+
+    text.append(background)
+    text.append(small_bg)
+    text.append(be_a_freshman_button)
+    # 現在text裡有目前所有widgets，按按鈕後一次清除
+
+
+    
+def press_next_button(window, data, widgets):
+    for widget in widgets:
+        widget.destroy()
+    # 呼叫初始化能力值
