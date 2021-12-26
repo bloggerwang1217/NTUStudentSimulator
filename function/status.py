@@ -252,7 +252,7 @@ def act_check(status, i):
         status.rest()
     return
 
-def scor(status, classname):
+def scoring(status, classname):
     coefficient = {"甜課" : 0.001, "涼課" : 0.003, "硬課" : 0.0002}
     point = status.wisdom * status.study_time[classname] * coefficient[classtodiff[classname]] + 0.2 * status.luck + random.randint(-10, 10)
     return int(point)
