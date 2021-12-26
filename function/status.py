@@ -156,7 +156,7 @@ class Status:
         
         
     def midterm(self, class_type_a, class_type_b, class_type_c):
-        self.score[a] = self.wisdom * 0.5 + self.san * 0.1 - (100 - self.luck) * 0.8
+        
         
         
         
