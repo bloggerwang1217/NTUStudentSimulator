@@ -1,29 +1,24 @@
 import random
 
+def ininial_set():  # 隨機設定初始值
+    prob = random.randrange(50, 101)
+    wisdom = prob
 
-class Status:
-    pass
-    
+    prob = random.randrange(50, 101)
+    charm = prob
 
+    prob = random.randrange(50, 101)
+    fitness = prob
 
-def ininial_set(self):  # 隨機設定初始值
     prob = random.randrange(50, 101)
-    self.wisdom = prob
+    social = prob
+
     prob = random.randrange(50, 101)
-    self.charm = prob
-    prob = random.randrange(50, 101)
-    self.fitness = prob
-    prob = random.randrange(50, 101)
-    self.social = prob
-    prob = random.randrange(50, 101)
-    self.health = prob
-    self.money = 40000
+    health = prob
+
     prob = random.randrange(1, 101)
-    self.luck = prob
-    return self.wisdom, self.charm, self.fitness, self.social,\
-           self.health, self.money, self.luck
+    luck = prob
+    return wisdom, charm, fitness, social, health, luck
 
-a = Status()
-print(ininial_set(a))
-
-
+# a = Status()
+# print(ininial_set(a))

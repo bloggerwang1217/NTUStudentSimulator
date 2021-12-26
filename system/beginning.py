@@ -2,6 +2,10 @@ import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
 import function.read_file as read
+import function.初始能力值設定 as init_abi
+import function.結局結算能力值 as graph_abi
+import function.status as status
+
 
 def press_start_game(start_scene, start_button, name_list, window, data):
     start_scene.destroy()
@@ -239,11 +243,9 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
         widget.destroy()
     
     title_f = tk.font.Font(size = 36)
-    subtitle_f = tk.font.Font(size = 32)
     f = tk.font.Font(size = 20)
 
     read_data = ["各項能力檢驗量表"]
-    read_data.append(f"學生：{data['name']}")
     read_data.append("下面是你各項能力值的分佈，你有四年的時間好好培養，期待你的表現")
 
     text = []
@@ -251,33 +253,32 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
         if i == 0:
             text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
-        else:
             text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
         elif i == 1:
             text[i].place(x = 220, y = 100)
-        else:
-            text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
 
-    # 貼上能力表 
-    # ability_graph = Image.open("figure/ability_graph/.jpeg")
-    # ability_graph = ability_graph.resize((1280, 720), Image.ANTIALIAS)
-    # ability_graph = ImageTk.PhotoImage(ability_graph)
-    # ability = tk.Label(window, image = ability_graph)
-    # ability.image = ability_graph
-    # ability.place(x = 640 - text[i].winfo_reqwidth()/2, y = 200)
+
+    # 在這邊初始化status，並且貼上初始化能力值的圖
+    wisdom, charm, fitness, social, health, luck = init_abi.ininial_set()
+    data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, read.read_course(), window)
+    time = graph_abi.abi_illu(wisdom, charm, fitness, social, health)
+    ability_graph = Image.open(f"figure/ability/{time}.png")
+    ability_graph = ImageTk.PhotoImage(ability_graph)
+    ability = tk.Label(window, image = ability_graph)
+    ability.image = ability_graph
+    ability.place(x = 640 - widget2.winfo_reqwidth()/2.3, y = 140)
     
 
-    go_course_selecting_button = tk.Button(window, text = "進入選課系統！", font = f, command = lambda: press_go_course_selecting_button(window, data, text))
-    go_course_selecting_button.place(x = 900, y = 625)
+    go_course_selecting_button = tk.Button(window, text = "進入選課系統選課囉！", font = f, command = lambda: press_go_course_selecting_button(window, data, text))
+    go_course_selecting_button.place(x = 850, y = 620)
 
     text.append(widget1)
     text.append(widget2)
     text.append(go_course_selecting_button)
-    # text.append(ability)
+    text.append(ability)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
 def press_go_course_selecting_button(window, data, used_widgets):

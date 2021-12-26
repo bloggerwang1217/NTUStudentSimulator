@@ -7,15 +7,15 @@ classtodiff = {"個經原": "甜課"}
 
 class Status:
 
-    def __init__(self, wisdom, charm, fitness, social, health, san, luck, rest_time, classes, window):
+    def __init__(self, wisdom, charm, fitness, social, health, luck, classes, window):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
         self.social = social
         self.health = health
         self.money = 40000
-        self.san = san
-        self.rest_time = rest_time
+        self.san = 100  # 隨便設
+        self.rest_time = 100  # 隨便設
         self.score = dict()
         self.display = window
         self.luck = luck
@@ -257,5 +257,3 @@ def scoring(status, classname):
     coefficient = {"甜課" : 0.001, "涼課" : 0.003, "硬課" : 0.0002}
     point = status.wisdom * status.study_time[classname] * coefficient[classtodiff[classname]] + 0.2 * status.luck + random.randint(-10, 10)
     return int(point)
-
-

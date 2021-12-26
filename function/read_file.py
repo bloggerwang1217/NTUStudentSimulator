@@ -19,8 +19,8 @@ def read_file(line_len, file_name):
     return seperated_text
 
 
-def read_class():
-    f = open("text/class.csv", mode = "r", encoding = "utf-8")
+def read_course():
+    f = open("text/course.csv", mode = "r", encoding = "utf-8")
     csvReader = csv.reader(f)
     class_dic = {}
     for row in csvReader:
