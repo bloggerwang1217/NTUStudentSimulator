@@ -155,7 +155,9 @@ class Status:
         self.health += 5
         
         
-    def midterm(self, class_type_a, class_type_b, class_type_c):
+    def midterm(self, clss_dict):
+        class_set = set(class_dict.values())
+        
         
         
         
