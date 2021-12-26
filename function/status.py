@@ -64,84 +64,89 @@ class Status:
 
     # 甜課得函式
     def class_sweet(self):
-        if self.check_san(5):
+        if self.check_san(10):
             return None
-        self.sam -= 5
+        self.san -= 10
         self.wisdom += 5
         self.charm -= 1
         self.social += 2
-        self.health -= 1
+        self.fitness -= 1
 
 
     def class_easy(self):
-        if self.check_san(3):
+        if self.check_san(5):
             return None
-        self.san -= 3
-        self.wisdom += 5
+        self.san -= 5
+        self.wisdom += 2
         self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.social += 1
+        self. -= 1
 
     def class_hard(self):
-        if self.check_san(3):
+        if self.check_san(30):
             return None
-        self.san -= 3
-        self.wisdom += 5
+        self.san -= 30
+        self.wisdom += 10
         self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.social -= 1
+        self.fitness -= 2
 
     def class_waste(self):
-        if self.check_san(3):
+        if self.check_san(0):
             return None
-        self.san -= 3
-        self.wisdom += 5
-        self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.san -= 0
+        self.wisdom -= 1
+        self.charm -= -1
+        self.social += 3
+
 
     def workout(self):
-        if self.check_san(3):
+        if self.check_san(25):
             return None
-        self.san -= 3
-        self.wisdom += 5
-        self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.money -= 30
+        self.san -= 25
+        self.wisdom -= 3 
+        self.charm += 4
+        self.fitness += 10
+        self.health += 3
 
     def part_time(self):
-        if self.check_san(3):
+        if self.check_san(20):
             return None
-        self.san -= 3
-        self.wisdom += 5
-        self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.san -= 20
+        self.wisdom -= 2
+        self.fitness += 1
+        self.social += 4
+        self.health -= 2
+        self.money += 1200
 
     def go_dating(self):
-        if self.check_san(3):
+        if self.check_san(30):
             return None
-        self.san -= 3
-        self.wisdom += 5
-        self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.san -= 30
+        self.wisdom -= 4 
+        self.charm += 10
+        self.social -= 2
+        self.health -= 5
+        self.money -= 1111
 
     def social(self):
-        if self.check_san(3):
+        if self.check_san(-20):
             return None
-        self.san -= 3
-        self.wisdom += 5
-        self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.san -= 20
+        self.wisdom -= 5
+        self.charm += 3
+        self.social += 10
+        self.health -= 4
+        self.fitness -= 3
+        self.money -= 100
 
     def rest(self):
         self.rest_time += 1
-        self.wisdom += 5
+        self.wisdom -= 1 
         self.charm -= 1
-        self.social += 2
-        self.health -= 1
+        self.social -= 2
+        self.health += 5
         
         
     def midterm(self, class_type_a, class_type_b, class_type_c):
