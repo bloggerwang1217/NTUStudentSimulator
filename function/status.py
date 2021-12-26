@@ -1,29 +1,29 @@
 import tkinter as tk
 import tkinter.font as tkFont
+import random
 
-classtodiff = {"個經原":"甜課"}
+classtodiff = {"個經原": "甜課"}
+
 
 class Status:
 
-
-    def __init__(self, wisdom, charm, fitness, social, health, money, san, luck, rest_time, score, window,\
-                 love_progress=0, grade=0, yang_sheng=0, prestige=0):
+    def __init__(self, wisdom, charm, fitness, social, health,, san, luck, rest_time, window,):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
         self.social = social
         self.health = health
-        self.money = money
+        self.money = 40000
         self.san = san
         self.rest_time = rest_time
-        self.score = score
+        self.score = dict()
         self.display = window
         self.luck = luck
-        self.love_progress = love_progress
-        self.grade = grade
-        self.yang_sheng = yang_sheng
-        self.prestige = prestige
-        
+        self.love_progress = 0
+        self.grade = 0
+        self.yang_sheng = 0
+        self.prestige = 0
+        self.study_time = dict()
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -79,7 +79,6 @@ class Status:
         self.social += 2
         self.fitness -= 1
 
-
     def class_easy(self):
         if self.check_san(5):
             return None
@@ -87,7 +86,7 @@ class Status:
         self.wisdom += 2
         self.charm -= 1
         self.social += 1
-        self. -= 1
+        self.fitness -= 1
 
     def class_hard(self):
         if self.check_san(30):
@@ -106,13 +105,12 @@ class Status:
         self.charm -= -1
         self.social += 3
 
-
     def workout(self):
         if self.check_san(25):
             return None
         self.money -= 30
         self.san -= 25
-        self.wisdom -= 3 
+        self.wisdom -= 3
         self.charm += 4
         self.fitness += 10
         self.health += 3
@@ -131,7 +129,7 @@ class Status:
         if self.check_san(30):
             return None
         self.san -= 30
-        self.wisdom -= 4 
+        self.wisdom -= 4
         self.charm += 10
         self.social -= 2
         self.health -= 5
@@ -150,59 +148,66 @@ class Status:
 
     def rest(self):
         self.rest_time += 1
-        self.wisdom -= 1 
+        self.wisdom -= 1
         self.charm -= 1
         self.social -= 2
         self.health += 5
-        
-        
-    def midterm(self, clss_dict):
-        class_set = set(class_dict.values()
-        for i in class_set:
-        
-        
-        
-        
 
-def coffee_or_not(status, money_need):
-    ans = [""]
-    # Top level window
-    f = tkFont.Font(size = 20)
-
-    # Label Creation
-    lbl = tk.Label(window, text = f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font = f, bg = "#bebfbe", relief = "raised")
-    lbl.place(x = 960, y = 225)
+    def midterm(self, class_dict):
+        class_list = list(class_dict.values())
+        for i in class_list:
+            self.score[i] = scoring(self, i)
+        return
 
 
-    # Button Creation
+    def final_exam(self, class_dict):
+        class_list = list(class_dict.values())
+        for i in class_list:
+            self.score[i] = (scoring(self, i) + self.score[i]) / 2
+        score_final = self.score
+        self.score.clear()
+        return  score_final
+    
 
-    var1 = tk.IntVar()
-    var2 = tk.IntVar()
-    c1 = tk.Button(status.display, text = "要",width = 5, font = f, command = lambda: save_input(True, ans))
-    c1.place(x = 1005, y = 300)
-    c2 = tk.Button(status.display, text = "不要",width = 5, font = f, command = lambda: save_input(False, ans))
-    c2.place(x = 1130, y = 300)
+    def coffee_or_not(status, money_need):
+        ans = [""]
+        # Top level window
+        f = tkFont.Font(size=20)
 
+        # Label Creation
+        lbl = tk.Label(window, text=f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=225)
 
-    # Cute Pic Creation
+         # Button Creation
 
-    coffee_pic = Image.open("figure/coffee.jpeg")
-    coffee_pic = coffee_pic.resize((300,219), Image.ANTIALIAS)
-    coffee_pic = ImageTk.PhotoImage(coffee_pic)
-    coffee = tk.Label(window, image = coffee_pic, bd =4, relief ="raised")
-    coffee.image = coffee_pic
-    coffee.place(x = 947, y = 340)
+        var1 = tk.IntVar()
+        var2 = tk.IntVar()
+        c1 = tk.Button(status.display, text="要", width=5, font=f, command=lambda: save_input(True, ans))
+        c1.place(x=1005, y=300)
+        c2 = tk.Button(status.display, text="不要", width=5, font=f, command=lambda: save_input(False, ans))
+        c2.place(x=1130, y=300)
 
-    return ans[0]
+        # Cute Pic Creation
 
+        coffee_pic = Image.open("figure/coffee.jpeg")
+        coffee_pic = coffee_pic.resize((300, 219), Image.ANTIALIAS)
+        coffee_pic = ImageTk.PhotoImage(coffee_pic)
+        coffee = tk.Label(window, image=coffee_pic, bd=4, relief="raised")
+        coffee.image = coffee_pic
+        coffee.place(x=947, y=340)
+
+        return ans[0]
 
 def save_input(yn, ans):
-    ans[0] = yn 
+    ans[0] = yn
 
-# 判讀並執行行程表中"一項"行程的函式
+ # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
     if i in list(classtodiff.keys()):
         i = classtodiff[i]
+    elif i[2:] in list(classtodiff.keys()):
+        i_name = i
+        i = "讀" + classtodiff[i]
     if i == "甜課":
         status.class_sweet()
         return
@@ -214,6 +219,22 @@ def act_check(status, i):
         return
     elif i == "廢課":
         status.class_waste()
+        return
+    elif i == "讀甜課":
+        status.class_sweet()
+        status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
+        return
+    elif i == "讀涼課":
+        status.class_easy()
+        status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
+        return
+    elif i == "讀硬課":
+        status.class_hard()
+        status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
+        return
+    elif i == "讀廢課":
+        status.class_waste()
+        status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
         return
     elif i == "健身":
         status.workout()
@@ -230,3 +251,10 @@ def act_check(status, i):
     elif i == "休息":
         status.rest()
     return
+
+def scor(status, classname):
+    coefficient = {"甜課" : 0.001, "涼課" : 0.003, "硬課" : 0.0002}
+    point = status.wisdom * status.study_time[classname] * coefficient[classtodiff[classname]] + 0.2 * status.luck + random.randint(-10, 10)
+    return int(point)
+
+
