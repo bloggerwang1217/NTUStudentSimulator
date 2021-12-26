@@ -157,8 +157,8 @@ class Status:
         
         
     def midterm(self, clss_dict):
-        class_set = set(class_dict.values())
-        
+        class_set = set(class_dict.values()
+        for i in class_set:
         
         
         
