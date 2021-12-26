@@ -1,11 +1,12 @@
 import tkinter as tk
 import tkinter.font as tkFont
 
-# 玩家除了評分值之外的數值都存在"status"名稱的Class(Status)裡面
+
 class Status:
 
 
-    def __init__(self, wisdom, charm, fitness, social, health, money, san, luck, rest_time, score, window):
+    def __init__(self, wisdom, charm, fitness, social, health, money, san, luck, rest_time, score, window,\
+                 love_progress=0, grade=0, yang_sheng=0, prestige=0):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
@@ -17,6 +18,11 @@ class Status:
         self.score = score
         self.display = window
         self.luck = luck
+        self.love_progress = love_progress
+        self.grade = grade
+        self.yang_sheng = yang_sheng
+        self.prestige = prestige
+        
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
