@@ -1,9 +1,17 @@
 import matplotlib.pyplot as plt
+from matplotlib import font_manager as fm
 import numpy as np
 from datetime import datetime
 from time import strftime, gmtime
-plt.rcParams['font.family'] = 'MingLiU'  # 要顯示中文有點複雜
-plt.rcParams['axes.unicode_minus'] = False
+import os
+
+path = os.getcwd()
+
+title_f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 20)
+f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 16)
+
+# plt.rcParams['font.family'] = 'MingLiU'  # 要顯示中文有點複雜
+# plt.rcParams['axes.unicode_minus'] = False
 
 class abi():
     pass
@@ -35,15 +43,15 @@ def abi_illu(abi):
     # 繪製雷達圖
     ax.plot(angles, score_a, color='g')
     # 設定雷達圖中每一項的標籤顯示
-    ax.set_thetagrids(angles*180/np.pi, labels)
+    ax.set_thetagrids(angles*180/np.pi, labels, font = f)
     # 設定雷達圖的0度起始位置
     ax.set_theta_zero_location('N')
     # 設定雷達圖的座標刻度範圍
     ax.set_rlim(0, 100)
     # 設定雷達圖的座標值顯示角度，相對於起始角度的偏移量
     ax.set_rlabel_position(270)
-    ax.set_title("能力值")
-    plt.legend(["你"], loc='best')
+    ax.set_title("能力值", font = title_f)
+    # plt.legend(["你"], loc='best')
     now = str(datetime.now())
     plt.savefig(r'C:\Users\周匯森\Desktop\000.png')  # 這裡會選擇存檔路徑與檔名
     plt.show()

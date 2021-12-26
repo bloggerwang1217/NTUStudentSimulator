@@ -177,7 +177,8 @@ def read_letter(window, data):
     subtitle_f = tk.font.Font(size = 32)
     f = tk.font.Font(size = 20)
 
-    read_data = read.read_beginning()
+    # 傳入句子多長要換行和讀檔名稱
+    read_data = read.read_file(41, "beginning1.txt")
     read_data.insert(0, f"受文者：{data['name']}")
     read_data.insert(0, "國立臺灣大學學士班新生入學通知書")
 
@@ -197,17 +198,90 @@ def read_letter(window, data):
         else:
             text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
 
-    be_a_freshman_button = tk.Button(window, text = "正式成為新生！", font = f, command = lambda: press_next_button(window, data, text))
-    be_a_freshman_button.place(x = 900, y = 625)
+    flip_button = tk.Button(window, text = "翻面", font = f, command = lambda: press_flip_button(window, data, text, background, small_bg))
+    flip_button.place(x = 1000, y = 625)
 
-    text.append(background)
-    text.append(small_bg)
-    text.append(be_a_freshman_button)
-    # 現在text裡有目前所有widgets，按按鈕後一次清除
-
+    text.append(flip_button)
+    # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
     
-def press_next_button(window, data, widgets):
-    for widget in widgets:
+def press_flip_button(window, data, used_widgets, widget1, widget2):
+    for widget in used_widgets:
         widget.destroy()
-    # 呼叫初始化能力值
+    
+    f = tk.font.Font(size = 20)
+
+    read_data = read.read_file(45, "beginning2.txt")
+
+    text = []
+    for i in range(len(read_data)): 
+        if i == 0:
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = f))
+        elif i == 1:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+        else:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+
+        if i == 0:
+            text[i].place(x = 180, y = 30)
+        else:
+            text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
+
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
+    check_ability_button.place(x = 800, y = 620)
+
+    text.append(check_ability_button)
+    # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
+
+
+def press_check_ability_button(window, data, used_widgets, widget1, widget2):
+    for widget in used_widgets:
+        widget.destroy()
+    
+    title_f = tk.font.Font(size = 36)
+    subtitle_f = tk.font.Font(size = 32)
+    f = tk.font.Font(size = 20)
+
+    read_data = ["各項能力檢驗量表"]
+    read_data.append(f"學生：{data['name']}")
+    read_data.append("下面是你各項能力值的分佈，你有四年的時間好好培養，期待你的表現")
+
+    text = []
+    for i in range(len(read_data)): 
+        if i == 0:
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+        elif i == 1:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+        else:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+
+        if i == 0:
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
+        elif i == 1:
+            text[i].place(x = 220, y = 100)
+        else:
+            text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
+
+    # 貼上能力表 
+    # ability_graph = Image.open("figure/ability_graph/.jpeg")
+    # ability_graph = ability_graph.resize((1280, 720), Image.ANTIALIAS)
+    # ability_graph = ImageTk.PhotoImage(ability_graph)
+    # ability = tk.Label(window, image = ability_graph)
+    # ability.image = ability_graph
+    # ability.place(x = 640 - text[i].winfo_reqwidth()/2, y = 200)
+    
+
+    go_course_selecting_button = tk.Button(window, text = "進入選課系統！", font = f, command = lambda: press_go_course_selecting_button(window, data, text))
+    go_course_selecting_button.place(x = 900, y = 625)
+
+    text.append(widget1)
+    text.append(widget2)
+    text.append(go_course_selecting_button)
+    # text.append(ability)
+    # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
+
+def press_go_course_selecting_button(window, data, used_widgets):
+    for widget in used_widgets:
+        widget.destroy()
+    course_selection(window, data)
+

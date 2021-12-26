@@ -7,7 +7,7 @@ classtodiff = {"個經原": "甜課"}
 
 class Status:
 
-    def __init__(self, wisdom, charm, fitness, social, health,, san, luck, rest_time, window,):
+    def __init__(self, wisdom, charm, fitness, social, health, san, luck, rest_time, classes, window):
         self.wisdom = wisdom
         self.charm = charm
         self.fitness = fitness
@@ -24,6 +24,7 @@ class Status:
         self.yang_sheng = 0
         self.prestige = 0
         self.study_time = dict()
+        self.classes = classes
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
