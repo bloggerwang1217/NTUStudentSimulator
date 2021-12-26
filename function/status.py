@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkFont
 
+classtodiff = {"個經原":"甜課"}
 
 class Status:
 
@@ -200,30 +201,32 @@ def save_input(yn, ans):
 
 # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
+    if i in list(classtodiff.keys()):
+        i = classtodiff[i]
     if i == "甜課":
         status.class_sweet()
         return
-    elif i == "":
+    elif i == "涼課":
         status.class_easy()
         return
-    elif i == "":
+    elif i == "硬課":
         status.class_hard()
         return
-    elif i == "":
+    elif i == "廢課":
         status.class_waste()
         return
-    elif i == "":
+    elif i == "健身":
         status.workout()
         return
-    elif i == "":
+    elif i == "打工":
         status.part_time()
         return
-    elif i == "":
+    elif i == "約會":
         status.go_dating()
         return
-    elif i == "":
+    elif i == "社交":
         status.social()
         return
-    elif i == "":
+    elif i == "休息":
         status.rest()
     return
