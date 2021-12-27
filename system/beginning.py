@@ -4,6 +4,7 @@ from PIL import ImageTk, Image
 import function.read_file as read
 import function.初始能力值設定 as init_abi
 import function.結局結算能力值 as graph_abi
+import function.course_selection as cs
 import function.status as status
 
 
@@ -132,6 +133,7 @@ def input_basic_data(window, data):
                             command = lambda: save_input(data, var1, var2, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()))
     printButton.place(x = 975+small_bg.winfo_reqwidth()/2-printButton.winfo_reqwidth()/2, y = 330)
     widgets.append(printButton)
+
 
 def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, length):
     sex = ""
@@ -284,5 +286,5 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 def press_go_course_selecting_button(window, data, used_widgets):
     for widget in used_widgets:
         widget.destroy()
-    course_selection(window, data)
+    cs.course_selection(window, data)
 
