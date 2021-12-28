@@ -1,5 +1,15 @@
 import csv
 
+def rearrange(line_len, ori_text):
+    new_text = []
+    for i in range(len(ori_text)//line_len + 1):
+        if i == len(ori_text)//line_len + 1:
+            new_text.append(ori_text[(line_len * i)::])
+        else:
+            new_text.append(ori_text[(line_len * i):(line_len * (i+1))])
+    return "\n".join(new_text)
+
+
 def read_file(line_len, file_name):
     f = open(f"text/{file_name}", mode = "r", encoding = "utf-8")
     text = f.readlines()
@@ -29,3 +39,24 @@ def read_course():
             course_list[i][3] = int(course_list[i][3])
             course_list[i][4] = int(course_list[i][4])
     return(course_list)
+
+
+def read_event(file_name):
+    f = open(f"text/{file_name}", mode = "r", encoding = "utf-8-sig")
+    text = f.readlines()
+    seperated_text = []
+    for line in text:
+        if line != "\n":
+            line = line.strip()
+        # if len(line) < line_len:
+        #     seperated_text.append(line)
+        # else:
+        #     for i in range(len(line)//line_len + 1):
+        #         if i == len(line)//line_len + 1:
+        #             seperated_text.append(line[(line_len * i)::])
+        #         else:
+        #             seperated_text.append(line[(line_len * i):(line_len * (i+1))])
+        seperated_text.append(line)
+
+    f.close()
+    return seperated_text
