@@ -1,13 +1,6 @@
 import random
 
-class ability():
-    pass
-abi = ability()
-abi.wisdom = 99
-abi.social_skill = 75
-abi.love_progress = 42
-abi.luck = 15
-abi.charm = 70
+
 
 
 
@@ -27,7 +20,6 @@ def Study_or_not():  # 參加讀書會
     if abi.wisdom > 85 and abi.wisdom <  100 and\
        abi.social_skill > 70 and study_freq:
         study_freq = False
-        abi.wisdom = 101  # 可以拔除，測試用
         return True
 
 
@@ -36,15 +28,14 @@ def Research_or_not():  # 參加研究專案
     if abi.wisdom > 100 and abi.wisdom < 115 and\
        abi.social_skill > 70 and res_freq:
         res_freq = False
-        abi.wisdom = 116  # 可以拔除，測試用
         return True
 
 
-def Academic_or_not():  # 參加學術研討
-    global acad_freq, abi
-    if abi.wisdom > 115 and abi.social_skill > 70 and acad_freq:
-        acad_freq = False
-        return True
+#def Academic_or_not():  # 參加學術研討
+#    global acad_freq, abi
+#    if abi.wisdom > 115 and abi.social_skill > 70 and acad_freq:
+#        acad_freq = False
+#        return True
 
 
 def Sex_or_not():  # 翹課打ㄆ
