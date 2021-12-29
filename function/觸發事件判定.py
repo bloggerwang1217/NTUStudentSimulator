@@ -99,6 +99,5 @@ for i in range(10):
     if Yes_or_Not_List[i] == True:
         outputList.append(TriIncident_List[i])
 
-if outputList != []:
-    for i in outputList:
-        show_Trig_events(data, i)
+
+show_Trig_events(data, outputList)
