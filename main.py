@@ -25,6 +25,7 @@ data = {}
 wisdom, charm, fitness, social, health, luck = init_abi.ininial_set()
 data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, read.read_course(), window)
 
-show.show_summer_event(data, "陪另一半")
+show.show_summer_event(data, "實習")
+
 
 window.mainloop()
