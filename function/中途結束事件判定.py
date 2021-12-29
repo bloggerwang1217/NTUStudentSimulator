@@ -49,9 +49,4 @@ for i in range(7):
     if Mid_End[i] = True:
         outputList.append(Incident_List[i])
  
-if outputList != []:
-    for i in outputList:
-        show_MidEnd_events(data, i)
-else:
-    pass
-
+show_ending_event(data, outputList)
