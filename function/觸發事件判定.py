@@ -100,4 +100,4 @@ for i in range(10):
         outputList.append(TriIncident_List[i])
 
 
-show_Trig_events(data, outputList)
+show_trigger_event(data, outputList)
