@@ -93,11 +93,12 @@ def Bike_tow():  # 腳踏車被拖吊
         return False
 
 outputList = []    
-TriIncident_List = ['Vt', 'Study', 'Research', 'Sex', 'Oldexam', 'First_D', 'Marriage', 'S_Daddy', 'Preg', 'Bike']
+TriIncident_List = ['推坑Vt', '參加讀書會', '參加研究專案', '翹課打ㄆ', '獲得考古題', '第一次約會', '婚姻抉擇', '不想努力了', '懷孕', '腳踏車被拖吊']
 Yes_or_Not_List = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
 for i in range(10):
     if Yes_or_Not_List[i] == True:
         outputList.append(TriIncident_List[i])
 
-for i in outputList:
-    show_Trig_events(data, i)
+if outputList != []:
+    for i in outputList:
+        show_Trig_events(data, i)
