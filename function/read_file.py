@@ -41,8 +41,8 @@ def read_course():
     return(course_list)
 
 
-def read_event(file_name):
-    f = open(f"text/{file_name}", mode = "r", encoding = "utf-8-sig")
+def read_event(event_type, name):
+    f = open(f"text/event/{event_type}/{name}.txt", mode = "r", encoding = "utf-8-sig")
     text = f.readlines()
     seperated_text = []
     for line in text:
