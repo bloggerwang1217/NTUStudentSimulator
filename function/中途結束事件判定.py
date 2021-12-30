@@ -4,11 +4,13 @@ import random
 To_New_World_freq, Too_Stupid_freq = True, True
 
 def blow_wind():  # 樓頂吹風
+    global status
     if status.social_skill <= 0 or status.wisdom <= 0 or status.fitness <= 0 or status.charm <= 0 or status.health <= 0:
         return True
 
 
 def To_New_World():  # 轉生異世界
+    global status
     prob = random.randrange(1, 101)
     if status.luck < 5 and prob < 2 and To_New_World_freq:
         return True
@@ -17,27 +19,31 @@ def To_New_World():  # 轉生異世界
 
 
 def Me_First():  # 明明是我先來的
+    global status
     if status.charm > 90 and love_progress < 40:
         return True
 
 
 def Too_Stupid():  # 被二一
-    global pass_or_not
+    global pass_or_not, status
     if pass_or_not:
         return True
 
 
 def Broke():  # 破產
+    global status
     if status.Money <= -50000:
         return True
 
 
 def Wealth_Freedom():  # 財富自由
+    global status
     if status.Money >= 1000000:
         return True
 
 
 def IntoDust():  # 火化
+    global status
     if status.health <= 0:
         return True
 
@@ -49,4 +55,4 @@ for i in range(7):
     if Mid_End[i] = True:
         outputList.append(Incident_List[i])
  
-show_ending_event(data, outputList)
+process_event(data, outputList)
