@@ -6,13 +6,14 @@ Sugar_freq, preg_freq, Bike_tow_freq = True, True, True, True, True, True, True,
 
 
 def Vtuber_or_Not():  # 推坑Vt
+    global status
     if status.social_skill < 40:
         return True
     else:
         return False
 
 def Study_or_not():  # 參加讀書會
-    global study_freq
+    global study_freq, status
     if status.wisdom > 85 and status.wisdom <  100 and\
        status.social_skill > 70 and study_freq:
         study_freq = False
@@ -21,7 +22,7 @@ def Study_or_not():  # 參加讀書會
         return False
 
 def Research_or_not():  # 參加研究專案
-    global res_freq
+    global res_freq, status
     if status.wisdom > 100 and status.wisdom < 115 and\
        status.social_skill > 70 and res_freq:
         res_freq = False
@@ -29,15 +30,9 @@ def Research_or_not():  # 參加研究專案
     else:
         return False
 
-#def Academic_or_not():  # 參加學術研討   # 已取消的項目
-#    global acad_freq, abi
-#    if abi.wisdom > 115 and abi.social_skill > 70 and acad_freq:
-#        acad_freq = False
-#        return True
-
-
+    
 def Sex_or_not():  # 翹課打ㄆ
-    global sex_freq
+    global sex_freq, status
     if status.charm > 90 and sex_freq:
         sex_freq = False
         return True
@@ -45,7 +40,7 @@ def Sex_or_not():  # 翹課打ㄆ
         return False
 
 def OldExam_or_not():  # 獲得考古題
-    global OldExam_freq
+    global OldExam_freq, status
     if status.social_skill > 80 and OldExam_freq:
         OldExam_freq = False
         return True
@@ -53,7 +48,7 @@ def OldExam_or_not():  # 獲得考古題
         return False
 
 def First_Date():  # 第一次約會
-    global First_Date_freq
+    global First_Date_freq, status
     if status.love_progress > 40 and First_Date_freq:
         First_Date_freq = False
         return True
@@ -67,7 +62,7 @@ def Marriage_or_not():  # 婚姻抉擇
         return False
 
 def SugarDaddy():  # 不想努力了
-    global Sugar_freq
+    global Sugar_freq, status
     if status.charm > 100 and status.love_progress < 10 and Sugar_freq:
         Sugar_freq = False
         return True
@@ -75,7 +70,7 @@ def SugarDaddy():  # 不想努力了
         return False
 
 def Pregnant():  # 懷孕
-    global preg_freq
+    global preg_freq, status
     prob = random.randrange(1, 101)
     if status.charm > 100 and status.luck < 5 and preg_freq and prob < 6:
         preg_freq = False
@@ -84,7 +79,7 @@ def Pregnant():  # 懷孕
         return False
 
 def Bike_tow():  # 腳踏車被拖吊
-    global Bike_tow_freq
+    global Bike_tow_freq, status
     prob = random.randrange(1, 101)
     if status.luck < 20 and Bike_tow_freq and prob < 81:
         Bike_tow_freq = False
