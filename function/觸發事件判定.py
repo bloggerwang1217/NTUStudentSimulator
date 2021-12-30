@@ -107,6 +107,8 @@ if data["time"] == "大一上"  and data["previous_event"] == "第一次排行�
 if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期末考"
 
+if data["time"] == "大一下"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
 if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
     outputList.append('社團')
@@ -119,6 +121,87 @@ if data["time"] == "大一下"  and data["previous_event"] == "第一次排行�
     data["previous_event"] == "第二次排行程表"
 if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期末考"
-   
-    
+
+if data["time"] == "大二上"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期中考"
+if data["time"] == "大二上"  and data["previous_event"] == "期中考":
+    data["previous_event"] == "第一次排行程表"
+    outputList.append('比賽')
+if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期末考"
+
+if data["time"] == "大二下"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期中考"
+if data["time"] == "大二下"  and data["previous_event"] == "期中考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+    outputList.append('活動')
+if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期末考"
+
+if data["time"] == "大三上"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期中考"
+if data["time"] == "大三上"  and data["previous_event"] == "期中考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期末考"
+    outputList.append('實習')
+
+if data["time"] == "大三下"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+    outputList.append('打疫苗')
+if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期中考"
+if data["time"] == "大三下"  and data["previous_event"] == "期中考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期末考"
+
+if data["time"] == "大四上"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期中考"
+if data["time"] == "大四上"  and data["previous_event"] == "期中考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期末考"
+
+if data["time"] == "大四下"  and data["previous_event"] == "期末考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期中考"
+if data["time"] == "大四下"  and data["previous_event"] == "期中考":
+    data["previous_event"] == "第一次排行程表"
+if data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
+    data["previous_event"] == "第二次排行程表"
+if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
+    data["previous_event"] == "期末考"
+
 process_event(data, outputList)
