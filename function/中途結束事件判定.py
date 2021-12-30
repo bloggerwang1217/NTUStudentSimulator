@@ -55,4 +55,4 @@ for i in range(7):
     if Mid_End[i] = True:
         outputList.append(Incident_List[i])
  
-process_event(data, outputList)
+process_event(data, outputList)  # 一旦觸發中途結束，將直接結束遊戲
