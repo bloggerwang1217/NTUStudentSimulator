@@ -98,6 +98,13 @@ Yes_or_Not_List = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_no
 for i in range(10):
     if Yes_or_Not_List[i] == True:
         outputList.append(TriIncident_List[i])
+    if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        # 有必然事件就加入
+    if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
 
 
-show_trigger_event(data, outputList)
+
+
+process_event(data, outputList)

@@ -32,7 +32,7 @@ def show_event(data, event_type, name):
 
     reference = []
 
-    background_image = Image.open(f"figure/event/{event_type}/{name}.jpeg")
+    background_image = Image.open(f"figure/event/{event_type}/{name}.jpg")
     background_image = background_image.resize((1280, 720), Image.ANTIALIAS)
     background_image = ImageTk.PhotoImage(background_image)
     background.create_image(0,0, anchor=tk.NW, image=background_image)
@@ -163,7 +163,7 @@ def call_status_u(background, reference, text_now, image_widget):
 
     if len(line) > 30:  # 有npc時的斷行長度
         line = read.rearrange(32, line)
-    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = f)
+    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line, anchor = "center", fill = "white", font = f)
     return text_widget
 
 
