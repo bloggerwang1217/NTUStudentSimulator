@@ -4,6 +4,8 @@ import tkinter.font
 from PIL import ImageTk, Image
 
 
+reach_event_type, reach_name = "", ""
+
 def process_event(data, events):
     data["event_processing"] = []
     for i in range(len(events)):
@@ -24,6 +26,9 @@ def show_trigger_event(data, name):
 
 
 def show_event(data, event_type, name):
+    global reach_event_type, reach_name
+    reach_event_type, reach_name = event_type, name
+
     f = tk.font.Font(size = 30)
 
     data["choose_result"] = []
@@ -66,10 +71,16 @@ def show_event(data, event_type, name):
     # 處理特殊情況
     if event_type == "暑假事件" and name == "高報酬":
         for i in range(len(text)):
-            if text[i][0] == "c":
-                special_situation(data, event_type, name)
+            if text[i][0] == "d":
+                special_situation(data, event_type, name, text, index)
                 text.pop(i)
                 break
+        shrinker(data, text, 1, "這肯定很賭運氣的")
+    # elif event_type == "必然事件" and name == "活動":
+    #     for i in range(len(text)):
+    #         if "{}" in text[i]:
+    #             text[i] = f"{data["name"]}".join(text[i].split("{}"))
+
 
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget))
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 670 - nextButton.winfo_reqheight() * 2)
@@ -85,7 +96,7 @@ def show_ending_event(data, name):
 
 def show_widgets(data, background, nextButton, reference, text, text_now, index, text_widget, image_widget):
     f = tk.font.Font(size = 28)
-    special_status = ["u", "v", "c", "1", "2", "3"]
+    special_status = ["u", "v", "c", "d"]
     if text_now[0] in special_status:
         if text_now[0] == "v":
             text_widget = call_status_v(background, reference, text_now, image_widget)
@@ -94,13 +105,9 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         elif text_now[0] == "c":
             text_widget = call_status_c(data, background, text, index, reference, text_widget, image_widget)
             nextButton.destroy()
-        else:
-            while text_now[0] != str(data["choose_result"][-1]):
-                index += 1
-                text_now = text[index]
-                if index == len(text)-1:
-                    break
-
+        elif text_now[0] == "d":
+            special_situation(data, reach_event_type, reach_name, text, index)
+            text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = "...", anchor = "center", fill = "white", font = f)
     else:
         if len(text_now) > 34:  # 正常的斷行長度
             text_now = read.rearrange(32, text_now)
@@ -136,7 +143,8 @@ def press_continue(data, background, nextButton, reference, text_status, text, t
 
 
 def call_status_u(background, reference, text_now, image_widget):
-    f = tk.font.Font(size = 30)
+    name_f = tk.font.Font(size = 30)
+    f = tk.font.Font(size = 28)
     name = "你"
     line = text_now.split(text_now[1])[1]
 
@@ -157,18 +165,19 @@ def call_status_u(background, reference, text_now, image_widget):
     # c = background.create_image(-100,235, anchor=tk.NW, image=peep)
     # reference.append(peep)
 
-    d = background.create_text(1130 - len(name), 425, text = f"-{name}-", anchor = "center", fill = "white", font = f)
+    d = background.create_text(1130 - len(name), 425, text = f"-{name}-", anchor = "center", fill = "white", font = name_f)
     # image_widget.append(c)
     image_widget.append(d)
 
-    if len(line) > 30:  # 有npc時的斷行長度
+    if len(line) > 32:  # 自己說話時的斷行長度
         line = read.rearrange(32, line)
     text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line, anchor = "center", fill = "white", font = f)
     return text_widget
 
 
 def call_status_v(background, reference, text_now, image_widget):
-    f = tk.font.Font(size = 30)
+    name_f = tk.font.Font(size = 30)
+    f = tk.font.Font(size = 28)
     name = text_now.split(text_now[1])[1]
     line = text_now.split(text_now[1])[2]
 
@@ -193,8 +202,8 @@ def call_status_v(background, reference, text_now, image_widget):
     image_widget.append(c)
     image_widget.append(d)
 
-    if len(line) > 32:  # 有npc時的斷行長度
-        line = read.rearrange(32, line)
+    if len(line) > 22:  # 有npc時的斷行長度
+        line = read.rearrange(22, line)
     text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = f)
     return text_widget
 
@@ -211,6 +220,8 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
     text_now = text[index][2::].split(text[index][1])
     choose_button = []
 
+    print(text_now)
+
     if len(text_now) == 2:
         output1 = meme_processor(text_now[0])
         output2 = meme_processor(text_now[1])
@@ -221,19 +232,19 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
         button1.place(x = 1280 / 3 - button1.winfo_reqwidth()/2, y = 320 - button1.winfo_reqheight()/2)
         button2.place(x = 2 * 1280 / 3 - button2.winfo_reqwidth()/2, y = 320 - button2.winfo_reqheight()/2)
 
-    if len(text_now) == 3:
+    elif len(text_now) == 3:
         output1 = meme_processor(text_now[0])
         output2 = meme_processor(text_now[1])
-        output3 = meme_processor(text_now[0])
+        output3 = meme_processor(text_now[2])
         button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget))
         button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget))
-        button2 = tk.Button(data["status"].display, text = f"{text_now[2]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 3, output2, background, reference, text_widget, index, text, image_widget))
+        button3 = tk.Button(data["status"].display, text = f"{text_now[2]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 3, output3, background, reference, text_widget, index, text, image_widget))
         choose_button.append(button1)
         choose_button.append(button2)
         choose_button.append(button3)
         button1.place(x = 1280 / 4 - button1.winfo_reqwidth()/2, y = 320 - button1.winfo_reqheight()/2)
         button2.place(x = 2 * 1280 / 4 - button2.winfo_reqwidth()/2, y = 320 - button2.winfo_reqheight()/2)
-        button3.place(x = 3 * 1280 / 4 - button2.winfo_reqwidth()/2, y = 320 - button2.winfo_reqheight()/2)
+        button3.place(x = 3 * 1280 / 4 - button3.winfo_reqwidth()/2, y = 320 - button3.winfo_reqheight()/2)
 
     return text_widget
 
@@ -242,18 +253,61 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
     f = tk.font.Font(size = 30)
     data["choose_result"].append(chosen)
     background.delete(text_widget)
-    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = name, anchor = "center", fill = "white", font = f)
+    # text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = name, anchor = "center", fill = "white", font = f)
+    
     print(data["choose_result"])
+    
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget))
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 670 - nextButton.winfo_reqheight() * 2)
     for button in choose_button:
         button.destroy()
+
+    shrinker(data, text, index, name)
+    print(text)
+
+
+    # 換圖
+    elif event_type == "必然事件" and name == "活動":
+        for i in range(len(text)):
+            if "{}" in text[i]:
+                text[i] = f"{data["name"]}".join(text[i].split("{}"))
+
+
     text_widget, next_line = show_widgets(data, background, nextButton, reference, text, text[index+1], index+1, text_widget, image_widget)
     text_status = [text_widget, next_line]  # [文字工具, 指標]
 
 
+def shrinker(data, text, index, name):  #index:c出現的位置；若為數值判定，則為c出現前一個
+    option_dict = {"1":{1:"1", 2:"2", 3:"3"}, "A":{1: "A", 2: "B"}, "a":{1: "a", 2:"b"}, "甲":{1: "甲", 2: "乙"}, "子":{1: "子", 2: "丑"}}
+    option_type = text[index+1][0]
+    temp_index = index + 1
+    ans = option_dict[option_type][data["choose_result"][-1]]
+    while True:
+        if text[temp_index] == ans:
+            text.pop(temp_index)
+            text.insert(temp_index, name)
+            temp_index += 1
+            while len(text[temp_index]) != 1 or (len(text[temp_index]) == 1 and (not text[temp_index] in option_dict[option_type].values())):
+                temp_index += 1
+            for i in range(len(text)-1, temp_index-1, -1):
+                text.pop(i)
+            break
+        elif text[temp_index] != ans and len(text[temp_index]) == 1 and text[temp_index] in option_dict[option_type].values():
+            while text[temp_index] != ans:
+                text.pop(temp_index)
+            text.pop(temp_index)
+            text.insert(temp_index, name)
+            break
+    try:
+        if option_dict[option_type][3] in text:
+            for i in range(len(text)-1, text.index(option_dict[option_type][3])-1, -1):
+                text.pop(i)
+    except:
+        pass
+    print(text)
+
 def meme_processor(line):
-    special_meme_translation = {"不要":"不要啦，哪次要"}
+    special_meme_translation = {"不要":"不要啦，哪次要", "有":"有啦，哪次沒有", "沒有":"沒有啦，哪次有"}
     if line in special_meme_translation:
         line = special_meme_translation[line]
     else:
@@ -261,7 +315,30 @@ def meme_processor(line):
     return line
 
 
-def special_situation(data, event_type, name):
+def special_situation(data, event_type, name, text, index):
     if event_type == "暑假事件" and name == "高報酬":
-        i = 2  # 按照主辦方的機率分配
+        i = 1  # 按照主辦方的機率分配
         data["choose_result"].append(i)
+    elif event_type == "觸發事件" and name == "第一次約會":
+            for i in range(len(text)):
+                if text[i][0] == "d":
+                    if data["choose_result"][-1] == 1:
+                        if data["status"].charm >= 50:
+                            data["choose_result"].append(1)
+                        else:
+                            data["choose_result"].append(2)
+                    elif data["choose_result"][-1] == 2:
+                        if data["status"].luck < 20:
+                            data["choose_result"].append(1)
+                        else:
+                            data["choose_result"].append(2)
+                    break
+            if data["choose_result"][0] == 1:
+                shrinker(data, text, index, "（這肯定很看你的魅力的）")
+            elif data["choose_result"][0] == 2:
+                shrinker(data, text, index, "（賭一把了）")
+    elif event_type == "必然事件":
+        if name == "實習":
+            i = 1  # 按照主辦方的機率分配
+            data["choose_result"].append(i)
+            shrinker(data, text, index, "（賭一把了）")
