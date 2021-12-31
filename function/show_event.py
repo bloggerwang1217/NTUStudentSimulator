@@ -212,13 +212,28 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
     choose_button = []
 
     if len(text_now) == 2:
-        output1, output2 = meme_processor(text_now[0], text_now[1])
+        output1 = meme_processor(text_now[0])
+        output2 = meme_processor(text_now[1])
         button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget))
         button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget))
         choose_button.append(button1)
         choose_button.append(button2)
         button1.place(x = 1280 / 3 - button1.winfo_reqwidth()/2, y = 320 - button1.winfo_reqheight()/2)
         button2.place(x = 2 * 1280 / 3 - button2.winfo_reqwidth()/2, y = 320 - button2.winfo_reqheight()/2)
+
+    if len(text_now) == 3:
+        output1 = meme_processor(text_now[0])
+        output2 = meme_processor(text_now[1])
+        output3 = meme_processor(text_now[0])
+        button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget))
+        button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget))
+        button2 = tk.Button(data["status"].display, text = f"{text_now[2]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 3, output2, background, reference, text_widget, index, text, image_widget))
+        choose_button.append(button1)
+        choose_button.append(button2)
+        choose_button.append(button3)
+        button1.place(x = 1280 / 4 - button1.winfo_reqwidth()/2, y = 320 - button1.winfo_reqheight()/2)
+        button2.place(x = 2 * 1280 / 4 - button2.winfo_reqwidth()/2, y = 320 - button2.winfo_reqheight()/2)
+        button3.place(x = 3 * 1280 / 4 - button2.winfo_reqwidth()/2, y = 320 - button2.winfo_reqheight()/2)
 
     return text_widget
 
@@ -237,18 +252,13 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
     text_status = [text_widget, next_line]  # [文字工具, 指標]
 
 
-def meme_processor(line1, line2):
+def meme_processor(line):
     special_meme_translation = {"不要":"不要啦，哪次要"}
-    if line1 in special_meme_translation:
-        line1 = special_meme_translation[line1]
+    if line in special_meme_translation:
+        line = special_meme_translation[line]
     else:
-        line1 = f"{line1}啦，哪次不{line1}"
-
-    if line2 in special_meme_translation:
-        line2 = special_meme_translation[line2]
-    else:
-        line2 = f"{line2}啦，哪次不{line2}"
-    return line1, line2
+        line = f"{line}啦，哪次不{line}"
+    return line
 
 
 def special_situation(data, event_type, name):
