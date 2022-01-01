@@ -17,14 +17,6 @@ def process_event(data, events):
         show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
-def show_necessary_event(data, name):
-    pass
-
-
-def show_trigger_event(data, name):
-    pass
-
-
 def show_event(data, event_type, name):
     global reach_event_type, reach_name
     reach_event_type, reach_name = event_type, name
@@ -72,7 +64,7 @@ def show_event(data, event_type, name):
     if event_type == "暑假事件" and name == "高報酬":
         for i in range(len(text)):
             if text[i][0] == "d":
-                special_situation(data, event_type, name, text, index)
+                special_situation(data, event_type, name, text, i)
                 text.pop(i)
                 break
         shrinker(data, text, 1, "這肯定很賭運氣的")
@@ -88,10 +80,6 @@ def show_event(data, event_type, name):
     image_widget = []
     text_widget, next_line = show_widgets(data, background, nextButton, reference, text, text[0], 0, 0, image_widget)
     text_status = [text_widget, next_line]  # [文字工具, 指標]
-
-
-def show_ending_event(data, name):
-    pass
 
 
 def show_widgets(data, background, nextButton, reference, text, text_now, index, text_widget, image_widget):
@@ -267,10 +255,10 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
 
 
     # 換圖
-    elif event_type == "必然事件" and name == "活動":
-        for i in range(len(text)):
-            if "{}" in text[i]:
-                text[i] = f"{data["name"]}".join(text[i].split("{}"))
+    # if event_type == "必然事件" and name == "活動":
+    #     if len(data["choose_result"]) == 1:
+    #         if data["choose_result"][0] == 1:
+
 
 
     text_widget, next_line = show_widgets(data, background, nextButton, reference, text, text[index+1], index+1, text_widget, image_widget)

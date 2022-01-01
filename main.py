@@ -7,6 +7,7 @@ import function.course_selection as cs
 import function.show_event as show
 import function.初始能力值設定 as init_abi
 import function.結局結算能力值 as graph_abi
+import function.暑假事件選擇 as cse
 
 window = tk.Tk()
 window.geometry("1280x720")
@@ -26,7 +27,7 @@ wisdom, charm, fitness, social, health, luck = init_abi.ininial_set()
 data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, read.read_course(), window)
 
 # show.process_event(data, ["觸發事件:推坑Vt"])
-show.process_event(data, ["必然事件:實習"])
-
+# show.process_event(data, ["必然事件:實習"])
+cse.choose_summer_event(data)
 
 window.mainloop()
