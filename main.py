@@ -16,7 +16,7 @@ window.resizable(0, 0)
 window.title("為美好的台大生活獻上祝福")
 
 data = {}
-bg.start_game(window, data)
+# bg.start_game(window, data)
 
 # 排時間表
 selected_course = {"1-1":"A課", "2-2":"B課", "4-3":"C課"}
@@ -28,7 +28,7 @@ wisdom, charm, fitness, social, health, luck = init_abi.ininial_set()
 data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, read.read_course(), window)
 
 # show.process_event(data, ["觸發事件:推坑Vt"])
-# show.process_event(data, ["必然事件:實習"])
+show.process_event(data, ["必然事件:聯誼"])
 # semester.start_semester(window, data, "大一下", selected_course)
 
 window.mainloop()

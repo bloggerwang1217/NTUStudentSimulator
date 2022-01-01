@@ -6,3 +6,4 @@
 3. ntu_course_selection:https://nol.ntu.edu.tw/nol/student/
 3. ntu_course_bottom:https://nol.ntu.edu.tw/nol/student/
 4. summer_vacation:https://7geese.com/how-to-motivate-your-employees-after-their-summer-vacation/
+5. 不想努力了:https://png.is/f/female-cafe-clerk/xframe_79632-202106170556.html

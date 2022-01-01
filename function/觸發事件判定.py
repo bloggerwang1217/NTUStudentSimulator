@@ -88,7 +88,7 @@ def Bike_tow():  # 腳踏車被拖吊
         return False
 
 outputList = []    
-TriIncident_List = ['推坑Vt', '參加讀書會', '參加研究專案', '翹課打ㄆ', '獲得考古題', '第一次約會', '婚姻抉擇', '不想努力了', '懷孕', '腳踏車被拖吊']
+TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:翹課打ㄆ', '觸發事件:獲得考古題', '觸發事件:第一次約會', '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
 Yes_or_Not_List = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
 for i in range(10):
     if Yes_or_Not_List[i] == True:
@@ -96,7 +96,7 @@ for i in range(10):
 
 if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
-    outputList.append('健康檢查')
+    outputList.append('必然事件:健康檢查')
     # 有必然事件就加入
 if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期中考"
@@ -111,12 +111,12 @@ if data["time"] == "大一下"  and data["previous_event"] == "期末考":
     data["previous_event"] == "第一次排行程表"
 if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
-    outputList.append('社團')
+    outputList.append('必然事件:社團')
 if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期中考"
 if data["time"] == "大一下"  and data["previous_event"] == "期中考":
     data["previous_event"] == "第一次排行程表"
-    outputList.append('舞會')
+    outputList.append('必然事件:舞會')
 if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
 if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
@@ -130,7 +130,7 @@ if data["time"] == "大二上"  and data["previous_event"] == "第二次排行�
     data["previous_event"] == "期中考"
 if data["time"] == "大二上"  and data["previous_event"] == "期中考":
     data["previous_event"] == "第一次排行程表"
-    outputList.append('比賽')
+    outputList.append('必然事件:比賽')
 if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
 if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
@@ -146,7 +146,7 @@ if data["time"] == "大二下"  and data["previous_event"] == "期中考":
     data["previous_event"] == "第一次排行程表"
 if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
-    outputList.append('活動')
+    outputList.append('必然事件:聯誼')
 if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期末考"
 
@@ -162,13 +162,13 @@ if data["time"] == "大三上"  and data["previous_event"] == "第一次排行�
     data["previous_event"] == "第二次排行程表"
 if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期末考"
-    outputList.append('實習')
+    outputList.append('必然事件:實習')
 
 if data["time"] == "大三下"  and data["previous_event"] == "期末考":
     data["previous_event"] == "第一次排行程表"
 if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
     data["previous_event"] == "第二次排行程表"
-    outputList.append('打疫苗')
+    outputList.append('必然事件:打疫苗')
 if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
     data["previous_event"] == "期中考"
 if data["time"] == "大三下"  and data["previous_event"] == "期中考":

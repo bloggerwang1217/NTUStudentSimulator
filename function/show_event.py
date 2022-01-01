@@ -17,7 +17,7 @@ def process_event(data, events):
         show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
-def show_event(data, event_type, name, picked):
+def show_event(data, event_type, name):
     global reach_event_type, reach_name
     reach_event_type, reach_name = event_type, name
 
@@ -68,10 +68,10 @@ def show_event(data, event_type, name, picked):
                 text.pop(i)
                 break
         shrinker(data, text, 1, "這肯定很賭運氣的")
-    # elif event_type == "必然事件" and name == "活動":
-    #     for i in range(len(text)):
-    #         if "{}" in text[i]:
-    #             text[i] = f"{data["name"]}".join(text[i].split("{}"))
+    elif event_type == "必然事件" and name == "聯誼":
+        for i in range(len(text)):
+            if "{}" in text[i]:
+                text[i] = f"{data["name"]}".join(text[i].split("{}"))
 
 
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget))
@@ -330,3 +330,12 @@ def special_situation(data, event_type, name, text, index):
             i = 1  # 按照主辦方的機率分配
             data["choose_result"].append(i)
             shrinker(data, text, index, "（賭一把了）")
+        elif name == "聯誼":
+            for i in range(len(text)):
+                if text[i][0] == "d":
+                    if data["status"].charm >= 90:
+                        data["choose_result"].append(1)
+                    else:
+                        data["choose_result"].append(2)
+                    break
+            shrinker(data, text, index, "（同學們的反應就很看你的魅力的表現囉）")
