@@ -17,7 +17,7 @@ def process_event(data, events):
         show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
-def show_event(data, event_type, name):
+def show_event(data, event_type, name, picked):
     global reach_event_type, reach_name
     reach_event_type, reach_name = event_type, name
 

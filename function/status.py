@@ -1,8 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkFont
+import function.read_file as read
 import random
-
-classtodiff = {"個經原": "甜課"}
 
 
 class Status:
@@ -59,7 +58,7 @@ class Status:
     def check_san(self, san_require):
         if self.san < san_require:
             money_need = (san_require - self.san) * 5
-            a = self.coffee_or_not(self, money_need)  # 讓使用者選擇是否喝咖啡
+            a = self.coffee_or_not(money_need)  # 讓使用者選擇是否喝咖啡
             if a:
                 self.money -= money_need
                 self.san += san_require
@@ -136,7 +135,7 @@ class Status:
         self.health -= 5
         self.money -= 1111
 
-    def social(self):
+    def social_with_other(self):
         if self.check_san(-20):
             return None
         self.san -= 20
@@ -170,22 +169,22 @@ class Status:
         return  score_final
     
 
-    def coffee_or_not(status, money_need):
+    def coffee_or_not(self, money_need):
         ans = [""]
         # Top level window
         f = tkFont.Font(size=20)
 
         # Label Creation
-        lbl = tk.Label(window, text=f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
+        lbl = tk.Label(self.display, text=f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
         lbl.place(x=960, y=225)
 
          # Button Creation
 
         var1 = tk.IntVar()
         var2 = tk.IntVar()
-        c1 = tk.Button(status.display, text="要", width=5, font=f, command=lambda: save_input(True, ans))
+        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: save_input(True, ans))
         c1.place(x=1005, y=300)
-        c2 = tk.Button(status.display, text="不要", width=5, font=f, command=lambda: save_input(False, ans))
+        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: save_input(False, ans))
         c2.place(x=1130, y=300)
 
         # Cute Pic Creation
@@ -193,7 +192,7 @@ class Status:
         coffee_pic = Image.open("figure/coffee.jpeg")
         coffee_pic = coffee_pic.resize((300, 219), Image.ANTIALIAS)
         coffee_pic = ImageTk.PhotoImage(coffee_pic)
-        coffee = tk.Label(window, image=coffee_pic, bd=4, relief="raised")
+        coffee = tk.Label(self.display, image=coffee_pic, bd=4, relief="raised")
         coffee.image = coffee_pic
         coffee.place(x=947, y=340)
 
@@ -204,6 +203,7 @@ def save_input(yn, ans):
 
  # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
+    classtodiff = read.get_course_type_dic(status.course)
     if i in list(classtodiff.keys()):
         i = classtodiff[i]
     elif i[2:] in list(classtodiff.keys()):
@@ -247,7 +247,7 @@ def act_check(status, i):
         status.go_dating()
         return
     elif i == "社交":
-        status.social()
+        status.social_with_other()
         return
     elif i == "休息":
         status.rest()

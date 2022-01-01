@@ -2,7 +2,10 @@ import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
 import function.status as status
+import system.semester as semester
 import random
+
+warning = "警示用全域變數"
 
 def course_selection(window, data):
 
@@ -127,18 +130,26 @@ def display_course_type(window, data, printButton, background, used_widgets, wid
     widgets.append(printButton)
 
 
-def display_course(window, data, used_widgets, picked_course):
+def display_course(window, data, used_widgets, picked_course_from_menu):
     f = tk.font.Font(size = 24)
     button_f = tk.font.Font(size = 36)
     title_f = tk.font.Font(size = 48)
+
+    picked_course = []
+
+    for i in [0, 1, 2]:
+        picked_course.append(picked_course_from_menu[i].get())
+    
+    if picked_course[0] == picked_course[1] or picked_course[1] == picked_course[2] or picked_course[0] == picked_course[2]:
+        global warning
+        warning = tk.Label(window, text = "請勿選相同的課", fg = "#712322", font = title_f)
+        warning.place(x = 640 - warning.winfo_reqwidth()/2, y = 360 - warning.winfo_reqheight()/2)
+        return
 
     widgets = []
 
     time = {'1-1': '週一早上', '1-2': '週一下午', '1-3': '週一晚上', '2-1': '週二早上', '2-2': '週二中午', '2-3': '週二晚上', '3-1': '週三早上', '3-2': '週三下午', '3-3': '週三晚上', '4-1': '週四早上', '4-2': '週四下午', '4-3': '週四晚上', '5-1': '週五早上', '5-2': '週五下午', '5-3': '週五晚上'}
     picked_time = random.sample(time.keys(), 3)
-
-    for i in [0, 1, 2]:
-        picked_course[i] = picked_course[i].get()
 
     for widget in used_widgets:
         widget.destroy()
@@ -168,13 +179,16 @@ def display_course(window, data, used_widgets, picked_course):
     for i in range(3):
         picked[picked_time[i]] = picked_course[i]
 
-    start_semester = tk.Button(window, text = "開始學期！", font = button_f, command = lambda: press_start_semester(window, data, widgets, picked))
+    start_semester = tk.Button(window, text = "繼續", font = button_f, command = lambda: press_start_semester(window, data, widgets, picked))
     start_semester.place(x = 640 - start_semester.winfo_reqwidth()/2, y = 720 - 2 * start_semester.winfo_reqheight())
     widgets.append(start_semester)
 
+    try:
+        warning.destroy()
+    except:
+        pass
 
 def press_start_semester(window, data, widgets, picked):
     for widget in widgets:
         widget.destroy()
-    # 呼叫大一第一學期
-    print(picked)
+    semester.start_semester(window, data, picked, "大一上")
