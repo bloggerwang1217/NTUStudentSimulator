@@ -49,7 +49,7 @@ def IntoDust():  # 火化
 
 
 outputList = []
-Incident_List = ['樓頂吹風', '轉生異世界', '明明是我先來的', '被二一', '破產', '財富自由', '火化']
+Incident_List = ['中途結束事件：樓頂吹風', '中途結束事件：轉生異世界', '中途結束事件：明明是我先來的', '中途結束事件：被二一', '中途結束事件：破產', '中途結束事件：財富自由', '中途結束事件：火化']
 Mid_End = [blow_wind(), To_New_World(), Me_First(), Too_Stupid(), Broke(), Wealth_Freedom(), IntoDust()]
 for i in range(7):
     if Mid_End[i] = True:
