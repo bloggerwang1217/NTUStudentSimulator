@@ -113,7 +113,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
 
         # 更新能力值、評分值+呼叫下個事件
         
-        if data["event_processing"][0] == "結束事件":
+        if data["event_processing"][0] == "中途結束事件":
             pass
         else:
             status.event_adjust(data["status"], reach_name, data["choose_result"])
