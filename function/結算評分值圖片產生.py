@@ -16,14 +16,9 @@ f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
 
 def score_illu(love_progress, grade, yang_sheng, prestige):
 
-
     
-    point_table = [{'愛情進度': love_progress, '學業成績': grade, 
-                    '養生': yang_sheng, '聲望': prestige}]
-    points = [love_progress,
-              grade,
-              yang_sheng,
-              prestige]  # 應該要讀入結尾數值
+    point_table = ['愛情進度', '學業成績', '養生', '聲望']
+    points = [love_progress,grade,yang_sheng,prestige]  # 應該要讀入結尾數值
     # 圖形長與寬可以再討論
     x = np.arange(len(point_table))
     plt.bar(x, points, color=['red', 'green', 'blue', 'yellow'])
