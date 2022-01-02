@@ -68,7 +68,7 @@ def show_event(data, event_type, name):
                 text.pop(i)
                 break
         shrinker(data, text, 1, "這肯定很賭運氣的")
-    elif event_type == "必然事件" and name == "聯誼":
+    elif (event_type == "必然事件" and name == "聯誼") or (event_type == "中途結束事件" and name == "明明是我先來的") or (event_type == "中途結束事件" and name == "轉生異世界"):
         for i in range(len(text)):
             if "{}" in text[i]:
                 text[i] = f"{data['name']}".join(text[i].split("{}"))
@@ -111,7 +111,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
 
         # 更新能力值、評分值+呼叫下個事件
         
-        if data["event_processing"][0] == "中途結束事件":
+        if data["event_processing"][0][0] == "中途結束事件":
             ending.show_ending_graph(data["status"].display, data)
         else:
             status.event_adjust(data["status"], reach_name, data["choose_result"])
@@ -125,6 +125,8 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
                     data["status"].midterm(data["picked_course"], data)
                 elif data["event_processing"][0][0] == "期末考":
                     data["status"].final(data["picked_course"], data)
+                elif data["event_processing"][0][0] == "暑假事件" and data["event_processing"][0][1] == "不想努力了":
+                    show_event(data, "中途結束事件", "阿姨結束")
             else:
                 show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
