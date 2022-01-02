@@ -172,27 +172,27 @@ class Status:
         for i in class_list:
             self.score[i] = (scoring(self, i) + self.score[i]) / 2
             if self.score[i] >= 90:
-                if classtodiff[i] == "硬課"
+                if classtodiff[i] == "硬課":
                     self.grade += 10
-                if classtodiff[i] == "甜課"
+                if classtodiff[i] == "甜課":
                     self.grade += 7
-                if classtodiff[i] == "涼課"
+                if classtodiff[i] == "涼課":
                     self.grade += 5
-                if classtodiff[i] == "廢課"
+                if classtodiff[i] == "廢課":
                     self.grade += 2
-            if self.score[i] >= 70:
-                if classtodiff[i] == "硬課"
+            elif self.score[i] >= 70:
+                if classtodiff[i] == "硬課":
                     self.grade += 7
-                if classtodiff[i] == "甜課"
+                if classtodiff[i] == "甜課":
                     self.grade += 5
-                if classtodiff[i] == "涼課"
+                if classtodiff[i] == "涼課":
                     self.grade += 3
-            if self.score[i] >= 60:
-                if classtodiff[i] == "硬課"
+            elif self.score[i] >= 60:
+                if classtodiff[i] == "硬課":
                     self.grade += 3
-                if classtodiff[i] == "甜課"
+                if classtodiff[i] == "甜課":
                     self.grade += 2
-                if classtodiff[i] == "涼課"
+                if classtodiff[i] == "涼課":
                     self.grade += 1
         self.score.clear()
         return score_final
