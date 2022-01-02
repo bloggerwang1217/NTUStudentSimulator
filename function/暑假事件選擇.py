@@ -76,15 +76,15 @@ def home_choose(data, background, used_button , chosen):
     f = tk.font.Font(size = 28)
     for button in used_button:
         button.destroy()
-    if chosen != "炒股":
+    if chosen != "投資":
         background.destroy()
         show.show_event(data, "暑假事件", chosen)
     else:
         choose_button = []
 
-        button1 = tk.Button(data["status"].display, text = "低報酬", relief = "raise", font = f, command = lambda: stock_choose(data, background, choose_button, "低報酬"))
-        button2 = tk.Button(data["status"].display, text = "中報酬", relief = "raise", font = f, command = lambda: stock_choose(data, background, choose_button, "中報酬"))
-        button3 = tk.Button(data["status"].display, text = "高報酬", relief = "raise", font = f, command = lambda: stock_choose(data, background, choose_button, "高報酬"))
+        button1 = tk.Button(data["status"].display, text = "虛擬貨幣", relief = "raise", font = f, command = lambda: stock_choose(data, background, choose_button, "虛擬貨幣"))
+        button2 = tk.Button(data["status"].display, text = "ETP", relief = "raise", font = f, command = lambda: stock_choose(data, background, choose_button, "ETF"))
+        button3 = tk.Button(data["status"].display, text = "債券", relief = "raise", font = f, command = lambda: stock_choose(data, background, choose_button, "債券"))
 
         choose_button.append(button1)
         choose_button.append(button2)

@@ -191,4 +191,5 @@ def display_course(window, data, used_widgets, picked_course_from_menu):
 def press_start_semester(window, data, widgets, picked):
     for widget in widgets:
         widget.destroy()
+    data["picked_course"] = picked
     semester.start_semester(window, data, picked, "大一上")

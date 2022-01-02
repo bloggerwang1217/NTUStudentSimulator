@@ -13,7 +13,7 @@ def process_event(data, events):
             data["event_processing"].append(events[i].split(":"))
         except:
             data["event_processing"].append(events[i])
-    if data["event_processing"] != "排行程表":
+    if data["event_processing"][0] != "第二次排行程表":
         show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
