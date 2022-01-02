@@ -10,6 +10,7 @@ reach_event_type, reach_name = "", ""
 
 def process_event(data, events):
     data["event_processing"] = []
+    data["event_processing"].clear()
     for i in range(len(events)):
         try:
             data["event_processing"].append(events[i].split(":"))
@@ -115,8 +116,8 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         if data["event_processing"][0] == "結束事件":
             pass
         else:
-            status.event_adjust(data["status"], reach_name, data["choose"])
-            data["event_processing"].pop(0)
+            status.event_adjust(data["status"], reach_name, data["choose_result"])
+            data["event_processing"].remove(data["event_processing"][0])
             if len(data["event_processing"]) == 1:
                 if data["event_processing"][0] == "第二次排行程表":
                     schedule.get_new_schedule(data["status"].display, data["picked_course"], data)

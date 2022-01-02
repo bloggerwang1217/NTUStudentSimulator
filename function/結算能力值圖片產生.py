@@ -22,7 +22,7 @@ def abi_illu(wisdom, charm, fitness, social, health):
     labels = ["智慧" + ':' + str(wisdom),
               "魅力" + ':' + str(charm),
               "體能" + ':' + str(fitness),
-              "社交能力" + ':' + str(social_skill),
+              "社交能力" + ':' + str(social),
               "健康" + ':' + str(health)]
 
     score = [[v for v in result.values()] for result in results]
