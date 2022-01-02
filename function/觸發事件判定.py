@@ -176,12 +176,12 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大一上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] = "第三次排行程表"
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大一上"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大一上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
@@ -197,13 +197,13 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大一下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
+        data["previous_event"] = "第三次排行程表"
         outputList.append('必然事件:舞會')
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大一下"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大一下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
@@ -218,12 +218,13 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大二上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
+        data["previous_event"] = "第三次排行程表"
         outputList.append('必然事件:比賽')
-    elif data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大二上"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大二上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
@@ -238,13 +239,13 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大二下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
+        data["previous_event"] = "第三次排行程表"
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大二下"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
         outputList.append('必然事件:聯誼')
-    elif data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
+    elif data["time"] == "大二下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
@@ -258,12 +259,12 @@ def check_event(data):
     elif data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
     elif data["time"] == "大三上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] = "第三次排行程表"
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大三上"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大三上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('必然事件:實習')
         outputList.append('期末考')
@@ -280,12 +281,12 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大三下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] = "第三次排行程表"
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大三下"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大三下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
@@ -300,12 +301,12 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大四上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] = "第三次排行程表"
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大四上"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大四上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
@@ -320,12 +321,12 @@ def check_event(data):
         data["previous_event"] = "期中考"
         outputList.append('期中考')
     elif data["time"] == "大四下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第一次排行程表"
-        outputList.append('第一次排行程表')
-    elif data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
-        data["previous_event"] = "第二次排行程表"
-        outputList.append('第二次排行程表')
-    elif data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] = "第三次排行程表"
+        outputList.append('第三次排行程表')
+    elif data["time"] == "大四下"  and data["previous_event"] == "第三次排行程表":
+        data["previous_event"] = "第四次排行程表"
+        outputList.append('第四次排行程表')
+    elif data["time"] == "大四下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
         reset()
