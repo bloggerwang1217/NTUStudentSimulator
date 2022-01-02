@@ -294,6 +294,7 @@ def act_check(status, i):
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
+    print(classtodiff)
     coefficient = {"甜課" : 0.001, "涼課" : 0.003, "硬課" : 0.0002}
     point = status.wisdom * status.study_time[classname] * coefficient[classtodiff[classname]] + 0.2 * status.luck + random.randint(-10, 10)
     return int(point)
