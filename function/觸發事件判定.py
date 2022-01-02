@@ -4,11 +4,11 @@ import function.show_event as show
 status = "" 
 
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
-study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq, Too_Stupid_freq,\
-Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True, True, True
+study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
+Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True, True
 def reset():  # 重置事件頻率
     study_freq, res_freq, acad_freq, sex_freq, OldExam_freq,\
-    Sugar_freq, Bike_tow_freq, To_New_World_freq, Too_Stupid_freq = True, True, True, True, True, True, True, True, True
+    Sugar_freq, Bike_tow_freq, To_New_World_freq = True, True, True, True, True, True, True, True
 
     
 def blow_wind():  # 樓頂吹風
@@ -32,25 +32,19 @@ def To_New_World():  # 轉生異世界
 
 def Me_First():  # 明明是我先來的
     global status
-    if status.charm > 90 and love_progress < 40:
-        return True
-
-
-def Too_Stupid():  # 被二一
-    global pass_or_not, status
-    if pass_or_not:  # 暫定
+    if status.charm > 90 and status.love_progress < 40:
         return True
 
 
 def Broke():  # 破產
     global status
-    if status.Money <= -50000:
+    if status.money <= -50000:
         return True
 
 
 def Wealth_Freedom():  # 財富自由
     global status
-    if status.Money >= 1000000:
+    if status.money >= 1000000:
         return True
 
 
@@ -150,11 +144,11 @@ def check_event(data):
     outputList02 = []
     TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:翹課打ㄆ', '觸發事件:獲得考古題', '觸發事件:第一次約會', 
                         '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
-    Incident_List = ['中途結束事件：樓頂吹風', '中途結束事件：轉生異世界', '中途結束事件：明明是我先來的', '中途結束事件：被二一', '中途結束事件：破產', 
-                     '中途結束事件：財富自由', '中途結束事件：火化', '中途結束事件：轉學']
+    Incident_List = ['中途結束事件:樓頂吹風', '中途結束事件:轉生異世界', '中途結束事件:明明是我先來的', '中途結束事件:破產', 
+                     '中途結束事件:財富自由', '中途結束事件:火化', '中途結束事件:轉學']
     Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
-    Mid_End = [blow_wind(), To_New_World(), Me_First(), Too_Stupid(), Broke(), Wealth_Freedom(), IntoDust(), Leave_school()]
-    for i in range(8):
+    Mid_End = [blow_wind(), To_New_World(), Me_First(), Broke(), Wealth_Freedom(), IntoDust(), Leave_school()]
+    for i in range(7):
         if Mid_End[i] == True:
             outputList01.append(Incident_List[i])
     if len(outputList01) > 1:
@@ -162,7 +156,7 @@ def check_event(data):
         outputList01 = outputList01[prob]
     
     for i in range(10):
-        if Yes_or_Not_List[i] == True:
+        if Yes_or_Not[i] == True:
             outputList02.append(TriIncident_List[i])
     
     outputList = outputList01 + outputList02

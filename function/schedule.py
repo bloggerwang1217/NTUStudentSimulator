@@ -93,6 +93,7 @@ class Schedule:
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
         subtitle2 = tk.Label(window, text = "  只是變成你喜歡的樣子", font = f, bg = "#eeefee")
+        subtitle3 = tk.Label(window, text = f"  這是你{data['previous_event']}", font = f, bg = "#eeefee")
         background.image = schedule
         background.place(x=0, y=0)
 
@@ -135,6 +136,11 @@ class Schedule:
         title.place(x=975, y=25)
         subtitle1.place(x=975, y=100)
         subtitle2.place(x=975, y=140)
+        subtitle3.place(x=975, y=180)
+
+        f = tk.font.Font(size = 30)
+        moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = f)
+        moneyLabel.place(x = 1000, y = 640)
 
 
     def save(self, clicked, result, data):
@@ -144,7 +150,6 @@ class Schedule:
         ans = data["status"].run_schedule(result)
         if ans is None:
             data["picked_schedule"] = result
-        print(data["picked_schedule"])
         check.check_event(data)
 
 

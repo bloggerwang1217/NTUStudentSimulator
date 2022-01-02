@@ -193,4 +193,5 @@ def press_start_semester(window, data, widgets, picked):
     for widget in widgets:
         widget.destroy()
     data["picked_course"] = picked
+
     semester.start_semester(window, data, picked, "大一上")

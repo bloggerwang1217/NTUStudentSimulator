@@ -109,6 +109,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 
     # 貼上初始化能力值的圖
     time = graph_abi.abi_illu(data["status"].wisdom, data["status"].charm, data["status"].fitness, data["status"].social, data["status"].health)
+    data["ability_graph"].append(time)
     ability_graph = Image.open(f"figure/ability/{time}.png")
     ability_graph = ImageTk.PhotoImage(ability_graph)
     ability = tk.Label(window, image = ability_graph)

@@ -17,15 +17,15 @@ def process_event(data, events):
         try:
             data["event_processing"].append(events[i].split(":"))
         except:
-            data["event_processing"].append(events[i])
+            data["event_processing"].append([events[i]])
     if data["event_processing"][0][0] == "第一次排行程表" or data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":
-        print(data["picked_course"])
         sch.get_new_schedule(data["status"].display, data["picked_course"], data)
     elif data["event_processing"][0][0] == "期中考":
         data["status"].midterm(data["picked_course"], data)
     elif data["event_processing"][0][0] == "期末考":
-        data["status"].final(data["picked_course"], data)
+        data["status"].final_exam(data["picked_course"], data)
     else:
+        print(data["event_processing"])
         show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
@@ -116,15 +116,15 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         else:
             status.event_adjust(data["status"], reach_name, data["choose_result"])
             data["event_processing"].remove(data["event_processing"][0])
-            print(data["event_processing"])
             if len(data["event_processing"]) == 1:
                 if data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":
-                    print(data["picked_course"])
                     sch.get_new_schedule(data["status"].display, data["picked_course"], data)
                 elif data["event_processing"][0][0] == "期中考":
                     data["status"].midterm(data["picked_course"], data)
                 elif data["event_processing"][0][0] == "期末考":
-                    data["status"].final(data["picked_course"], data)
+                    drop_out = data["status"].final(data["picked_course"], data)
+                    if drop_out:
+                        data["event_processing"].append(["中途結束事件", "被二一"])
                 elif data["event_processing"][0][0] == "暑假事件" and data["event_processing"][0][1] == "不想努力了":
                     show_event(data, "中途結束事件", "阿姨結束")
             else:
@@ -213,8 +213,6 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
     text_now = text[index][2::].split(text[index][1])
     choose_button = []
 
-    print(text_now)
-
     if len(text_now) == 2:
         output1 = meme_processor(text_now[0])
         output2 = meme_processor(text_now[1])
@@ -285,7 +283,6 @@ def shrinker(data, text, index, name):  #index:c出現的位置；若為數值�
                 text.pop(i)
     except:
         pass
-    print(text)
 
 def meme_processor(line):
     special_meme_translation = {"不要":"不要啦，哪次要", "有":"有啦，哪次沒有", "沒有":"沒有啦，哪次有"}

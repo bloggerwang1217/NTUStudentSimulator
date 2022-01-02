@@ -6,6 +6,7 @@ import function.schedule as schedule
 import function.sound_effect as sound
 
 def start_semester(window, data, picked, time):
+
     title_f = tk.font.Font(size = 36)
     data["time"] = time
     data["previous_event"] = "第一次排行程表"

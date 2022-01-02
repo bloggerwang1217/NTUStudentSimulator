@@ -209,7 +209,7 @@ class Status:
                         j[4] += 1
                         class_fail += 1
         if class_fail >= 2:
-            drop_out = true
+            drop_out = True
         score_final = self.score
         self.score.clear()
         show_fi.show_final_report(data["status"].display, data, self.score)
