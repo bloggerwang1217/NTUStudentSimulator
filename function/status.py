@@ -282,3 +282,139 @@ def scoring(status, classname):
     coefficient = {"甜課" : 0.001, "涼課" : 0.003, "硬課" : 0.0002}
     point = status.wisdom * status.study_time[classname] * coefficient[classtodiff[classname]] + 0.2 * status.luck + random.randint(-10, 10)
     return int(point)
+
+
+# 事件數值調整
+def event_adjust(status, event_name, choice):
+    if event_name =="健康檢查":
+        if choice[0] == 1:
+            status.health += 50
+            status.money -= 500
+            return
+        else:
+            status.health -= 50
+        return
+    elif event_name == "Elite":
+        if choice[0] == 1:
+            status.wisdom += 25
+        else:
+            return
+        if choice[1] == 1:
+            status.wisdom += 50
+            status.health -= 25
+        else:
+            status.social -= 25
+        if choice[2] == 1:
+            status.health -= 25
+            status.prestige += 25
+        else:
+            status.health += 15
+            status.prestige -= 15
+        return
+    elif event_name == "系隊":
+        if choice[0] == 1:
+            status.health += 25
+        else:
+            return
+        if choice[1] == 1:
+            status.prestige += 25
+            status.charm += 50
+        else:
+            status.prestige -= 25
+        return
+    elif event_name == "系學會":
+        if choice[0] == 1:
+            status.prestige += 25
+        else:
+            return
+        if choice[1] == 1:
+            status.health -= 50
+            status.prestige += 15
+            if status.wisdom >= 85:
+                status.prestige += 25
+            else:
+                status.prestige -= 10
+        else:
+            status.prestige -= 10
+        return
+    elif event_name == "比賽":
+        if choice[0] == 1:
+            status.wisdom += 75
+            status.prestige += 15
+        else:
+            status.fitness += 75
+            status.prestige += 15
+    elif event_name == "聯誼":
+        if choice[0] == 1:
+            if choice[1] == 1:
+                status.love_progress += 50
+                status.social += 15
+                return
+            else:
+                status.social += 15
+                return
+        else:
+            if choice[1] == 1:
+                if status.charm >= 90:
+                    status.social += 50
+                    return
+                else:
+                    status.social += 25
+                    return
+            else:
+                if choice[2] == 1:
+                    if choice[3] == 1:
+                        status.love_progress += 50
+                        status.social += 15
+                        return
+                    else:
+                        status.social += 15
+                        return
+        return
+    elif event_name == "打疫苗":
+        if choice[0] == 1 and status.luck >=75:
+            status.health += 75
+            return
+        elif status.luck >= 35:
+            status.health += 75
+        return
+    elif event_name == "當兵":
+        if choice[0] == 1:
+            status.fitness += 50
+            return
+        else:
+            status.fitness += 100
+        return
+    elif event_name == "耍廢":
+        status.social -= 25
+        status.fitness -= 25
+        return
+    elif event_name == "念書":
+        status.wisdom += 75
+        return
+    elif event_name == "規律作息":
+        status.health += 100
+        status.yang_sheng += 25
+        return
+    elif event_name == "虛擬貨幣":
+        if status.luck >= 95:
+            status.money += 400000
+            return
+        else:
+            status.money += 10000
+        return
+    elif event_name == "ETF":
+        status.money += 100000
+        return
+    elif event_name == "債券":
+        status.money += 10000
+        return
+    elif event_name == "陪另一半":
+        status.love_progress += 50
+        return
+    elif event_name =="服務學習":
+        status.social += 50
+        status.prestige += 25
+        status.charm += 25
+        return 
+    return 
