@@ -157,7 +157,7 @@ class Status:
         class_list = list(class_dict.values())
         for i in class_list:
             self.score[i] = scoring(self, i)
-        return
+        return self.score
 
 
     def final_exam(self, class_dict):
