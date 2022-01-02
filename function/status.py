@@ -31,7 +31,7 @@ class Status:
         self.rest_time = 0
         
     # 學期初發錢
-    def allowance(self)
+    def allowance(self):
         self.money += 40000
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
