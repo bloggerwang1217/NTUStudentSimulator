@@ -71,7 +71,7 @@ def show_event(data, event_type, name):
     elif event_type == "必然事件" and name == "聯誼":
         for i in range(len(text)):
             if "{}" in text[i]:
-                text[i] = f"{data["name"]}".join(text[i].split("{}"))
+                text[i] = f"{data['name']}".join(text[i].split("{}"))
 
 
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget))

@@ -7,6 +7,7 @@ import function.schedule as schedule
 def start_semester(window, data, picked, time):
     title_f = tk.font.Font(size = 36)
     data["time"] = time
+    data["previous_event"] = "第一次排行程表"
 
     background = tk.Canvas(window, width = 1280, height = 720)
     start_semester = Image.open(f"figure/semester/{time}.jpeg")

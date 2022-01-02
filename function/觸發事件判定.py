@@ -90,7 +90,7 @@ def Bike_tow():  # 腳踏車被拖吊
     else:
         return False
 
-def check_event(data)
+def check_event(data):
     global status
     status = data["status"]
 
@@ -257,4 +257,4 @@ def check_event(data)
         outputList.append('期末考')
 
     print(outputList)
-    process_event(data, outputList)
+    show.process_event(data, outputList)

@@ -167,7 +167,7 @@ def get_new_schedule(window, selected_class, data):
     ]
 
     if not "picked_schedule" in data:
-        data["picked_schedule"] = {'1-1': '', '1-2': '', '1-3': '', '1-4': '', '2-1': '', '2-2': '', '2-3': '', '2-4': '', '3-1': '', '3-2': '', '3-3': '', '3-4': '', '4-1': '', '4-2': '', '4-3': '', '4-4': '', '5-1': '', '5-2': '', '5-3': '', '5-4': ''}
+        data["picked_schedule"] = {'1-1': '休息', '1-2': '休息', '1-3': '休息', '1-4': '休息', '2-1': '休息', '2-2': '休息', '2-3': '休息', '2-4': '休息', '3-1': '休息', '3-2': '休息', '3-3': '休息', '3-4': '休息', '4-1': '休息', '4-2': '休息', '4-3': '休息', '4-4': '休息', '5-1': '休息', '5-2': '休息', '5-3': '休息', '5-4': '休息'}
         data["picked_schedule"][selected_class_list[0][0]] = selected_class_list[0][1]
         data["picked_schedule"][selected_class_list[1][0]] = selected_class_list[1][1]
         data["picked_schedule"][selected_class_list[2][0]] = selected_class_list[2][1]
