@@ -57,23 +57,27 @@ def show_midterm_report(window, data, grades):
 def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
     for widget in used_widgets:
         widget.destroy()
-    
+
+    title_f = tk.font.Font(size = 36)
     f = tk.font.Font(size = 32)
+    button_f = tk.font.Font(size = 20)
 
     text = []
     show_grades = []
+
+    show_grades.append("你的成績如下：")
     for item in grades.keys():
         show_grades.append(f"{item}:{grades[item]}分\n")
     for i in range(len(show_grades)): 
-        text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
-
         if i == 0:
-            text[i].place(x = 180, y = 30)
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f))
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 30)
         else:
-            text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
-    check_ability_button.place(x = 800, y = 620)
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
+    check_ability_button.place(x = 800, y = 600)
 
     text.append(check_ability_button)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
