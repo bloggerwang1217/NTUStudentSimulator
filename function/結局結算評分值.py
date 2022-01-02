@@ -1,19 +1,20 @@
 import matplotlib.pyplot as plt
+from matplotlib import font_manager as fm
 import numpy as np
-from matplotlib import pyplot
+from datetime import datetime
+from time import strftime, gmtime
+import os
+import function.status as status
 
-class abi():
-    pass
-ability = abi()
-ability.love_progress = 40
-ability.grade = 70
-ability.yang_sheng = 80
-ability.prestige = 90
+path = os.getcwd()
+
+title_f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 20)
+f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
+
 
 
 
 def score_illu(ability):
-    plt.rcParams['font.family'] = 'MingLiU'  # 要顯示中文有點複雜
     plt.rcParams['axes.unicode_minus'] = False
     point_table = ['愛情進度', '學業成績', '養生', '聲望']
     points = [ability.love_progress,
