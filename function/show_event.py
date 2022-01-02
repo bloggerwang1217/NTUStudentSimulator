@@ -158,18 +158,9 @@ def call_status_u(background, reference, text_now, image_widget):
     b = background.create_rectangle(1030 - 2*len(name), 425 - 23, 1230, 425 + 23, width = 5)
     image_widget.append(a)
     image_widget.append(b)
-    # background.create_rectangle(0, 425 - 23, 350 + 50, 425 + 23, fill = "gray")
-    # background.create_rectangle(350 - 50, 425 - 23, 350 + 50, 425 + 23, width = 5)
 
-    # peep = Image.open(f"figure/event/summer_event/peep.png")
-    # peep = peep.resize((500, 500), Image.ANTIALIAS)
-    # peep = ImageTk.PhotoImage(peep, format="gif -index 2")
-    # c = background.create_image(-100,235, anchor=tk.NW, image=peep)
-    # reference.append(peep)
-
-    d = background.create_text(1130 - len(name), 425, text = f"-{name}-", anchor = "center", fill = "white", font = name_f)
-    # image_widget.append(c)
-    image_widget.append(d)
+    c = background.create_text(1130 - len(name), 425, text = f"-{name}-", anchor = "center", fill = "white", font = name_f)
+    image_widget.append(c)
 
     if len(line) > 32:  # 自己說話時的斷行長度
         line = read.rearrange(32, line)
@@ -191,8 +182,6 @@ def call_status_v(background, reference, text_now, image_widget):
     b = background.create_rectangle(50, 425 - 23, 450+ 2*len(name), 425 + 23, width = 5)
     image_widget.append(a)
     image_widget.append(b)
-    # background.create_rectangle(0, 425 - 23, 350 + 50, 425 + 23, fill = "gray")
-    # background.create_rectangle(350 - 50, 425 - 23, 350 + 50, 425 + 23, width = 5)
 
     peep = Image.open(f"figure/event/人物/{name}.png")
     peep = peep.resize((500, 500), Image.ANTIALIAS)

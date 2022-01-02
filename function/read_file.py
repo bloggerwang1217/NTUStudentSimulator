@@ -54,14 +54,6 @@ def read_event(event_type, name):
     for line in text:
         if line != "\n":
             line = line.strip()
-        # if len(line) < line_len:
-        #     seperated_text.append(line)
-        # else:
-        #     for i in range(len(line)//line_len + 1):
-        #         if i == len(line)//line_len + 1:
-        #             seperated_text.append(line[(line_len * i)::])
-        #         else:
-        #             seperated_text.append(line[(line_len * i):(line_len * (i+1))])
         seperated_text.append(line)
 
     f.close()
