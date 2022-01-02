@@ -5,15 +5,16 @@ status = ""
 
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq,\
-Sugar_freq, preg_freq, Bike_tow_freq = True, True, True, True, True, True, True, True, True
+Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True
 def reset():
     study_freq, res_freq, acad_freq, sex_freq, OldExam_freq,\
     Sugar_freq, Bike_tow_freq = True, True, True, True, True, True, True
 
 
 def Vtuber_or_Not():  # 推坑Vt
-    global status
-    if status.social < 40:
+    global status, Vt_freq
+    if status.social < 40 and Vt_freq:
+        Vt_freq = False
         return True
     else:
         return False
