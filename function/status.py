@@ -27,7 +27,6 @@ class Status:
         self.prestige = 0  # 存
         self.study_time = dict()
         self.course = course  # 存
-        self.drop_out = false
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -175,6 +174,7 @@ class Status:
         class_list = list(class_dict.values())
         #計算被當科目
         class_fail = 0
+        drop_out = false
         for i in class_list:
             self.score[i] = (scoring(self, i) + self.score[i]) / 2
             if self.score[i] >= 90:
@@ -209,10 +209,11 @@ class Status:
                         j[4] += 1
                         class_fail += 1
         if class_fail >= 2:
-            self.drop_out = true
+            drop_out = true
         score_final = self.score
         self.score.clear()
         show_fi.show_final_report(data["status"].display, data, self.score)
+        return drop_out
     
 
     def coffee_or_not(self, money_need):
