@@ -6,6 +6,9 @@ status = ""
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq,\
 Sugar_freq, preg_freq, Bike_tow_freq = True, True, True, True, True, True, True, True, True
+def reset():
+    study_freq, res_freq, acad_freq, sex_freq, OldExam_freq,\
+    Sugar_freq, Bike_tow_freq = True, True, True, True, True, True, True
 
 
 def Vtuber_or_Not():  # 推坑Vt
@@ -117,6 +120,7 @@ def check_event(data):
     if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
 
     if data["time"] == "大一下"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -138,6 +142,7 @@ def check_event(data):
     if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
         
     if data["time"] == "大二上"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -157,6 +162,7 @@ def check_event(data):
     if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
 
     if data["time"] == "大二下"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -177,6 +183,7 @@ def check_event(data):
     if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
 
     if data["time"] == "大三上"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -196,6 +203,7 @@ def check_event(data):
         data["previous_event"] == "期末考"
         outputList.append('必然事件:實習')
         outputList.append('期末考')
+        reset()
 
     if data["time"] == "大三下"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -216,6 +224,7 @@ def check_event(data):
     if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
 
     if data["time"] == "大四上"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -235,6 +244,7 @@ def check_event(data):
     if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
 
     if data["time"] == "大四下"  and data["previous_event"] == "期末考":
         data["previous_event"] == "第一次排行程表"
@@ -254,6 +264,7 @@ def check_event(data):
     if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期末考"
         outputList.append('期末考')
+        reset()
 
     print(outputList)
     show.process_event(data, outputList)
