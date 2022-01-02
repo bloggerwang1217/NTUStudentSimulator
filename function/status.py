@@ -29,6 +29,10 @@ class Status:
     def san_reset(self):
         self.san = 50 + self.rest_time + self.fitness * 0.1 + self.health * 0.5
         self.rest_time = 0
+        
+    # 學期初發錢
+    def allowance(self)
+        self.money += 40000
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
     def run_schedule(self, schedule):
