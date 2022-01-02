@@ -6,6 +6,7 @@ import function.結算能力值圖片產生 as graph_abi
 import function.暑假事件選擇 as summer
 import function.status as status
 import function.read_file as read
+import function.sound_effect as sound
 
 def show_final_report(window, data, grades):
     desk = Image.open("figure/desk_texture.jpeg")
@@ -47,7 +48,7 @@ def show_final_report(window, data, grades):
         else:
             text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
 
-    flip_button = tk.Button(window, text = "翻面", font = f, command = lambda: press_flip_button(window, data, text, background, small_bg, grades))
+    flip_button = tk.Button(window, text = "翻面", font = f, command = lambda: [press_flip_button(window, data, text, background, small_bg, grades), sound.play_button_sound()])
     flip_button.place(x = 1000, y = 625)
 
     text.append(flip_button)
@@ -72,7 +73,7 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
         else:
             text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
     check_ability_button.place(x = 800, y = 620)
 
     text.append(check_ability_button)
@@ -112,11 +113,11 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     
     time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
     if data["time"] == "大四下":
-        nextbutton = tk.Button(window, text = "歡樂畢業！", font = f, command = lambda: press_start_semester_button(window, data, text))
+        nextbutton = tk.Button(window, text = "歡樂畢業！", font = f, command = lambda: [press_start_semester_button(window, data, text), sound.play_button_sound()])
         data["time"] = "畢業"
     else:
         data["time"] = time_list[time_list.index(data["time"]+1)]
-        nextbutton = tk.Button(window, text = "進入暑假", font = f, command = lambda: press_start_semester_button(window, data, text))
+        nextbutton = tk.Button(window, text = "進入暑假", font = f, command = lambda: [press_start_semester_button(window, data, text), sound.play_button_sound()])
     nextbutton.place(x = 850, y = 620)
 
     text.append(widget1)
@@ -126,6 +127,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
 def press_start_semester_button(window, data, used_widgets):
+    sound.enter_game_button_sound()
     for widget in used_widgets:
         widget.destroy()
 

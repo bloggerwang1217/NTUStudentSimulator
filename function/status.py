@@ -3,6 +3,7 @@ import tkinter.font as tkFont
 import function.read_file as read
 import function.midterm_report as show_mid
 import function.final_report as show_fi
+import function.sound_effect as sound
 import random
 
 
@@ -221,9 +222,9 @@ class Status:
 
         var1 = tk.IntVar()
         var2 = tk.IntVar()
-        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: save_input(True, ans))
+        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans), sound.play_button_sound()])
         c1.place(x=1005, y=300)
-        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: save_input(False, ans))
+        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans), sound.play_button_sound()])
         c2.place(x=1130, y=300)
 
         # Cute Pic Creation

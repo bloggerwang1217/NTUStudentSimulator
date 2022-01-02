@@ -4,6 +4,7 @@ import tkinter.font
 from PIL import ImageTk, Image
 import function.status as status
 import function.schedule as sch
+import function.sound_effect as sound
 
 
 reach_event_type, reach_name = "", ""
@@ -39,6 +40,7 @@ def show_event(data, event_type, name):
 
     reference = []
 
+    sound.play_event_background_music(event_type, name)
     background_image = Image.open(f"figure/event/{event_type}/{name}.jpg")
     background_image = background_image.resize((1280, 720), Image.ANTIALIAS)
     background_image = ImageTk.PhotoImage(background_image)
@@ -84,7 +86,7 @@ def show_event(data, event_type, name):
                 text[i] = f"{data['name']}".join(text[i].split("{}"))
 
 
-    nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget))
+    nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: [press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget), sound.play_button_sound()])
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 670 - nextButton.winfo_reqheight() * 2)
     
     image_widget = []
@@ -237,8 +239,8 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
     if len(text_now) == 2:
         output1 = meme_processor(text_now[0])
         output2 = meme_processor(text_now[1])
-        button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget))
-        button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget))
+        button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: [choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget), sound.play_button_sound()])
+        button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: [choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget), sound.play_button_sound()])
         choose_button.append(button1)
         choose_button.append(button2)
         button1.place(x = 1280 / 3 - button1.winfo_reqwidth()/2, y = 320 - button1.winfo_reqheight()/2)
@@ -248,9 +250,9 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
         output1 = meme_processor(text_now[0])
         output2 = meme_processor(text_now[1])
         output3 = meme_processor(text_now[2])
-        button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget))
-        button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget))
-        button3 = tk.Button(data["status"].display, text = f"{text_now[2]}", relief = "raise", font = button_f, command = lambda: choose(data, choose_button, 3, output3, background, reference, text_widget, index, text, image_widget))
+        button1 = tk.Button(data["status"].display, text = f"{text_now[0]}", relief = "raise", font = button_f, command = lambda: [choose(data, choose_button, 1, output1, background, reference, text_widget, index, text, image_widget), sound.play_button_sound()])
+        button2 = tk.Button(data["status"].display, text = f"{text_now[1]}", relief = "raise", font = button_f, command = lambda: [choose(data, choose_button, 2, output2, background, reference, text_widget, index, text, image_widget), sound.play_button_sound()])
+        button3 = tk.Button(data["status"].display, text = f"{text_now[2]}", relief = "raise", font = button_f, command = lambda: [choose(data, choose_button, 3, output3, background, reference, text_widget, index, text, image_widget), sound.play_button_sound()])
         choose_button.append(button1)
         choose_button.append(button2)
         choose_button.append(button3)
@@ -269,7 +271,7 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
     
     print(data["choose_result"])
     
-    nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget))
+    nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: [press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget), sound.play_button_sound()])
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 670 - nextButton.winfo_reqheight() * 2)
     for button in choose_button:
         button.destroy()

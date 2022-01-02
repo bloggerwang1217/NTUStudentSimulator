@@ -3,6 +3,7 @@ from tkinter import font
 from PIL import ImageTk, Image
 import function.status as status
 import function.schedule as schedule
+import function.sound_effect as sound
 
 def start_semester(window, data, picked, time):
     title_f = tk.font.Font(size = 36)
@@ -23,6 +24,7 @@ def start_semester(window, data, picked, time):
 
 
 def press_start(data, background, startButton, picked):
+    sound.enter_game_button_sound()
     background.destroy()
     startButton.destroy()
     schedule.get_new_schedule(data["status"].display, picked, data)

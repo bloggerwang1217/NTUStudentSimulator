@@ -3,6 +3,7 @@ import tkinter.font as tkFont
 from PIL import ImageTk, Image
 import function.status as status
 import function.觸發事件判定 as check
+import function.sound_effect as sound
 
 class Schedule:
 
@@ -15,6 +16,7 @@ class Schedule:
 
 
     def createWidgets(self, window, data):
+        sound.play_background_music("正式遊戲背景音樂")
         f = tkFont.Font(size = 24)
         title_f = tkFont.Font(size = 48)
         week_f = tkFont.Font(size = 16)
@@ -86,7 +88,7 @@ class Schedule:
         ThuMidnightList = tk.OptionMenu(window, clicked[3][3], *options[3][3])
         FriMidnightList = tk.OptionMenu(window, clicked[3][4], *options[3][4])
 
-        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: self.save(clicked, self.result, data))
+        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data), sound.enter_game_button_sound()])
 
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")

@@ -190,7 +190,6 @@ def display_course(window, data, used_widgets, picked_course_from_menu):
         pass
 
 def press_start_semester(window, data, widgets, picked):
-    sound.enter_game_button_sound()
     for widget in widgets:
         widget.destroy()
     data["picked_course"] = picked
