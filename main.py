@@ -6,7 +6,7 @@ import function.read_file as read
 import function.course_selection as cs
 import function.show_event as show
 import function.初始能力值設定 as init_abi
-import function.結局結算能力值 as graph_abi
+import function.結算能力值圖片產生 as graph_abi
 import function.暑假事件選擇 as cse
 import system.semester as semester
 

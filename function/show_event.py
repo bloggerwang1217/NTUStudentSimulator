@@ -3,6 +3,7 @@ import tkinter as tk
 import tkinter.font
 from PIL import ImageTk, Image
 import function.status as status
+import function.schedule as sch
 
 
 reach_event_type, reach_name = "", ""
@@ -14,8 +15,7 @@ def process_event(data, events):
             data["event_processing"].append(events[i].split(":"))
         except:
             data["event_processing"].append(events[i])
-    if data["event_processing"][0] != "第二次排行程表":
-        show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
+    show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
 def show_event(data, event_type, name):
@@ -109,10 +109,23 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         background.destroy()
         nextButton.destroy()
         index = False
-        status.event_adjust(data["status"], reach_name, data["choose"])
 
-
-
+        # 更新能力值、評分值+呼叫下個事件
+        
+        if data["event_processing"][0] == "結束事件":
+            pass
+        else:
+            status.event_adjust(data["status"], reach_name, data["choose"])
+            data["event_processing"].pop(0)
+            if len(data["event_processing"]) == 1:
+                if data["event_processing"][0] == "第二次排行程表":
+                    schedule.get_new_schedule(data["status"].display, data["picked_course"], data)
+                elif data["event_processing"][0] == "期中考":
+                    data["status"].midterm(data["picked_course"])
+                elif data["event_processing"][0] == "期末考":
+                    data["status"].final(data["picked_course"])
+            else:
+                show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
     else:
         index += 1
