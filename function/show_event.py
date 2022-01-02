@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 import function.status as status
 import function.schedule as sch
 import function.sound_effect as sound
+import system.ending as ending
 
 
 reach_event_type, reach_name = "", ""
@@ -54,20 +55,7 @@ def show_event(data, event_type, name):
     reference.append(text_box)
     background.create_rectangle(50, 450, 1230, 670, width = 5)
 
-    # peep = Image.open(f"figure/event/summer_event/peep.png")
-    # peep = peep.resize((400, 500), Image.ANTIALIAS)
-    # peep = ImageTk.PhotoImage(peep, format="gif -index 2")
-    # background.create_image(-20,235, anchor=tk.NW, image=peep)
-    # reference.append(peep)
-
-    # background.create_rectangle(350 - 50, 425 - 23, 350 + 50, 425 + 23, fill = "gray")
-    # background.create_rectangle(350 - 50, 425 - 23, 350 + 50, 425 + 23, width = 5)
-    # background.create_text(350, 425, text = "-長官-", anchor = "center", fill = "white", font = f)
-    
-
     background.image = reference
-
-
 
     # 傳入事件類別與事件名稱
     text = read.read_event(event_type, name)
@@ -124,7 +112,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         # 更新能力值、評分值+呼叫下個事件
         
         if data["event_processing"][0] == "中途結束事件":
-            pass
+            ending.show_ending_graph(data["status"].display, data)
         else:
             status.event_adjust(data["status"], reach_name, data["choose_result"])
             data["event_processing"].remove(data["event_processing"][0])
@@ -267,9 +255,6 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
     f = tk.font.Font(size = 30)
     data["choose_result"].append(chosen)
     background.delete(text_widget)
-    # text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = name, anchor = "center", fill = "white", font = f)
-    
-    print(data["choose_result"])
     
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: [press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget), sound.play_button_sound()])
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 670 - nextButton.winfo_reqheight() * 2)
@@ -277,15 +262,6 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
         button.destroy()
 
     shrinker(data, text, index, name)
-    print(text)
-
-
-    # 換圖
-    # if event_type == "必然事件" and name == "活動":
-    #     if len(data["choose_result"]) == 1:
-    #         if data["choose_result"][0] == 1:
-
-
 
     text_widget, next_line = show_widgets(data, background, nextButton, reference, text, text[index+1], index+1, text_widget, image_widget)
     text_status = [text_widget, next_line]  # [文字工具, 指標]
