@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
 import function.status as status
+import function.sound_effect as sound
 import system.semester as semester
 import random
 
@@ -87,7 +88,7 @@ def course_selection(window, data):
     used_widgets.append(course2List)
     used_widgets.append(course3List)
 
-    printButton = tk.Button(window, text = "確認", font = f, command = lambda: display_course_type(window, data, printButton, background, used_widgets, widgets, canvas_clear, picked_type, course_option))
+    printButton = tk.Button(window, text = "確認", font = f, command = lambda: [display_course_type(window, data, printButton, background, used_widgets, widgets, canvas_clear, picked_type, course_option), sound.play_button_sound()])
     printButton.place(x = 640 + background.winfo_reqwidth()/2 - 2 * printButton.winfo_reqwidth(), y = background.winfo_reqheight() + printButton.winfo_reqheight())
     used_widgets.append(printButton)
 
@@ -125,7 +126,7 @@ def display_course_type(window, data, printButton, background, used_widgets, wid
     widgets.append(course2List)
     widgets.append(course3List)
 
-    printButton = tk.Button(window, text = "顯示選課結果", font = button_f, command = lambda: display_course(window, data, widgets, picked_course))
+    printButton = tk.Button(window, text = "顯示選課結果", font = button_f, command = lambda: [display_course(window, data, widgets, picked_course), sound.play_button_sound()])
     printButton.place(x = 640 - printButton.winfo_reqwidth()/2, y = 720 - 3 * printButton.winfo_reqheight())
     widgets.append(printButton)
 
@@ -179,7 +180,7 @@ def display_course(window, data, used_widgets, picked_course_from_menu):
     for i in range(3):
         picked[picked_time[i]] = picked_course[i]
 
-    start_semester = tk.Button(window, text = "繼續", font = button_f, command = lambda: press_start_semester(window, data, widgets, picked))
+    start_semester = tk.Button(window, text = "繼續", font = button_f, command = lambda: [press_start_semester(window, data, widgets, picked), sound.play_button_sound()])
     start_semester.place(x = 640 - start_semester.winfo_reqwidth()/2, y = 720 - 2 * start_semester.winfo_reqheight())
     widgets.append(start_semester)
 
@@ -189,6 +190,7 @@ def display_course(window, data, used_widgets, picked_course_from_menu):
         pass
 
 def press_start_semester(window, data, widgets, picked):
+    sound.enter_game_button_sound()
     for widget in widgets:
         widget.destroy()
     data["picked_course"] = picked

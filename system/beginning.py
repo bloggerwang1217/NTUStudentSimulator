@@ -6,9 +6,20 @@ import function.初始能力值設定 as init_abi
 import function.結算能力值圖片產生 as graph_abi
 import function.course_selection as cs
 import function.status as status
+import function.sound_effect as sound
+import pygame
+from pygame import mixer
 
+# pygame.mixer.init()
+# click_sound = pygame.mixer.Sound("音效/遊戲中的點擊聲.mp3")
+
+# pygame.mixer.music.load(("音效/封面背景音樂.mp3"))
 
 def press_start_game(start_scene, start_button, name_list, window, data):
+
+    sound.play_button_sound()
+    sound.play_background_music("閱讀信封場景")
+
     start_scene.destroy()
     start_button.destroy()
     name_list.destroy()
@@ -16,6 +27,8 @@ def press_start_game(start_scene, start_button, name_list, window, data):
 
 
 def start_game(window, data):
+
+    sound.play_background_music("封面背景音樂")
 
     f = tk.font.Font(size = 28)
 
@@ -35,6 +48,7 @@ def start_game(window, data):
 
 
 def beginning_story(window, data):
+
     f = tk.font.Font(size = 42)
 
     # window.configure(bg="white")
@@ -50,12 +64,16 @@ def beginning_story(window, data):
 
 
 def press_back_room_button(window, background, back_room_button, data):
+
+    sound.play_button_sound()
+
     background.destroy()
     back_room_button.destroy()
     input_basic_data(window, data)
 
 
 def input_basic_data(window, data):
+
     f = tk.font.Font(size = 32)
     check_f = tk.font.Font(size = 16)
 
@@ -108,9 +126,9 @@ def input_basic_data(window, data):
 
     var1 = tk.IntVar()
     var2 = tk.IntVar()
-    c1 = tk.Checkbutton(window, text="男性",font = check_f, variable=var1, onvalue=1, offvalue=0)
+    c1 = tk.Checkbutton(window, text="男性",font = check_f, variable=var1, onvalue=1, offvalue=0, command = sound.play_button_sound)
     c1.place(x = 1000, y = 290)
-    c2 = tk.Checkbutton(window, text='女性',font = check_f, variable=var2, onvalue=1, offvalue=0)
+    c2 = tk.Checkbutton(window, text='女性',font = check_f, variable=var2, onvalue=1, offvalue=0, command = sound.play_button_sound)
     c2.place(x = 1100, y = 290)
     widgets.append(c1)
     widgets.append(c2)
@@ -124,13 +142,13 @@ def input_basic_data(window, data):
     endButton = tk.Button(window,
             text = "結束",
             font = check_f, 
-            command = lambda :end_input(window, data, widgets))
+            command = lambda : [end_input(window, data, widgets), sound.play_button_sound()])
     widgets.append(endButton)
 
     printButton = tk.Button(window,
                             text = "確認",
                             font = check_f, 
-                            command = lambda: save_input(data, var1, var2, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()))
+                            command = lambda: [save_input(data, var1, var2, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()), sound.play_button_sound()])
     printButton.place(x = 975+small_bg.winfo_reqwidth()/2-printButton.winfo_reqwidth()/2, y = 330)
     widgets.append(printButton)
 
@@ -159,12 +177,16 @@ def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, lengt
 
 
 def end_input(window, data, widgets):
+
     for widget in widgets:
         widget.destroy()
     read_letter(window, data)
 
 
 def read_letter(window, data):
+
+    # sound.play_button_sound()
+
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -212,6 +234,9 @@ def read_letter(window, data):
 
     
 def press_flip_button(window, data, used_widgets, widget1, widget2):
+
+    sound.play_button_sound()
+
     for widget in used_widgets:
         widget.destroy()
     
@@ -241,6 +266,9 @@ def press_flip_button(window, data, used_widgets, widget1, widget2):
 
 
 def press_check_ability_button(window, data, used_widgets, widget1, widget2):
+
+    sound.play_button_sound()
+
     for widget in used_widgets:
         widget.destroy()
     
@@ -284,6 +312,11 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
 def press_go_course_selecting_button(window, data, used_widgets):
+    sound.enter_game_button_sound()
+
+    # pygame.mixer.music.stop()
+    sound.play_background_music("正式遊戲背景音樂")
+
     for widget in used_widgets:
         widget.destroy()
     cs.course_selection(window, data)
