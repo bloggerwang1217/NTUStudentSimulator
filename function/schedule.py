@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
 import function.status as status
+import function.觸發事件判定 as check
 
 class Schedule:
 
@@ -142,7 +143,7 @@ class Schedule:
         if ans is None:
             data["picked_schedule"] = result
         print(data["picked_schedule"])
-
+        check.check_event(data)
 
 
         

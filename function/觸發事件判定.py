@@ -1,4 +1,7 @@
-import random 
+import random
+import function.show_event as show
+
+status = "" 
 
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq,\
@@ -7,7 +10,7 @@ Sugar_freq, preg_freq, Bike_tow_freq = True, True, True, True, True, True, True,
 
 def Vtuber_or_Not():  # 推坑Vt
     global status
-    if status.social_skill < 40:
+    if status.social < 40:
         return True
     else:
         return False
@@ -15,7 +18,7 @@ def Vtuber_or_Not():  # 推坑Vt
 def Study_or_not():  # 參加讀書會
     global study_freq, status
     if status.wisdom > 85 and status.wisdom <  100 and\
-       status.social_skill > 70 and study_freq:
+       status.social > 70 and study_freq:
         study_freq = False
         return True
     else:
@@ -24,7 +27,7 @@ def Study_or_not():  # 參加讀書會
 def Research_or_not():  # 參加研究專案
     global res_freq, status
     if status.wisdom > 100 and status.wisdom < 115 and\
-       status.social_skill > 70 and res_freq:
+       status.social > 70 and res_freq:
         res_freq = False
         return True
     else:
@@ -41,7 +44,7 @@ def Sex_or_not():  # 翹課打ㄆ
 
 def OldExam_or_not():  # 獲得考古題
     global OldExam_freq, status
-    if status.social_skill > 80 and OldExam_freq:
+    if status.social > 80 and OldExam_freq:
         OldExam_freq = False
         return True
     else:
@@ -87,166 +90,171 @@ def Bike_tow():  # 腳踏車被拖吊
     else:
         return False
 
-outputList = []    
-TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:翹課打ㄆ', '觸發事件:獲得考古題', '觸發事件:第一次約會', '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
-Yes_or_Not_List = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
-for i in range(10):
-    if Yes_or_Not_List[i] == True:
-        outputList.append(TriIncident_List[i])
+def check_event(data)
+    global status
+    status = data["status"]
 
-if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('必然事件:健康檢查')
-    outputList.append('第一次排行程表')
-    # 有必然事件就加入
-if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大一上"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
+    outputList = []    
+    TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:翹課打ㄆ', '觸發事件:獲得考古題', '觸發事件:第一次約會', '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
+    Yes_or_Not_List = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
+    for i in range(10):
+        if Yes_or_Not_List[i] == True:
+            outputList.append(TriIncident_List[i])
 
-if data["time"] == "大一下"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('必然事件:社團')
-    outputList.append('第二次排行程表')
-if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大一下"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('必然事件:舞會')
-    outputList.append('第一次排行程表')
-if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
-    
-if data["time"] == "大二上"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大二上"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('必然事件:比賽')
-if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
+    if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('必然事件:健康檢查')
+        outputList.append('第一次排行程表')
+        # 有必然事件就加入
+    if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大一上"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
 
-if data["time"] == "大二下"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大二下"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-    outputList.append('必然事件:聯誼')
-if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
+    if data["time"] == "大一下"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('必然事件:社團')
+        outputList.append('第二次排行程表')
+    if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大一下"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('必然事件:舞會')
+        outputList.append('第一次排行程表')
+    if data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
+        
+    if data["time"] == "大二上"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大二上"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('必然事件:比賽')
+    if data["time"] == "大二上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
 
-if data["time"] == "大三上"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-if data["time"] == "大三上"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('必然事件:實習')
-    outputList.append('期末考')
+    if data["time"] == "大二下"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大二下"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大二下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+        outputList.append('必然事件:聯誼')
+    if data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
 
-if data["time"] == "大三下"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('必然事件:打疫苗')
-    outputList.append('第二次排行程表')
-if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大三下"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
+    if data["time"] == "大三上"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+    if data["time"] == "大三上"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('必然事件:實習')
+        outputList.append('期末考')
 
-if data["time"] == "大四上"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大四上"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
+    if data["time"] == "大三下"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('必然事件:打疫苗')
+        outputList.append('第二次排行程表')
+    if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大三下"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
 
-if data["time"] == "大四下"  and data["previous_event"] == "期末考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期中考"
-    outputList.append('期中考')
-if data["time"] == "大四下"  and data["previous_event"] == "期中考":
-    data["previous_event"] == "第一次排行程表"
-    outputList.append('第一次排行程表')
-if data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
-    data["previous_event"] == "第二次排行程表"
-    outputList.append('第二次排行程表')
-if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
-    data["previous_event"] == "期末考"
-    outputList.append('期末考')
+    if data["time"] == "大四上"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大四上"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
 
-process_event(data, outputList)
+    if data["time"] == "大四下"  and data["previous_event"] == "期末考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期中考"
+        outputList.append('期中考')
+    if data["time"] == "大四下"  and data["previous_event"] == "期中考":
+        data["previous_event"] == "第一次排行程表"
+        outputList.append('第一次排行程表')
+    if data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
+        data["previous_event"] == "第二次排行程表"
+        outputList.append('第二次排行程表')
+    if data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
+        data["previous_event"] == "期末考"
+        outputList.append('期末考')
+
+    print(outputList)
+    process_event(data, outputList)
