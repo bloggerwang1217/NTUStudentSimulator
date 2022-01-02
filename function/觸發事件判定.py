@@ -104,7 +104,6 @@ def check_event(data)
     if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] == "第二次排行程表"
         outputList.append('必然事件:健康檢查')
-        outputList.append('第一次排行程表')
         # 有必然事件就加入
     if data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] == "期中考"
