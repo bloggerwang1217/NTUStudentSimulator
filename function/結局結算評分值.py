@@ -14,20 +14,23 @@ f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
 
 
 
-def score_illu(ability):
-    plt.rcParams['axes.unicode_minus'] = False
-    point_table = ['愛情進度', '學業成績', '養生', '聲望']
-    points = [ability.love_progress,
-              ability.grade,
-              ability.yang_sheng,
-              ability.prestige]  # 我隨便預設的值，應該要讀入結尾數值
+def score_illu(love_progress, grade, yang_sheng, prestige):
+    global status
+    status = data["status"]
+
+    
+    point_table = [{'愛情進度':love_progress, '學業成績':grade, 
+                    '養生':yang_sheng, '聲望':prestige}]
+    points = [status.love_progress,
+              status.grade,
+              status.yang_sheng,
+              status.prestige]  # 應該要讀入結尾數值
     # 圖形長與寬可以再討論
     x = np.arange(len(point_table))
     plt.bar(x, points, color=['red', 'green', 'blue', 'yellow'])
     plt.xticks(x, point_table)
     plt.xlabel('評分值')
     plt.ylabel('分數')
-    plt.savefig(r'C:\Users\周匯森\Desktop\00.png')  # 這裡會選擇存檔路徑與檔名
-    plt.show()
+    plt.savefig(figure/ability/finalpix.png)  # 這裡會選擇存檔路徑與檔名
+    return 'finalpix'
     
-score_illu(ability)
