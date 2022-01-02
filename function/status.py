@@ -162,9 +162,10 @@ class Status:
         for i in class_list:
             self.score[i] = scoring(self, i)
         return self.score
+    
 
 
-    def final_exam(self, class_dict):
+        def final_exam(self, class_dict):
         # 健康直轉養生
         self.yang_sheng = self.yang_sheng + self.health * 0.1
         # 結算學期成績
@@ -194,6 +195,14 @@ class Status:
                     self.grade += 2
                 if classtodiff[i] == "涼課":
                     self.grade += 1
+            for j in self.course:
+                if i in j:
+                     j[2] -= 1
+                    if self.score[i] >= 60:
+                        j[3] += 1
+                    else:
+                        j[4] += 1
+        score_final = self.score
         self.score.clear()
         return score_final
     
