@@ -11,22 +11,10 @@ path = os.getcwd()
 title_f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 20)
 f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
 
-# plt.rcParams['font.family'] = 'MingLiU'  # 要顯示中文有點複雜
-# plt.rcParams['axes.unicode_minus'] = False
 
-# class abi():
-#     pass
-# ability = abi()
-# ability.wisdom = 40
-# ability.charm = 70
-# ability.fitness = 80
-# ability.social_skill = 90
-# ability.health = 50
-
-
-def abi_illu(wisdom, charm, fitness, social_skill, health):
+def abi_illu(wisdom, charm, fitness, social, health):
     results = [{"智慧": wisdom, "魅力": charm, 
-                "體能": fitness, "社交能力": social_skill,
+                "體能": fitness, "社交能力": social,
                 "健康": health}]
     data_length = 5
     # 將極座標根據資料長度進行等分
@@ -64,12 +52,3 @@ def abi_illu(wisdom, charm, fitness, social_skill, health):
     ax.spines['polar'].set_visible(False)
     plt.savefig(f"figure/ability/{name}.png")  # 這裡會選擇存檔路徑與檔名
     return name
-
-
-"""
-now_time = strftime('%Y-%m-%d_%H-%M-%S', gmtime())
-fig = plt.figure()
-fig.savefig(str(now_time) + '.png')
-"""
-
-# abi_illu(ability)
