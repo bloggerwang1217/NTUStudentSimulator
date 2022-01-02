@@ -8,7 +8,7 @@ import function.show_event as show
 import function.初始能力值設定 as init_abi
 import function.結算能力值圖片產生 as graph_abi
 import function.暑假事件選擇 as cse
-import system.semester as semester
+import system.ending as ending
 
 window = tk.Tk()
 window.geometry("1280x720")
@@ -16,7 +16,7 @@ window.resizable(0, 0)
 window.title("為美好的台大生活獻上祝福")
 
 data = {}
-bg.start_game(window, data)
+# bg.start_game(window, data)
 
 # 排時間表
 # selected_course = {"1-1":"A課", "2-2":"B課", "4-3":"C課"}
@@ -30,5 +30,6 @@ data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, rea
 # show.process_event(data, ["觸發事件:推坑Vt"])
 # show.process_event(data, ["必然事件:聯誼"])
 # semester.start_semester(window, data, "大一下", selected_course)
+ending.show_ending_graph(window, data)
 
 window.mainloop()

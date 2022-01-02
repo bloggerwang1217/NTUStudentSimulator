@@ -155,7 +155,7 @@ def check_event(data):
     Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
     Mid_End = [blow_wind(), To_New_World(), Me_First(), Too_Stupid(), Broke(), Wealth_Freedom(), IntoDust(), Leave_school()]
     for i in range(8):
-        if Mid_End[i] = True:
+        if Mid_End[i] == True:
             outputList01.append(Incident_List[i])
     if len(outputList01) > 1:
         prob = random.randrange(0, len(outputList01))  # 若中途結束事件發生2種以上，隨機挑選其中一個

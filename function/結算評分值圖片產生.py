@@ -13,9 +13,11 @@ f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
 
 point_table = ['愛情進度', '學業成績', '養生', '聲望']
 
+
 def addlabels(x,y):
     for i in range(len(x)):
         plt.text(i, y[i], y[i], ha = 'center')
+
 
 def score_illu(love_progress, grade, yang_sheng, prestige):
     global point_table
@@ -27,8 +29,8 @@ def score_illu(love_progress, grade, yang_sheng, prestige):
     addlabels(point_table, points)
     plt.bar(x, points, color=['red', 'green', 'blue', 'yellow'])
     plt.xticks(x, point_table)
-    plt.xlabel('評分值')
-    plt.ylabel('分數')
-    plt.savefig(figure/ability/finalpix.png)  # 這裡會選擇存檔路徑與檔名
+    plt.xlabel('評分值', font = f)
+    plt.ylabel('分數', font = f)
+    plt.savefig("figure/ability/finalpix.png")  # 這裡會選擇存檔路徑與檔名
     return 'finalpix'
     

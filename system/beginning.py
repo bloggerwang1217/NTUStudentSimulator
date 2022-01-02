@@ -7,13 +7,6 @@ import function.結算能力值圖片產生 as graph_abi
 import function.course_selection as cs
 import function.status as status
 import function.sound_effect as sound
-import pygame
-from pygame import mixer
-
-# pygame.mixer.init()
-# click_sound = pygame.mixer.Sound("音效/遊戲中的點擊聲.mp3")
-
-# pygame.mixer.music.load(("音效/封面背景音樂.mp3"))
 
 def press_start_game(start_scene, start_button, name_list, window, data):
 
@@ -314,7 +307,6 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 def press_go_course_selecting_button(window, data, used_widgets):
     sound.enter_game_button_sound()
 
-    # pygame.mixer.music.stop()
     sound.play_background_music("正式遊戲背景音樂")
 
     for widget in used_widgets:
