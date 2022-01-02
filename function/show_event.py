@@ -16,7 +16,7 @@ def process_event(data, events):
             data["event_processing"].append(events[i].split(":"))
         except:
             data["event_processing"].append(events[i])
-    if data["event_processing"][0][0] == "第二次排行程表":
+    if data["event_processing"][0][0] == "第一次排行程表" or data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" data["event_processing"][0][0] == "第四次排行程表":
         print(data["picked_course"])
         sch.get_new_schedule(data["status"].display, data["picked_course"], data)
     elif data["event_processing"][0][0] == "期中考":
@@ -128,7 +128,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
             data["event_processing"].remove(data["event_processing"][0])
             print(data["event_processing"])
             if len(data["event_processing"]) == 1:
-                if data["event_processing"][0][0] == "第二次排行程表":
+                if data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":
                     print(data["picked_course"])
                     sch.get_new_schedule(data["status"].display, data["picked_course"], data)
                 elif data["event_processing"][0][0] == "期中考":

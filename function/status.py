@@ -163,7 +163,7 @@ class Status:
         class_list = list(class_dict.values())
         for i in class_list:
             self.score[i] = scoring(self, i)
-        show_mid.midterm_report(data["status"].display, data, self.score)
+        show_mid.show_midterm_report(data["status"].display, data, self.score)
 
 
     def final_exam(self, class_dict):
@@ -205,7 +205,7 @@ class Status:
                     j[4] += 1
         score_final = self.score
         self.score.clear()
-        show_fi.final_report(data["status"].display, data, self.score)
+        show_fi.show_final_report(data["status"].display, data, self.score)
     
 
     def coffee_or_not(self, money_need):
@@ -293,6 +293,7 @@ def act_check(status, i):
     return
 
 def scoring(status, classname):
+    classtodiff = read.get_course_type_dic(status.course)
     coefficient = {"甜課": 0.001, "涼課": 0.003, "硬課": 0.0002}
     status.study_time.setdefault(classname, 0)
     if coefficient[classtodiff[classname]] == "廢課":

@@ -5,6 +5,7 @@ import function.初始能力值設定 as init_abi
 import function.結算能力值圖片產生 as graph_abi
 import function.暑假事件選擇 as summer
 import function.status as status
+import function.read_file as read
 
 def show_final_report(window, data, grades):
     desk = Image.open("figure/desk_texture.jpeg")
@@ -120,7 +121,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 
     text.append(widget1)
     text.append(widget2)
-    text.append(go_course_selecting_button)
+    text.append(nextbutton)
     text.append(ability)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 

@@ -5,6 +5,7 @@ import function.初始能力值設定 as init_abi
 import function.結算能力值圖片產生 as graph_abi
 import function.schedule as sch
 import function.status as status
+import function.read_file as read
 
 def show_midterm_report(window, data, grades):
     desk = Image.open("figure/desk_texture.jpeg")
@@ -102,7 +103,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 
 
     # 貼上初始化能力值的圖
-    time = graph_abi.abi_illu(wisdom, charm, fitness, social, health)
+    time = graph_abi.abi_illu(data["status"].wisdom, data["status"].charm, data["status"].fitness, data["status"].social, data["status"].health)
     ability_graph = Image.open(f"figure/ability/{time}.png")
     ability_graph = ImageTk.PhotoImage(ability_graph)
     ability = tk.Label(window, image = ability_graph)
@@ -111,16 +112,16 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     
 
     nextbutton = tk.Button(window, text = "開始排行程表囉！", font = f, command = lambda: press_go_picking_button(window, data, text))
-    go_course_selecting_button.place(x = 850, y = 620)
+    nextbutton.place(x = 850, y = 620)
 
     text.append(widget1)
     text.append(widget2)
-    text.append(go_course_selecting_button)
+    text.append(nextbutton)
     text.append(ability)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
 def press_go_picking_button(window, data, used_widgets):
     for widget in used_widgets:
         widget.destroy()
-    schedule.get_new_schedule(window, data["picked_course"], data)
+    sch.get_new_schedule(window, data["picked_course"], data)
     
