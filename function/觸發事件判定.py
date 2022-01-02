@@ -13,10 +13,14 @@ def reset():  # 重置事件頻率
     
 def blow_wind():  # 樓頂吹風
     global status
-    if status.social<= 0 or status.wisdom <= 0 or status.fitness <= 0 or status.charm <= 0:
+    if status.wisdom <= 0 or status.fitness <= 0 or status.charm <= 0:
         return True
 
-
+def Leave_school():  # 轉學
+    global status
+    if status.social<= 0:
+        return True
+    
 def To_New_World():  # 轉生異世界
     global status
     prob = random.randrange(1, 101)
@@ -147,10 +151,10 @@ def check_event(data):
     TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:翹課打ㄆ', '觸發事件:獲得考古題', '觸發事件:第一次約會', 
                         '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
     Incident_List = ['中途結束事件：樓頂吹風', '中途結束事件：轉生異世界', '中途結束事件：明明是我先來的', '中途結束事件：被二一', '中途結束事件：破產', 
-                     '中途結束事件：財富自由', '中途結束事件：火化']
+                     '中途結束事件：財富自由', '中途結束事件：火化', '中途結束事件：轉學']
     Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
-    Mid_End = [blow_wind(), To_New_World(), Me_First(), Too_Stupid(), Broke(), Wealth_Freedom(), IntoDust()]
-    for i in range(7):
+    Mid_End = [blow_wind(), To_New_World(), Me_First(), Too_Stupid(), Broke(), Wealth_Freedom(), IntoDust(), Leave_school()]
+    for i in range(8):
         if Mid_End[i] = True:
             outputList01.append(Incident_List[i])
     if len(outputList01) > 1:
