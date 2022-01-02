@@ -378,6 +378,21 @@ def event_adjust(status, event_name, choice):
         elif status.luck >= 35:
             status.health += 75
         return
+    elif event_name == "實習":
+        if choice[0] == 1:
+            if choice[1] == 1:
+                if status.luck >= 95:
+                    status.prestige += 40
+                    status.wisdom += 40
+                    return 
+            else:
+                status.prestige += 25
+                status.wisdom += 25
+                return 
+        else:
+            status.prestige += 25
+            status.wisdom += 25
+        return 
     elif event_name == "當兵":
         if choice[0] == 1:
             status.fitness += 50
