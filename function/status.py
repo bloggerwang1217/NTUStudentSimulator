@@ -161,6 +161,9 @@ class Status:
 
 
     def final_exam(self, class_dict):
+        # 健康直轉養生
+        self.yang_sheng = self.yang_sheng + self.health * 0.1
+        # 結算學期成績
         class_list = list(class_dict.values())
         for i in class_list:
             self.score[i] = (scoring(self, i) + self.score[i]) / 2
