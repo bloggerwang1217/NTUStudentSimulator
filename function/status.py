@@ -163,48 +163,47 @@ class Status:
             self.score[i] = scoring(self, i)
         return self.score
     
+    def final_exam(self, class_dict):
+    # 健康值轉養生
+    self.yang_sheng = self.yang_sheng + self.health * 0.1
+    # 結算學期成績
+    class_list = list(class_dict.values())
+    for i in class_list:
+        self.score[i] = (scoring(self, i) + self.score[i]) / 2
+        if self.score[i] >= 90:
+            if classtodiff[i] == "硬課":
+                self.grade += 10
+            if classtodiff[i] == "甜課":
+                self.grade += 7
+            if classtodiff[i] == "涼課":
+                self.grade += 5
+            if classtodiff[i] == "廢課":
+                self.grade += 2
+        elif self.score[i] >= 70:
+            if classtodiff[i] == "硬課":
+                self.grade += 7
+            if classtodiff[i] == "甜課":
+                self.grade += 5
+            if classtodiff[i] == "涼課":
+                self.grade += 3
+        elif self.score[i] >= 60:
+            if classtodiff[i] == "硬課":
+                self.grade += 3
+            if classtodiff[i] == "甜課":
+                self.grade += 2
+            if classtodiff[i] == "涼課":
+                self.grade += 1
+        for j in self.course:
+            if i in j:
+                j[2] -= 1
+            if self.score[i] >= 60:
+                j[3] += 1
+            else:
+                j[4] += 1
+    score_final = self.score
+    self.score.clear()
+    return score_final
 
-
-        def final_exam(self, class_dict):
-        # 健康直轉養生
-        self.yang_sheng = self.yang_sheng + self.health * 0.1
-        # 結算學期成績
-        class_list = list(class_dict.values())
-        for i in class_list:
-            self.score[i] = (scoring(self, i) + self.score[i]) / 2
-            if self.score[i] >= 90:
-                if classtodiff[i] == "硬課":
-                    self.grade += 10
-                if classtodiff[i] == "甜課":
-                    self.grade += 7
-                if classtodiff[i] == "涼課":
-                    self.grade += 5
-                if classtodiff[i] == "廢課":
-                    self.grade += 2
-            elif self.score[i] >= 70:
-                if classtodiff[i] == "硬課":
-                    self.grade += 7
-                if classtodiff[i] == "甜課":
-                    self.grade += 5
-                if classtodiff[i] == "涼課":
-                    self.grade += 3
-            elif self.score[i] >= 60:
-                if classtodiff[i] == "硬課":
-                    self.grade += 3
-                if classtodiff[i] == "甜課":
-                    self.grade += 2
-                if classtodiff[i] == "涼課":
-                    self.grade += 1
-            for j in self.course:
-                if i in j:
-                     j[2] -= 1
-                    if self.score[i] >= 60:
-                        j[3] += 1
-                    else:
-                        j[4] += 1
-        score_final = self.score
-        self.score.clear()
-        return score_final
     
 
     def coffee_or_not(self, money_need):
