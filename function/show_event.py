@@ -2,6 +2,7 @@ import function.read_file as read
 import tkinter as tk
 import tkinter.font
 from PIL import ImageTk, Image
+import function.status as status
 
 
 reach_event_type, reach_name = "", ""
@@ -83,6 +84,8 @@ def show_event(data, event_type, name):
 
 
 def show_widgets(data, background, nextButton, reference, text, text_now, index, text_widget, image_widget):
+    global reach_name
+
     f = tk.font.Font(size = 28)
     special_status = ["u", "v", "c", "d"]
     if text_now[0] in special_status:
@@ -106,10 +109,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         background.destroy()
         nextButton.destroy()
         index = False
-
-
-
-        # 在這裡呼叫更新能力值、評分值的函數
+        status.event_adjust(data["status"], reach_name, data["choose"])
 
 
 
