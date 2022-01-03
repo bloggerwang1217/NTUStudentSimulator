@@ -1,17 +1,16 @@
-import matplotlib.pyplot as plt
-from matplotlib import font_manager as fm
-import numpy as np
-from datetime import datetime
-from time import strftime, gmtime
-import os
 import function.status as status
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+from matplotlib import font_manager as fm
+from time import strftime, gmtime
+from datetime import datetime
+
 
 path = os.getcwd()
 
 title_f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 20)
 f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
-
-point_table = ['愛情進度', '學業成績', '養生', '聲望']
 
 
 def addlabels(x,y):
@@ -20,9 +19,9 @@ def addlabels(x,y):
 
 
 def score_illu(love_progress, grade, yang_sheng, prestige):
-    global point_table
     
-
+    
+    point_table = ['愛情進度', '學業成績', '養生', '聲望']
     points = [love_progress, grade, yang_sheng, prestige]  # 應該要讀入結尾數值
     # 圖形長與寬可以再討論
     x = np.arange(len(point_table))
