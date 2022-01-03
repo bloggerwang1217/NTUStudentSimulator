@@ -2,7 +2,7 @@ import random
 import function.show_event as show
 
 status = "" 
-
+christmas, being_Vtuber = False, False
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
 Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True, True
@@ -81,9 +81,10 @@ def Research_or_not():  # 參加研究專案
 
     
 def Sex_or_not():  # 翹課打ㄆ
-    global sex_freq, status
+    global sex_freq, status, number_of_sex
     if status.charm > 90 and sex_freq:
         sex_freq = False
+        number_of_sex += 1
         return True
     else:
         return False
@@ -165,41 +166,63 @@ def check_event(data):
         data["previous_event"] = "第二次排行程表"
         outputList.append('必然事件:健康檢查')
         outputList.append('第二次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
         # 有必然事件就加入
     elif data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
         reset()
 
     elif data["time"] == "大一下"  and data["previous_event"] == "期末考":
         data["previous_event"] = "第一次排行程表"
         outputList.append('第一次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
         outputList.append('必然事件:社團')
         outputList.append('第二次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('必然事件:舞會')
         outputList.append('第三次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
+        if Vtuber_or_Not() == True:
+            being_Vtuber = True
         reset()
         
     elif data["time"] == "大二上"  and data["previous_event"] == "期末考":
@@ -247,82 +270,130 @@ def check_event(data):
     elif data["time"] == "大三上"  and data["previous_event"] == "期末考":
         data["previous_event"] = "第一次排行程表"
         outputList.append('第一次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
         outputList.append('第二次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('必然事件:實習')
         outputList.append('期末考')
+        if First_Date() == True:
+            christmas = True
         reset()
 
     elif data["time"] == "大三下"  and data["previous_event"] == "期末考":
         data["previous_event"] = "第一次排行程表"
         outputList.append('第一次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
         outputList.append('必然事件:打疫苗')
         outputList.append('第二次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
+        if First_Date() == True:
+            christmas = True
         reset()
 
     elif data["time"] == "大四上"  and data["previous_event"] == "期末考":
         data["previous_event"] = "第一次排行程表"
         outputList.append('第一次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
         outputList.append('第二次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
+        if First_Date() == True:
+            christmas = True
         reset()
 
     elif data["time"] == "大四下"  and data["previous_event"] == "期末考":
         data["previous_event"] = "第一次排行程表"
         outputList.append('第一次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
         outputList.append('第二次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
+        if First_Date() == True:
+            christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
         outputList.append('期末考')
+        if First_Date() == True:
+            christmas = True
         reset()
 
     print(outputList)
