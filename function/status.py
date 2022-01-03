@@ -27,6 +27,7 @@ class Status:
         self.prestige = 0  # 存
         self.study_time = dict()
         self.course = course  # 存
+        self.stocks_surfing = 0   # 紀錄成就
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -446,15 +447,19 @@ def event_adjust(status, event_name, choice):
     elif event_name == "虛擬貨幣":
         if status.luck >= 95:
             status.money += 400000
+            self.stocks_surfing += 1
             return
         else:
             status.money += 10000
+            self.stocks_surfing += 1
         return
     elif event_name == "ETF":
         status.money += 100000
+        self.stocks_surfing += 1
         return
     elif event_name == "債券":
         status.money += 10000
+        self.stocks_surfing += 1
         return
     elif event_name == "陪另一半":
         status.love_progress += 50
