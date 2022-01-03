@@ -1,3 +1,6 @@
+
+
+
 """
 小筆記
 
@@ -30,19 +33,19 @@ def checkAchievement(number_of_sex, being_Vtuber, stocks, christmas, birth):
         achieveSex = True
         achievement.loveMaster()
 
-    if being_Vtuber is True and achieveVtuber == False:
+    if being_Vtuber and achieveVtuber == False:
         achieveVtuber = True
         achievement.peko()
 
-    if stocks is True and achieveStocks == False:
+    if stocks_surfing and achieveStocks == False:
         achieveStocks = True
         achievement.superChieves()
 
-    if christmas is True and achieveChristmas == False:
+    if christmas and achieveChristmas == False:
         achieveChristmas = True
         achievement.legendChallenger()
 
-    if birth is True and achieveBirth == False:
+    if birth and achieveBirth == False:
         achieveBirth = True
         achievement.giftBirth()
 
