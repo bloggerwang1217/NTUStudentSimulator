@@ -25,8 +25,7 @@ def show_ending_graph(window, data):
 
     background.create_image(0,-150, anchor=tk.NW, image=night)
 
-    name = graph_sco.score_illu(30, 40, 50, 60)
-    # name = graph_sco.score_illu(data["status"].love_progress, data["status"].grade, data["status"].yang_sheng, data["status"].prestige)
+    name = graph_sco.score_illu(data["status"].love_progress, data["status"].grade, data["status"].yang_sheng, data["status"].prestige)
     score_graph = Image.open(f"figure/ability/{name}.png")
     score_graph = ImageTk.PhotoImage(score_graph)
     reference.append(score_graph)

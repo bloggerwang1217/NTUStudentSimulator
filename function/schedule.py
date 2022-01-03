@@ -93,7 +93,8 @@ class Schedule:
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
         subtitle2 = tk.Label(window, text = "  只是變成你喜歡的樣子", font = f, bg = "#eeefee")
-        subtitle3 = tk.Label(window, text = f"  這是你{data['previous_event']}", font = f, bg = "#eeefee")
+        subtitle3 = tk.Label(window, text = f"#這是你這個學期", font = f, bg = "#eeefee")
+        subtitle4 = tk.Label(window, text = f"  {data['previous_event']}", font = f, bg = "#eeefee")
         background.image = schedule
         background.place(x=0, y=0)
 
@@ -137,6 +138,7 @@ class Schedule:
         subtitle1.place(x=975, y=100)
         subtitle2.place(x=975, y=140)
         subtitle3.place(x=975, y=180)
+        subtitle4.place(x=975, y=220)
 
         f = tk.font.Font(size = 30)
         moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = f)

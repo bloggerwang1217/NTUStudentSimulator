@@ -8,6 +8,7 @@ import function.course_selection as cs
 import function.show_event as show
 import function.初始能力值設定 as init_abi
 import function.結算能力值圖片產生 as graph_abi
+import function.結算評分值圖片產生 as graph_sco
 import function.暑假事件選擇 as cse
 import system.ending as ending
 
@@ -32,6 +33,5 @@ data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, rea
 # show.process_event(data, ["必然事件:聯誼"])
 # semester.start_semester(window, data, "大一下", selected_course)
 # ending.show_ending_graph(window, data)
-
 
 window.mainloop()

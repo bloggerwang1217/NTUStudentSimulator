@@ -27,6 +27,11 @@ def abi_illu(wisdom, charm, fitness, social, health):
               "健康" + ':' + str(health)]
 
     score = [[v for v in result.values()] for result in results]
+    for i in range(5):
+        if score[0][i] <= 0:
+            score[0][i] = 1
+
+
 
     # 使雷達圖資料封閉
     score_a = np.concatenate((score[0], [score[0][0]]))

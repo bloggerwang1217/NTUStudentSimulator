@@ -23,7 +23,7 @@ def Leave_school():  # 轉學
         return True
     
 def To_New_World():  # 轉生異世界
-    global status
+    global status, To_New_World_freq
     prob = random.randrange(1, 101)
     if status.luck < 5 and prob < 2 and To_New_World_freq:
         return True

@@ -20,7 +20,7 @@ def addlabels(x,y):
 
 def score_illu(love_progress, grade, yang_sheng, prestige):
     
-    
+    plt.clf()
     point_table = ['愛情進度', '學業成績', '養生', '聲望']
     points = [love_progress, grade, yang_sheng, prestige]  # 應該要讀入結尾數值
     # 圖形長與寬可以再討論
