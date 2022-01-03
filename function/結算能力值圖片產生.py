@@ -1,10 +1,11 @@
-import matplotlib.pyplot as plt
-from matplotlib import font_manager as fm
-import numpy as np
-from datetime import datetime
-from time import strftime, gmtime
-import os
 import function.status as status
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+from matplotlib import font_manager as fm
+from time import strftime, gmtime
+from datetime import datetime
+
 
 path = os.getcwd()
 
