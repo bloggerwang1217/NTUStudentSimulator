@@ -1,8 +1,9 @@
 import random
 import function.show_event as show
 
-status = "" 
-christmas, being_Vtuber = False, False
+status = ""
+number_of_sex = 0
+being_Vtuber, christmas, birth = False, False, False
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
 Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True, True
@@ -161,6 +162,9 @@ def check_event(data):
             outputList02.append(TriIncident_List[i])
     
     outputList = outputList01 + outputList02
+    
+    if Pregnant() == True:
+        birth =True
     
     if data["time"] == "大一上"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
