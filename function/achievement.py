@@ -1,5 +1,5 @@
-
-
+import function.status as status
+import function.觸發事件判定 as trig
 
 """
 小筆記
@@ -37,7 +37,7 @@ def checkAchievement(number_of_sex, being_Vtuber, stocks, christmas, birth):
         achieveVtuber = True
         achievement.peko()
 
-    if stocks_surfing and achieveStocks == False:
+    if status.stocks_surfing == 3 and achieveStocks == False:
         achieveStocks = True
         achievement.superChieves()
 
