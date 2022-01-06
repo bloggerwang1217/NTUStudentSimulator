@@ -175,6 +175,7 @@ def check_event(data):
         # 有必然事件就加入
     elif data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
+        outputList.append('必然事件:系隊')
         outputList.append('期中考')
         if Vtuber_or_Not() == True:
             being_Vtuber = True
@@ -202,7 +203,7 @@ def check_event(data):
             being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
-        outputList.append('必然事件:社團')
+        outputList.append('必然事件:系學會')
         outputList.append('第二次排行程表')
         if Vtuber_or_Not() == True:
             being_Vtuber = True
@@ -213,7 +214,11 @@ def check_event(data):
             being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
-        outputList.append('必然事件:舞會')
+
+        if data["sex"] == "男性":
+            outputList.append('必然事件:舞會1-男')
+            outputList.append('必然事件:舞會2-男')
+        
         outputList.append('第三次排行程表')
         if Vtuber_or_Not() == True:
             being_Vtuber = True
@@ -306,11 +311,11 @@ def check_event(data):
     elif data["time"] == "大三下"  and data["previous_event"] == "期末考":
         data["previous_event"] = "第一次排行程表"
         outputList.append('第一次排行程表')
+        outputList.append('必然事件:Elite')
         if First_Date() == True:
             christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
-        outputList.append('必然事件:打疫苗')
         outputList.append('第二次排行程表')
         if First_Date() == True:
             christmas = True
@@ -322,6 +327,7 @@ def check_event(data):
     elif data["time"] == "大三下"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        outputList.append('必然事件:打疫苗')
         if First_Date() == True:
             christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第三次排行程表":
@@ -363,6 +369,7 @@ def check_event(data):
             christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
+        outputList.append('必然事件:實習')
         outputList.append('期末考')
         if First_Date() == True:
             christmas = True
@@ -386,6 +393,7 @@ def check_event(data):
     elif data["time"] == "大四下"  and data["previous_event"] == "期中考":
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
+        outputList.append('必然事件:打疫苗')
         if First_Date() == True:
             christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第三次排行程表":

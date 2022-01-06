@@ -60,15 +60,8 @@ def show_event(data, event_type, name):
     # 傳入事件類別與事件名稱
     text = read.read_event(event_type, name)
 
-    # 處理特殊情況
-    if event_type == "暑假事件" and name == "高報酬":
-        for i in range(len(text)):
-            if text[i][0] == "d":
-                special_situation(data, event_type, name, text, i)
-                text.pop(i)
-                break
-        shrinker(data, text, 1, "這肯定很賭運氣的")
-    elif (event_type == "必然事件" and name == "聯誼") or (event_type == "中途結束事件" and name == "明明是我先來的") or (event_type == "中途結束事件" and name == "轉生異世界"):
+    # 處理主人公名稱
+    if (event_type == "必然事件" and name == "聯誼") or (event_type == "中途結束事件" and name == "明明是我先來的") or (event_type == "中途結束事件" and name == "轉生異世界") or (event_type == "必然事件" and name == "系隊"):
         for i in range(len(text)):
             if "{}" in text[i]:
                 text[i] = f"{data['name']}".join(text[i].split("{}"))
@@ -285,7 +278,7 @@ def shrinker(data, text, index, name):  #index:c出現的位置；若為數值�
         pass
 
 def meme_processor(line):
-    special_meme_translation = {"不要":"不要啦，哪次要", "有":"有啦，哪次沒有", "沒有":"沒有啦，哪次有"}
+    special_meme_translation = {"不要":"不要啦，哪次要", "有":"有啦，哪次沒有", "沒有":"沒有啦，哪次有", "不好":"不好啦，哪次好"}
     if line in special_meme_translation:
         line = special_meme_translation[line]
     else:
@@ -294,9 +287,13 @@ def meme_processor(line):
 
 
 def special_situation(data, event_type, name, text, index):
-    if event_type == "暑假事件" and name == "高報酬":
-        i = 1  # 按照主辦方的機率分配
-        data["choose_result"].append(i)
+    if event_type == "暑假事件" and name == "虛擬貨幣":
+        if text[i][0] == "d":
+            if data["status"].luck >= 95:
+                data["choose_result"].append(1)
+            else:
+                data["choose_result"].append(2)
+            break
     elif event_type == "觸發事件" and name == "第一次約會":
             for i in range(len(text)):
                 if text[i][0] == "d":
@@ -317,8 +314,12 @@ def special_situation(data, event_type, name, text, index):
                 shrinker(data, text, index, "（賭一把了）")
     elif event_type == "必然事件":
         if name == "實習":
-            i = 1  # 按照主辦方的機率分配
-            data["choose_result"].append(i)
+            if text[i][0] == "d":
+                if data["status"].luck >= 95:
+                    data["choose_result"].append(1)
+                else:
+                    data["choose_result"].append(2)
+                break
             shrinker(data, text, index, "（賭一把了）")
         elif name == "聯誼":
             for i in range(len(text)):
@@ -329,3 +330,11 @@ def special_situation(data, event_type, name, text, index):
                         data["choose_result"].append(2)
                     break
             shrinker(data, text, index, "（同學們的反應就很看你的魅力的表現囉）")
+        elif name == "系學會":
+                if text[i][0] == "d":
+                    if data["status"].wisdom >= 85:
+                        data["choose_result"].append(1)
+                    else:
+                        data["choose_result"].append(2)
+                    break
+            shrinker(data, text, index, "（看看你多精明吧）") 

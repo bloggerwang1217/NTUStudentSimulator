@@ -94,7 +94,12 @@ class Schedule:
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
         subtitle2 = tk.Label(window, text = "  只是變成你喜歡的樣子", font = f, bg = "#eeefee")
         subtitle3 = tk.Label(window, text = f"#這是你這個學期", font = f, bg = "#eeefee")
-        subtitle4 = tk.Label(window, text = f"  {data['previous_event']}", font = f, bg = "#eeefee")
+        
+        schedule_time = data['previous_event']
+        if schedule_time = "期中考":
+            schedule _time = "第三次排行程表"
+
+        subtitle4 = tk.Label(window, text = f"  {schedule_time}", font = f, bg = "#eeefee")
         background.image = schedule
         background.place(x=0, y=0)
 
