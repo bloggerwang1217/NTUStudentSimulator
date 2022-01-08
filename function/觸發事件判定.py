@@ -410,3 +410,7 @@ def check_event(data):
 
     print(outputList)
     show.process_event(data, outputList)
+
+def achieve():
+    global number_of_sex, being_Vtuber, christmas, birth
+    return number_of_sex, being_Vtuber, christmas, birth
