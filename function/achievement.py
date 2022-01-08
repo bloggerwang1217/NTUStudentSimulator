@@ -54,7 +54,7 @@ class Achievement():
     def __init__(self):
         self.number_of_sex = 0
         self.being_Vtuber = False
-        self.stocks_surfing = 0:
+        self.stocks_surfing = 0
         self.christmas = False
         self.birth = False
 

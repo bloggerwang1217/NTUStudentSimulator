@@ -30,7 +30,6 @@ class Status:
         self.study_time = dict()
         self.course = course  # 存
         self.achievement = achievement.Achievement()
-        # self.stocks_surfing = 0   # 紀錄成就
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -171,7 +170,7 @@ class Status:
         show_mid.show_midterm_report(data["status"].display, data, self.score)
 
 
-    def final_exam(self, class_dict):
+    def final_exam(self, class_dict, data):
         # 健康值轉養生
         self.yang_sheng = self.yang_sheng + self.health * 0.1
         # 結算學期成績
@@ -188,7 +187,7 @@ class Status:
                     self.grade += 7
                 if classtodiff[i] == "涼課":
                     self.grade += 5
-                if classtodiff[i] == "廢課":
+                if classtodiff[i] == "爽課":
                     self.grade += 2
             elif self.score[i] >= 70:
                 if classtodiff[i] == "硬課":
@@ -308,7 +307,7 @@ def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
     coefficient = {"甜課": 0.001, "涼課": 0.003, "硬課": 0.0002}
     status.study_time.setdefault(classname, 0)
-    if coefficient[classtodiff[classname]] == "廢課":
+    if coefficient[classtodiff[classname]] == "爽課":
         point = 90 + random.randint(0, 10)
         return int(point)
     else:

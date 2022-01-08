@@ -91,27 +91,43 @@ def press_next_button(window, data, background, repeatButton, nextButton):
 
         endButton = tk.Button(window,
                     text = "好吧QQ",
-                    font = f1, 
+                    font = f, 
                     command = lambda: [press_repeat_button(window, data, [no_achievement]), sound.play_button_sound()])
         endButton.place(x = 1280 - 100, y = 640)
     else:
         next_achi_button = tk.Button(window,
             text = "下一個成就",
-            font = f1, 
+            font = f, 
             command = lambda: [show_achievement(window, data, achievement_queue, next_achi_button), sound.play_button_sound()])
         show_achievement(window, data, achievement_queue, next_achi_button)
-
+        if len(achievement_queue) == 0:
+            endButton = tk.Button(window,
+                    text = "好吧QQ",
+                    font = f, 
+                    command = lambda: [press_repeat_button(window, data, [no_achievement]), sound.play_button_sound()])
+            endButton.place(x = 1000, y = 640)
 
 def show_achievement(window, data, queue, next_achi_button):
     global achievement_pics
+    f = tk.font.Font(size = 30)
     if len(queue) != 0:
+        text = "下一個成就"
+        if len(queue) == 1:
+            text = "沒成就囉"
+        if len(achievement_pics) != 0:
+            achievement_pics[-1].destroy()
+        print(queue)
         qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
-        qq = ImageTk.PhotoImage(qq)
         qq = qq.resize((1280, 720), Image.ANTIALIAS)
+        qq = ImageTk.PhotoImage(qq)
         achievement = tk.Label(window, image = qq)
         achievement.image = qq
         achievement.pack()
-        next_achi_button.place(x = 1280 - 100, y = 640)
+        next_achi_button = tk.Button(window,
+            text = text,
+            font = f, 
+            command = lambda: [show_achievement(window, data, queue, next_achi_button), sound.play_button_sound()])
+        next_achi_button.place(x = 1000, y = 640)
         achievement_pics.append(achievement)
         queue.pop()
     else:
@@ -120,6 +136,7 @@ def show_achievement(window, data, queue, next_achi_button):
 
 
 def press_end_button(window, data, used_widget):
+    f = tk.font.Font(size = 30)
     for widget in used_widget:
         widget.destroy()
 
