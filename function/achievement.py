@@ -9,6 +9,7 @@ import function.觸發事件判定 as trig
 """
 
 
+
 # 用於判斷，只跑一次
 
 achieveSex = False
@@ -16,9 +17,10 @@ achieveVtuber = False
 achieveStocks = False
 achieveChristmas = False
 achieveBirth = False
+achieveMoney = False
 
 
-def checkAchievement(number_of_sex, being_Vtuber, stocks, christmas, birth):
+def checkAchievement(number_of_sex, being_Vtuber, christmas, birth, stocks, moneyman):
 
     """
     判斷成就程式，傳入相關成就觸發的條件
@@ -28,6 +30,7 @@ def checkAchievement(number_of_sex, being_Vtuber, stocks, christmas, birth):
     global achieveStocks
     global achieveChristmas
     global achieveBirth
+    global achieveMoney
 
     if number_of_sex == 8 and achieveSex == False:
         achieveSex = True
@@ -49,6 +52,9 @@ def checkAchievement(number_of_sex, being_Vtuber, stocks, christmas, birth):
         achieveBirth = True
         achievement.giftBirth()
 
+    if status.money >= 0:
+        achieveMoney = True
+        achievement.MoneyMan()
 
 class Achievement():
 
@@ -79,15 +85,11 @@ class Achievement():
     def giftBirth(self):  # 送子鳥之禮
         print('唷，恭喜你達成「送子鳥之禮」成就！')
         return
+    
+    def MoneyMan(self):  # 金錢管理大師
+        print('待安排')
+        return
 
 achievement = Achievement()
 
-# 測試
-checkAchievement(3, True, False, False, False)
-checkAchievement(3, True, False, False, False)
-checkAchievement(8, True, False, False, False)
-checkAchievement(8, True, False, True, False)
-checkAchievement(8, True, False, True, False)
-checkAchievement(8, True, False, True, True)
-checkAchievement(8, True, True, True, True)
-checkAchievement(8, True, True, True, True)
+checkAchievement(trig.achieve(), status.stocks_surfing, status.money)
