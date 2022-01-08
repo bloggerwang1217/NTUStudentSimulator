@@ -7,9 +7,11 @@ import function.結算能力值圖片產生 as graph_abi
 import function.結算評分值圖片產生 as graph_sco
 import function.status as status
 import function.sound_effect as sound
+import function.achievement as achievement
 import os
 
 time = ""
+achievement_pics = []
 
 def show_ending_graph(window, data):
     global time
@@ -55,6 +57,7 @@ def show_ending_graph(window, data):
 
 def press_repeat_button(data, background, reference):
     f = tk.font.Font(size = 30)
+
     global time
     pic_list = data["ability_graph"]
     reference.pop()
@@ -78,8 +81,48 @@ def press_next_button(window, data, background, repeatButton, nextButton):
     background.destroy()
     repeatButton.destroy()
     nextButton.destroy()
-    # run_achievement(window, data)
-    
+    achievement_queue = achievement.checkAchievement(data)
+    if len(achievement_queue) == 0:
+        qq = Image.open("figure/oily.jpeg")
+        qq = ImageTk.PhotoImage(qq)
+        no_achievement = tk.Label(window, image = qq)
+        no_achievement.image = qq
+        no_achievement.pack()
+
+        endButton = tk.Button(window,
+                    text = "好吧QQ",
+                    font = f1, 
+                    command = lambda: [press_repeat_button(window, data, [no_achievement]), sound.play_button_sound()])
+        endButton.place(x = 1280 - 100, y = 640)
+    else:
+        next_achi_button = tk.Button(window,
+            text = "下一個成就",
+            font = f1, 
+            command = lambda: [show_achievement(window, data, achievement_queue, next_achi_button), sound.play_button_sound()])
+        show_achievement(window, data, achievement_queue, next_achi_button)
+
+
+def show_achievement(window, data, queue, next_achi_button):
+    global achievement_pics
+    if len(queue) != 0:
+        qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
+        qq = ImageTk.PhotoImage(qq)
+        qq = qq.resize((1280, 720), Image.ANTIALIAS)
+        achievement = tk.Label(window, image = qq)
+        achievement.image = qq
+        achievement.pack()
+        next_achi_button.place(x = 1280 - 100, y = 640)
+        achievement_pics.append(achievement)
+        queue.pop()
+    else:
+        next_achi_button.destroy()
+        press_end_button(window, data, achievement_pics)
+
+
+def press_end_button(window, data, used_widget):
+    for widget in used_widget:
+        widget.destroy()
+
     ending = Image.open("figure/ending.jpeg")
     ending = ending.resize((1280, 720), Image.ANTIALIAS)
     ending = ImageTk.PhotoImage(ending)
@@ -96,10 +139,7 @@ def press_next_button(window, data, background, repeatButton, nextButton):
         os.remove(f"{path}/figure/ability/{name}.png")
     os.remove(f"{path}/figure/ability/finalpix.png")
 
+
 def press_end_game(window):
     sound.play_button_sound()
     window.quit()
-
-def run_achievement():
-    pass
-

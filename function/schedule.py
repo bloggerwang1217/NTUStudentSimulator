@@ -96,8 +96,8 @@ class Schedule:
         subtitle3 = tk.Label(window, text = f"#這是你這個學期", font = f, bg = "#eeefee")
         
         schedule_time = data['previous_event']
-        if schedule_time = "期中考":
-            schedule _time = "第三次排行程表"
+        if schedule_time == "期中考":
+            schedule_time = "第三次排行程表"
 
         subtitle4 = tk.Label(window, text = f"  {schedule_time}", font = f, bg = "#eeefee")
         background.image = schedule
@@ -149,6 +149,8 @@ class Schedule:
         moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = f)
         moneyLabel.place(x = 1000, y = 640)
 
+        abilityLabel = tk.Label(window, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = f)
+        abilityLabel.place(x = 50, y = 600)
 
     def save(self, clicked, result, data):
         for i in range(1, 6):

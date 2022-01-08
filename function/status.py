@@ -1,9 +1,11 @@
 import tkinter as tk
 import tkinter.font as tkFont
+from PIL import ImageTk, Image
 import function.read_file as read
 import function.midterm_report as show_mid
 import function.final_report as show_fi
 import function.sound_effect as sound
+import function.achievement as achievement
 import random
 
 
@@ -27,7 +29,8 @@ class Status:
         self.prestige = 0  # 存
         self.study_time = dict()
         self.course = course  # 存
-        self.stocks_surfing = 0   # 紀錄成就
+        self.achievement = achievement.Achievement()
+        # self.stocks_surfing = 0   # 紀錄成就
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):

@@ -66,6 +66,13 @@ def show_event(data, event_type, name):
             if "{}" in text[i]:
                 text[i] = f"{data['name']}".join(text[i].split("{}"))
 
+    # 處理成就
+    if name == "虛擬貨幣":
+        data["status"].achievement.stocks_surfing += 1
+    elif name == "翹課打ㄆ":
+        data["status"].achievement.number_of_sex += 1
+    elif name == "懷孕":
+        data["status"].achievement.birth = True
 
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: [press_continue(data, background, nextButton, reference, text_status, text, text_widget, image_widget), sound.play_button_sound()])
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 670 - nextButton.winfo_reqheight() * 2)
@@ -104,7 +111,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
 
         # 更新能力值、評分值+呼叫下個事件
         
-        if data["event_processing"][0][0] == "中途結束事件":
+        if data["event_processing"][0][0] == "中途結束事件" or data["event_processing"][0][0] == "破關":
             ending.show_ending_graph(data["status"].display, data)
         else:
             status.event_adjust(data["status"], reach_name, data["choose_result"])
@@ -293,7 +300,7 @@ def special_situation(data, event_type, name, text, index):
                 data["choose_result"].append(1)
             else:
                 data["choose_result"].append(2)
-            break
+
     elif event_type == "觸發事件" and name == "第一次約會":
             for i in range(len(text)):
                 if text[i][0] == "d":
@@ -319,7 +326,6 @@ def special_situation(data, event_type, name, text, index):
                     data["choose_result"].append(1)
                 else:
                     data["choose_result"].append(2)
-                break
             shrinker(data, text, index, "（賭一把了）")
         elif name == "聯誼":
             for i in range(len(text)):
@@ -331,10 +337,27 @@ def special_situation(data, event_type, name, text, index):
                     break
             shrinker(data, text, index, "（同學們的反應就很看你的魅力的表現囉）")
         elif name == "系學會":
+            if text[i][0] == "d":
+                if data["status"].wisdom >= 85:
+                    data["choose_result"].append(1)
+                else:
+                    data["choose_result"].append(2)
+            shrinker(data, text, index, "（看看你多精明吧）")
+        elif name == "舞會1-男":
+            for i in range(len(text)):
                 if text[i][0] == "d":
-                    if data["status"].wisdom >= 85:
-                        data["choose_result"].append(1)
-                    else:
-                        data["choose_result"].append(2)
+                    if data["choose_result"][-1] == 1:
+                        if data["status"].charm >= 50:
+                            data["choose_result"].append(1)
+                        else:
+                            data["choose_result"].append(2)
+                    elif data["choose_result"][-1] == 2:
+                        if data["status"].luck < 20:
+                            data["choose_result"].append(1)
+                        else:
+                            data["choose_result"].append(2)
                     break
-            shrinker(data, text, index, "（看看你多精明吧）") 
+            if data["choose_result"][0] == 1:
+                shrinker(data, text, index, "（這肯定很看你的魅力的）")
+            elif data["choose_result"][0] == 2:
+                shrinker(data, text, index, "（賭一把了）")
