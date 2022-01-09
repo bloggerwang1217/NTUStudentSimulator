@@ -415,6 +415,45 @@ def event_adjust(status, event_name, choice):
                         status.social += 15
                         return
         return
+    elif event_name == "舞會1-男":
+        if choice[0] == 1:
+            if choice[1] == 1:
+                if choice[2] == 1:
+                    status.charm += 25
+                    return
+                else:
+                    status.charm -= 25
+                    status.prestige -= 25
+                    return
+        else:
+            if choice[1] == 1:
+                status.charm += 15
+                if choice[2] == 1:
+                    status.charm += 25
+                    return
+                return
+            else:
+                if choice[1] == 2:
+                    if choice[2] == 1:
+                        status.prestige += 25
+                        status.charm += 25
+                        if choice[3] == 1:
+                            status.charm += 25
+                            return
+                        return
+                    else:
+                        status.prestige += 25
+                        status.charm -= 15
+                        return
+                if choice[1] == 3:
+                    status.prestige -= 25
+                    status.charm += 25
+                    return
+    elif event_name == "舞會2-男":
+        if choice[0] == 1:
+            status.prestige += 25
+            status.health -= 50
+            return 
     elif event_name == "打疫苗":
         if choice[0] == 1 and status.luck >=75:
             status.health += 75
