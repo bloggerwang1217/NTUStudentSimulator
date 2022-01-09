@@ -268,7 +268,7 @@ def act_check(status, i):
     elif i == "硬課":
         status.class_hard()
         return
-    elif i == "廢課":
+    elif i == "爽課":
         status.class_waste()
         return
     elif i == "讀甜課":
