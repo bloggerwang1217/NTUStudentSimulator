@@ -564,6 +564,8 @@ def event_adjust(status, event_name, choice):
         else:
             status.grade = 30
             return
+    elif event_name == "不想努力了":
+        # 阿姨
     elif event_name == "車被拖吊":
         status.money -= 300
         return
