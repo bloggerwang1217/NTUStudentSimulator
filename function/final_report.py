@@ -61,6 +61,7 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
         widget.destroy()
     
     f = tk.font.Font(size = 32)
+    button_f = tk.font.Font(size = 20)
 
     text = []
     show_grades = []
@@ -74,8 +75,8 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
         else:
             text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
-    check_ability_button.place(x = 800, y = 620)
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
+    check_ability_button.place(x = 800, y = 400)
 
     text.append(check_ability_button)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
@@ -164,7 +165,7 @@ def press_next_button(window, data, used_widgets):
 
         
     else:
-        time = time_list[time_list.index(data["time"]+1)]
+        time = time_list[time_list.index(data["time"])+1]
         summer.choose_summer_event(data)
 
 

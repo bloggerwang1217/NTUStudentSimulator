@@ -215,8 +215,8 @@ class Status:
         if class_fail >= 2:
             drop_out = True
         score_final = self.score
-        self.score.clear()
         show_fi.show_final_report(data["status"].display, data, self.score)
+        self.score.clear()
         return drop_out
     
 
@@ -315,9 +315,9 @@ def act_check(status, i):
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
-    coefficient = {"甜課": 0.04, "涼課": 0.12, "硬課": 0.01}
+    coefficient = {"甜課": 0.08, "涼課": 0.12, "硬課": 0.04}
     status.study_time.setdefault(classname, 0)
-    if coefficient[classtodiff[classname]] == "爽課":
+    if classtodiff[classname] == "爽課":
         point = 90 + random.randint(0, 10)
         return int(point)
     else:
