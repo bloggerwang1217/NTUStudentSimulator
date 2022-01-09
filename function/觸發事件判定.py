@@ -123,7 +123,7 @@ def SugarDaddy():  # 不想努力了
 def Pregnant():  # 懷孕
     global preg_freq, status
     prob = random.randrange(1, 101)
-    if status.charm > 100 and status.luck < 5 and preg_freq and prob < 6:
+    if status.charm > 200 and status.luck < 5 and preg_freq and prob < 6:
         preg_freq = False
         return True
     else:
