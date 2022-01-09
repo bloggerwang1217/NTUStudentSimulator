@@ -114,7 +114,9 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         if data["event_processing"][0][0] == "中途結束事件" or data["event_processing"][0][0] == "破關":
             ending.show_ending_graph(data["status"].display, data)
         else:
-            status.event_adjust(data["status"], reach_name, data["choose_result"])
+            end = status.event_adjust(data["status"], reach_name, data["choose_result"])
+            if end == "阿姨":
+                data["event_processing"].append(["中途結束事件", "阿姨結束"])
             data["event_processing"].remove(data["event_processing"][0])
             if len(data["event_processing"]) == 1:
                 if data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":

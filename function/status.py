@@ -171,6 +171,7 @@ class Status:
 
 
     def final_exam(self, class_dict, data):
+        classtodiff = read.get_course_type_dic(status.course)
         # 健康值轉養生
         self.yang_sheng = self.yang_sheng + self.health * 0.1
         # 結算學期成績
@@ -339,7 +340,7 @@ def event_adjust(status, event_name, choice):
             status.health -= 50
         return
     elif event_name == "Elite":
-            status.wisdom += 25
+        status.wisdom += 25
         if choice[0] == 1:
             status.wisdom += 50
             status.health -= 25
@@ -565,7 +566,8 @@ def event_adjust(status, event_name, choice):
             status.grade = 30
             return
     elif event_name == "不想努力了":
-        # 阿姨
+        if choice[0] == 1:
+            return "阿姨"
     elif event_name == "車被拖吊":
         status.money -= 300
         return

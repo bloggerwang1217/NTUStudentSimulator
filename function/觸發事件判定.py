@@ -160,7 +160,7 @@ def check_event(data):
         prob = random.randrange(0, len(outputList01))  # 若中途結束事件發生2種以上，隨機挑選其中一個
         outputList01 = outputList01[prob]
     
-    for i in range(10):
+    for i in range(9):
         if Yes_or_Not[i] == True:
             outputList02.append(TriIncident_List[i])
     
