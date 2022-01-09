@@ -129,6 +129,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
 def press_next_button(window, data, used_widgets):
+    time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
     sound.enter_game_button_sound()
     for widget in used_widgets:
         widget.destroy()

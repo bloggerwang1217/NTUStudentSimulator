@@ -602,4 +602,4 @@ def event_adjust(status, event_name, choice):
             else:
                 status.charm += 50
                 status.love_progress += 50
-    return 
+    return

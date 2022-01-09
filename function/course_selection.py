@@ -47,7 +47,7 @@ def course_selection(window, data):
     for item in data["status"].course:
         if item[1] == "涼" and item[2]-item[3] > 0:
             course_option["涼課"].append(item[0])
-        elif item[1] == "廢" and item[2]-item[3] > 0:
+        elif item[1] == "爽" and item[2]-item[3] > 0:
             course_option["爽課"].append(item[0])
         elif item[1] == "硬" and item[2]-item[3] > 0:
             course_option["硬課"].append(item[0])
