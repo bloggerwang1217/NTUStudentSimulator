@@ -198,6 +198,7 @@ def check_event(data):
             status.achievement.being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
+        outputlist.append('中途結束事件:轉生異世界')
         outputList.append('期末考')
         if VtAchievement:
             status.achievement.being_Vtuber = True
