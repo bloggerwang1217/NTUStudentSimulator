@@ -177,7 +177,7 @@ class Status:
         class_list = list(class_dict.values())
         #計算被當科目
         class_fail = 0
-        drop_out = false
+        drop_out = False
         for i in class_list:
             self.score[i] = (scoring(self, i) + self.score[i]) / 2
             if self.score[i] >= 90:
