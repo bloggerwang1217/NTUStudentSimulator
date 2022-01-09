@@ -68,7 +68,7 @@ class Status:
     def check_san(self, san_require):
         if self.san < san_require:
             money_need = (san_require - self.san) * 5
-            a = self.coffee_or_not(money_need)  # 讓使用者選擇是否喝咖啡
+            a = self.coffee_or_not(int(money_need))  # 讓使用者選擇是否喝咖啡
             if a:
                 self.money -= money_need
                 self.san += san_require
