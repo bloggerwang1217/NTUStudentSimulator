@@ -225,8 +225,8 @@ class Status:
         f = tkFont.Font(size=20)
 
         # Label Creation
-        lbl = tk.Label(self.display, text=f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=225)
+        lbl = tk.Label(self.display, text=f"精力值不足\n是否消耗{int(money_need)}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=500)
 
          # Button Creation
 
@@ -305,7 +305,7 @@ def act_check(status, i):
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
-    coefficient = {"甜課": 0.001, "涼課": 0.003, "硬課": 0.0002}
+    coefficient = {"甜課": 0.01, "涼課": 0.03, "硬課": 0.002}
     status.study_time.setdefault(classname, 0)
     if coefficient[classtodiff[classname]] == "爽課":
         point = 90 + random.randint(0, 10)
