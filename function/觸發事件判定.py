@@ -14,7 +14,7 @@ def reset():  # 重置事件頻率
     
 def blow_wind():  # 樓頂吹風
     global status
-    if status.wisdom <= 0 or status.fitness <= 0 or status.charm <= 0:
+    if status.wisdom <= 0 or status.charm <= 0:
         return True
 
 def Leave_school():  # 轉學
@@ -51,7 +51,7 @@ def Wealth_Freedom():  # 財富自由
 
 def IntoDust():  # 火化
     global status
-    if status.health <= 0:
+    if status.health <= 0 or status.fitness <= 0:
         return True
 
 def Vtuber_or_Not():  # 推坑Vt
