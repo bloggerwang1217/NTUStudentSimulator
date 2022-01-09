@@ -232,9 +232,9 @@ class Status:
 
         var1 = tk.IntVar()
         var2 = tk.IntVar()
-        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans), sound.play_button_sound()])
+        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl), sound.play_button_sound()])
         c1.place(x=1005, y=300)
-        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans), sound.play_button_sound()])
+        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl), sound.play_button_sound()])
         c2.place(x=1130, y=300)
 
         # Cute Pic Creation
@@ -248,7 +248,16 @@ class Status:
 
         return ans[0]
 
-def save_input(yn, ans):
+def save_input(yn, ans, c1, c2, ori_lbl):
+    c1.destroy()
+    c2.destroy()
+    ori_lbl.destroy()
+    if ans == True:
+        lbl = tk.Label(self.display, text=f"你喝了咖啡，超勇的好不好", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=500)
+    else:
+        lbl = tk.Label(self.display, text=f"你沒喝咖啡，那天直接不支倒地睡死", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=500)
     ans[0] = yn
 
  # 判讀並執行行程表中"一項"行程的函式
@@ -283,7 +292,7 @@ def act_check(status, i):
         status.class_hard()
         status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
         return
-    elif i == "讀廢課":
+    elif i == "讀爽課":
         status.class_waste()
         status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
         return
