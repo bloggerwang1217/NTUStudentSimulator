@@ -85,6 +85,7 @@ def Research_or_not():  # 參加研究專案
 def Sex_or_not():  # 翹課打ㄆ
     global sex_freq, status
     if status.charm > 90 and sex_freq:
+        sex_freq = False
         return True
     else:
         return False
