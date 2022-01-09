@@ -479,5 +479,88 @@ def event_adjust(status, event_name, choice):
         status.social += 50
         status.prestige += 25
         status.charm += 25
-        return 
+    elif event_name == "翹課打ㄆ":
+        if choice[0] == 1:
+            status.prestige = 0
+            status.charm -= 25
+            return
+        else:
+            status.charm += 25
+            return
+    elif event_name == "學長姊送考古題":
+        if choice[0] == 1:
+            status.charm -= 5
+            return
+        elif choice[0] == 2:
+            status.charm += 25
+            status.wisdom += 45
+            return
+        else:
+            status.charm -= 25
+            status.social -= 25
+            return
+    elif event_name == "推坑V":
+        if choice[0] == 1 and choice[1] == 1:
+            status.social += 25
+            status.prestige += 25
+            return
+        elif choice[0] == 2:
+            status.prestige -= 25
+    elif event_name == "婚姻抉擇":
+        if choice[0] == 2:
+            status.love_progress = 1000000
+            status.money -= 50000
+            return
+    elif event_name == "讀書會":
+        if choice[0] == 1:
+            status.prestige -= 25
+            status.yang_sheng += 50
+            return
+        else:
+            status.yang_sheng -= 50
+            status.wisdom += 100
+            status.grade += 25
+            return
+    elif event_name == "研究專案":
+        if choice[0] == 1:
+            status.grade += 100
+            status.prestige += 25
+            return
+        else:
+            status.grade = 30
+            return
+    elif event_name == "車被拖吊":
+        status.money -= 300
+        return
+    elif event_name == "第一次約會":
+        if choice[0] == 1:
+            if choice[1] == 1:
+                status.charm -= 50
+                status.love_progress -= 50
+                return
+            else:
+                if choice[2] == 1:
+                    status.money -= 1000
+                    status.love_progress += 50
+                    return
+                else:
+                    status.love_progress -= 25
+                    return
+        elif choice[0] == 2:
+            status.money -= 1000
+            if choice[1] == 1:
+                status.charm -= 25
+                return
+            else:
+                status.love_progress += 100
+                return
+        else:
+            status.money -= 1000
+            if choice[1] == 1:
+                status.charm -= 50
+                status.love_progress -= 50
+                return
+            else:
+                status.charm += 50
+                status.love_progress += 50
     return 
