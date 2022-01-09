@@ -171,7 +171,7 @@ class Status:
 
 
     def final_exam(self, class_dict, data):
-        classtodiff = read.get_course_type_dic(status.course)
+        classtodiff = read.get_course_type_dic(data["status"].course)
         # 健康值轉養生
         self.yang_sheng = self.yang_sheng + self.health * 0.1
         # 結算學期成績
