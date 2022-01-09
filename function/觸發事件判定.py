@@ -100,7 +100,7 @@ def OldExam_or_not():  # 獲得考古題
 
 def First_Date():  # 第一次約會
     global First_Date_freq, status, DateAchievement 
-    if status.love_progress > 40 and First_Date_freq:
+    if status.love_progress > 140 and First_Date_freq:
         First_Date_freq = False
         DateAchievement = True
         return True
@@ -108,14 +108,14 @@ def First_Date():  # 第一次約會
         return False
 
 def Marriage_or_not():  # 婚姻抉擇
-    if status.love_progress >= 100 and marry:
+    if status.love_progress >= 200 and marry:
         return True
     else:
         return False
 
 def SugarDaddy():  # 不想努力了
     global Sugar_freq, status
-    if status.charm > 100 and status.love_progress < 10 and Sugar_freq:
+    if status.charm > 100 and status.love_progress < 110 and Sugar_freq:
         Sugar_freq = False
         return True
     else:
