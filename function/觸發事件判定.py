@@ -84,7 +84,7 @@ def Research_or_not():  # 參加研究專案
     
 def Sex_or_not():  # 翹課打ㄆ
     global sex_freq, status
-    if status.charm > 90 and sex_freq:
+    if status.charm > 200 and sex_freq:
         sex_freq = False
         return True
     else:
@@ -124,7 +124,7 @@ def SugarDaddy():  # 不想努力了
 def Pregnant():  # 懷孕
     global preg_freq, status
     prob = random.randrange(1, 101)
-    if status.charm > 200 and status.luck < 5 and preg_freq and prob < 6:
+    if status.charm > 150 and status.luck < 5 and preg_freq and prob < 6:
         preg_freq = False
         return True
     else:
