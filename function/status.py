@@ -256,9 +256,9 @@ def act_check(status, i):
     classtodiff = read.get_course_type_dic(status.course)
     if i in list(classtodiff.keys()):
         i = classtodiff[i]
-    elif i[2:] in list(classtodiff.keys()):
+    elif i[1:] in list(classtodiff.keys()):
         i_name = i
-        i = "讀" + classtodiff[i]
+        i = "讀" + classtodiff[i_name]
     if i == "甜課":
         status.class_sweet()
         return
