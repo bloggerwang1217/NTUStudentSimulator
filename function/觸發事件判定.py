@@ -108,7 +108,7 @@ def First_Date():  # 第一次約會
         return False
 
 def Marriage_or_not():  # 婚姻抉擇
-    if status.love_progress >= 200:
+    if status.love_progress >= 300:
         return True
     else:
         return False
