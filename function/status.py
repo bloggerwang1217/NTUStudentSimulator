@@ -224,17 +224,13 @@ class Status:
         # Top level window
         f = tkFont.Font(size=20)
 
-        # Label Creation
-        lbl = tk.Label(self.display, text=f"精力值不足\n是否消耗{int(money_need)}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=500)
-
          # Button Creation
 
         var1 = tk.IntVar()
         var2 = tk.IntVar()
-        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl), sound.play_button_sound()])
+        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl, self.display), sound.play_button_sound()])
         c1.place(x=1005, y=300)
-        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl), sound.play_button_sound()])
+        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl, self.display), sound.play_button_sound()])
         c2.place(x=1130, y=300)
 
         # Cute Pic Creation
@@ -246,18 +242,22 @@ class Status:
         coffee.image = coffee_pic
         coffee.place(x=947, y=340)
 
+        # Label Creation
+        lbl = tk.Label(self.display, text=f"精力值不足\n是否消耗{int(money_need)}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=350)
+
         return ans[0]
 
-def save_input(yn, ans, c1, c2, ori_lbl):
+def save_input(yn, ans, c1, c2, ori_lbl, window):
     c1.destroy()
     c2.destroy()
     ori_lbl.destroy()
     if ans == True:
-        lbl = tk.Label(self.display, text=f"你喝了咖啡，超勇的好不好", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=500)
+        lbl = tk.Label(window, text=f"你喝了咖啡，超勇的好不好", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=300)
     else:
-        lbl = tk.Label(self.display, text=f"你沒喝咖啡，那天直接不支倒地睡死", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=500)
+        lbl = tk.Label(window, text=f"你沒喝咖啡，那天直接不支倒地睡死", font=f, bg="#bebfbe", relief="raised")
+        lbl.place(x=960, y=300)
     ans[0] = yn
 
  # 判讀並執行行程表中"一項"行程的函式
@@ -265,8 +265,8 @@ def act_check(status, i):
     classtodiff = read.get_course_type_dic(status.course)
     if i in list(classtodiff.keys()):
         i = classtodiff[i]
-    elif i[1:] in list(classtodiff.keys()):
-        i_name = i
+    elif i[1::] in list(classtodiff.keys()):
+        i_name = i[1::]
         i = "讀" + classtodiff[i_name]
     if i == "甜課":
         status.class_sweet()

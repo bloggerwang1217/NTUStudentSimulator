@@ -118,7 +118,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
         nextbutton = tk.Button(window, text = "歡樂畢業！", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
         data["time"] = "畢業"
     else:
-        data["time"] = time_list[time_list.index(data["time"]+1)]
+        data["time"] = time_list[time_list.index(data["time"])+1]
         nextbutton = tk.Button(window, text = "進入暑假", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
     nextbutton.place(x = 850, y = 620)
 
