@@ -23,10 +23,10 @@ class Status:
         self.score = dict()
         self.display = window
         self.luck = luck  # 存
-        self.love_progress = 0  # 存
-        self.grade = 0  # 存
-        self.yang_sheng = 0  # 存
-        self.prestige = 0  # 存
+        self.love_progress = 100  # 存
+        self.grade = 100  # 存
+        self.yang_sheng = 100  # 存
+        self.prestige = 100  # 存
         self.study_time = dict()
         self.course = course  # 存
         self.achievement = achievement.Achievement()
