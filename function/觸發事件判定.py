@@ -178,7 +178,7 @@ def check_event(data):
         # 有必然事件就加入
     elif data["time"] == "大一上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
-        # outputList.append('必然事件:系隊')
+        outputList.append('必然事件:系隊')
         outputList.append('期中考')
         if VtAchievement:
             status.achievement.being_Vtuber = True

@@ -125,8 +125,6 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
                     drop_out = data["status"].final_exam(data["picked_course"], data)
                     if drop_out:
                         data["event_processing"].append(["中途結束事件", "被二一"])
-                elif data["event_processing"][0][0] == "中途結束事件" and data["event_processing"][0][1] == "不想努力了":
-                    show_event(data, "中途結束事件", "阿姨結束")
             else:
                 show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 

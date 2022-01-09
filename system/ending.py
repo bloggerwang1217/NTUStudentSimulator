@@ -109,6 +109,7 @@ def press_next_button(window, data, background, repeatButton, nextButton):
 
 def show_achievement(window, data, queue, next_achi_button):
     global achievement_pics
+    next_achi_button.destroy()
     f = tk.font.Font(size = 30)
     if len(queue) != 0:
         text = "下一個成就"
