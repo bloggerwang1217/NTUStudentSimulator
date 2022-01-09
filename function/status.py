@@ -339,16 +339,13 @@ def event_adjust(status, event_name, choice):
             status.health -= 50
         return
     elif event_name == "Elite":
-        if choice[0] == 1:
             status.wisdom += 25
-        else:
-            return
-        if choice[1] == 1:
+        if choice[0] == 1:
             status.wisdom += 50
             status.health -= 25
         else:
             status.social -= 25
-        if choice[2] == 1:
+        if choice[1] == 1:
             status.health -= 25
             status.prestige += 25
         else:
@@ -356,28 +353,25 @@ def event_adjust(status, event_name, choice):
             status.prestige -= 15
         return
     elif event_name == "系隊":
+        status.health += 25
         if choice[0] == 1:
-            status.health += 25
-        else:
-            return
-        if choice[1] == 1:
             status.prestige += 25
             status.charm += 50
+            return
         else:
             status.prestige -= 25
         return
     elif event_name == "系學會":
+        status.prestige += 25
         if choice[0] == 1:
-            status.prestige += 25
-        else:
-            return
-        if choice[1] == 1:
             status.health -= 50
             status.prestige += 15
             if status.wisdom >= 85:
                 status.prestige += 25
+                return
             else:
                 status.prestige -= 10
+                return
         else:
             status.prestige -= 10
         return
@@ -385,9 +379,11 @@ def event_adjust(status, event_name, choice):
         if choice[0] == 1:
             status.wisdom += 75
             status.prestige += 15
+            return
         else:
             status.fitness += 75
             status.prestige += 15
+            return
     elif event_name == "聯誼":
         if choice[0] == 1:
             if choice[1] == 1:
