@@ -25,7 +25,7 @@ def Leave_school():  # 轉學
 def To_New_World():  # 轉生異世界
     global status, To_New_World_freq
     prob = random.randrange(1, 101)
-    if status.luck < 5 and prob < 2 and To_New_World_freq:
+    if status.luck > 500 and prob < 2 and To_New_World_freq:
         return True
     elif status.luck < 5 and prob > 1 and To_New_World_freq:  # 一學期只會判定一次
         To_New_World_freq = False
