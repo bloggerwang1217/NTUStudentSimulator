@@ -12,23 +12,23 @@ import random
 class Status:
 
     def __init__(self, wisdom, charm, fitness, social, health, luck, course, window):
-        self.wisdom = wisdom  # 存
-        self.charm = charm  # 存
-        self.fitness = fitness  # 存
-        self.social = social  # 存
-        self.health = health  # 存
-        self.money = 40000  # 存
-        self.san = 100  # 隨便設
-        self.rest_time = 100  # 隨便設
+        self.wisdom = wisdom  
+        self.charm = charm  
+        self.fitness = fitness  
+        self.social = social  
+        self.health = health  
+        self.money = 40000  
+        self.san = 100  
+        self.rest_time = 100  
         self.score = dict()
         self.display = window
-        self.luck = luck  # 存
-        self.love_progress = 100  # 存
-        self.grade = 100  # 存
-        self.yang_sheng = 100  # 存
-        self.prestige = 100  # 存
+        self.luck = luck  
+        self.love_progress = 100  
+        self.grade = 100  
+        self.yang_sheng = 100  
+        self.prestige = 100  
         self.study_time = dict()
-        self.course = course  # 存
+        self.course = course  
         self.achievement = achievement.Achievement()
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
