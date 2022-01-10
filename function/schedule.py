@@ -5,6 +5,8 @@ import function.status as status
 import function.觸發事件判定 as check
 import function.sound_effect as sound
 
+count = 0
+
 class Schedule:
 
     def __init__(self, classes, picked, options):
@@ -225,12 +227,13 @@ def get_new_schedule(window, selected_class, data):
         "社交",
         "休息",
     ]
-
-    if not "picked_schedule" in data:
+    global count
+    if count % 4 == 0:
         data["picked_schedule"] = {'1-1': '休息', '1-2': '休息', '1-3': '休息', '1-4': '休息', '2-1': '休息', '2-2': '休息', '2-3': '休息', '2-4': '休息', '3-1': '休息', '3-2': '休息', '3-3': '休息', '3-4': '休息', '4-1': '休息', '4-2': '休息', '4-3': '休息', '4-4': '休息', '5-1': '休息', '5-2': '休息', '5-3': '休息', '5-4': '休息'}
         data["picked_schedule"][selected_class_list[0][0]] = selected_class_list[0][1]
         data["picked_schedule"][selected_class_list[1][0]] = selected_class_list[1][1]
         data["picked_schedule"][selected_class_list[2][0]] = selected_class_list[2][1]
+        count += 1
 
 
     window.configure(background="#eeefee")

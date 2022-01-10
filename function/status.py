@@ -230,9 +230,9 @@ class Status:
 
         var1 = tk.IntVar()
         var2 = tk.IntVar()
-        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl, coffee_pic, self.display), sound.play_button_sound()])
+        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl, coffee, self.display), sound.play_button_sound()])
         c1.place(x=1005, y=300)
-        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl, coffee_pic, self.display), sound.play_button_sound()])
+        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl, coffee, self.display), sound.play_button_sound()])
         c2.place(x=1130, y=300)
 
         # Cute Pic Creation

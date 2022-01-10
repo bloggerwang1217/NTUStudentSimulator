@@ -298,11 +298,12 @@ def meme_processor(line):
 
 def special_situation(data, event_type, name, text, index):
     if event_type == "暑假事件" and name == "虛擬貨幣":
-        if text[i][0] == "d":
-            if data["status"].luck >= 95:
-                data["choose_result"].append(1)
-            else:
-                data["choose_result"].append(2)
+        for i in range(len(text)):
+            if text[i][0] == "d":
+                if data["status"].luck >= 95:
+                    data["choose_result"].append(1)
+                else:
+                    data["choose_result"].append(2)
 
     elif event_type == "觸發事件" and name == "第一次約會":
             for i in range(len(text)):
@@ -324,11 +325,12 @@ def special_situation(data, event_type, name, text, index):
                 shrinker(data, text, index, "（賭一把了）")
     elif event_type == "必然事件":
         if name == "實習":
-            if text[i][0] == "d":
-                if data["status"].luck >= 95:
-                    data["choose_result"].append(1)
-                else:
-                    data["choose_result"].append(2)
+            for i in range(len(text)):
+                if text[i][0] == "d":
+                    if data["status"].luck >= 95:
+                        data["choose_result"].append(1)
+                    else:
+                        data["choose_result"].append(2)
             shrinker(data, text, index, "（賭一把了）")
         elif name == "聯誼":
             for i in range(len(text)):
@@ -340,13 +342,14 @@ def special_situation(data, event_type, name, text, index):
                     break
             shrinker(data, text, index, "（同學們的反應就很看你的魅力的表現囉）")
         elif name == "系學會":
-            if text[i][0] == "d":
-                if data["choose_result"][-1] == 1:
-                    if data["status"].wisdom >= 85:
-                        data["choose_result"].append(1)
-                    else:
-                        data["choose_result"].append(2)
-                shrinker(data, text, index, "（看看你多精明吧）")
+            for i in range(len(text)):
+                if text[i][0] == "d":
+                    if data["choose_result"][-1] == 1:
+                        if data["status"].wisdom >= 85:
+                            data["choose_result"].append(1)
+                        else:
+                            data["choose_result"].append(2)
+            shrinker(data, text, index, "（看看你多精明吧）")
         elif name == "舞會1-男":
             for i in range(len(text)):
                 if text[i][0] == "d":

@@ -116,7 +116,7 @@ def Marriage_or_not():  # 婚姻抉擇
 
 def SugarDaddy():  # 不想努力了
     global Sugar_freq, status
-    if status.charm > 100 and status.love_progress < 110 and Sugar_freq:
+    if status.charm > 500 and status.love_progress < 110 and Sugar_freq:
         Sugar_freq = False
         return True
     else:
@@ -125,7 +125,7 @@ def SugarDaddy():  # 不想努力了
 def Pregnant():  # 懷孕
     global preg_freq, status
     prob = random.randrange(1, 101)
-    if status.charm > 150 and status.luck < 5 and preg_freq and prob < 6:
+    if status.charm > 500 and status.luck < 5 and preg_freq and prob < 6:
         preg_freq = False
         return True
     else:
@@ -199,7 +199,6 @@ def check_event(data):
             status.achievement.being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
-        # outputlist.append('中途結束事件:轉生異世界')
         outputList.append('期末考')
         if VtAchievement:
             status.achievement.being_Vtuber = True
@@ -213,6 +212,7 @@ def check_event(data):
     elif data["time"] == "大一下"  and data["previous_event"] == "第一次排行程表":
         data["previous_event"] = "第二次排行程表"
         outputList.append('必然事件:系學會')
+        outputList.append('中途結束事件:轉生異世界')
         outputList.append('第二次排行程表')
         if VtAchievement:
             status.achievement.being_Vtuber = True
