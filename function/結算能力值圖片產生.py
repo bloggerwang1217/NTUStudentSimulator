@@ -48,7 +48,7 @@ def abi_illu(wisdom, charm, fitness, social, health):
     # 設定雷達圖的0度起始位置
     ax.set_theta_zero_location('N')
     # 設定雷達圖的座標刻度範圍
-    ax.set_rlim(0, 200)
+    ax.set_rlim(0, max(wisdom, charm, fitness, social, health)+20)
     # 設定雷達圖的座標值顯示角度，相對於起始角度的偏移量
     ax.set_rlabel_position(270)
     ax.set_title("能力值", font = title_f)

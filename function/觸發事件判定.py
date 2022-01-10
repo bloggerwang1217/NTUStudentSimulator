@@ -108,7 +108,8 @@ def First_Date():  # 第一次約會
         return False
 
 def Marriage_or_not():  # 婚姻抉擇
-    if status.love_progress >= 250:
+    print(status.love_progress)
+    if status.love_progress >= 450:
         return True
     else:
         return False
@@ -146,9 +147,9 @@ def check_event(data):
     outputList01 = []
     outputList02 = []
 
-    # '觸發事件:翹課打ㄆ'
+    # '觸發事件:翹課打ㄆ'、'觸發事件:懷孕'、'觸發事件:婚姻抉擇'
     TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:獲得考古題', '觸發事件:第一次約會', 
-                        '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
+                    '觸發事件:不想努力了', '觸發事件:腳踏車被拖吊']
     Incident_List = ['中途結束事件:樓頂吹風', '中途結束事件:轉生異世界', '中途結束事件:明明是我先來的', '中途結束事件:破產', 
                      '中途結束事件:財富自由', '中途結束事件:火化', '中途結束事件:轉學']
     Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
@@ -160,7 +161,7 @@ def check_event(data):
         prob = random.randrange(0, len(outputList01))  # 若中途結束事件發生2種以上，隨機挑選其中一個
         outputList01 = outputList01[prob]
     
-    for i in range(9):
+    for i in range(7):
         if Yes_or_Not[i] == True:
             outputList02.append(TriIncident_List[i])
     
@@ -186,19 +187,19 @@ def check_event(data):
         data["previous_event"] = "第三次排行程表"
         outputList.append('第三次排行程表')
 
-        # if data["sex"] == "男性":
-            # outputList.append('必然事件:舞會1-男')
-            # outputList.append('必然事件:舞會2-男')
         if VtAchievement:
             status.achievement.being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
+        if data["sex"] == "男性":
+            outputList.append('必然事件:舞會1-男')
+            outputList.append('必然事件:舞會2-男')
         outputList.append('第四次排行程表')
         if VtAchievement:
             status.achievement.being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
-        outputlist.append('中途結束事件:轉生異世界')
+        # outputlist.append('中途結束事件:轉生異世界')
         outputList.append('期末考')
         if VtAchievement:
             status.achievement.being_Vtuber = True

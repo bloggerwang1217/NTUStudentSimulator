@@ -17,6 +17,7 @@ class Schedule:
 
     def createWidgets(self, window, data):
         sound.play_background_music("正式遊戲背景音樂")
+        widgets = []
         f = tkFont.Font(size = 24)
         title_f = tkFont.Font(size = 48)
         week_f = tkFont.Font(size = 16)
@@ -41,6 +42,7 @@ class Schedule:
         schedule = schedule.resize((916,480), Image.ANTIALIAS)
         schedule = ImageTk.PhotoImage(schedule)
         background = tk.Label(window, image = schedule)
+        widgets.append(background)
 
         # self.imageNTU = ImageTk.PhotoImage(file = "figure/ntu.png")
         # self.NTUButton = tk.Button(window, image = self.imageNTU)
@@ -49,6 +51,11 @@ class Schedule:
         WedLabel = tk.Label(window, text = " 星期三 ", font = week_f, bg = "#3895b9", fg = "white")
         ThuLabel = tk.Label(window, text = " 星期四 ", font = week_f, bg = "#3895b9", fg = "white")
         FriLabel = tk.Label(window, text = " 星期五 ", font = week_f, bg = "#3895b9", fg = "white")
+        widgets.append(MonLabel)
+        widgets.append(TueLabel)
+        widgets.append(WedLabel)
+        widgets.append(ThuLabel)
+        widgets.append(FriLabel)
 
         MorningLabel = tk.Label(window, text = "早上", height = 1, width = 4, font = f, bg= "#eeefee")
         MonMorningList = tk.OptionMenu(window, clicked[0][0], *options[0][0])
@@ -61,6 +68,12 @@ class Schedule:
         ThuMorningList.config(bg = "#eeefee")
         FriMorningList = tk.OptionMenu(window, clicked[0][4], *options[0][4])
         FriMorningList.config(bg = "#eeefee")
+        widgets.append(MorningLabel)
+        widgets.append(MonMorningList)
+        widgets.append(TueMorningList)
+        widgets.append(WedMorningList)
+        widgets.append(ThuMorningList)
+        widgets.append(FriMorningList)
 
         AfternoonLabel = tk.Label(window, text = "下午", height = 1, width = 4, font = f)
         MonAfternoonList = tk.OptionMenu(window, clicked[1][0], *options[1][0])
@@ -68,6 +81,12 @@ class Schedule:
         WedAfternoonList = tk.OptionMenu(window, clicked[1][2], *options[1][2])
         ThuAfternoonList = tk.OptionMenu(window, clicked[1][3], *options[1][3])        
         FriAfternoonList = tk.OptionMenu(window, clicked[1][4], *options[1][4])
+        widgets.append(AfternoonLabel)
+        widgets.append(MonAfternoonList)
+        widgets.append(TueAfternoonList)
+        widgets.append(WedAfternoonList)
+        widgets.append(ThuAfternoonList)
+        widgets.append(FriAfternoonList)
 
         EveningLabel = tk.Label(window, text = "晚上", height = 1, width = 4, font = f, bg= "#eeefee")
         MonEveningList = tk.OptionMenu(window, clicked[2][0], *options[2][0])
@@ -80,6 +99,12 @@ class Schedule:
         ThuEveningList.config(bg = "#eeefee")
         FriEveningList = tk.OptionMenu(window, clicked[2][4], *options[2][4])
         FriEveningList.config(bg = "#eeefee")
+        widgets.append(EveningLabel)
+        widgets.append(MonEveningList)
+        widgets.append(TueEveningList)
+        widgets.append(WedEveningList)
+        widgets.append(ThuEveningList)
+        widgets.append(FriEveningList)
 
         MidnightLabel = tk.Label(window, text = "半夜", height = 1, width = 4, font = f)
         MonMidnightList = tk.OptionMenu(window, clicked[3][0], *options[3][0])
@@ -87,21 +112,35 @@ class Schedule:
         WedMidnightList = tk.OptionMenu(window, clicked[3][2], *options[3][2])
         ThuMidnightList = tk.OptionMenu(window, clicked[3][3], *options[3][3])
         FriMidnightList = tk.OptionMenu(window, clicked[3][4], *options[3][4])
+        widgets.append(MidnightLabel)
+        widgets.append(MonMidnightList)
+        widgets.append(TueMidnightList)
+        widgets.append(WedMidnightList)
+        widgets.append(ThuMidnightList)
+        widgets.append(FriMidnightList)
 
-        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data), sound.enter_game_button_sound()])
+        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets), sound.enter_game_button_sound()])
+        widgets.append(FinishButton)
 
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
         subtitle2 = tk.Label(window, text = "  只是變成你喜歡的樣子", font = f, bg = "#eeefee")
         subtitle3 = tk.Label(window, text = f"#這是你這個學期", font = f, bg = "#eeefee")
-        
+        widgets.append(title)
+        widgets.append(subtitle1)
+        widgets.append(subtitle2)
+        widgets.append(subtitle3)
+
         schedule_time = data['previous_event']
         if schedule_time == "期中考":
             schedule_time = "第三次排行程表"
 
         subtitle4 = tk.Label(window, text = f"  {schedule_time}", font = f, bg = "#eeefee")
+        widgets.append(subtitle4)
+
         background.image = schedule
         background.place(x=0, y=0)
+
 
         # NTUButton.place(x=20, y=50)
         MonLabel.place(x=150, y=8)
@@ -145,14 +184,19 @@ class Schedule:
         subtitle3.place(x=975, y=180)
         subtitle4.place(x=975, y=220)
 
-        f = tk.font.Font(size = 30)
-        moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = f)
+        money_f = tk.font.Font(size = 30)
+        moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = money_f)
+        widgets.append(moneyLabel)
         moneyLabel.place(x = 1000, y = 640)
 
         abilityLabel = tk.Label(window, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = f)
+        widgets.append(abilityLabel)
         abilityLabel.place(x = 50, y = 600)
 
-    def save(self, clicked, result, data):
+    def save(self, clicked, result, data, used_widgets):
+        for widget in used_widgets:
+            widget.destroy()
+
         for i in range(1, 6):
             for j in range(1, 5):
                 result[f"{i}-{j}"] = clicked[j-1][i-1].get()

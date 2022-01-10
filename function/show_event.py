@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 import function.status as status
 import function.schedule as sch
 import function.sound_effect as sound
+import function.course_selection as cs
 import system.ending as ending
 
 
@@ -113,6 +114,8 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         
         if data["event_processing"][0][0] == "中途結束事件" or data["event_processing"][0][0] == "破關":
             ending.show_ending_graph(data["status"].display, data)
+        elif data["event_processing"][0][0] == "暑假事件":
+            cs.course_selection(data["status"].display, data)
         else:
             end = status.event_adjust(data["status"], reach_name, data["choose_result"])
             if end == "阿姨":
@@ -338,26 +341,32 @@ def special_situation(data, event_type, name, text, index):
             shrinker(data, text, index, "（同學們的反應就很看你的魅力的表現囉）")
         elif name == "系學會":
             if text[i][0] == "d":
-                if data["status"].wisdom >= 85:
-                    data["choose_result"].append(1)
-                else:
-                    data["choose_result"].append(2)
-            shrinker(data, text, index, "（看看你多精明吧）")
+                if data["choose_result"][-1] == 1:
+                    if data["status"].wisdom >= 85:
+                        data["choose_result"].append(1)
+                    else:
+                        data["choose_result"].append(2)
+                shrinker(data, text, index, "（看看你多精明吧）")
         elif name == "舞會1-男":
             for i in range(len(text)):
                 if text[i][0] == "d":
-                    if data["choose_result"][-1] == 1:
-                        if data["status"].charm >= 50:
+                    if len(data["choose_result"]) == 0:
+                        if data["status"].charm >= 60:
                             data["choose_result"].append(1)
                         else:
                             data["choose_result"].append(2)
-                    elif data["choose_result"][-1] == 2:
-                        if data["status"].luck < 20:
-                            data["choose_result"].append(1)
-                        else:
-                            data["choose_result"].append(2)
+                        shrinker(data, text, index, "（邀不邀的到異性舞伴間看你的魅力了！）")
+                    elif len(data["choose_result"]) == 2:
+                        if data["choose_result"][-1] == 1 and data["choose_result"][-2] == 1:
+                            if data["status"].charm >= 80 and data["status"].luck >= 20:
+                                data["choose_result"].append(1)
+                            else:
+                                data["choose_result"].append(2)
+                            shrinker(data, text, index, "（看你的魅力和運氣囉）")
+                        elif data["choose_result"][-1] == 2 and data["choose_result"][-2] == 2:
+                            if data["status"].charm >= 70 and data["status"].luck >= 20:
+                                data["choose_result"].append(1)
+                            else:
+                                data["choose_result"].append(2)
+                            shrinker(data, text, index, "（看你的魅力和運氣囉）")
                     break
-            if data["choose_result"][0] == 1:
-                shrinker(data, text, index, "（這肯定很看你的魅力的）")
-            elif data["choose_result"][0] == 2:
-                shrinker(data, text, index, "（賭一把了）")

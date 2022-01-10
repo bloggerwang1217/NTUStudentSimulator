@@ -60,7 +60,7 @@ def choose(data, background, used_button , chosen):
         button1 = tk.Button(data["status"].display, text = "耍廢", relief = "raise", font = f, command = lambda: [home_choose(data, background, choose_button, "耍廢"), sound.play_button_sound()])
         button2 = tk.Button(data["status"].display, text = "唸書", relief = "raise", font = f, command = lambda: [home_choose(data, background, choose_button, "唸書"), sound.play_button_sound()])
         button3 = tk.Button(data["status"].display, text = "規律作息", relief = "raise", font = f, command = lambda: [home_choose(data, background, choose_button, "規律作息"), sound.play_button_sound()])
-        button4 = tk.Button(data["status"].display, text = "炒股", relief = "raise", font = f, command = lambda: [home_choose(data, background, choose_button, "炒股"), sound.play_button_sound()])
+        button4 = tk.Button(data["status"].display, text = "投資", relief = "raise", font = f, command = lambda: [home_choose(data, background, choose_button, "投資"), sound.play_button_sound()])
 
         choose_button.append(button1)
         choose_button.append(button2)
@@ -84,7 +84,7 @@ def home_choose(data, background, used_button , chosen):
         choose_button = []
 
         button1 = tk.Button(data["status"].display, text = "虛擬貨幣", relief = "raise", font = f, command = lambda: [stock_choose(data, background, choose_button, "虛擬貨幣"), sound.play_button_sound()])
-        button2 = tk.Button(data["status"].display, text = "ETP", relief = "raise", font = f, command = lambda: [stock_choose(data, background, choose_button, "ETF"), sound.play_button_sound()])
+        button2 = tk.Button(data["status"].display, text = "ETF", relief = "raise", font = f, command = lambda: [stock_choose(data, background, choose_button, "ETF"), sound.play_button_sound()])
         button3 = tk.Button(data["status"].display, text = "債券", relief = "raise", font = f, command = lambda: [stock_choose(data, background, choose_button, "債券"), sound.play_button_sound()])
 
         choose_button.append(button1)

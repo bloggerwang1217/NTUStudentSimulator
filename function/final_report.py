@@ -8,6 +8,7 @@ import function.status as status
 import function.read_file as read
 import function.sound_effect as sound
 import function.show_event as show
+import function.course_selection as cs
 
 def show_final_report(window, data, grades):
     desk = Image.open("figure/desk_texture.jpeg")
@@ -60,23 +61,28 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
     for widget in used_widgets:
         widget.destroy()
     
+    title_f = tk.font.Font(size = 36)
     f = tk.font.Font(size = 32)
     button_f = tk.font.Font(size = 20)
 
     text = []
     show_grades = []
+
+    show_grades.append("你的成績如下：")
     for item in grades.keys():
+        print(grades)
+        print(item, grades[item])
         show_grades.append(f"{item}:{grades[item]}分\n")
     for i in range(len(show_grades)): 
-        text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
-
         if i == 0:
-            text[i].place(x = 180, y = 30)
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f))
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 30)
         else:
-            text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
-    check_ability_button.place(x = 800, y = 400)
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
+    check_ability_button.place(x = 800, y = 600)
 
     text.append(check_ability_button)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
@@ -115,9 +121,14 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     ability.place(x = 640 - widget2.winfo_reqwidth()/2.3, y = 140)
     
     time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
+    print(data["time"])
     if data["time"] == "大四下":
         nextbutton = tk.Button(window, text = "歡樂畢業！", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
         data["time"] = "畢業"
+    elif data["time"][2] == "上":
+        data["time"] = time_list[time_list.index(data["time"])+1]
+        nextbutton = tk.Button(window, text = "下學期來囉", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
+        nextbutton.place(x = 850, y = 620)
     else:
         data["time"] = time_list[time_list.index(data["time"])+1]
         nextbutton = tk.Button(window, text = "進入暑假", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
@@ -135,7 +146,7 @@ def press_next_button(window, data, used_widgets):
     for widget in used_widgets:
         widget.destroy()
 
-    if data["time"] == "大四下":
+    if data["time"] == "畢業":
         f = tk.font.Font(size = 30)
         reference = []
 
@@ -163,9 +174,9 @@ def press_next_button(window, data, used_widgets):
         graduateButton = tk.Button(window, text = "最後的最後...", font = f, command = lambda: [press_graduate_button(window, data, background, graduateButton), sound.play_button_sound()])
         graduateButton.place(x = 640 + 320 - graduateButton.winfo_reqwidth(), y = 250)
 
-        
+    elif data["time"] == "大一下" or data["time"] == "大二下" or data["time"] == "大三下":
+        cs.course_selection(data["status"].display, data)
     else:
-        time = time_list[time_list.index(data["time"])+1]
         summer.choose_summer_event(data)
 
 

@@ -214,8 +214,9 @@ class Status:
                         class_fail += 1
         if class_fail >= 2:
             drop_out = True
-        score_final = self.score
-        show_fi.show_final_report(data["status"].display, data, self.score)
+        score_final = self.score.copy()
+        print(score_final)
+        show_fi.show_final_report(data["status"].display, data, score_final)
         self.score.clear()
         return drop_out
     
@@ -229,9 +230,9 @@ class Status:
 
         var1 = tk.IntVar()
         var2 = tk.IntVar()
-        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl, self.display), sound.play_button_sound()])
+        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl, coffee_pic, self.display), sound.play_button_sound()])
         c1.place(x=1005, y=300)
-        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl, self.display), sound.play_button_sound()])
+        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl, coffee_pic, self.display), sound.play_button_sound()])
         c2.place(x=1130, y=300)
 
         # Cute Pic Creation
@@ -249,10 +250,11 @@ class Status:
 
         return ans[0]
 
-def save_input(yn, ans, c1, c2, ori_lbl, window):
+def save_input(yn, ans, c1, c2, ori_lbl, ori_pic, window):
     c1.destroy()
     c2.destroy()
     ori_lbl.destroy()
+    ori_pic.destroy()
     if ans == True:
         lbl = tk.Label(window, text=f"你喝了咖啡，超勇的好不好", font=f, bg="#bebfbe", relief="raised")
         lbl.place(x=960, y=300)
@@ -494,19 +496,15 @@ def event_adjust(status, event_name, choice):
     elif event_name == "虛擬貨幣":
         if status.luck >= 95:
             status.money += 400000
-            self.stocks_surfing += 1
             return
         else:
             status.money += 10000
-            self.stocks_surfing += 1
         return
     elif event_name == "ETF":
         status.money += 100000
-        self.stocks_surfing += 1
         return
     elif event_name == "債券":
         status.money += 10000
-        self.stocks_surfing += 1
         return
     elif event_name == "陪另一半":
         status.love_progress += 50
@@ -523,7 +521,7 @@ def event_adjust(status, event_name, choice):
         else:
             status.charm += 25
             return
-    elif event_name == "學長姊送考古題":
+    elif event_name == "獲得考古題":
         if choice[0] == 1:
             status.charm -= 5
             return
@@ -535,7 +533,7 @@ def event_adjust(status, event_name, choice):
             status.charm -= 25
             status.social -= 25
             return
-    elif event_name == "推坑V":
+    elif event_name == "推坑Vt":
         if choice[0] == 1 and choice[1] == 1:
             status.social += 25
             status.prestige += 25
@@ -543,11 +541,11 @@ def event_adjust(status, event_name, choice):
         elif choice[0] == 2:
             status.prestige -= 25
     elif event_name == "婚姻抉擇":
-        if choice[0] == 2:
+        if choice[0] == 1:
             status.love_progress = 1000000
             status.money -= 50000
             return
-    elif event_name == "讀書會":
+    elif event_name == "參加讀書會":
         if choice[0] == 1:
             status.prestige -= 25
             status.yang_sheng += 50
@@ -557,7 +555,7 @@ def event_adjust(status, event_name, choice):
             status.wisdom += 100
             status.grade += 25
             return
-    elif event_name == "研究專案":
+    elif event_name == "參加研究專案":
         if choice[0] == 1:
             status.grade += 100
             status.prestige += 25
@@ -568,7 +566,7 @@ def event_adjust(status, event_name, choice):
     elif event_name == "不想努力了":
         if choice[0] == 1:
             return "阿姨"
-    elif event_name == "車被拖吊":
+    elif event_name == "腳踏車被拖吊":
         status.money -= 300
         return
     elif event_name == "第一次約會":

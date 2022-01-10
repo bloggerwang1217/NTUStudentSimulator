@@ -9,6 +9,7 @@ import random
 warning = "警示用全域變數"
 
 def course_selection(window, data):
+    window.configure(background="white")
 
     widgets = []
     used_widgets = []
@@ -193,5 +194,7 @@ def press_start_semester(window, data, widgets, picked):
     for widget in widgets:
         widget.destroy()
     data["picked_course"] = picked
-
-    semester.start_semester(window, data, picked, "大一上")
+    try:
+        semester.start_semester(window, data, picked, data["time"])
+    except:
+        semester.start_semester(window, data, picked, "大一上")
