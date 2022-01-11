@@ -5,7 +5,6 @@ import function.status as status
 import function.觸發事件判定 as check
 import function.sound_effect as sound
 
-count = 0
 
 class Schedule:
 
@@ -121,8 +120,7 @@ class Schedule:
         widgets.append(ThuMidnightList)
         widgets.append(FriMidnightList)
 
-        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets), sound.enter_game_button_sound()])
-        widgets.append(FinishButton)
+        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets, FinishButton, moneyLabel), sound.enter_game_button_sound()])
 
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
@@ -188,34 +186,38 @@ class Schedule:
 
         money_f = tk.font.Font(size = 30)
         moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = money_f)
-        widgets.append(moneyLabel)
         moneyLabel.place(x = 1000, y = 640)
 
         abilityLabel = tk.Label(window, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = f)
         widgets.append(abilityLabel)
         abilityLabel.place(x = 50, y = 600)
 
-    def save(self, clicked, result, data, used_widgets):
-        for widget in used_widgets:
-            widget.destroy()
+    def save(self, clicked, result, data, used_widgets, FinishButton, moneyLabel):
+        FinishButton.destroy()
 
         for i in range(1, 6):
             for j in range(1, 5):
                 result[f"{i}-{j}"] = clicked[j-1][i-1].get()
-        ans = data["status"].run_schedule(result)
-        if ans is None:
-            data["picked_schedule"] = result
-        check.check_event(data)
-
+        money_spent = data["status"].run_schedule(result)
+        data["picked_schedule"] = result
+        if money_spent > 0:
+            moneyLabel.destroy()
+            money_f = tk.font.Font(size = 30)
+            moneyLabel = tk.Label(data["status"].display, text = f"錢包：{data['status'].money}元", font = money_f)
+            moneyLabel.place(x = 1000, y = 640)
+            used_widgets.append(moneyLabel)
+            you_drank_coffee(data["status"].display, data, money_spent, used_widgets)
+        else:
+            widgets.append(moneyLabel)
+            for widget in used_widgets:
+                widget.destroy()
+            check.check_event(data)
 
         
-def get_new_schedule(window, selected_class, data):
-    # # 傳入
+def get_new_schedule(window, selected_class, data, is_new_semester):
+    # 傳入格式
     # selected_class = {"1-1":"A課", "2-2":"B課", "4-3":"C課"}
     selected_class_list = list(selected_class.items())
-
-    # # 傳入
-    # previous_picked = {'1-1': 'A課', '1-2': '讀A課', '1-3': '社交', '1-4': '健身', '2-1': '社交', '2-2': 'B課', '2-3': '讀A課', '2-4': '休息', '3-1': '讀A課', '3-2': '讀B課', '3-3': '讀A課', '3-4': '休息', '4-1': '讀A課', '4-2': '健身', '4-3': 'C課', '4-4': '社交', '5-1': '休息', '5-2': '約會', '5-3': '社交', '5-4': '休息'}
 
     options = [
         f"讀{selected_class_list[0][1]}",
@@ -227,51 +229,46 @@ def get_new_schedule(window, selected_class, data):
         "社交",
         "休息",
     ]
-    global count
-    if count % 4 == 0:
+
+    if is_new_semester:
+        print(selected_class_list)
         data["picked_schedule"] = {'1-1': '休息', '1-2': '休息', '1-3': '休息', '1-4': '休息', '2-1': '休息', '2-2': '休息', '2-3': '休息', '2-4': '休息', '3-1': '休息', '3-2': '休息', '3-3': '休息', '3-4': '休息', '4-1': '休息', '4-2': '休息', '4-3': '休息', '4-4': '休息', '5-1': '休息', '5-2': '休息', '5-3': '休息', '5-4': '休息'}
         data["picked_schedule"][selected_class_list[0][0]] = selected_class_list[0][1]
         data["picked_schedule"][selected_class_list[1][0]] = selected_class_list[1][1]
         data["picked_schedule"][selected_class_list[2][0]] = selected_class_list[2][1]
-        count += 1
-
+        print(data["picked_schedule"])
 
     window.configure(background="#eeefee")
     sch = Schedule(selected_class, data["picked_schedule"], options)
     sch.createWidgets(window, data)
 
-'''測試咖啡詢問介面
-def coffee_or_not(window, money_need):
-    ans = [""]
-    # Top level window
-    f = tkFont.Font(size = 20)
 
-    # Label Creation
-    lbl = tk.Label(window, text = f"精力值不足\n是否消耗{money_need}金錢來購買咖啡...", font = f, bg = "#bebfbe", relief = "raised")
-    lbl.place(x = 960, y = 225)
+def you_drank_coffee(window, data, money_need, widgets):
+    f = tkFont.Font(size=20)
+    button_f = tkFont.Font(size=24)
 
+     # Button Creation
 
-    # Button Creation
-
-    var1 = tk.IntVar()
-    var2 = tk.IntVar()
-    c1 = tk.Button(window, text = "要",width = 5, font = f, command = lambda: save_input(True, ans))
-    c1.place(x = 1005, y = 300)
-    c2 = tk.Button(window, text = "不要",width = 5, font = f, command = lambda: save_input(False, ans))
-    c2.place(x = 1130, y = 300)
+    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), check.check_event(data), sound.play_button_sound()])
+    continueButton.place(x=1070, y=300)
+    widgets.append(continueButton)
 
     # Cute Pic Creation
 
     coffee_pic = Image.open("figure/coffee.jpeg")
-    coffee_pic = coffee_pic.resize((300,219), Image.ANTIALIAS)
+    coffee_pic = coffee_pic.resize((300, 219), Image.ANTIALIAS)
     coffee_pic = ImageTk.PhotoImage(coffee_pic)
-    coffee = tk.Label(window, image = coffee_pic, bd =4, relief ="raised")
+    coffee = tk.Label(window, image=coffee_pic, bd=4, relief="raised")
     coffee.image = coffee_pic
-    coffee.place(x = 947, y = 340)
+    coffee.place(x=947, y=340)
+    widgets.append(coffee)
 
-    return ans[0]
+    # Label Creation
+    lbl = tk.Label(window, text=f"精力值不足\n你花了{money_need}元購買咖啡...", font=f, bg="#bebfbe", relief="raised")
+    lbl.place(x=960, y=350)
+    widgets.append(lbl)
 
 
-def save_input(yn, ans):
-    ans[0] = yn 
-'''
+def destroy_widgets(widgets):
+    for widget in widgets:
+        widget.destroy()

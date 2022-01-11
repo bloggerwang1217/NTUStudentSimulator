@@ -20,7 +20,7 @@ def process_event(data, events):
         except:
             data["event_processing"].append([events[i]])
     if data["event_processing"][0][0] == "第一次排行程表" or data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":
-        sch.get_new_schedule(data["status"].display, data["picked_course"], data)
+        sch.get_new_schedule(data["status"].display, data["picked_course"], data, False)
     elif data["event_processing"][0][0] == "期中考":
         data["status"].midterm(data["picked_course"], data)
     elif data["event_processing"][0][0] == "期末考":
@@ -123,7 +123,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
             data["event_processing"].remove(data["event_processing"][0])
             if len(data["event_processing"]) == 1:
                 if data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":
-                    sch.get_new_schedule(data["status"].display, data["picked_course"], data)
+                    sch.get_new_schedule(data["status"].display, data["picked_course"], data, False)
                 elif data["event_processing"][0][0] == "期中考":
                     data["status"].midterm(data["picked_course"], data)
                 elif data["event_processing"][0][0] == "期末考":
@@ -198,8 +198,8 @@ def call_status_v(background, reference, text_now, image_widget):
     image_widget.append(c)
     image_widget.append(d)
 
-    if len(line) > 22:  # 有npc時的斷行長度
-        line = read.rearrange(22, line)
+    if len(line) > 20:  # 有npc時的斷行長度
+        line = read.rearrange(20, line)
     text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = f)
     return text_widget
 
@@ -354,7 +354,7 @@ def special_situation(data, event_type, name, text, index):
             for i in range(len(text)):
                 if text[i][0] == "d":
                     if len(data["choose_result"]) == 0:
-                        if data["status"].charm >= 60:
+                        if data["status"].charm < 60:
                             data["choose_result"].append(1)
                         else:
                             data["choose_result"].append(2)

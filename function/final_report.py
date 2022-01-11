@@ -70,8 +70,6 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
 
     show_grades.append("你的成績如下：")
     for item in grades.keys():
-        print(grades)
-        print(item, grades[item])
         show_grades.append(f"{item}:{grades[item]}分\n")
     for i in range(len(show_grades)): 
         if i == 0:
@@ -121,7 +119,6 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     ability.place(x = 640 - widget2.winfo_reqwidth()/2.3, y = 140)
     
     time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
-    print(data["time"])
     if data["time"] == "大四下":
         nextbutton = tk.Button(window, text = "歡樂畢業！", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
         data["time"] = "畢業"
@@ -183,4 +180,4 @@ def press_next_button(window, data, used_widgets):
 def press_graduate_button(window, data, background, graduateButton):
     background.destroy()
     graduateButton.destroy()
-    show.show_event(data, "破關", "正常結局")
+    show.process_event(data, [["破關:正常結局"]])

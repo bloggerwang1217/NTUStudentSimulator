@@ -42,6 +42,7 @@ class Status:
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
     def run_schedule(self, schedule):
+        money_spent = 0
         Mon = ["1-1", "1-2", "1-3", "1-4"]
         Tue = ["2-1", "2-2", "2-3", "2-4"]
         Wed = ["3-1", "3-2", "3-3", "3-4"]
@@ -49,75 +50,72 @@ class Status:
         Fri = ["5-1", "5-2", "5-3", "5-4"]
         self.san_reset()
         for i in Mon:
-            act_check(self, schedule[i])
+            money_spent += act_check(self, schedule[i])
         self.san_reset()
         for i in Tue:
-            act_check(self, schedule[i])
+            money_spent += act_check(self, schedule[i])
         self.san_reset()
         for i in Wed:
-            act_check(self, schedule[i])
+            money_spent += act_check(self, schedule[i])
         self.san_reset()
         for i in Thr:
-            act_check(self, schedule[i])
+            money_spent += act_check(self, schedule[i])
         self.san_reset()
         for i in Fri:
-            act_check(self, schedule[i])
-        return
+            money_spent += act_check(self, schedule[i])
+        return money_spent
 
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
     def check_san(self, san_require):
+        money_need = 0
         if self.san < san_require:
             money_need = (san_require - self.san) * 5
-            a = self.coffee_or_not(int(money_need))  # 讓使用者選擇是否喝咖啡
-            if a:
-                self.money -= money_need
-                self.san += san_require
-                self.health -= (san_require * 0.1)
-                return False
-            else:
-                return True
+
+            self.money -= int(money_need)
+            self.san += san_require
+            self.health -= (san_require * 0.1)
+        if int(money_need) > 0:
+            return int(money_need)
         else:
-            return False
+            return 0
 
     # 甜課得函式
     def class_sweet(self):
-        if self.check_san(10):
-            return None
         self.san -= 10
         self.wisdom += 5
         self.charm -= 1
         self.social += 2
         self.fitness -= 1
 
+        return self.check_san(10)
+
     def class_easy(self):
-        if self.check_san(5):
-            return None
         self.san -= 5
         self.wisdom += 2
         self.charm -= 1
         self.social += 1
         self.fitness -= 1
 
+        return self.check_san(5)
+
     def class_hard(self):
-        if self.check_san(30):
-            return None
         self.san -= 30
         self.wisdom += 10
         self.charm -= 1
         self.social -= 1
         self.fitness -= 2
 
+        return self.check_san(30)
+
     def class_waste(self):
-        if self.check_san(0):
-            return None
         self.san -= 0
         self.wisdom -= 1
         self.charm -= -1
         self.social += 3
 
+        return self.check_san(0)
+
     def workout(self):
-        if self.check_san(25):
-            return None
         self.money -= 30
         self.san -= 25
         self.wisdom -= 3
@@ -125,9 +123,9 @@ class Status:
         self.fitness += 10
         self.health += 3
 
+        return self.check_san(25)
+
     def part_time(self):
-        if self.check_san(20):
-            return None
         self.san -= 20
         self.wisdom -= 2
         self.fitness += 1
@@ -135,9 +133,9 @@ class Status:
         self.health -= 2
         self.money += 1200
 
+        return self.check_san(20)
+
     def go_dating(self):
-        if self.check_san(30):
-            return None
         self.san -= 30
         self.wisdom -= 4
         self.charm += 10
@@ -145,9 +143,9 @@ class Status:
         self.health -= 5
         self.money -= 1111
 
+        return self.check_san(30)
+
     def social_with_other(self):
-        if self.check_san(-20):
-            return None
         self.san -= 20
         self.wisdom -= 5
         self.charm += 3
@@ -156,12 +154,16 @@ class Status:
         self.fitness -= 3
         self.money -= 100
 
+        return self.check_san(-20)
+
     def rest(self):
         self.rest_time += 1
         self.wisdom -= 1
         self.charm -= 1
         self.social -= 2
         self.health += 5
+
+        return 0
 
     def midterm(self, class_dict, data):
         class_list = list(class_dict.values())
@@ -215,53 +217,10 @@ class Status:
         if class_fail >= 2:
             drop_out = True
         score_final = self.score.copy()
-        print(score_final)
         show_fi.show_final_report(data["status"].display, data, score_final)
         self.score.clear()
         return drop_out
-    
 
-    def coffee_or_not(self, money_need):
-        ans = [""]
-        # Top level window
-        f = tkFont.Font(size=20)
-
-         # Button Creation
-
-        var1 = tk.IntVar()
-        var2 = tk.IntVar()
-        c1 = tk.Button(self.display, text="要", width=5, font=f, command=lambda: [save_input(True, ans, c1, c2, lbl, coffee, self.display), sound.play_button_sound()])
-        c1.place(x=1005, y=300)
-        c2 = tk.Button(self.display, text="不要", width=5, font=f, command=lambda: [save_input(False, ans, c1, c2, lbl, coffee, self.display), sound.play_button_sound()])
-        c2.place(x=1130, y=300)
-
-        # Cute Pic Creation
-
-        coffee_pic = Image.open("figure/coffee.jpeg")
-        coffee_pic = coffee_pic.resize((300, 219), Image.ANTIALIAS)
-        coffee_pic = ImageTk.PhotoImage(coffee_pic)
-        coffee = tk.Label(self.display, image=coffee_pic, bd=4, relief="raised")
-        coffee.image = coffee_pic
-        coffee.place(x=947, y=340)
-
-        # Label Creation
-        lbl = tk.Label(self.display, text=f"精力值不足\n是否消耗{int(money_need)}金錢來購買咖啡...", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=350)
-
-        return ans[0]
-
-def save_input(yn, ans, c1, c2, ori_lbl, ori_pic, window):
-    c1.destroy()
-    c2.destroy()
-    ori_lbl.destroy()
-    ori_pic.destroy()
-    if ans == True:
-        lbl = tk.Label(window, text=f"你喝了咖啡，超勇的好不好", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=300)
-    else:
-        lbl = tk.Label(window, text=f"你沒喝咖啡，那天直接不支倒地睡死", font=f, bg="#bebfbe", relief="raised")
-        lbl.place(x=960, y=300)
-    ans[0] = yn
 
  # 判讀並執行行程表中"一項"行程的函式
 def act_check(status, i):
@@ -272,48 +231,48 @@ def act_check(status, i):
         i_name = i[1::]
         i = "讀" + classtodiff[i_name]
     if i == "甜課":
-        status.class_sweet()
-        return
+        return status.class_sweet()
+        
     elif i == "涼課":
-        status.class_easy()
-        return
+        return status.class_easy()
+        
     elif i == "硬課":
-        status.class_hard()
-        return
+        return status.class_hard()
+        
     elif i == "爽課":
-        status.class_waste()
-        return
+        return status.class_waste()
+        
     elif i == "讀甜課":
-        status.class_sweet()
         status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
-        return
+        return status.class_sweet()
+
     elif i == "讀涼課":
-        status.class_easy()
         status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
-        return
+        return status.class_easy()
+
     elif i == "讀硬課":
-        status.class_hard()
         status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
-        return
+        return status.class_hard()
+
     elif i == "讀爽課":
-        status.class_waste()
         status.study_time[i_name] = status.study_time.setdefault(i_name, 0) + 1
-        return
+        return status.class_waste()
+
     elif i == "健身":
-        status.workout()
-        return
+        return status.workout()
+
     elif i == "打工":
-        status.part_time()
-        return
+        return status.part_time()
+
     elif i == "約會":
-        status.go_dating()
-        return
+        return status.go_dating()
+
     elif i == "社交":
-        status.social_with_other()
-        return
+        return status.social_with_other()
+
     elif i == "休息":
-        status.rest()
-    return
+        return status.rest()
+
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
@@ -542,7 +501,7 @@ def event_adjust(status, event_name, choice):
             status.prestige -= 25
     elif event_name == "婚姻抉擇":
         if choice[0] == 1:
-            status.love_progress = 1000000
+            status.love_progress = 1000
             status.money -= 50000
             return
     elif event_name == "參加讀書會":

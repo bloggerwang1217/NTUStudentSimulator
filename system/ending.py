@@ -152,11 +152,6 @@ def press_end_button(window, data, used_widget):
     end_button = tk.Button(window, text = "結束",width = 7, font = f, command = lambda: press_end_game(window))
     end_button.place(x = 640-end_button.winfo_reqwidth()/2, y = 300)
 
-    path = os.getcwd()
-    for name in data["ability_graph"]:
-        os.remove(f"{path}/figure/ability/{name}.png")
-    os.remove(f"{path}/figure/ability/finalpix.png")
-
 
 def press_end_game(window):
     sound.play_button_sound()

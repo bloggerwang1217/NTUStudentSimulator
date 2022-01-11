@@ -28,4 +28,4 @@ def press_start(data, background, startButton, picked):
     sound.enter_game_button_sound()
     background.destroy()
     startButton.destroy()
-    schedule.get_new_schedule(data["status"].display, picked, data)
+    schedule.get_new_schedule(data["status"].display, picked, data, True)
