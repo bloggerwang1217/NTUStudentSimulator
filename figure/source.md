@@ -1,3 +1,22 @@
+# 圖片資料來源
+## 事件
+### 觸發事件
+1. 不想努力了:https://png.is/f/female-cafe-clerk/xframe_79632-202106170556.html
+### 中途結局事件
+1. 火化：https://pixabay.com/photos/cup-coffee-table-drinks-beverage-6878196/
+## 成就
+1. 傳說挑戰者:https://www.amazon.com/Dragon-Slayer-Knight-Fantasy-Poster/dp/B0195E97JQ?th=1
+1. 好油ㄛpeko:
+    1. https://www.youtube.com/channel/UC-hM6YJuNYVAmUWxeIr9FeA/videos
+    1. https://www.pinterest.co.kr/pin/341147740530452148/
+    1. https://mobile.twitter.com/momosuzunene/status/1473620595015565315
+1. 金錢管理大師:https://attach.setn.com/newsimages/2021/12/18/3454992-XXL.jpg
+1. 送子鳥之禮:https://pic.pimg.tw/ashley1205/1495033939-1595140816.jpg
+1. 情場浪子:
+    1. https://imgur.dcard.tw/2aMbd9Ih.jpg
+    1. https://imgur.dcard.tw/QovS7SRh.jpg
+1. 超級絕命韭菜:https://www.reddit.com/r/MemeTemplatesOfficial/comments/en5z2b/stonks_meme_without_the_word_stonks/
+## 其他
 1. beginning:https://www.fu-berlin.de/en/sites/internationalweek/partneruniversitaeten/asien/taiwan-ntu.html
 2. coffee:https://pixabay.com/vectors/coffee-cup-of-coffee-cup-caffeine-5009730/
 3. night:https://pixabay.com/vectors/night-heaven-city-moon-2168868/
@@ -6,5 +25,3 @@
 3. ntu_course_selection:https://nol.ntu.edu.tw/nol/student/
 3. ntu_course_bottom:https://nol.ntu.edu.tw/nol/student/
 4. summer_vacation:https://7geese.com/how-to-motivate-your-employees-after-their-summer-vacation/
-5. 不想努力了:https://png.is/f/female-cafe-clerk/xframe_79632-202106170556.html
-5. 火化：https://pixabay.com/photos/cup-coffee-table-drinks-beverage-6878196/
