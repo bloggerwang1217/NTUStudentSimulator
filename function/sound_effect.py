@@ -10,12 +10,20 @@ def play_background_music(filename):
     pygame.mixer.music.load((f"音效/{filename}.mp3"))
     pygame.mixer.music.play()
 
+
 def play_event_background_music(name1, name2):
     pygame.mixer.music.load((f"音效/{name1}/{name2}.mp3"))
     pygame.mixer.music.play()
 
+
+def play_achievement_music(filename):
+    pygame.mixer.music.load((f"音效/成就/{filename}.mp3"))
+    pygame.mixer.music.play()
+
+
 def play_button_sound():
     click_sound.play()
+
 
 def enter_game_button_sound():
     enter_game_sound.play()

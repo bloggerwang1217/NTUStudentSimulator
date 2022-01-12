@@ -105,6 +105,7 @@ def show_achievement(window, data, queue, next_achi_button):
     f = tk.font.Font(size = 30)
     if len(queue) == 1:
         next_achi_button.destroy()
+        sound.play_achievement_music(queue[-1])
         qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
         qq = qq.resize((1280, 720), Image.ANTIALIAS)
         qq = ImageTk.PhotoImage(qq)
