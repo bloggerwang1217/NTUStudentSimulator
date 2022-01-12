@@ -23,17 +23,18 @@
 5. 耍廢:https://image4.thenewslens.com/2020/1/x8xnal5aw5uwedl734u03zqugvecxt.jpg?auto=compress&h=240&q=80&w=400
 6. 規律作息:https://cdn.hk01.com/di/media/images/2927657/org/6686c657865cf8df278fdfef0de3d6de.jpg/83WykzI08_9UgVF0h8-bO_S-caMK2PJWUoYMuVKGDLk?v=w1920r16_9
 7. 陪另一半:https://cp.cw1.tw/files/md5/28/03/28038cc77be3ae244cd7bcd7857cfaa8-199005.png
-8. 炒股:https://n.sinaimg.cn/astro/transform/20160830/ZukE-fxvkkcf6316916.jpg
+8. 投資:https://n.sinaimg.cn/astro/transform/20160830/ZukE-fxvkkcf6316916.jpg
+
 
 ### 觸發事件
 1. 不想努力了:https://png.is/f/female-cafe-clerk/xframe_79632-202106170556.html
-2. 讀書會:https://cp.cw1.tw/files/md5/e7/6c/e76c7ef0953ddc6c25b8e27b3d2b300d-277145.jpg
-3. 讀書會:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBN38NeijDN_oOdoFL5srrfM3Q91IhQmNMkA&usqp=CAU
+2. 參加研究專案:https://cp.cw1.tw/files/md5/e7/6c/e76c7ef0953ddc6c25b8e27b3d2b300d-277145.jpg
+3. 參加讀書會:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBN38NeijDN_oOdoFL5srrfM3Q91IhQmNMkA&usqp=CAU
 4. 婚姻選擇:https://www.google.com/url?sa=i&url=https%3A%2F%2Fdq.yam.com%2Fpost.php%3Fid%3D5622&psig=AOvVaw3_efd1it6iBSsnL_KsMwf4&ust=1641821554902000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCIiyv4XkpPUCFQAAAAAdAAAAABAD
 5. 推坑Vtuber:https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.facebook.com%2FZackbabyo%2Fposts%2F4497664763640600&psig=AOvVaw3qUjXdczyAndRA0oB7GdHn&ust=1641822382939000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKiQ6ZHnpPUCFQAAAAAdAAAAABAD
 6. 考古題:http://i1.kknews.cc/MdfFQbuZx_gPPMph-ITur_YnbYtEiL7BsO8b8ZcGMsY/0.jpg
 7. 第一次約會:https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2018/10/18/20181018-104501_U3792_M463841_c2d8.PNG?itok=OHV9NfGF
-8. 翹課:https://assetsv4.tripmoment.com/system/azure/16671/a2fcf97b-178a-4932-a74b-fc34f89914f3.jpg
+8. 翹課打ㄆ:https://assetsv4.tripmoment.com/system/azure/16671/a2fcf97b-178a-4932-a74b-fc34f89914f3.jpg
 
 ### 中途結局事件
 1. 火化：https://pixabay.com/photos/cup-coffee-table-drinks-beverage-6878196/
@@ -63,3 +64,4 @@
 3. ntu_course_selection:https://nol.ntu.edu.tw/nol/student/
 3. ntu_course_bottom:https://nol.ntu.edu.tw/nol/student/
 4. summer_vacation:https://7geese.com/how-to-motivate-your-employees-after-their-summer-vacation/
+4. oily:https://i.pinimg.com/originals/af/a0/f7/afa0f7a904cd703e5a7e49a1c39f03b6.gif
