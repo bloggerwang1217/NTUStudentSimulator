@@ -11,3 +11,20 @@
 4. 情場浪子:https://www.youtube.com/watch?v=eYQFKocqujc
 5. 超級絕命韭菜:https://www.youtube.com/watch?v=bYoBf9f2S4w
 6. 傳說挑戰者:https://youtu.be/wDgQdr8ZkTw
+## 其它
+1. 遊戲背景音樂:https://youtu.be/4D0oVbXUzuc 
+2. 遊戲背景音樂:https://youtu.be/goB8d9wSXF4
+3. 遊戲背景音樂:https://youtu.be/vX1xq4Ud2z8
+4. 遊戲背景音樂:https://youtu.be/6JxLWrzOQsE
+5. 遊戲背景音樂:https://youtu.be/XdcjRX4b6TE
+6. 遊戲背景音樂:https://youtu.be/jEXjvO3DSGk
+7. 按鈕音效:https://youtu.be/wmTHIlJo9tw
+8. 按鈕音效:https://sc.chinaz.com/yinxiao/180419428813.htm
+9. 遊戲背景音樂:https://youtu.be/gbI85cWJj50 "00:48:28~00:50:58"
+10. 遊戲背景音樂:https://youtu.be/gbI85cWJj50 "00:50:58~00:52:06"
+11. 遊戲背景音樂:https://youtu.be/gbI85cWJj50 "01:07:23~01:09:57"
+12. 遊戲背景音樂:https://youtu.be/YqcLb_8oxPE "00:06:05～00:06:44"
+13. 遊戲背景音樂:https://youtu.be/YqcLb_8oxPE "00:11:19～00:11:49"
+14. 遊戲背景音樂:https://youtu.be/YA2eiphNb3I "00:00:01~00:02:30"
+15. 遊戲背景音樂:https://youtu.be/YA2eiphNb3I "00:27:45~00:33:10"
+16. 遊戲背景音樂:https://youtu.be/YA2eiphNb3I "01:06:25~01:09:46"
