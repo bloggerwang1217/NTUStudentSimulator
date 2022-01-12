@@ -26,7 +26,6 @@ def process_event(data, events):
     elif data["event_processing"][0][0] == "期末考":
         data["status"].final_exam(data["picked_course"], data)
     else:
-        print(data["event_processing"])
         show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 
 
@@ -286,6 +285,7 @@ def shrinker(data, text, index, name):  #index:c出現的位置；若為數值�
                 text.pop(i)
     except:
         pass
+
 
 def meme_processor(line):
     special_meme_translation = {"不要":"不要啦，哪次要", "有":"有啦，哪次沒有", "沒有":"沒有啦，哪次有", "不好":"不好啦，哪次好"}

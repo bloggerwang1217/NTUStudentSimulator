@@ -1,14 +1,11 @@
 import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
-import function.read_file as read
-import function.初始能力值設定 as init_abi
 import function.結算能力值圖片產生 as graph_abi
 import function.結算評分值圖片產生 as graph_sco
 import function.status as status
 import function.sound_effect as sound
 import function.achievement as achievement
-import os
 
 time = ""
 achievement_pics = []
@@ -92,7 +89,7 @@ def press_next_button(window, data, background, repeatButton, nextButton):
         endButton = tk.Button(window,
                     text = "好吧QQ",
                     font = f, 
-                    command = lambda: [press_repeat_button(window, data, [no_achievement]), sound.play_button_sound()])
+                    command = lambda: [press_end_button(window, data, [no_achievement, endButton]), sound.play_button_sound()])
         endButton.place(x = 1280 - 100, y = 640)
     else:
         next_achi_button = tk.Button(window,
@@ -100,40 +97,36 @@ def press_next_button(window, data, background, repeatButton, nextButton):
             font = f, 
             command = lambda: [show_achievement(window, data, achievement_queue, next_achi_button), sound.play_button_sound()])
         show_achievement(window, data, achievement_queue, next_achi_button)
-        if len(achievement_queue) == 0:
-            endButton = tk.Button(window,
-                    text = "好吧QQ",
-                    font = f, 
-                    command = lambda: [press_repeat_button(window, data, [no_achievement]), sound.play_button_sound()])
-            endButton.place(x = 1000, y = 640)
+        next_achi_button.place(x = 1000, y = 640)
 
 def show_achievement(window, data, queue, next_achi_button):
     global achievement_pics
-    next_achi_button.destroy()
+    
     f = tk.font.Font(size = 30)
-    if len(queue) != 0:
-        text = "下一個成就"
-        if len(queue) == 1:
-            text = "沒成就囉"
-        if len(achievement_pics) != 0:
-            achievement_pics[-1].destroy()
-        print(queue)
+    if len(queue) == 1:
+        next_achi_button.destroy()
+        qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
+        qq = qq.resize((1280, 720), Image.ANTIALIAS)
+        qq = ImageTk.PhotoImage(qq)
+        achievement = tk.Label(window, image = qq)
+        achievement.image = qq
+        achievement_pics.append(achievement)
+        achievement.pack()
+        endButton = tk.Button(window,
+            text = "沒成就囉",
+            font = f, 
+            command = lambda: [press_end_button(window, data, achievement_pics), sound.play_button_sound()])
+        endButton.place(x = 1280 - 100, y = 640)
+        achievement_pics.append(endButton)
+    else:
         qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
         qq = qq.resize((1280, 720), Image.ANTIALIAS)
         qq = ImageTk.PhotoImage(qq)
         achievement = tk.Label(window, image = qq)
         achievement.image = qq
         achievement.pack()
-        next_achi_button = tk.Button(window,
-            text = text,
-            font = f, 
-            command = lambda: [show_achievement(window, data, queue, next_achi_button), sound.play_button_sound()])
-        next_achi_button.place(x = 1000, y = 640)
         achievement_pics.append(achievement)
         queue.pop()
-    else:
-        next_achi_button.destroy()
-        press_end_button(window, data, achievement_pics)
 
 
 def press_end_button(window, data, used_widget):
@@ -149,10 +142,9 @@ def press_end_button(window, data, used_widget):
     end_scene.image = ending
     end_scene.pack(fill = "both")
 
-    end_button = tk.Button(window, text = "結束",width = 7, font = f, command = lambda: press_end_game(window))
+    end_button = tk.Button(window, text = "結束",width = 7, font = f, command = lambda: [press_end_game(window), sound.play_button_sound()])
     end_button.place(x = 640-end_button.winfo_reqwidth()/2, y = 300)
 
 
 def press_end_game(window):
-    sound.play_button_sound()
     window.quit()

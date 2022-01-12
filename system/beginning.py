@@ -8,9 +8,8 @@ import function.course_selection as cs
 import function.status as status
 import function.sound_effect as sound
 
-def press_start_game(start_scene, start_button, name_list, window, data):
 
-    sound.play_button_sound()
+def press_start_game(start_scene, start_button, name_list, window, data):
     sound.play_background_music("閱讀信封場景")
 
     start_scene.destroy()
@@ -36,7 +35,7 @@ def start_game(window, data):
     name_list = tk.Label(window, text = "製作者：王敏行、劉健榮、羅士軒、陳利煌、周匯森、何峻德", font = f)
     name_list.place(x = 640-name_list.winfo_reqwidth()/2, y = 660)
 
-    start_button = tk.Button(window, text = "開始遊戲",width = 7, font = f, command = lambda: press_start_game(start_scene, start_button, name_list, window, data))
+    start_button = tk.Button(window, text = "開始遊戲",width = 7, font = f, command = lambda: [press_start_game(start_scene, start_button, name_list, window, data), sound.enter_game_button_sound()])
     start_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 300)
 
 
@@ -52,21 +51,17 @@ def beginning_story(window, data):
     background.image = night
     background.pack()
 
-    back_room_button = tk.Button(window, text = "回書房開信", font = f, relief = "solid", command = lambda: press_back_room_button(window, background, back_room_button, data))
+    back_room_button = tk.Button(window, text = "回書房開信", font = f, relief = "solid", command = lambda: [press_back_room_button(window, background, back_room_button, data), sound.play_button_sound()])
     back_room_button.place(x = 880, y = 500)
 
 
 def press_back_room_button(window, background, back_room_button, data):
-
-    sound.play_button_sound()
-
     background.destroy()
     back_room_button.destroy()
     input_basic_data(window, data)
 
 
 def input_basic_data(window, data):
-
     f = tk.font.Font(size = 32)
     check_f = tk.font.Font(size = 16)
 
@@ -170,16 +165,13 @@ def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, lengt
 
 
 def end_input(window, data, widgets):
-
     for widget in widgets:
         widget.destroy()
     read_letter(window, data)
 
 
 def read_letter(window, data):
-
-    # sound.play_button_sound()
-
+    sound.play_background_music("拆開信封音效")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -219,7 +211,7 @@ def read_letter(window, data):
         else:
             text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
 
-    flip_button = tk.Button(window, text = "翻面", font = f, command = lambda: press_flip_button(window, data, text, background, small_bg))
+    flip_button = tk.Button(window, text = "翻面", font = f, command = lambda: [press_flip_button(window, data, text, background, small_bg), sound.play_button_sound()])
     flip_button.place(x = 1000, y = 625)
 
     text.append(flip_button)
@@ -227,9 +219,6 @@ def read_letter(window, data):
 
     
 def press_flip_button(window, data, used_widgets, widget1, widget2):
-
-    sound.play_button_sound()
-
     for widget in used_widgets:
         widget.destroy()
     
@@ -251,7 +240,7 @@ def press_flip_button(window, data, used_widgets, widget1, widget2):
         else:
             text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
     check_ability_button.place(x = 800, y = 620)
 
     text.append(check_ability_button)
@@ -259,9 +248,6 @@ def press_flip_button(window, data, used_widgets, widget1, widget2):
 
 
 def press_check_ability_button(window, data, used_widgets, widget1, widget2):
-
-    sound.play_button_sound()
-
     for widget in used_widgets:
         widget.destroy()
     
@@ -297,7 +283,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     ability.place(x = 640 - widget2.winfo_reqwidth()/2.3, y = 140)
     
 
-    go_course_selecting_button = tk.Button(window, text = "進入選課系統選課囉！", font = f, command = lambda: press_go_course_selecting_button(window, data, text))
+    go_course_selecting_button = tk.Button(window, text = "進入選課系統選課囉！", font = f, command = lambda: [press_go_course_selecting_button(window, data, text), sound.play_button_sound()])
     go_course_selecting_button.place(x = 850, y = 620)
 
     text.append(widget1)
@@ -306,12 +292,8 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     text.append(ability)
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
+
 def press_go_course_selecting_button(window, data, used_widgets):
-    sound.enter_game_button_sound()
-
-    sound.play_background_music("正式遊戲背景音樂")
-
     for widget in used_widgets:
         widget.destroy()
     cs.course_selection(window, data)
-

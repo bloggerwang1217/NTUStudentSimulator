@@ -32,4 +32,3 @@ def score_illu(love_progress, grade, yang_sheng, prestige):
     plt.ylabel('分數', font = f)
     plt.savefig("figure/ability/finalpix.png")  # 這裡會選擇存檔路徑與檔名
     return 'finalpix'
-    

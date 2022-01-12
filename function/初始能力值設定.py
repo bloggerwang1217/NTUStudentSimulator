@@ -19,6 +19,3 @@ def ininial_set():  # 隨機設定初始值
     prob = random.randrange(1, 101)
     luck = prob
     return wisdom, charm, fitness, social, health, luck
-
-# a = Status()
-# print(ininial_set(a))

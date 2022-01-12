@@ -8,6 +8,7 @@ import function.status as status
 import function.read_file as read
 import function.sound_effect as sound
 
+
 def show_midterm_report(window, data, grades):
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
@@ -77,7 +78,7 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
             text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: press_check_ability_button(window, data, text, widget1, widget2))
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
     check_ability_button.place(x = 800, y = 600)
 
     text.append(check_ability_button)
@@ -127,7 +128,6 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
 def press_go_picking_button(window, data, used_widgets):
-    sound.enter_game_button_sound()
     for widget in used_widgets:
         widget.destroy()
     sch.get_new_schedule(window, data["picked_course"], data)

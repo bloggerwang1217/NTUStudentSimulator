@@ -31,8 +31,6 @@ def abi_illu(wisdom, charm, fitness, social, health):
         if score[0][i] <= 0:
             score[0][i] = 1
 
-
-
     # 使雷達圖資料封閉
     score_a = np.concatenate((score[0], [score[0][0]]))
     angles = np.concatenate((angles, [angles[0]]))

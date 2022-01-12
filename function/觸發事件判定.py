@@ -4,9 +4,12 @@ import function.show_event as show
 status = ""
 VtAchievement = False
 DateAchievement = False
+
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
 Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq, marry = True, True, True, True, True, True, True, True, True, True, True, True
+
+
 def reset():  # 重置事件頻率
     study_freq, res_freq, acad_freq, sex_freq, OldExam_freq,\
     Sugar_freq, Bike_tow_freq, To_New_World_freq = True, True, True, True, True, True, True, True
@@ -17,10 +20,12 @@ def blow_wind():  # 樓頂吹風
     if status.wisdom <= 0 or status.charm <= 0:
         return True
 
+
 def Leave_school():  # 轉學
     global status
     if status.social<= 0:
         return True
+
     
 def To_New_World():  # 轉生異世界
     global status, To_New_World_freq
@@ -54,6 +59,7 @@ def IntoDust():  # 火化
     if status.health <= 0 or status.fitness <= 0:
         return True
 
+
 def Vtuber_or_Not():  # 推坑Vt
     global status, Vt_freq, VtAchievement
     if status.social < 40 and Vt_freq:
@@ -63,6 +69,7 @@ def Vtuber_or_Not():  # 推坑Vt
     else:
         return False
 
+
 def Study_or_not():  # 參加讀書會
     global study_freq, status
     if status.wisdom > 85 and status.wisdom <  100 and\
@@ -71,6 +78,7 @@ def Study_or_not():  # 參加讀書會
         return True
     else:
         return False
+
 
 def Research_or_not():  # 參加研究專案
     global res_freq, status
@@ -90,6 +98,7 @@ def Sex_or_not():  # 翹課打ㄆ
     else:
         return False
 
+
 def OldExam_or_not():  # 獲得考古題
     global OldExam_freq, status
     if status.social > 80 and OldExam_freq:
@@ -97,6 +106,7 @@ def OldExam_or_not():  # 獲得考古題
         return True
     else:
         return False
+
 
 def First_Date():  # 第一次約會
     global First_Date_freq, status, DateAchievement 
@@ -107,12 +117,14 @@ def First_Date():  # 第一次約會
     else:
         return False
 
+
 def Marriage_or_not():  # 婚姻抉擇
     global status
     if status.love_progress >= 350:
         return True
     else:
         return False
+
 
 def SugarDaddy():  # 不想努力了
     global Sugar_freq, status
@@ -124,6 +136,7 @@ def SugarDaddy():  # 不想努力了
     else:
         return False
 
+
 def Pregnant():  # 懷孕
     global preg_freq, status
     prob = random.randrange(1, 101)
@@ -133,6 +146,7 @@ def Pregnant():  # 懷孕
     else:
         return False
 
+
 def Bike_tow():  # 腳踏車被拖吊
     global Bike_tow_freq, status
     prob = random.randrange(1, 101)
@@ -141,6 +155,7 @@ def Bike_tow():  # 腳踏車被拖吊
         return True
     else:
         return False
+
 
 def check_event(data):
     global status
@@ -158,6 +173,7 @@ def check_event(data):
     for i in range(len(Incident_List)):
         if Mid_End[i] == True:
             outputList01.append(Incident_List[i])
+
     if len(outputList01) > 1:
         prob = random.randrange(0, len(outputList01))  # 若中途結束事件發生2種以上，隨機挑選其中一個
         outputList01 = outputList01[prob]
@@ -412,9 +428,4 @@ def check_event(data):
             status.achievement.christmas = True
         reset()
 
-    print(outputList)
     show.process_event(data, outputList)
-
-# def achieve():
-#     global number_of_sex, being_Vtuber, christmas, birth
-#     return number_of_sex, being_Vtuber, christmas, birth

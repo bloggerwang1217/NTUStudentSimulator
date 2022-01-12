@@ -31,14 +31,17 @@ class Status:
         self.course = course  
         self.achievement = achievement.Achievement()
 
+
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
         self.san = 50 + self.rest_time + self.fitness * 0.1 + self.health * 0.5
         self.rest_time = 0
-        
+
+
     # 學期初發錢
     def allowance(self):
         self.money += 40000
+
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
     def run_schedule(self, schedule):
@@ -65,6 +68,7 @@ class Status:
             money_spent += act_check(self, schedule[i])
         return money_spent
 
+
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
     def check_san(self, san_require):
         money_need = 0
@@ -79,6 +83,7 @@ class Status:
         else:
             return 0
 
+
     # 甜課得函式
     def class_sweet(self):
         self.san -= 10
@@ -89,6 +94,7 @@ class Status:
 
         return self.check_san(10)
 
+
     def class_easy(self):
         self.san -= 5
         self.wisdom += 2
@@ -97,6 +103,7 @@ class Status:
         self.fitness -= 1
 
         return self.check_san(5)
+
 
     def class_hard(self):
         self.san -= 30
@@ -107,6 +114,7 @@ class Status:
 
         return self.check_san(30)
 
+
     def class_waste(self):
         self.san -= 0
         self.wisdom -= 1
@@ -114,6 +122,7 @@ class Status:
         self.social += 3
 
         return self.check_san(0)
+
 
     def workout(self):
         self.money -= 30
@@ -125,6 +134,7 @@ class Status:
 
         return self.check_san(25)
 
+
     def part_time(self):
         self.san -= 20
         self.wisdom -= 2
@@ -135,6 +145,7 @@ class Status:
 
         return self.check_san(20)
 
+
     def go_dating(self):
         self.san -= 30
         self.wisdom -= 4
@@ -144,6 +155,7 @@ class Status:
         self.money -= 1111
 
         return self.check_san(30)
+
 
     def social_with_other(self):
         self.san -= 20
@@ -156,6 +168,7 @@ class Status:
 
         return self.check_san(-20)
 
+
     def rest(self):
         self.rest_time += 1
         self.wisdom -= 1
@@ -164,6 +177,7 @@ class Status:
         self.health += 5
 
         return 0
+
 
     def midterm(self, class_dict, data):
         class_list = list(class_dict.values())
@@ -287,7 +301,6 @@ def scoring(status, classname):
         if point >= 100:
             point = 100
         return int(point)
-
 
 
 # 事件數值調整

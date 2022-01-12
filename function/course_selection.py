@@ -8,7 +8,9 @@ import random
 
 warning = "警示用全域變數"
 
+
 def course_selection(window, data):
+    sound.play_background_music("正式遊戲背景音樂")
     window.configure(background="white")
 
     widgets = []

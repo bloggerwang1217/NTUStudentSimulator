@@ -22,6 +22,7 @@ def choose_summer_event(data):
     nextButton = tk.Button(data["status"].display, text = "繼續", relief = "raise", font = f, command = lambda: [press_continue(data, background, nextButton, text), sound.play_button_sound()])
     nextButton.place(x = 1230 - nextButton.winfo_reqwidth() * 2, y = 320 - nextButton.winfo_reqheight()/2)
 
+
 def press_continue(data, background, nextButton, text):
     f = tk.font.Font(size = 28)
     background.delete(text)

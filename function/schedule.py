@@ -15,9 +15,7 @@ class Schedule:
         self.result = {}
 
 
-
     def createWidgets(self, window, data):
-        sound.play_background_music("正式遊戲背景音樂")
         widgets = []
         f = tkFont.Font(size = 24)
         title_f = tkFont.Font(size = 48)
@@ -120,7 +118,7 @@ class Schedule:
         widgets.append(ThuMidnightList)
         widgets.append(FriMidnightList)
 
-        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets, FinishButton, moneyLabel), sound.enter_game_button_sound()])
+        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets, FinishButton, moneyLabel), sound.play_button_sound()])
 
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
@@ -244,12 +242,13 @@ def get_new_schedule(window, selected_class, data, is_new_semester):
 
 
 def you_drank_coffee(window, data, money_need, widgets):
+    sound.play_background_music("正式遊戲背景音樂")
     f = tkFont.Font(size=20)
     button_f = tkFont.Font(size=24)
 
-     # Button Creation
+    # Button Creation
 
-    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), check.check_event(data), sound.play_button_sound()])
+    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), sound.play_button_sound(), check.check_event(data)])
     continueButton.place(x=1070, y=300)
     widgets.append(continueButton)
 

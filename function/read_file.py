@@ -1,5 +1,6 @@
 import csv
 
+
 def rearrange(line_len, ori_text):
     new_text = []
     for i in range(len(ori_text)//line_len + 1):
@@ -46,6 +47,7 @@ def get_course_type_dic(course_list):
     for course in course_list:
         course_dic[course[0]] = f"{course[1]}課"
     return course_dic
+
 
 def read_event(event_type, name):
     f = open(f"text/event/{event_type}/{name}.txt", mode = "r", encoding = "utf-8-sig")
