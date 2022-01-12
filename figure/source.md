@@ -37,7 +37,8 @@
 8. 翹課打ㄆ:https://assetsv4.tripmoment.com/system/azure/16671/a2fcf97b-178a-4932-a74b-fc34f89914f3.jpg
 
 ### 中途結束事件
-1. 火化：https://pixabay.com/photos/cup-coffee-table-drinks-beverage-6878196/
+1. 火化:https://pixabay.com/photos/cup-coffee-table-drinks-beverage-6878196/
+1. 轉身異世界:https://pic.pimg.tw/pan19861129/1389240994-1057361730_n.jpg
 
 ### 破關
 1. 正常結局:https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2015/03/02/99/568763.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=1050
