@@ -54,7 +54,7 @@ def choose(data, background, used_button , chosen):
         button.destroy()
     if chosen != "在家宅":
         background.destroy()
-        show.process_event(data, [[f"暑假事件:{chosen}"]])
+        show.process_event(data, [f"暑假事件:{chosen}"])
     else:
         choose_button = []
 
@@ -80,7 +80,7 @@ def home_choose(data, background, used_button , chosen):
         button.destroy()
     if chosen != "投資":
         background.destroy()
-        show.process_event(data, [[f"暑假事件:{chosen}"]])
+        show.process_event(data, [f"暑假事件:{chosen}"])
     else:
         choose_button = []
 
@@ -102,4 +102,4 @@ def stock_choose(data, background, used_button , chosen):
     for button in used_button:
         button.destroy()
     background.destroy()
-    show.process_event(data, [[f"暑假事件:{chosen}"]])
+    show.process_event(data, [f"暑假事件:{chosen}"])

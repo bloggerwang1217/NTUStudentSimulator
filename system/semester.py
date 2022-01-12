@@ -4,6 +4,7 @@ from PIL import ImageTk, Image
 import function.status as status
 import function.schedule as schedule
 import function.sound_effect as sound
+import function.save_load as sl
 
 
 def start_semester(window, data, picked, time):
@@ -18,11 +19,12 @@ def start_semester(window, data, picked, time):
     start_semester = ImageTk.PhotoImage(start_semester)
     background.create_image(0,0, anchor=tk.NW, image=start_semester)
     background.image = start_semester
-
     background.pack(fill = "both")
-    print(data["status"])
+    
     startButton = tk.Button(data["status"].display, text = "開始學期!", relief = "raise", font = title_f, command = lambda: [press_start(data, background, startButton, picked), sound.enter_game_button_sound()])
     startButton.place(x = 640 - startButton.winfo_reqwidth()/2, y = 2 *360/3)
+
+    sl.save(data)
 
 
 def press_start(data, background, startButton, picked):

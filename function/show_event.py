@@ -118,17 +118,15 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         else:
             end = status.event_adjust(data["status"], reach_name, data["choose_result"])
             if end == "阿姨":
-                data["event_processing"].append(["中途結束事件", "阿姨結束"])
+                process_event(data, ["中途結束事件:阿姨結束"])
             data["event_processing"].remove(data["event_processing"][0])
             if len(data["event_processing"]) == 1:
                 if data["event_processing"][0][0] == "第二次排行程表" or data["event_processing"][0][0] == "第三次排行程表" or data["event_processing"][0][0] == "第四次排行程表":
-                    sch.get_new_schedule(data["status"].display, data["picked_course"], data, False)
+                    process_event(data, data["event_processing"][0])
                 elif data["event_processing"][0][0] == "期中考":
                     data["status"].midterm(data["picked_course"], data)
                 elif data["event_processing"][0][0] == "期末考":
-                    drop_out = data["status"].final_exam(data["picked_course"], data)
-                    if drop_out:
-                        data["event_processing"].append(["中途結束事件", "被二一"])
+                    data["status"].final_exam(data["picked_course"], data)
             else:
                 show_event(data, data["event_processing"][0][0], data["event_processing"][0][1])
 

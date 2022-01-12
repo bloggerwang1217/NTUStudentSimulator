@@ -1,9 +1,11 @@
 # 音樂、音效資料來源
 ## 事件
+### 必然事件
+1. 舞會（舞會男-1）:第一次約會：Nocturne in A flat major Op. 33 No.3 http://www.pianosociety.com/pages/faurenocturnes/
 ### 中途結束事件
-1. 樓頂吹風：Nocturne in C minor Op.48 No.1http://www.pianosociety.com/pages/chopinnocturnes/
+1. 樓頂吹風：Nocturne in C minor Op.48 No.1 http://www.pianosociety.com/pages/chopinnocturnes/
 ### 觸發事件
-1. 第一次約會：Nocturne in A flat major Op. 33 No.3http://www.pianosociety.com/pages/faurenocturnes/
+1. 第一次約會：Nocturne in A flat major Op. 33 No.3 http://www.pianosociety.com/pages/faurenocturnes/
 ## 成就
 1. 好油ㄛpeko:https://www.youtube.com/watch?v=WrtKTLC_kvQ
 2. 金錢管理大師:https://www.youtube.com/watch?v=ETxmCCsMoD0
@@ -28,3 +30,4 @@
 14. 遊戲背景音樂:https://youtu.be/YA2eiphNb3I "00:00:01~00:02:30"
 15. 遊戲背景音樂:https://youtu.be/YA2eiphNb3I "00:27:45~00:33:10"
 16. 遊戲背景音樂:https://youtu.be/YA2eiphNb3I "01:06:25~01:09:46"
+17. 夜晚:Nocturne in B Major Op. 9 No. 3 http://www.pianosociety.com/pages/chopinnocturnes/

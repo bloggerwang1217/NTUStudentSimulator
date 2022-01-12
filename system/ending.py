@@ -6,6 +6,7 @@ import function.結算評分值圖片產生 as graph_sco
 import function.status as status
 import function.sound_effect as sound
 import function.achievement as achievement
+import os
 
 time = ""
 achievement_pics = []
@@ -28,14 +29,14 @@ def show_ending_graph(window, data):
     score_graph = Image.open(f"figure/ability/{name}.png")
     score_graph = ImageTk.PhotoImage(score_graph)
     reference.append(score_graph)
-    background.create_image(2 * 1280 / 3 + 270 + 120, 360 - 240, anchor=tk.NE, image=score_graph)
+    background.create_image(2 * 1280 / 3 + 270 + 100, 360 - 300, anchor=tk.NE, image=score_graph)
 
     time = graph_abi.abi_illu(data["status"].wisdom, data["status"].charm, data["status"].fitness, data["status"].social, data["status"].health)
     data["ability_graph"].append(time)
     ability_graph = Image.open(f"figure/ability/{time}.png")
     ability_graph = ImageTk.PhotoImage(ability_graph)
     reference.append(ability_graph)
-    background.create_image(1280 / 3 + 270 - 120, 360 - 240, anchor=tk.NE, image=ability_graph)
+    background.create_image(1280 / 3 + 270 - 100, 360 - 300, anchor=tk.NE, image=ability_graph)
 
     background.image = reference
     background.pack()
@@ -67,7 +68,7 @@ def press_repeat_button(data, background, reference):
     ability_graph = Image.open(f"figure/ability/{time}.png")
     ability_graph = ImageTk.PhotoImage(ability_graph)
     reference.append(ability_graph)
-    background.create_image(1280 / 3 + 270 - 120, 360 - 240, anchor=tk.NE, image=ability_graph)
+    background.create_image(1280 / 3 + 270 - 100, 360 - 300, anchor=tk.NE, image=ability_graph)
     background.image = reference
     background.pack()        
 
@@ -90,21 +91,20 @@ def press_next_button(window, data, background, repeatButton, nextButton):
                     text = "好吧QQ",
                     font = f, 
                     command = lambda: [press_end_button(window, data, [no_achievement, endButton]), sound.play_button_sound()])
-        endButton.place(x = 1280 - 100, y = 640)
+        endButton.place(x = 1000, y = 640)
     else:
         next_achi_button = tk.Button(window,
             text = "下一個成就",
             font = f, 
             command = lambda: [show_achievement(window, data, achievement_queue, next_achi_button), sound.play_button_sound()])
         show_achievement(window, data, achievement_queue, next_achi_button)
-        next_achi_button.place(x = 1000, y = 640)
+
 
 def show_achievement(window, data, queue, next_achi_button):
     global achievement_pics
     
     f = tk.font.Font(size = 30)
     if len(queue) == 1:
-        next_achi_button.destroy()
         sound.play_achievement_music(queue[-1])
         qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
         qq = qq.resize((1280, 720), Image.ANTIALIAS)
@@ -117,7 +117,7 @@ def show_achievement(window, data, queue, next_achi_button):
             text = "沒成就囉",
             font = f, 
             command = lambda: [press_end_button(window, data, achievement_pics), sound.play_button_sound()])
-        endButton.place(x = 1280 - 100, y = 640)
+        endButton.place(x = 1000, y = 640)
         achievement_pics.append(endButton)
     else:
         qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
@@ -128,6 +128,7 @@ def show_achievement(window, data, queue, next_achi_button):
         achievement.pack()
         achievement_pics.append(achievement)
         queue.pop()
+        next_achi_button.place(x = 1000, y = 640)
 
 
 def press_end_button(window, data, used_widget):
@@ -149,3 +150,10 @@ def press_end_button(window, data, used_widget):
 
 def press_end_game(window):
     window.quit()
+    path = os.getcwd()
+    try:
+        for name in data["ability_graph"]:
+            os.remove(f"{path}/figure/ability/{name}.png")
+        os.remove(f"{path}/figure/ability/finalpix.png")
+    except:
+        pass

@@ -6,6 +6,7 @@ import function.midterm_report as show_mid
 import function.final_report as show_fi
 import function.sound_effect as sound
 import function.achievement as achievement
+import function.show_event as show
 import random
 
 
@@ -30,6 +31,7 @@ class Status:
         self.study_time = dict()
         self.course = course  
         self.achievement = achievement.Achievement()
+        self.time = 0
 
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
@@ -66,6 +68,8 @@ class Status:
         self.san_reset()
         for i in Fri:
             money_spent += act_check(self, schedule[i])
+
+        self.health = int(self.health)
         return money_spent
 
 
@@ -78,6 +82,7 @@ class Status:
             self.money -= int(money_need)
             self.san += san_require
             self.health -= (san_require * 0.1)
+
         if int(money_need) > 0:
             return int(money_need)
         else:
@@ -183,6 +188,7 @@ class Status:
         class_list = list(class_dict.values())
         for i in class_list:
             self.score[i] = scoring(self, i)
+        self.time += 1
         show_mid.show_midterm_report(data["status"].display, data, self.score)
 
 
@@ -222,18 +228,20 @@ class Status:
                     self.grade += 1
             for j in self.course:
                 if i in j:
-                    j[2] -= 1
                     if self.score[i] >= 60:
                         j[3] += 1
                     else:
                         j[4] += 1
                         class_fail += 1
+        self.time += 1
         if class_fail >= 2:
             drop_out = True
         score_final = self.score.copy()
         show_fi.show_final_report(data["status"].display, data, score_final)
         self.score.clear()
-        return drop_out
+        if drop_out:
+            show.process_event(data, ["中途結束事件:被二一"])
+
 
 
  # 判讀並執行行程表中"一項"行程的函式
@@ -290,7 +298,7 @@ def act_check(status, i):
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
-    coefficient = {"甜課": 0.08, "涼課": 0.12, "硬課": 0.04}
+    coefficient = {"甜課": 0.08 / (2 ** (status.time/2)), "涼課": 0.12 / (2 ** (status.time/2)), "硬課": 0.04 / (2 ** (status.time/2))}
     status.study_time.setdefault(classname, 0)
     if classtodiff[classname] == "爽課":
         point = 90 + random.randint(0, 10)

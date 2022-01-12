@@ -38,7 +38,7 @@ def To_New_World():  # 轉生異世界
 
 def Me_First():  # 明明是我先來的
     global status
-    if status.charm > 290 and status.love_progress < 40:
+    if status.charm > 300 and status.love_progress < 40:
         return True
 
 
@@ -128,10 +128,8 @@ def Marriage_or_not():  # 婚姻抉擇
 
 def SugarDaddy():  # 不想努力了
     global Sugar_freq, status
-    print(status.charm, status.love_progress)
     if status.charm > 500 and status.love_progress < 110 and Sugar_freq:
         Sugar_freq = False
-        print(hi)
         return True
     else:
         return False
@@ -200,12 +198,6 @@ def check_event(data):
         outputList.append('期中考')
         if VtAchievement:
             status.achievement.being_Vtuber = True
-    elif data["time"] == "大一上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
-
-        if VtAchievement:
-            status.achievement.being_Vtuber = True
     elif data["time"] == "大一上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         if data["sex"] == "男性":
@@ -237,11 +229,6 @@ def check_event(data):
         outputList.append('期中考')
         if VtAchievement:
             status.achievement.being_Vtuber = True
-    elif data["time"] == "大一下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
-        if VtAchievement:
-            status.achievement.being_Vtuber = True
     elif data["time"] == "大一下"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
@@ -263,12 +250,9 @@ def check_event(data):
     elif data["time"] == "大二上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
-    elif data["time"] == "大二上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('必然事件:比賽')
-        outputList.append('第三次排行程表')
     elif data["time"] == "大二上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
+        outputList.append('必然事件:比賽')
         outputList.append('第四次排行程表')
     elif data["time"] == "大二上"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"
@@ -284,9 +268,6 @@ def check_event(data):
     elif data["time"] == "大二下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
         outputList.append('期中考')
-    elif data["time"] == "大二下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
     elif data["time"] == "大二下"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
@@ -308,11 +289,6 @@ def check_event(data):
             status.achievement.christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
-        if DateAchievement:
-            status.achievement.christmas = True
-    elif data["time"] == "大三上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
         if DateAchievement:
             status.achievement.christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第三次排行程表":
@@ -341,13 +317,8 @@ def check_event(data):
             status.achievement.christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
-        outputList.append('期中考')
-        if DateAchievement:
-            status.achievement.christmas = True
-    elif data["time"] == "大三下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
         outputList.append('必然事件:打疫苗')
+        outputList.append('期中考')
         if DateAchievement:
             status.achievement.christmas = True
     elif data["time"] == "大三下"  and data["previous_event"] == "第三次排行程表":
@@ -377,11 +348,6 @@ def check_event(data):
         outputList.append('期中考')
         if DateAchievement:
             status.achievement.christmas = True
-    elif data["time"] == "大四上"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
-        if DateAchievement:
-            status.achievement.christmas = True
     elif data["time"] == "大四上"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
         outputList.append('第四次排行程表')
@@ -406,14 +372,9 @@ def check_event(data):
         if DateAchievement:
             status.achievement.christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第二次排行程表":
+        outputList.append('必然事件:打疫苗')
         data["previous_event"] = "期中考"
         outputList.append('期中考')
-        if DateAchievement:
-            status.achievement.christmas = True
-    elif data["time"] == "大四下"  and data["previous_event"] == "期中考":
-        data["previous_event"] = "第三次排行程表"
-        outputList.append('第三次排行程表')
-        outputList.append('必然事件:打疫苗')
         if DateAchievement:
             status.achievement.christmas = True
     elif data["time"] == "大四下"  and data["previous_event"] == "第三次排行程表":

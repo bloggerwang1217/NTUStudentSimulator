@@ -12,6 +12,7 @@ import function.course_selection as cs
 
 
 def show_final_report(window, data, grades):
+    sound.play_background_music("夜晚")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -181,4 +182,4 @@ def press_next_button(window, data, used_widgets):
 def press_graduate_button(window, data, background, graduateButton):
     background.destroy()
     graduateButton.destroy()
-    show.process_event(data, [["破關:正常結局"]])
+    show.process_event(data, ["破關:正常結局"])

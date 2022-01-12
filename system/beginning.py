@@ -7,14 +7,16 @@ import function.結算能力值圖片產生 as graph_abi
 import function.course_selection as cs
 import function.status as status
 import function.sound_effect as sound
+import function.save_load as sl
 
 
-def press_start_game(start_scene, start_button, name_list, window, data):
+def destroy_widgets(used_widgets):
+    for widget in used_widgets:
+        widget.destroy()
+
+
+def press_start_game(window, data):
     sound.play_background_music("閱讀信封場景")
-
-    start_scene.destroy()
-    start_button.destroy()
-    name_list.destroy()
     beginning_story(window, data)
 
 
@@ -35,9 +37,11 @@ def start_game(window, data):
     name_list = tk.Label(window, text = "製作者：王敏行、劉健榮、羅士軒、陳利煌、周匯森、何峻德", font = f)
     name_list.place(x = 640-name_list.winfo_reqwidth()/2, y = 660)
 
-    start_button = tk.Button(window, text = "開始遊戲",width = 7, font = f, command = lambda: [press_start_game(start_scene, start_button, name_list, window, data), sound.enter_game_button_sound()])
-    start_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 300)
+    start_button = tk.Button(window, text = "遊戲開始",width = 7, font = f, command = lambda: [press_start_game(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
+    start_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 250)
 
+    load_button = tk.Button(window, text = "讀檔開始",width = 7, font = f, command = lambda: [sl.load(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
+    load_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 320)
 
 def beginning_story(window, data):
 
@@ -168,10 +172,11 @@ def end_input(window, data, widgets):
     for widget in widgets:
         widget.destroy()
     read_letter(window, data)
+    sound.play_get_letter_sound()
 
 
 def read_letter(window, data):
-    sound.play_background_music("拆開信封音效")
+    sound.play_background_music("夜晚")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -272,7 +277,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 
     # 在這邊初始化status，並且貼上初始化能力值的圖
     wisdom, charm, fitness, social, health, luck = init_abi.ininial_set()
-    data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, read.read_course(), window)
+    data["status"] = status.Status(wisdom, charm, fitness, social, health, luck, read.read_course("text/course.csv"), window)
     time = graph_abi.abi_illu(wisdom, charm, fitness, social, health)
     data["ability_graph"] = []
     data["ability_graph"].append(time)

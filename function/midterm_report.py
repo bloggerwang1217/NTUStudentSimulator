@@ -10,6 +10,7 @@ import function.sound_effect as sound
 
 
 def show_midterm_report(window, data, grades):
+    sound.play_background_music("夜晚")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -130,5 +131,5 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
 def press_go_picking_button(window, data, used_widgets):
     for widget in used_widgets:
         widget.destroy()
-    sch.get_new_schedule(window, data["picked_course"], data)
-    
+    data["previous_event"] = "第三次排行程表"
+    sch.get_new_schedule(window, data["picked_course"], data, False)

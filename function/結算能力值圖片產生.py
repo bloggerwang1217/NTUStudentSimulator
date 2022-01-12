@@ -16,7 +16,7 @@ f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 12)
 def abi_illu(wisdom, charm, fitness, social, health):
     results = [{"智慧": wisdom, "魅力": charm, 
                 "體能": fitness, "社交能力": social,
-                "健康": health}]
+                "健康": int(health)}]
     data_length = 5
     # 將極座標根據資料長度進行等分
     angles = np.linspace(0, 2*np.pi, data_length, endpoint=False)
@@ -24,7 +24,7 @@ def abi_illu(wisdom, charm, fitness, social, health):
               "魅力" + ':' + str(charm),
               "體能" + ':' + str(fitness),
               "社交能力" + ':' + str(social),
-              "健康" + ':' + str(health)]
+              "健康" + ':' + str(int(health))]
 
     score = [[v for v in result.values()] for result in results]
     for i in range(5):
@@ -46,7 +46,7 @@ def abi_illu(wisdom, charm, fitness, social, health):
     # 設定雷達圖的0度起始位置
     ax.set_theta_zero_location('N')
     # 設定雷達圖的座標刻度範圍
-    ax.set_rlim(0, max(wisdom, charm, fitness, social, health)+20)
+    ax.set_rlim(0, max(wisdom, charm, fitness, social, int(health))+20)
     # 設定雷達圖的座標值顯示角度，相對於起始角度的偏移量
     ax.set_rlabel_position(270)
     ax.set_title("能力值", font = title_f)

@@ -30,8 +30,8 @@ def read_file(line_len, file_name):
     return seperated_text
 
 
-def read_course():
-    f = open("text/course.csv", mode = "r", encoding = "utf-8")
+def read_course(name):
+    f = open(name, mode = "r", encoding = "utf-8")
     csvReader = csv.reader(f)
     course_list = list(csvReader)
     for i in range(len(course_list)):

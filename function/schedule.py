@@ -206,13 +206,14 @@ class Schedule:
             used_widgets.append(moneyLabel)
             you_drank_coffee(data["status"].display, data, money_spent, used_widgets)
         else:
-            widgets.append(moneyLabel)
+            used_widgets.append(moneyLabel)
             for widget in used_widgets:
                 widget.destroy()
             check.check_event(data)
 
         
 def get_new_schedule(window, selected_class, data, is_new_semester):
+    sound.play_background_music("正式遊戲背景音樂")
     # 傳入格式
     # selected_class = {"1-1":"A課", "2-2":"B課", "4-3":"C課"}
     selected_class_list = list(selected_class.items())
@@ -229,12 +230,10 @@ def get_new_schedule(window, selected_class, data, is_new_semester):
     ]
 
     if is_new_semester:
-        print(selected_class_list)
         data["picked_schedule"] = {'1-1': '休息', '1-2': '休息', '1-3': '休息', '1-4': '休息', '2-1': '休息', '2-2': '休息', '2-3': '休息', '2-4': '休息', '3-1': '休息', '3-2': '休息', '3-3': '休息', '3-4': '休息', '4-1': '休息', '4-2': '休息', '4-3': '休息', '4-4': '休息', '5-1': '休息', '5-2': '休息', '5-3': '休息', '5-4': '休息'}
         data["picked_schedule"][selected_class_list[0][0]] = selected_class_list[0][1]
         data["picked_schedule"][selected_class_list[1][0]] = selected_class_list[1][1]
         data["picked_schedule"][selected_class_list[2][0]] = selected_class_list[2][1]
-        print(data["picked_schedule"])
 
     window.configure(background="#eeefee")
     sch = Schedule(selected_class, data["picked_schedule"], options)
@@ -242,7 +241,6 @@ def get_new_schedule(window, selected_class, data, is_new_semester):
 
 
 def you_drank_coffee(window, data, money_need, widgets):
-    sound.play_background_music("正式遊戲背景音樂")
     f = tkFont.Font(size=20)
     button_f = tkFont.Font(size=24)
 
