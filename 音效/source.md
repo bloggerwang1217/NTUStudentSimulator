@@ -6,6 +6,7 @@
 3. 健康檢查:滑稽幽默（純音樂） https://youtu.be/6JxLWrzOQsE
 4. 打疫苗:Happy Monkey https://youtu.be/gbI85cWJj50 "00:48:28~00:50:58"
 5. 實習:8 Bit Win! https://youtu.be/vX1xq4Ud2z8
+6. 聯誼:日本網站
 ### 中途結束事件
 1. 樓頂吹風：Nocturne in C minor Op.48 No.1 http://www.pianosociety.com/pages/chopinnocturnes/
 1. 明明是我先來的；被二一；破產；轉生異世界；轉學:Let’s Go Out Tonight https://youtu.be/YA2eiphNb3I "01:06:25~01:09:46"
