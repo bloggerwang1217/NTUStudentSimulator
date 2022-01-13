@@ -9,6 +9,7 @@ DateAchievement = False
 study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
 Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True
 
+
 def reset():  # 重置事件頻率
     study_freq, res_freq, sex_freq, OldExam_freq, Sugar_freq, Bike_tow_freq, To_New_World_freq = True, True, True, True, True, True, True
 
@@ -154,17 +155,27 @@ def Bike_tow():  # 腳踏車被拖吊
 
 
 def check_event(data):
-    global status, status.freq
+    global status, study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
+    Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq
+
     status = data["status"]
+    study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
+    Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = status.freq
 
     outputList01 = []
     outputList02 = []
 
-    TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:翹課打ㄆ', '觸發事件:獲得考古題', '觸發事件:第一次約會', 
-                    '觸發事件:婚姻抉擇', '觸發事件:不想努力了', '觸發事件:懷孕', '觸發事件:腳踏車被拖吊']
+    TriIncident_List = ['觸發事件:推坑Vt', '觸發事件:參加讀書會', '觸發事件:參加研究專案', '觸發事件:獲得考古題', '觸發事件:第一次約會', 
+                    '觸發事件:婚姻抉擇', '觸發事件:腳踏車被拖吊',  '觸發事件:翹課打ㄆ', '觸發事件:不想努力了', '觸發事件:懷孕']
     Incident_List = ['中途結束事件:樓頂吹風', '中途結束事件:轉生異世界', '中途結束事件:明明是我先來的', '中途結束事件:破產', 
                      '中途結束事件:財富自由', '中途結束事件:火化', '中途結束事件:轉學']
-    Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
+    Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), Bike_tow(), Sex_or_not(), SugarDaddy(), Pregnant()]
+
+    if data["色色"] == False:
+        for i in range(3):
+            TriIncident_List.pop()
+            Yes_or_Not.pop()
+
     Mid_End = [blow_wind(), To_New_World(), Me_First(), Broke(), Wealth_Freedom(), IntoDust(), Leave_school()]
     status.freq = study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq, Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq
     for i in range(len(Incident_List)):
