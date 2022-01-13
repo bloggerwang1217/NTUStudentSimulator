@@ -150,7 +150,7 @@ class Status:
         self.social += 4
         self.health -= 2
         self.money += 1200
-        self.cash_flow["打工"] -= 1200
+        self.cash_flow["打工"] += 1200
 
         return self.check_san(20)
 

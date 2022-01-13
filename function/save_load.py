@@ -4,13 +4,14 @@ import system.semester as semester
 import os
 
 def save(data):
-    data["status"].health = int(data["status"].health)
+    data["status"].yang_sheng = int(data["status"].yang_sheng)
     sex = data["sex"]
     name = data["name"]
     CsCs = data["色色"]
     status = data["status"]
     time = data["time"]
     ability_graph = data["ability_graph"]
+    freq = list(status.freq)
 
     path = os.getcwd()
     f1 = open(f"text/save.csv", "w")
@@ -32,7 +33,11 @@ def save(data):
     f2.write(sex+","+name+","+str(CsCs)+","+time+"\n")
     f2.write(f"{status.wisdom},{status.charm},{status.fitness},{status.social},{status.health},{status.luck},{status.love_progress},{status.grade},{status.yang_sheng},{status.prestige},{status.money},{status.time}\n")
     f2.write(f"{status.achievement.number_of_sex},{status.achievement.being_Vtuber},{status.achievement.stocks_surfing},{status.achievement.christmas},{status.achievement.birth}\n")
-    f2.write(",".join(ability_graph))
+    f2.write(",".join(ability_graph)+"\n")
+
+    for i in range(len(freq)):
+        freq[i] = str(freq[i])
+
     f2.write(",".join(freq))
     
     f2.close()

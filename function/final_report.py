@@ -32,7 +32,7 @@ def show_final_report(window, data, grades):
     f = tk.font.Font(size = 20)
 
     # 傳入句子多長要換行和讀檔名稱
-    read_data = read.read_file(41, "midterm.txt")
+    read_data = read.read_file(41, "final.txt")
     read_data.insert(0, f"受文者：{data['name']}")
     read_data.insert(0, "學期成績單")
 

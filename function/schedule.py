@@ -188,7 +188,7 @@ class Schedule:
 
         abilityLabel = tk.Label(window, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = f)
         widgets.append(abilityLabel)
-        abilityLabel.place(x = 50, y = 600)
+        abilityLabel.place(x = 50, y = 620)
 
 
     def save(self, clicked, result, data, used_widgets, FinishButton, moneyLabel, abilityLabel):
@@ -208,12 +208,12 @@ class Schedule:
 
         abilityLabel.destroy()
         abi_f = tk.font.Font(size = 24)
-        abilityLabel = tk.Label(window, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = abi_f)
+        abilityLabel = tk.Label(data["status"].display, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = abi_f)
         abilityLabel.place(x = 50, y = 620)
         used_widgets.append(abilityLabel)
 
         if data["status"].cash_flow["咖啡"] < 0:
-            you_drank_coffee(data["status"].display, data, money_spent, used_widgets)
+            you_drank_coffee(data["status"].display, data, -data["status"].cash_flow["咖啡"], used_widgets)
         else:
             show_cash_flow(data["status"].display, data, used_widgets)
 
@@ -261,10 +261,10 @@ def you_drank_coffee(window, data, money_need, widgets):
 
     # Label Creation
     lbl = tk.Label(window, text=f"精力值不足\n你花了{money_need}元購買咖啡...", font=f, bg="#bebfbe", relief="raised")
-    lbl.place(x=960, y=350)
+    lbl.place(x=950+coffee.winfo_reqwidth()/2-lbl.winfo_reqwidth()/2, y=275)
     widgets.append(lbl)
 
-    show_cash_flow(data["status"].display, data, used_widgets)
+    show_cash_flow(data["status"].display, data, widgets)
 
 
 def show_cash_flow(window, data, widgets):
@@ -273,10 +273,10 @@ def show_cash_flow(window, data, widgets):
 
     revenueLabel = tk.Label(window, text = f"收入-打工:{data['status'].cash_flow['打工']}元", font = f)
     expenseLabel = tk.Label(window, text = f"支出-健身:{-data['status'].cash_flow['健身']}元、約會:{-data['status'].cash_flow['約會']}元、社交:{-data['status'].cash_flow['社交']}元", font = f)
-    revenueLabel.place(x = 50, y = 570)
-    expenseLabel.place(x = 50, y = 595)
-    used_widgets.append(revenueLabel)
-    used_widgets.append(expenseLabel)
+    revenueLabel.place(x = 50, y = 550)
+    expenseLabel.place(x = 50, y = 575)
+    widgets.append(revenueLabel)
+    widgets.append(expenseLabel)
 
     for key in data["status"].cash_flow.keys():
         data["status"].cash_flow[key] = 0
@@ -284,7 +284,7 @@ def show_cash_flow(window, data, widgets):
     # Button Creation
 
     continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), sound.play_button_sound(), check.check_event(data)])
-    continueButton.place(x=1070, y=300)
+    continueButton.place(x=810, y=640)
     widgets.append(continueButton)
 
 

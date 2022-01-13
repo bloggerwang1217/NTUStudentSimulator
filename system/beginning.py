@@ -153,7 +153,7 @@ def input_basic_data(window, data):
                             offvalue=False,
                             command = sound.play_button_sound())
 
-    CsCsButton.place(x = 975+small_bg.winfo_reqwidth()/2-CsCsButton.winfo_reqwidth()/2, y = 450)
+    CsCsButton.place(x = 975+small_bg.winfo_reqwidth()/2-CsCsButton.winfo_reqwidth()/2, y = 385)
     widgets.append(CsCsButton)
 
 
@@ -166,7 +166,7 @@ def save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, frame, endButton, chec
             sex =  "女性"
         inp = inputtxt.get(1.0, "end-1c")
         lbl.config(text = f"您的名字是\n「{inp}」\n{sex}\n不想重新輸入請按結束", font=check_f)
-        endButton.place(x = 975+length/2-endButton.winfo_reqwidth()/2, y = 385)
+        endButton.place(x = 975+length/2-endButton.winfo_reqwidth()/2, y = 450)
 
     else:
         if inputtxt.get(1.0, "end-1c") == "":
