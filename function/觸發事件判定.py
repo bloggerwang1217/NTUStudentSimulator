@@ -6,13 +6,12 @@ VtAchievement = False
 DateAchievement = False
 
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
-study_freq, res_freq, acad_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
+study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
 Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq, marry = True, True, True, True, True, True, True, True, True, True, True, True
 
 
 def reset():  # 重置事件頻率
-    study_freq, res_freq, acad_freq, sex_freq, OldExam_freq,\
-    Sugar_freq, Bike_tow_freq, To_New_World_freq = True, True, True, True, True, True, True, True
+    study_freq, res_freq, sex_freq, OldExam_freq, Sugar_freq, Bike_tow_freq, To_New_World_freq = True, True, True, True, True, True, True
 
     
 def blow_wind():  # 樓頂吹風
@@ -30,9 +29,9 @@ def Leave_school():  # 轉學
 def To_New_World():  # 轉生異世界
     global status, To_New_World_freq
     prob = random.randrange(1, 101)
-    if status.luck > 500 and prob < 2 and To_New_World_freq:
+    if status.luck < 6 and prob < 2 and To_New_World_freq:
         return True
-    elif status.luck < 5 and prob > 1 and To_New_World_freq:  # 一學期只會判定一次
+    elif status.luck > 6 and prob >= 2 and To_New_World_freq:  # 一學期只會判定一次
         To_New_World_freq = False
 
 
