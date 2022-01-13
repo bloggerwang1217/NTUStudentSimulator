@@ -7,8 +7,7 @@ DateAchievement = False
 
 # 觸發事件的判斷，每學期有些事件會更新一次，讓事件不會重複發生
 study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
-Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = status.freq
-
+Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = True, True, True, True, True, True, True, True, True, True
 
 def reset():  # 重置事件頻率
     study_freq, res_freq, sex_freq, OldExam_freq, Sugar_freq, Bike_tow_freq, To_New_World_freq = True, True, True, True, True, True, True
@@ -155,7 +154,7 @@ def Bike_tow():  # 腳踏車被拖吊
 
 
 def check_event(data):
-    global status
+    global status, status.freq
     status = data["status"]
 
     outputList01 = []
