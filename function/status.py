@@ -33,6 +33,7 @@ class Status:
         self.achievement = achievement.Achievement()
         self.time = 0
         self.freq = True, True, True, True, True, True, True, True, True, True
+        self.cash_flow = {"學費":0, "伙食費":0, "急診":0, "咖啡":0, "健身":0, "約會":0, "社交":0, "打工":0, "零用錢":0, "書卷獎":0}
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -43,6 +44,7 @@ class Status:
     # 學期初發錢
     def allowance(self):
         self.money += 40000
+        self.cash_flow["零用錢"] += 40000
 
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
@@ -70,7 +72,7 @@ class Status:
             money_spent += act_check(self, schedule[i])
 
         self.health = int(self.health)
-        return money_spent
+        self.cash_flow["咖啡"] = -money_spent
 
 
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
@@ -131,6 +133,7 @@ class Status:
 
     def workout(self):
         self.money -= 30
+        self.cash_flow["健身"] -= 30
         self.san -= 25
         self.wisdom -= 3
         self.charm += 4
@@ -147,6 +150,7 @@ class Status:
         self.social += 4
         self.health -= 2
         self.money += 1200
+        self.cash_flow["打工"] -= 1200
 
         return self.check_san(20)
 
@@ -158,6 +162,7 @@ class Status:
         self.social -= 2
         self.health -= 5
         self.money -= 1111
+        self.cash_flow["約會"] -= 1111
 
         return self.check_san(30)
 
@@ -170,6 +175,7 @@ class Status:
         self.health -= 4
         self.fitness -= 3
         self.money -= 100
+        self.cash_flow["社交"] -= 100
 
         return self.check_san(-20)
 

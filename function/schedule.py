@@ -118,7 +118,7 @@ class Schedule:
         widgets.append(ThuMidnightList)
         widgets.append(FriMidnightList)
 
-        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets, FinishButton, moneyLabel), sound.play_button_sound()])
+        FinishButton = tk.Button(window, text ="完成", height = 1, width = 4, font = f, command = lambda: [self.save(clicked, self.result, data, widgets, FinishButton, moneyLabel, abilityLabel), sound.play_button_sound()])
 
         title = tk.Label(window, text = "你的時間表" ,font = title_f, bg = "#eeefee", fg = "#712322")
         subtitle1 = tk.Label(window, text = "#時間沒有消失，", font = f, bg = "#eeefee")
@@ -190,26 +190,32 @@ class Schedule:
         widgets.append(abilityLabel)
         abilityLabel.place(x = 50, y = 600)
 
-    def save(self, clicked, result, data, used_widgets, FinishButton, moneyLabel):
+
+    def save(self, clicked, result, data, used_widgets, FinishButton, moneyLabel, abilityLabel):
         FinishButton.destroy()
 
         for i in range(1, 6):
             for j in range(1, 5):
                 result[f"{i}-{j}"] = clicked[j-1][i-1].get()
-        money_spent = data["status"].run_schedule(result)
+        data["status"].run_schedule(result)
         data["picked_schedule"] = result
-        if money_spent > 0:
-            moneyLabel.destroy()
-            money_f = tk.font.Font(size = 30)
-            moneyLabel = tk.Label(data["status"].display, text = f"錢包：{data['status'].money}元", font = money_f)
-            moneyLabel.place(x = 1000, y = 640)
-            used_widgets.append(moneyLabel)
+
+        moneyLabel.destroy()
+        money_f = tk.font.Font(size = 30)
+        moneyLabel = tk.Label(data["status"].display, text = f"錢包：{data['status'].money}元", font = money_f)
+        moneyLabel.place(x = 1000, y = 640)
+        used_widgets.append(moneyLabel)
+
+        abilityLabel.destroy()
+        abi_f = tk.font.Font(size = 24)
+        abilityLabel = tk.Label(window, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = abi_f)
+        abilityLabel.place(x = 50, y = 620)
+        used_widgets.append(abilityLabel)
+
+        if data["status"].cash_flow["咖啡"] < 0:
             you_drank_coffee(data["status"].display, data, money_spent, used_widgets)
         else:
-            used_widgets.append(moneyLabel)
-            for widget in used_widgets:
-                widget.destroy()
-            check.check_event(data)
+            show_cash_flow(data["status"].display, data, used_widgets)
 
         
 def get_new_schedule(window, selected_class, data, is_new_semester):
@@ -242,13 +248,6 @@ def get_new_schedule(window, selected_class, data, is_new_semester):
 
 def you_drank_coffee(window, data, money_need, widgets):
     f = tkFont.Font(size=20)
-    button_f = tkFont.Font(size=24)
-
-    # Button Creation
-
-    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), sound.play_button_sound(), check.check_event(data)])
-    continueButton.place(x=1070, y=300)
-    widgets.append(continueButton)
 
     # Cute Pic Creation
 
@@ -264,6 +263,29 @@ def you_drank_coffee(window, data, money_need, widgets):
     lbl = tk.Label(window, text=f"精力值不足\n你花了{money_need}元購買咖啡...", font=f, bg="#bebfbe", relief="raised")
     lbl.place(x=960, y=350)
     widgets.append(lbl)
+
+    show_cash_flow(data["status"].display, data, used_widgets)
+
+
+def show_cash_flow(window, data, widgets):
+    f = tkFont.Font(size=20)
+    button_f = tkFont.Font(size=24)
+
+    revenueLabel = tk.Label(window, text = f"收入-打工:{data['status'].cash_flow['打工']}元", font = f)
+    expenseLabel = tk.Label(window, text = f"支出-健身:{-data['status'].cash_flow['健身']}元、約會:{-data['status'].cash_flow['約會']}元、社交:{-data['status'].cash_flow['社交']}元", font = f)
+    revenueLabel.place(x = 50, y = 570)
+    expenseLabel.place(x = 50, y = 595)
+    used_widgets.append(revenueLabel)
+    used_widgets.append(expenseLabel)
+
+    for key in data["status"].cash_flow.keys():
+        data["status"].cash_flow[key] = 0
+
+    # Button Creation
+
+    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), sound.play_button_sound(), check.check_event(data)])
+    continueButton.place(x=1070, y=300)
+    widgets.append(continueButton)
 
 
 def destroy_widgets(widgets):
