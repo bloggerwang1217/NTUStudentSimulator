@@ -105,29 +105,29 @@ def input_basic_data(window, data):
     widgets.append(after_imputtxt)
 
     white = Image.open("figure/white.png")
-    white = white.resize((200, 280), Image.ANTIALIAS)
+    white = white.resize((200, 420), Image.ANTIALIAS)
     white = ImageTk.PhotoImage(white)
     small_bg = tk.Label(window, image = white, highlightthickness=2, highlightbackground="black")
     small_bg.image = white
-    small_bg.place(x = 975, y = 200)
+    small_bg.place(x = 975, y = 130)
     widgets.append(small_bg)
 
     confirmation = tk.Label(window, text = "資料確認", font = f)
-    confirmation.place(x = 975+small_bg.winfo_reqwidth()/2-confirmation.winfo_reqwidth()/2, y = 225)
+    confirmation.place(x = 975+small_bg.winfo_reqwidth()/2-confirmation.winfo_reqwidth()/2, y = 155)
     widgets.append(confirmation)
 
     var1 = tk.IntVar()
     var2 = tk.IntVar()
     c1 = tk.Checkbutton(window, text="男性",font = check_f, variable=var1, onvalue=1, offvalue=0, command = sound.play_button_sound)
-    c1.place(x = 1000, y = 290)
+    c1.place(x = 1000, y = 220)
     c2 = tk.Checkbutton(window, text='女性',font = check_f, variable=var2, onvalue=1, offvalue=0, command = sound.play_button_sound)
-    c2.place(x = 1100, y = 290)
+    c2.place(x = 1100, y = 220)
     widgets.append(c1)
     widgets.append(c2)
 
     # Label Creation
     lbl = tk.Label(window)
-    lbl.place(x = 992, y = 363)
+    lbl.place(x = 990, y = 300)
     widgets.append(lbl)
 
     # Button Creation
@@ -140,12 +140,24 @@ def input_basic_data(window, data):
     printButton = tk.Button(window,
                             text = "確認",
                             font = check_f, 
-                            command = lambda: [save_input(data, var1, var2, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()), sound.play_button_sound()])
-    printButton.place(x = 975+small_bg.winfo_reqwidth()/2-printButton.winfo_reqwidth()/2, y = 330)
+                            command = lambda: [save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()), sound.play_button_sound()])
+    printButton.place(x = 975+small_bg.winfo_reqwidth()/2-printButton.winfo_reqwidth()/2, y = 260)
     widgets.append(printButton)
 
+    yes_CsCs = tk.IntVar()
+    CsCsButton = tk.Checkbutton(window,
+                            text = "可以色色",
+                            font = check_f, 
+                            variable=yes_CsCs, 
+                            onvalue=True,
+                            offvalue=False,
+                            command = sound.play_button_sound())
 
-def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, length):
+    CsCsButton.place(x = 975+small_bg.winfo_reqwidth()/2-CsCsButton.winfo_reqwidth()/2, y = 450)
+    widgets.append(CsCsButton)
+
+
+def save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, frame, endButton, check_f, length):
     sex = ""
     if (var1.get() + var2.get() == 1) and inputtxt.get(1.0, "end-1c") != "":        
         if (var1.get() == 1) and (var2.get() == 0):
@@ -154,7 +166,7 @@ def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, lengt
             sex =  "女性"
         inp = inputtxt.get(1.0, "end-1c")
         lbl.config(text = f"您的名字是\n「{inp}」\n{sex}\n不想重新輸入請按結束", font=check_f)
-        endButton.place(x = 975+length/2-endButton.winfo_reqwidth()/2, y = 450)
+        endButton.place(x = 975+length/2-endButton.winfo_reqwidth()/2, y = 385)
 
     else:
         if inputtxt.get(1.0, "end-1c") == "":
@@ -166,6 +178,7 @@ def save_input(data, var1, var2, inputtxt, lbl, frame, endButton, check_f, lengt
             endButton.place_forget()
     data["sex"] = sex
     data["name"] = inp
+    data["色色"] = yes_CsCs.get()
 
 
 def end_input(window, data, widgets):

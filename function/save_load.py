@@ -7,6 +7,7 @@ def save(data):
     data["status"].health = int(data["status"].health)
     sex = data["sex"]
     name = data["name"]
+    CsCs = data["色色"]
     status = data["status"]
     time = data["time"]
     ability_graph = data["ability_graph"]
@@ -28,7 +29,7 @@ def save(data):
 
     f2 = open(f"text/save.txt", "w")
 
-    f2.write(sex+","+name+","+time+"\n")
+    f2.write(sex+","+name+","+str(CsCs)+","+time+"\n")
     f2.write(f"{status.wisdom},{status.charm},{status.fitness},{status.social},{status.health},{status.luck},{status.love_progress},{status.grade},{status.yang_sheng},{status.prestige},{status.money},{status.time}\n")
     f2.write(f"{status.achievement.number_of_sex},{status.achievement.being_Vtuber},{status.achievement.stocks_surfing},{status.achievement.christmas},{status.achievement.birth}\n")
     f2.write(",".join(ability_graph))
@@ -49,7 +50,12 @@ def load(window, data):
     read_data = f1.readlines()
     for i in range(len(read_data)):
         read_data[i] = read_data[i].strip("\n").split(",")
-    data["sex"], data["name"], data["time"] = read_data[0][0], read_data[0][1], read_data[0][2]
+    data["sex"], data["name"], data["色色"], data["time"] = read_data[0][0], read_data[0][1], read_data[0][2], read_data[0][3]
+
+    if data["色色"] == "True":
+        data["色色"] = True
+    else:
+        data["色色"] = False
 
     for i in range(len(read_data[1])):
         read_data[1][i] = int(read_data[1][i])
@@ -105,6 +111,7 @@ def load(window, data):
 '''
 sex
 name
+色色
 status
 time
 ability_graph
