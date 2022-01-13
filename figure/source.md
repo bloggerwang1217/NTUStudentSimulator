@@ -35,10 +35,19 @@
 6. 獲得考古題:http://i1.kknews.cc/MdfFQbuZx_gPPMph-ITur_YnbYtEiL7BsO8b8ZcGMsY/0.jpg
 7. 第一次約會:https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2018/10/18/20181018-104501_U3792_M463841_c2d8.PNG?itok=OHV9NfGF
 8. 翹課打ㄆ:https://assetsv4.tripmoment.com/system/azure/16671/a2fcf97b-178a-4932-a74b-fc34f89914f3.jpg
+9. 腳踏車被拖吊:https://images.chinatimes.com/newsphoto/2018-02-01/656/20180201003701.jpg
+10. 懷孕:https://www.google.com.tw/url?sa=i&url=https%3A%2F%2Fkknews.cc%2Fhealth%2Fzpkx42a.html&psig=AOvVaw3RT05YRxo-dTPxCA_au10z&ust=1642123888697000&source=images&cd=vfe&ved=2ahUKEwip_uKpyq31AhWYAaYKHRE7CgsQjRx6BAgAEAk
 
 ### 中途結束事件
 1. 火化:https://pixabay.com/photos/cup-coffee-table-drinks-beverage-6878196/
 1. 轉身異世界:https://pic.pimg.tw/pan19861129/1389240994-1057361730_n.jpg
+1. 明明是我先來的: https://s.yimg.com/ny/api/res/1.2/FRq6kWCMPH10SsFUa0ub2A--/YXBwaWQ9aGlnaGxhbmRlcjtoPTY2Ng--/https://s.yimg.com/uu/api/res/1.2/znqNGzoNHU_xnuNQP_RD2w--~B/aD0wO3c9MDthcHBpZD15dGFjaHlvbg--/https://www.elle.com.hk/var/ellehk/storage/images/love_and_sex/relationship/ex-boyfriend-message/23306419-2-chi-HK/WhatsApp-8_img_885_590.jpg
+1. 阿姨結束:https://cdn2.ettoday.net/images/1720/1720082.jpg
+1. 破產:http://6.eewimg.cn/mp/uploads/2019/02/15/28609758-30f3-11e9-a9c9-00163e2e672a.jpg
+1. 財富自由:https://images.chinatimes.com/newsphoto/2021-02-04/656/20210204003339.jpg
+1. 轉學:https://p1.nanmuxuan.com/images/ff/3c4d9cc49639d257.jpg
+1. 頂樓吹風:https://pic3.zhimg.com/80/v2-0d21bbb43e9a13fd5cf147f333523912_1440w.jpg
+1. 被二一:https://images.chinatimes.com/newsphoto/2021-02-25/1024/20210225000072.jpg
 
 ### 破關
 1. 正常結局:https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2015/03/02/99/568763.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=1050
