@@ -32,6 +32,7 @@ def save(data):
     f2.write(f"{status.wisdom},{status.charm},{status.fitness},{status.social},{status.health},{status.luck},{status.love_progress},{status.grade},{status.yang_sheng},{status.prestige},{status.money},{status.time}\n")
     f2.write(f"{status.achievement.number_of_sex},{status.achievement.being_Vtuber},{status.achievement.stocks_surfing},{status.achievement.christmas},{status.achievement.birth}\n")
     f2.write(",".join(ability_graph))
+    f2.write(",".join(freq))
     
     f2.close()
 
@@ -61,6 +62,14 @@ def load(window, data):
     data["status"].money = read_data[1][10]
     data["status"].time = read_data[1][11]
     data["ability_graph"] = read_data[3]
+
+    for i in range(len(read_data[4])):
+        if read_data[4][i] == "True":
+            read_data[4][i] = True
+        else:
+            read_data[4][i] = False
+
+    data["status"].freq = tuple(read_data[4])
 
     data["status"].achievement.number_of_sex = int(read_data[2][0])
     data["status"].achievement.stocks_surfing = int(read_data[2][2])
@@ -114,6 +123,8 @@ status.yang_sheng int
 status.prestige int 
 status.course list  
 status.achievement = achievement.Achievement()
+status.time int
+status.freq = True, True, True, True, True, True, True, True, True, True (tuple)
 
 Achievement
 self.number_of_sex = 0
