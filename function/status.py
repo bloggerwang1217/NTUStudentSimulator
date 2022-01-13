@@ -32,7 +32,7 @@ class Status:
         self.course = course  
         self.achievement = achievement.Achievement()
         self.time = 0
-
+        self.freq = True, True, True, True, True, True, True, True, True, True
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
