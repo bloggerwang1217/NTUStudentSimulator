@@ -154,7 +154,6 @@ def Bike_tow():  # 腳踏車被拖吊
     else:
         return False
 
-status001.status.freq = study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq, Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq
 
 def check_event(data):
     global status
@@ -169,6 +168,7 @@ def check_event(data):
                      '中途結束事件:財富自由', '中途結束事件:火化', '中途結束事件:轉學']
     Yes_or_Not = [Vtuber_or_Not(), Study_or_not(), Research_or_not(), Sex_or_not(), OldExam_or_not(), First_Date(), Marriage_or_not(), SugarDaddy(), Pregnant(), Bike_tow()]
     Mid_End = [blow_wind(), To_New_World(), Me_First(), Broke(), Wealth_Freedom(), IntoDust(), Leave_school()]
+    status001.status.freq = study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq, Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq
     for i in range(len(Incident_List)):
         if Mid_End[i] == True:
             outputList01.append(Incident_List[i])
