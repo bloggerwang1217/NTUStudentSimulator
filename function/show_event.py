@@ -257,7 +257,7 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
 
 
 def shrinker(data, text, index, name):  #index:c出現的位置；若為數值判定，則為c出現前一個
-    option_dict = {"1":{1:"1", 2:"2", 3:"3"}, "A":{1: "A", 2: "B"}, "a":{1: "a", 2:"b"}, "甲":{1: "甲", 2: "乙"}, "子":{1: "子", 2: "丑"}}
+    option_dict = {"1":{1:"1", 2:"2", 3:"3"}, "A":{1: "A", 2: "B", 3: "C"}, "a":{1: "a", 2:"b", 3:"c"}, "甲":{1: "甲", 2: "乙", 3:"丙"}, "子":{1: "子", 2: "丑", 3:"寅"}}
     option_type = text[index+1][0]
     temp_index = index + 1
     ans = option_dict[option_type][data["choose_result"][-1]]
