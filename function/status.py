@@ -94,7 +94,7 @@ class Status:
     # 甜課得函式
     def class_sweet(self):
         self.san -= 10
-        self.wisdom += 5
+        self.wisdom += 3
         self.charm -= 1
         self.social += 2
         self.fitness -= 1
@@ -114,7 +114,7 @@ class Status:
 
     def class_hard(self):
         self.san -= 30
-        self.wisdom += 10
+        self.wisdom += 4
         self.charm -= 1
         self.social -= 1
         self.fitness -= 2
@@ -301,7 +301,7 @@ def act_check(status, i):
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
-    coefficient = {"甜課": 0.08 / (2 ** (status.time/2)), "涼課": 0.12 / (2 ** (status.time/2)), "硬課": 0.04 / (2 ** (status.time/2))}
+    coefficient = {"甜課": 0.08 / (1.2 ** (status.time/2)), "涼課": 0.12 / (1.2 ** (status.time/2)), "硬課": 0.04 / (1.2 ** (status.time/2))}
     status.study_time.setdefault(classname, 0)
     if classtodiff[classname] == "爽課":
         point = 90 + random.randint(0, 10)
