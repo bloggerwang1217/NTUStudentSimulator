@@ -85,7 +85,7 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
     if class_fail >= 2:
-        drop_out_button = tk.Button(window, text = "繼續", font = f, command = lambda: [destroy_widgets(text), sound.play_button_sound(), show.process_event(["中途結束事件:被二一"])])
+        drop_out_button = tk.Button(window, text = "繼續", font = f, command = lambda: [destroy_widgets(text), sound.play_button_sound(), show.process_event(data, ["中途結束事件:被二一"])])
         drop_out_button.place(x = 800, y = 600)
         text.append(widget1)
         text.append(widget2)

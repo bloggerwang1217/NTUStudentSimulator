@@ -94,9 +94,9 @@ class Status:
     # 甜課得函式
     def class_sweet(self):
         self.san -= 10
-        self.wisdom += 3
+        self.wisdom += (2+random.randrange(0, 3))
         self.charm -= 1
-        self.social += 2
+        self.social += 0
         self.fitness -= 1
 
         return self.check_san(10)
@@ -104,7 +104,7 @@ class Status:
 
     def class_easy(self):
         self.san -= 5
-        self.wisdom += 2
+        self.wisdom += (2+random.randrange(-2, 3))
         self.charm -= 1
         self.social += 1
         self.fitness -= 1
@@ -114,7 +114,7 @@ class Status:
 
     def class_hard(self):
         self.san -= 30
-        self.wisdom += 4
+        self.wisdom += (2+random.randrange(0, 5))
         self.charm -= 1
         self.social -= 1
         self.fitness -= 2
@@ -125,8 +125,8 @@ class Status:
     def class_waste(self):
         self.san -= 0
         self.wisdom -= 1
-        self.charm -= -1
-        self.social += 3
+        self.charm -= 0
+        self.social += 2
 
         return self.check_san(0)
 
@@ -135,10 +135,10 @@ class Status:
         self.money -= 30
         self.cash_flow["健身"] -= 30
         self.san -= 25
-        self.wisdom -= 3
-        self.charm += 4
-        self.fitness += 10
-        self.health += 3
+        self.wisdom -= 0
+        self.charm += 1
+        self.fitness += (2+random.randrange(0, 5))
+        self.health += (2+random.randrange(0, 3))
 
         return self.check_san(25)
 
@@ -157,8 +157,8 @@ class Status:
 
     def go_dating(self):
         self.san -= 30
-        self.wisdom -= 4
-        self.charm += 10
+        self.wisdom -= 3
+        self.charm += (2+random.randrange(0, 5))
         self.social -= 2
         self.health -= 5
         self.money -= 1111
@@ -169,9 +169,9 @@ class Status:
 
     def social_with_other(self):
         self.san -= 20
-        self.wisdom -= 5
+        self.wisdom -= 3
         self.charm += 3
-        self.social += 10
+        self.social += (2+random.randrange(0, 5))
         self.health -= 4
         self.fitness -= 3
         self.money -= 100

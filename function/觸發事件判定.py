@@ -184,7 +184,7 @@ def check_event(data):
 
     if len(outputList01) > 1:
         prob = random.randrange(0, len(outputList01))  # 若中途結束事件發生2種以上，隨機挑選其中一個
-        outputList01 = outputList01[prob]
+        outputList01 = [outputList01[prob]]
     
     for i in range(len(TriIncident_List)):
         if Yes_or_Not[i] == True:

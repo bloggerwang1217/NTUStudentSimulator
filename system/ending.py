@@ -133,7 +133,7 @@ def show_achievement(window, data, queue, next_achi_button):
         next_achi_button = tk.Button(window,
             text = "下一個成就",
             font = f, 
-            command = lambda: [show_achievement(window, data, achievement_queue, next_achi_button), sound.play_button_sound()])
+            command = lambda: [show_achievement(window, data, queue, next_achi_button), sound.play_button_sound()])
         next_achi_button.place(x = 1000, y = 640)
 
 
