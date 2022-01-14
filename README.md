@@ -22,5 +22,8 @@
 
 # 遊玩提醒
 - 建議使用mac系統，windows、linux系統將在未來測試
+pip3 install Pillow
+pip3 install matplotlib
+pip3 install pygame
 - 請先下載python的pillow、pygame、matplotlib，以便進行遊戲
 - 在NTUStudentSimulator的資料夾內執行main.py即可開始遊戲

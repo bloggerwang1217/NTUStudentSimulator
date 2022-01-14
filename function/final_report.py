@@ -70,9 +70,12 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
     text = []
     show_grades = []
 
+    class_fail = 0
     show_grades.append("你的成績如下：")
     for item in grades.keys():
         show_grades.append(f"{item}:{grades[item]}分\n")
+        if grades[item] < 60:
+            class_fail += 1
     for i in range(len(show_grades)): 
         if i == 0:
             text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f))
@@ -81,11 +84,23 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
             text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
-    check_ability_button.place(x = 800, y = 600)
+    if class_fail >= 2:
+        drop_out_button = tk.Button(window, text = "繼續", font = f, command = lambda: [destroy_widgets(text), sound.play_button_sound(), show.process_event(["中途結束事件:被二一"])])
+        drop_out_button.place(x = 800, y = 600)
+        text.append(widget1)
+        text.append(widget2)
+        text.append(drop_out_button)
+    else:
+        check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
+        check_ability_button.place(x = 800, y = 600)
 
-    text.append(check_ability_button)
-    # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
+        text.append(check_ability_button)
+        # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
+
+
+def destroy_widgets(used_widgets):
+    for widget in used_widgets:
+        widget.destroy()
 
 
 def press_check_ability_button(window, data, used_widgets, widget1, widget2):

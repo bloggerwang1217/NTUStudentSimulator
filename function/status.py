@@ -240,13 +240,10 @@ class Status:
                         j[4] += 1
                         class_fail += 1
         self.time += 1
-        if class_fail >= 2:
-            drop_out = True
+
         score_final = self.score.copy()
         show_fi.show_final_report(data["status"].display, data, score_final)
         self.score.clear()
-        if drop_out:
-            show.process_event(data, ["中途結束事件:被二一"])
 
 
 
