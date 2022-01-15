@@ -299,6 +299,7 @@ def check_event(data):
             status.achievement.christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第二次排行程表":
         data["previous_event"] = "期中考"
+        outputList.append('期中考')
         if DateAchievement:
             status.achievement.christmas = True
     elif data["time"] == "大三上"  and data["previous_event"] == "第三次排行程表":
@@ -398,5 +399,4 @@ def check_event(data):
         if DateAchievement:
             status.achievement.christmas = True
         reset()
-
     show.process_event(data, outputList)

@@ -137,7 +137,7 @@ class Status:
         self.san -= 25
         self.wisdom -= 0
         self.charm += 1
-        self.fitness += (2+random.randrange(0, 5))
+        self.fitness += (2+random.randrange(0, 7))
         self.health += (2+random.randrange(0, 3))
 
         return self.check_san(25)
