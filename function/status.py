@@ -137,7 +137,7 @@ class Status:
         self.san -= 25
         self.wisdom -= 0
         self.charm += 1
-        self.fitness += (2+random.randrange(0, 7))
+        self.fitness += (4+random.randrange(0, 7))
         self.health += (2+random.randrange(0, 3))
 
         return self.check_san(25)
@@ -301,7 +301,7 @@ def act_check(status, i):
 
 def scoring(status, classname):
     classtodiff = read.get_course_type_dic(status.course)
-    coefficient = {"甜課": 0.08 / (1.2 ** (status.time/2)), "涼課": 0.12 / (1.2 ** (status.time/2)), "硬課": 0.04 / (1.2 ** (status.time/2))}
+    coefficient = {"甜課": 0.08 / (1.2 ** (status.time/4)), "涼課": 0.12 / (1.2 ** (status.time/4)), "硬課": 0.04 / (1.2 ** (status.time/4))}
     status.study_time.setdefault(classname, 0)
     if classtodiff[classname] == "爽課":
         point = 90 + random.randint(0, 10)
@@ -469,7 +469,7 @@ def event_adjust(status, event_name, choice):
         status.social -= 25
         status.fitness -= 25
         return
-    elif event_name == "念書":
+    elif event_name == "唸書":
         status.wisdom += 75
         return
     elif event_name == "規律作息":
