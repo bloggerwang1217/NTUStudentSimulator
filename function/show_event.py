@@ -114,6 +114,7 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
         if data["event_processing"][0][0] == "中途結束事件" or data["event_processing"][0][0] == "破關":
             ending.show_ending_graph(data["status"].display, data)
         elif data["event_processing"][0][0] == "暑假事件":
+            status.event_adjust(data["status"], reach_name, data["choose_result"])
             cs.course_selection(data["status"].display, data)
         else:
             end = status.event_adjust(data["status"], reach_name, data["choose_result"])
