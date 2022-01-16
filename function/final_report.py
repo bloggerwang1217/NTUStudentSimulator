@@ -160,20 +160,26 @@ def press_receipt_button(window, data, used_widgets, background, small_bg):
     read_data = ["本學期額外收支"]
     read_data.append("此處紀錄你在各種事件內現金得失")
 
+    revenue_empty = True
+
     if data["status"].cash_flow["書卷獎"] != 0:
         read_data.append("收入：")
         read_data.append(f"{key}：{data["status"].cash_flow["書卷獎"]}元")
         data["status"].cash_flow["書卷獎"] = 0
+        revenue_empty = False
 
-    empty = True
+    expense_empty = True
 
     for key in data["status"].cash_flow.keys():
         if data["status"].cash_flow[key] != 0:
             if empty:
                 read_data.append("支出：")
-                empty = False
+                expense_empty = False
             read_data.append(f"{key}：{-data["status"].cash_flow[key]}元")
             data["status"].cash_flow[key] = 0
+
+    if revenue_empty and expense_empty:
+        read_data.append("你這學期沒有額外的收支")
 
     read_data.append(f"你現在有{data["status"].money}元的現金。")      
 
