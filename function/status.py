@@ -18,7 +18,7 @@ class Status:
         self.fitness = fitness  
         self.social = social  
         self.health = health  
-        self.money = 40000  
+        self.money = 0
         self.san = 100  
         self.rest_time = 100  
         self.score = dict()
@@ -33,7 +33,7 @@ class Status:
         self.achievement = achievement.Achievement()
         self.time = 0
         self.freq = True, True, True, True, True, True, True, True, True, True
-        self.cash_flow = {"學費":0, "伙食費":0, "急診":0, "咖啡":0, "健身":0, "約會":0, "社交":0, "打工":0, "零用錢":0, "書卷獎":0}
+        self.cash_flow = {"學費":0, "伙食費":0, "急診":0, "咖啡":0, "健身":0, "約會":0, "社交":0, "打工":0, "月伙食費":0, "零用錢":0, "書卷獎":0, "健康檢查":0, "投資虛擬貨幣":0, "投資ETF":0, "投資債券":0, "結婚":0, "腳踏車贖金":0, "和女友約會支出":0, "暑假打工":0}
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -44,7 +44,7 @@ class Status:
     # 學期初發錢
     def allowance(self):
         self.money += 40000
-        self.cash_flow["零用錢"] += 40000
+        self.money -= 25000
 
 
     # 跑一週的行程(更新數值的部分，若需要可加入觸發事件判斷)
@@ -73,6 +73,9 @@ class Status:
 
         self.health = int(self.health)
         self.cash_flow["咖啡"] = -money_spent
+
+        self.money -= 4000
+        self.cash_flow["月伙食費"] -= 4000
 
 
     # 在進行每一次事件前判斷精力值是否足夠並詢問要不要喝咖啡及之後處理得函式
@@ -320,6 +323,7 @@ def event_adjust(status, event_name, choice):
         if choice[0] == 1:
             status.health += 50
             status.money -= 500
+            status.cash_flow["健康檢查"] -= 500
             return
         else:
             status.health -= 50
@@ -457,7 +461,11 @@ def event_adjust(status, event_name, choice):
         else:
             status.prestige += 25
             status.wisdom += 25
-        return 
+        return
+    elif event_name == "打工":
+        status.money += 50000
+        status.cash_flow["暑假打工"] += 50000
+        return
     elif event_name == "當兵":
         if choice[0] == 1:
             status.fitness += 50
@@ -479,15 +487,19 @@ def event_adjust(status, event_name, choice):
     elif event_name == "虛擬貨幣":
         if status.luck >= 95:
             status.money += 400000
+            status.cash_flow["投資虛擬貨幣"] += 400000
             return
         else:
             status.money += 10000
+            status.cash_flow["投資虛擬貨幣"] += 10000
         return
     elif event_name == "ETF":
         status.money += 100000
+        status.cash_flow["投資ETF"] += 100000
         return
     elif event_name == "債券":
         status.money += 10000
+        status.cash_flow["投資債券"] += 10000
         return
     elif event_name == "陪另一半":
         status.love_progress += 50
@@ -527,6 +539,7 @@ def event_adjust(status, event_name, choice):
         if choice[0] == 1:
             status.love_progress = 1000
             status.money -= 50000
+            status.cash_flow["結婚"] -= 50000
             return
     elif event_name == "參加讀書會":
         if choice[0] == 1:
@@ -551,6 +564,7 @@ def event_adjust(status, event_name, choice):
             return "阿姨"
     elif event_name == "腳踏車被拖吊":
         status.money -= 300
+        status.cash_flow["腳踏車贖金"] -= 300
         return
     elif event_name == "第一次約會":
         if choice[0] == 1:
@@ -561,6 +575,7 @@ def event_adjust(status, event_name, choice):
             else:
                 if choice[2] == 1:
                     status.money -= 1000
+                    status.cash_flow["和女友約會支出"] -= 300
                     status.love_progress += 50
                     return
                 else:
@@ -568,6 +583,7 @@ def event_adjust(status, event_name, choice):
                     return
         elif choice[0] == 2:
             status.money -= 1000
+            status.cash_flow["和女友約會支出"] -= 1000
             if choice[1] == 1:
                 status.charm -= 25
                 return
@@ -576,6 +592,7 @@ def event_adjust(status, event_name, choice):
                 return
         else:
             status.money -= 1000
+            status.cash_flow["和女友約會支出"] -= 1000
             if choice[1] == 1:
                 status.charm -= 50
                 status.love_progress -= 50

@@ -133,7 +133,7 @@ class Schedule:
         if schedule_time == "期中考":
             schedule_time = "第三次排行程表"
 
-        subtitle4 = tk.Label(window, text = f"  {schedule_time}", font = f, bg = "#eeefee")
+        subtitle4 = tk.Label(window, text = f"  {schedule_time[::2]}個月", font = f, bg = "#eeefee")
         widgets.append(subtitle4)
 
         background.image = schedule
@@ -272,7 +272,7 @@ def show_cash_flow(window, data, widgets):
     button_f = tkFont.Font(size=24)
 
     revenueLabel = tk.Label(window, text = f"收入-打工:{data['status'].cash_flow['打工']}元", font = f)
-    expenseLabel = tk.Label(window, text = f"支出-健身:{-data['status'].cash_flow['健身']}元、約會:{-data['status'].cash_flow['約會']}元、社交:{-data['status'].cash_flow['社交']}元", font = f)
+    expenseLabel = tk.Label(window, text = f"支出-健身:{-data['status'].cash_flow['健身']}元、約會:{-data['status'].cash_flow['約會']}元、社交:{-data['status'].cash_flow['社交']}元、月伙食費:{-data['status'].cash_flow['月伙食費']}元", font = f)
     revenueLabel.place(x = 50, y = 550)
     expenseLabel.place(x = 50, y = 575)
     widgets.append(revenueLabel)

@@ -30,4 +30,5 @@ def start_semester(window, data, picked, time):
 def press_start(data, background, startButton, picked):
     background.destroy()
     startButton.destroy()
+    data["status"].allowance()
     schedule.get_new_schedule(data["status"].display, picked, data, True)

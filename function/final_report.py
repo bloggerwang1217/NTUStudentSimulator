@@ -59,7 +59,7 @@ def show_final_report(window, data, grades):
     # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
 
     
-def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
+def press_flip_button(window, data, used_widgets, background, small_bg, grades):
     for widget in used_widgets:
         widget.destroy()
     
@@ -71,11 +71,15 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
     show_grades = []
 
     class_fail = 0
+    class_A_plus = 0
     show_grades.append("你的成績如下：")
     for item in grades.keys():
         show_grades.append(f"{item}:{grades[item]}分\n")
         if grades[item] < 60:
             class_fail += 1
+        elif grades[item] >= 90:
+            class_A_plus += 1
+
     for i in range(len(show_grades)): 
         if i == 0:
             text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f))
@@ -84,14 +88,17 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
             text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
+    if class_A_plus == 3:
+        data["status"].money += 10000
+        data["status"].cash_flow["書卷獎"] += 10000
+
+
     if class_fail >= 2:
         drop_out_button = tk.Button(window, text = "繼續", font = f, command = lambda: [destroy_widgets(text), sound.play_button_sound(), show.process_event(data, ["中途結束事件:被二一"])])
         drop_out_button.place(x = 800, y = 600)
-        text.append(widget1)
-        text.append(widget2)
         text.append(drop_out_button)
     else:
-        check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
+        check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, background, small_bg), sound.play_button_sound()])
         check_ability_button.place(x = 800, y = 600)
 
         text.append(check_ability_button)
@@ -103,7 +110,7 @@ def destroy_widgets(used_widgets):
         widget.destroy()
 
 
-def press_check_ability_button(window, data, used_widgets, widget1, widget2):
+def press_check_ability_button(window, data, used_widgets, background, small_bg):
     for widget in used_widgets:
         widget.destroy()
     
@@ -133,8 +140,55 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     ability_graph = ImageTk.PhotoImage(ability_graph)
     ability = tk.Label(window, image = ability_graph)
     ability.image = ability_graph
-    ability.place(x = 640 - widget2.winfo_reqwidth()/2.3, y = 140)
+    ability.place(x = 640 - small_bg.winfo_reqwidth()/2.3, y = 140)
     
+    receipt_button = tk.Button(window, text = "看學期收據", font = f, command = lambda: [press_receipt_button(window, data, text), sound.play_button_sound()])
+    receipt_button.place(x = 850, y = 620)
+
+    text.append(receipt_button)
+    text.append(ability)
+    # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
+
+
+def press_receipt_button(window, data, used_widgets, background, small_bg):
+    for widget in used_widgets:
+        widget.destroy()
+
+    title_f = tk.font.Font(size = 36)
+    f = tk.font.Font(size = 20)
+
+    read_data = ["本學期額外收支"]
+    read_data.append("此處紀錄你在各種事件內現金得失")
+
+    if data["status"].cash_flow["書卷獎"] != 0:
+        read_data.append("收入：")
+        read_data.append(f"{key}：{data["status"].cash_flow["書卷獎"]}元")
+        data["status"].cash_flow["書卷獎"] = 0
+
+    empty = True
+
+    for key in data["status"].cash_flow.keys():
+        if data["status"].cash_flow[key] != 0:
+            if empty:
+                read_data.append("支出：")
+                empty = False
+            read_data.append(f"{key}：{-data["status"].cash_flow[key]}元")
+            data["status"].cash_flow[key] = 0
+
+    read_data.append(f"你現在有{data["status"].money}元的現金。")      
+
+    text = []
+    for i in range(len(read_data)): 
+        if i == 0:
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+        elif i == 1:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+
+        if i == 0:
+            text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
+        elif i == 1:
+            text[i].place(x = 220, y = 100)
+
     time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
     if data["time"] == "大四下":
         nextbutton = tk.Button(window, text = "歡樂畢業！", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
@@ -142,21 +196,18 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     elif data["time"][2] == "上":
         data["time"] = time_list[time_list.index(data["time"])+1]
         nextbutton = tk.Button(window, text = "下學期來囉", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
-        nextbutton.place(x = 850, y = 620)
     else:
         data["time"] = time_list[time_list.index(data["time"])+1]
         nextbutton = tk.Button(window, text = "進入暑假", font = f, command = lambda: [press_next_button(window, data, text), sound.play_button_sound()])
     nextbutton.place(x = 850, y = 620)
 
-    text.append(widget1)
-    text.append(widget2)
+    text.append(background)
+    text.append(small_bg)
     text.append(nextbutton)
-    text.append(ability)
-    # 現在text裡有目前所有要清掉的widgets，按按鈕後一次清除
+
 
 def press_next_button(window, data, used_widgets):
     time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
-    sound.enter_game_button_sound()
     for widget in used_widgets:
         widget.destroy()
 
