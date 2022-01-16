@@ -33,7 +33,7 @@ class Status:
         self.achievement = achievement.Achievement()
         self.time = 0
         self.freq = True, True, True, True, True, True, True, True, True, True
-        self.cash_flow = {"學費":0, "伙食費":0, "急診":0, "咖啡":0, "健身":0, "約會":0, "社交":0, "打工":0, "月伙食費":0, "零用錢":0, "書卷獎":0, "健康檢查":0, "投資虛擬貨幣":0, "投資ETF":0, "投資債券":0, "結婚":0, "腳踏車贖金":0, "和女友約會支出":0, "暑假打工":0}
+        self.cash_flow = {"學費":0, "伙食費":0, "急診":0, "咖啡":0, "健身":0, "約會":0, "社交":0, "打工":0, "月伙食費":0, "零用錢":0, "書卷獎":0, "健康檢查":0, "投資虛擬貨幣":0, "投資ETF":0, "投資債券":0, "結婚":0, "腳踏車贖金":0, "和女友約會支出":0, "育兒基金":0, "暑假打工":0}
 
     # 每天獲得的san值(尚未加入累加機制，函式先隨便寫的)
     def san_reset(self):
@@ -504,10 +504,13 @@ def event_adjust(status, event_name, choice):
     elif event_name == "陪另一半":
         status.love_progress += 50
         return
-    elif event_name =="服務學習":
+    elif event_name == "服務學習":
         status.social += 50
         status.prestige += 25
         status.charm += 25
+    elif event_name == "懷孕":
+        status.money -= 50000
+        status.cash_flow["育兒基金"] -= 50000
     elif event_name == "翹課打ㄆ":
         if choice[0] == 1:
             status.prestige = 0
