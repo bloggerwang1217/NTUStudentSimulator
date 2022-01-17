@@ -136,7 +136,7 @@ class Schedule:
         if schedule_time == "期中考":
             schedule_time = "第三次排行程表"
 
-        subtitle4 = tk.Label(window, text = f"  {schedule_time[::2]}個月", font = f, bg = "#eeefee")
+        subtitle4 = tk.Label(window, text = f"  {schedule_time[0:2]}個月", font = f, bg = "#eeefee")
         widgets.append(subtitle4)
 
         background.image = schedule
