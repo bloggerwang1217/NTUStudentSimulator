@@ -68,7 +68,6 @@ def press_back_room_button(window, background, back_room_button, data):
 
 
 def input_basic_data(window, data):
-
     widgets = []
 
     desk = Image.open("figure/desk_texture.jpeg")
@@ -95,12 +94,12 @@ def input_basic_data(window, data):
     inputtxt = tk.Text(window,
                        height = 1,
                        width = 10,
-                       font = f)
+                       font = confirm_f)
     inputtxt.config(highlightthickness=2, highlightbackground="black")
     inputtxt.place(x = 450-inputtxt.winfo_reqwidth()/2, y = 290)
     widgets.append(inputtxt)
 
-    after_imputtxt = tk.Label(window, text = "同學       收", font = f)
+    after_imputtxt = tk.Label(window, text = "同學       收", font = confirm_f)
     after_imputtxt.place(x = 510+after_imputtxt.winfo_reqwidth()/2, y = 290)
     widgets.append(after_imputtxt)
 
