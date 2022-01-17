@@ -43,9 +43,7 @@ def show_event(data, event_type, name):
     , "不想努力了":"no_more_work", "參加研究專案":"joining_research_project", "參加讀書會":"joining_study_group", "婚姻抉擇":"marriage", "推坑Vt":"recommend_vtuber", "第一次約會":"first_date", "腳踏車被拖吊":"goodbye_to_bike", "獲得考古題":"getting_more_practice", "翹課打ㄆ":"sex_experiment", "懷孕":"pregnant"\
     , "比賽":"competition", "打疫苗":"being_vaccinated", "系隊":"sport_game", "系學會":"college_stands", "健康檢查":"health_check", "實習":"internship", "舞會1-男":"prom1_boy", "舞會2-男":"prom2_boy", "聯誼":"social_meetup", "Elite":"Elite"\
     , "被二一":"21", "轉生異世界":"reborn", "阿姨結束":"love_you_aunty", "破產":"bankrupt", "財富自由":"freedom_of_wealth", "火化":"burnt", "樓頂吹風":"so_cold_up_here", "轉學":"transfer_to_new_school", "明明是我先來的":"me_first"\
-    , "正常結局":"normal_end"
-    }
-
+    , "正常結局":"normal_end"}
 
     data["choose_result"] = []
 
@@ -195,7 +193,7 @@ def call_status_v(background, reference, text_now, image_widget):
     image_widget.append(a)
     image_widget.append(b)
 
-    peep = Image.open(f"figure/event/npc/{name}.png")
+    peep = Image.open(f"figure/event/npc/{npc_name[name]}.png")
     peep = peep.resize((500, 500), Image.ANTIALIAS)
     peep = ImageTk.PhotoImage(peep)
     c = background.create_image(-100,235, anchor=tk.NW, image=peep)
