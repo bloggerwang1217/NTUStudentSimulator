@@ -2,6 +2,7 @@ import random
 import function.show_event as show
 
 status = ""
+previous_event = ""
 VtAchievement = False
 DateAchievement = False
 
@@ -100,7 +101,7 @@ def Sex_or_not():  # 翹課打ㄆ
 
 def OldExam_or_not():  # 獲得考古題
     global OldExam_freq, status
-    if status.social > 80 and OldExam_freq:
+    if status.social > 80 and OldExam_freq and (previous_event == "第二次排行程表" or previous_event == "第四次排行程表"):
         OldExam_freq = False
         return True
     else:
@@ -157,10 +158,11 @@ def Bike_tow():  # 腳踏車被拖吊
 
 
 def check_event(data):
-    global status, study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
+    global status, previous_event, study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
     Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq
 
     status = data["status"]
+    previous_event = data["previous_event"]
     study_freq, res_freq, sex_freq, OldExam_freq, First_Date_freq, To_New_World_freq,\
     Sugar_freq, preg_freq, Bike_tow_freq, Vt_freq = status.freq
 

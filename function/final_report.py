@@ -93,7 +93,7 @@ def press_flip_button(window, data, used_widgets, background, small_bg, grades):
         drop_out_button.place(x = 800, y = 600)
         text.append(drop_out_button)
     else:
-        check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = button_f, command = lambda: [press_check_ability_button(window, data, text, background, small_bg), sound.play_button_sound()])
+        check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: [press_check_ability_button(window, data, text, background, small_bg), sound.play_button_sound()])
         check_ability_button.place(x = 800, y = 600)
 
         text.append(check_ability_button)
