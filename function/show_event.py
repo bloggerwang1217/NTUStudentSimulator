@@ -307,7 +307,7 @@ def special_situation(data, event_type, name, text, index):
                     data["choose_result"].append(1)
                 else:
                     data["choose_result"].append(2)
-
+                shrinker(data, text, index, "（賭一把了）")
     elif event_type == "觸發事件" and name == "第一次約會":
             for i in range(len(text)):
                 if text[i][0] == "d":

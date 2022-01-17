@@ -178,12 +178,16 @@ def press_receipt_button(window, data, used_widgets, background, small_bg):
         if i == 0:
             text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
         elif i == 1:
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+        else:
             text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
         elif i == 1:
             text[i].place(x = 220, y = 100)
+        else:
+            text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
 
     time_list = ["大一上", "大一下", "大二上", "大二下","大三上", "大三下","大四上","大四下"]
     if data["time"] == "大四下":
