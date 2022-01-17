@@ -4,9 +4,10 @@ from PIL import ImageTk, Image
 import function.show_event as show
 import function.sound_effect as sound
 
-def choose_summer_event(data):
-    f = tk.font.Font(size = 28)
+f = tk.font.Font(size = 28)
 
+
+def choose_summer_event(data):
     background = tk.Canvas(data["status"].display, width = 1280, height = 720)
 
     beach = Image.open("figure/summer_vacation.jpeg")
@@ -24,7 +25,6 @@ def choose_summer_event(data):
 
 
 def press_continue(data, background, nextButton, text):
-    f = tk.font.Font(size = 28)
     background.delete(text)
     nextButton.destroy()
 
@@ -75,7 +75,6 @@ def choose(data, background, used_button , chosen):
 
 
 def home_choose(data, background, used_button , chosen):
-    f = tk.font.Font(size = 28)
     for button in used_button:
         button.destroy()
     if chosen != "投資":
@@ -98,7 +97,6 @@ def home_choose(data, background, used_button , chosen):
 
 
 def stock_choose(data, background, used_button , chosen):
-    f = tk.font.Font(size = 28)
     for button in used_button:
         button.destroy()
     background.destroy()

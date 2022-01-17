@@ -7,17 +7,17 @@ import system.semester as semester
 import random
 
 warning = "警示用全域變數"
-
+f = tk.font.Font(size = 24)
+list_f = tk.font.Font(size = 16)
+button_f = tk.font.Font(size = 36)
+title_f = tk.font.Font(size = 48)
 
 def course_selection(window, data):
-    sound.play_background_music("正式遊戲背景音樂")
+    sound.play_background_music("main_bgm")
     window.configure(background="white")
 
     widgets = []
     used_widgets = []
-
-    f = tk.font.Font(size = 24)
-    list_f = tk.font.Font(size = 16)
 
     ntu_course_selection = Image.open("figure/ntu_course_selection.png")
     ntu_course_selection = ImageTk.PhotoImage(ntu_course_selection)
@@ -97,9 +97,6 @@ def course_selection(window, data):
 
 
 def display_course_type(window, data, printButton, background, used_widgets, widgets, text, picked_type, course_option):
-    f = tk.font.Font(size = 24)
-    button_f = tk.font.Font(size = 36)
-
     for i in [0, 1, 2]:
         picked_type[i] = picked_type[i].get()
         background.delete(text[i])
@@ -135,10 +132,6 @@ def display_course_type(window, data, printButton, background, used_widgets, wid
 
 
 def display_course(window, data, used_widgets, picked_course_from_menu):
-    f = tk.font.Font(size = 24)
-    button_f = tk.font.Font(size = 36)
-    title_f = tk.font.Font(size = 48)
-
     picked_course = []
 
     for i in [0, 1, 2]:
@@ -191,6 +184,7 @@ def display_course(window, data, used_widgets, picked_course_from_menu):
         warning.destroy()
     except:
         pass
+
 
 def press_start_semester(window, data, widgets, picked):
     for widget in widgets:

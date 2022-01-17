@@ -8,8 +8,13 @@ import function.sound_effect as sound
 import function.course_selection as cs
 import system.ending as ending
 
-
 reach_event_type, reach_name = "", ""
+
+f = tk.font.Font(size = 30)
+text_f = tk.font.Font(size = 28)
+name_f = tk.font.Font(size = 30)
+button_f = tk.font.Font(size = 36)
+
 
 def process_event(data, events):
     data["event_processing"] = []
@@ -33,7 +38,14 @@ def show_event(data, event_type, name):
     global reach_event_type, reach_name
     reach_event_type, reach_name = event_type, name
 
-    f = tk.font.Font(size = 30)
+    event_name = {"暑假事件":"summer_event", "觸發事件":"trigger_event", "必然事件":"necessary_event", "中途結束事件":"middle_end_event", "破關":"final_end_event"\
+    , "打工":"part_time_job", "服務學習":"learning_service", "耍廢":"doing_nothing", "唸書":"studying", "規律作息":"regular_life", "陪另一半":"accompany", "虛擬貨幣":"virtual_currency", "債券":"bond", "ETF":"ETF", "當兵":"military_service"\
+    , "不想努力了":"no_more_work", "參加研究專案":"joining_research_project", "參加讀書會":"joining_study_group", "婚姻抉擇":"marriage", "推坑Vt":"recommend_vtuber", "第一次約會":"first_date", "腳踏車被拖吊":"goodbye_to_bike", "獲得考古題":"getting_more_practice", "翹課打ㄆ":"sex_experiment", "懷孕":"pregnant"\
+    , "比賽":"competition", "打疫苗":"being_vaccinated", "系隊":"sport_game", "系學會":"college_stands", "健康檢查":"health_check", "實習":"internship", "舞會1-男":"prom1_boy", "舞會2-男":"prom2_boy", "聯誼":"social_meetup", "Elite":"Elite"\
+    , "被二一":"21", "轉生異世界":"reborn", "阿姨結束":"love_you_aunty", "破產":"bankrupt", "財富自由":"freedom_of_wealth", "火化":"burnt", "樓頂吹風":"so_cold_up_here", "轉學":"transfer_to_new_school", "明明是我先來的":"me_first"\
+    , "正常結局":"normal_end"
+    }
+
 
     data["choose_result"] = []
 
@@ -41,8 +53,8 @@ def show_event(data, event_type, name):
 
     reference = []
 
-    sound.play_event_background_music(event_type, name)
-    background_image = Image.open(f"figure/event/{event_type}/{name}.jpg")
+    sound.play_event_background_music(event_name[event_type], event_name[name])
+    background_image = Image.open(f"figure/event/{event_name[event_type]}/{event_name[name]}.jpg")
     background_image = background_image.resize((1280, 720), Image.ANTIALIAS)
     background_image = ImageTk.PhotoImage(background_image)
     background.create_image(0,0, anchor=tk.NW, image=background_image)
@@ -85,7 +97,6 @@ def show_event(data, event_type, name):
 def show_widgets(data, background, nextButton, reference, text, text_now, index, text_widget, image_widget):
     global reach_name
 
-    f = tk.font.Font(size = 28)
     special_status = ["u", "v", "c", "d"]
     if text_now[0] in special_status:
         if text_now[0] == "v":
@@ -97,11 +108,11 @@ def show_widgets(data, background, nextButton, reference, text, text_now, index,
             nextButton.destroy()
         elif text_now[0] == "d":
             special_situation(data, reach_event_type, reach_name, text, index)
-            text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = "...", anchor = "center", fill = "white", font = f)
+            text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = "...", anchor = "center", fill = "white", font = text_f)
     else:
         if len(text_now) > 34:  # 正常的斷行長度
             text_now = read.rearrange(32, text_now)
-        text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = text_now, anchor = "center", fill = "white", font = f)
+        text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = text_now, anchor = "center", fill = "white", font = text_f)
     background.image = reference
     background.pack()
     if index+1 == len(text):
@@ -148,8 +159,6 @@ def press_continue(data, background, nextButton, reference, text_status, text, t
 
 
 def call_status_u(background, reference, text_now, image_widget):
-    name_f = tk.font.Font(size = 30)
-    f = tk.font.Font(size = 28)
     name = "你"
     line = text_now.split(text_now[1])[1]
 
@@ -167,13 +176,13 @@ def call_status_u(background, reference, text_now, image_widget):
 
     if len(line) > 32:  # 自己說話時的斷行長度
         line = read.rearrange(32, line)
-    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line, anchor = "center", fill = "white", font = f)
+    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line, anchor = "center", fill = "white", font = text_f)
     return text_widget
 
 
 def call_status_v(background, reference, text_now, image_widget):
-    name_f = tk.font.Font(size = 30)
-    f = tk.font.Font(size = 28)
+    npc_name = {"女方":"that_girl", "長官":"sir", "路人一":"girl1", "路人二":"girl2", "女友":"girlfriend", "學長":"senpai_boy", "朋友一":"girl1", "朋友二":"girl2", "阿姨":"aunty", "醫生":"doctor", "系隊學長":"sport_senpai_boy", "面試官":"interviewer", "老師":"teacher", "某同學":"some_student", "女孩":"girlfriend", "同學A":"girl1", "同學B":"girl2", "學姊":"senpai_girl", "習":"xi", "學妹":"koupai_girl", "同學":"classmate_girl", "曖昧對象":"flirt", "傅斯年":"fu", "管中閔":"principal", "某女神":"aqua", "阿克婭":"aqua"}
+
     name = text_now.split(text_now[1])[1]
     line = text_now.split(text_now[1])[2]
 
@@ -186,30 +195,28 @@ def call_status_v(background, reference, text_now, image_widget):
     image_widget.append(a)
     image_widget.append(b)
 
-    peep = Image.open(f"figure/event/人物/{name}.png")
+    peep = Image.open(f"figure/event/npc/{name}.png")
     peep = peep.resize((500, 500), Image.ANTIALIAS)
     peep = ImageTk.PhotoImage(peep)
     c = background.create_image(-100,235, anchor=tk.NW, image=peep)
     reference.append(peep)
 
-    d = background.create_text(385, 425, text = f"-{name}-", anchor = "center", fill = "white", font = f)
+    d = background.create_text(385, 425, text = f"-{name}-", anchor = "center", fill = "white", font = text_f)
     image_widget.append(c)
     image_widget.append(d)
 
     if len(line) > 20:  # 有npc時的斷行長度
         line = read.rearrange(20, line)
-    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = f)
+    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = text_f)
     return text_widget
 
 
 def call_status_c(data, background, text, index, reference, text_widget, image_widget):
-    f = tk.font.Font(size = 28)
-    button_f = tk.font.Font(size = 36)
     line = text[index-1]
 
     if len(line) > 32:  # 正常的斷行長度
         line = read.rearrange(32, line)
-    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = f)
+    text_widget = background.create_text(background.winfo_reqwidth()/2, 3 * background.winfo_reqheight()/4, text = line.strip("「」"), anchor = "center", fill = "white", font = text_f)
 
     text_now = text[index][2::].split(text[index][1])
     choose_button = []
@@ -242,7 +249,6 @@ def call_status_c(data, background, text, index, reference, text_widget, image_w
 
 
 def choose(data, choose_button, chosen, name, background, reference, text_widget, index, text, image_widget):
-    f = tk.font.Font(size = 30)
     data["choose_result"].append(chosen)
     background.delete(text_widget)
     

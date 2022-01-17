@@ -8,9 +8,13 @@ import function.status as status
 import function.read_file as read
 import function.sound_effect as sound
 
+title_f = tk.font.Font(size = 36)
+subtitle_f = tk.font.Font(size = 32)
+f = tk.font.Font(size = 20)
+
 
 def show_midterm_report(window, data, grades):
-    sound.play_background_music("夜晚")
+    sound.play_background_music("night")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -24,10 +28,6 @@ def show_midterm_report(window, data, grades):
     small_bg = tk.Label(window, image = white, highlightthickness=2, highlightbackground="black")
     small_bg.image = white
     small_bg.place(x = 640-small_bg.winfo_reqwidth()/2, y = 10)
-
-    title_f = tk.font.Font(size = 36)
-    subtitle_f = tk.font.Font(size = 32)
-    f = tk.font.Font(size = 20)
 
     # 傳入句子多長要換行和讀檔名稱
     read_data = read.read_file(41, "midterm.txt")
@@ -61,10 +61,6 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
     for widget in used_widgets:
         widget.destroy()
 
-    title_f = tk.font.Font(size = 36)
-    f = tk.font.Font(size = 32)
-    button_f = tk.font.Font(size = 20)
-
     text = []
     show_grades = []
 
@@ -89,9 +85,6 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
 def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     for widget in used_widgets:
         widget.destroy()
-    
-    title_f = tk.font.Font(size = 36)
-    f = tk.font.Font(size = 20)
 
     read_data = ["各項能力檢驗量表"]
     read_data.append("經過了一段時間，下面是你各項能力值的分佈")

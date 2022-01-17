@@ -10,9 +10,13 @@ import function.sound_effect as sound
 import function.show_event as show
 import function.course_selection as cs
 
+title_f = tk.font.Font(size = 36)
+subtitle_f = tk.font.Font(size = 32)
+f = tk.font.Font(size = 20)
+name_f = tk.font.Font(size = 30)
 
 def show_final_report(window, data, grades):
-    sound.play_background_music("夜晚")
+    sound.play_background_music("night")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -26,10 +30,6 @@ def show_final_report(window, data, grades):
     small_bg = tk.Label(window, image = white, highlightthickness=2, highlightbackground="black")
     small_bg.image = white
     small_bg.place(x = 640-small_bg.winfo_reqwidth()/2, y = 10)
-
-    title_f = tk.font.Font(size = 36)
-    subtitle_f = tk.font.Font(size = 32)
-    f = tk.font.Font(size = 20)
 
     # 傳入句子多長要換行和讀檔名稱
     read_data = read.read_file(41, "final.txt")
@@ -62,10 +62,6 @@ def show_final_report(window, data, grades):
 def press_flip_button(window, data, used_widgets, background, small_bg, grades):
     for widget in used_widgets:
         widget.destroy()
-    
-    title_f = tk.font.Font(size = 36)
-    f = tk.font.Font(size = 32)
-    button_f = tk.font.Font(size = 20)
 
     text = []
     show_grades = []
@@ -92,7 +88,6 @@ def press_flip_button(window, data, used_widgets, background, small_bg, grades):
         data["status"].money += 10000
         data["status"].cash_flow["書卷獎"] += 10000
 
-
     if class_fail >= 2:
         drop_out_button = tk.Button(window, text = "繼續", font = f, command = lambda: [destroy_widgets(text), sound.play_button_sound(), show.process_event(data, ["中途結束事件:被二一"])])
         drop_out_button.place(x = 800, y = 600)
@@ -113,9 +108,6 @@ def destroy_widgets(used_widgets):
 def press_check_ability_button(window, data, used_widgets, background, small_bg):
     for widget in used_widgets:
         widget.destroy()
-    
-    title_f = tk.font.Font(size = 36)
-    f = tk.font.Font(size = 20)
 
     read_data = ["各項能力檢驗量表"]
     read_data.append("經過了一段時間，下面是你各項能力值的分佈")
@@ -131,7 +123,6 @@ def press_check_ability_button(window, data, used_widgets, background, small_bg)
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
         elif i == 1:
             text[i].place(x = 220, y = 100)
-
 
     # 貼上初始化能力值的圖
     time = graph_abi.abi_illu(data["status"].wisdom, data["status"].charm, data["status"].fitness, data["status"].social, data["status"].health)
@@ -153,9 +144,6 @@ def press_check_ability_button(window, data, used_widgets, background, small_bg)
 def press_receipt_button(window, data, used_widgets, background, small_bg):
     for widget in used_widgets:
         widget.destroy()
-
-    title_f = tk.font.Font(size = 36)
-    f = tk.font.Font(size = 20)
 
     read_data = ["本學期額外收支"]
     read_data.append("此處紀錄你在各種事件內現金得失")
@@ -218,7 +206,6 @@ def press_next_button(window, data, used_widgets):
         widget.destroy()
 
     if data["time"] == "畢業":
-        f = tk.font.Font(size = 30)
         reference = []
 
         background = tk.Canvas(data["status"].display, width = 1280, height = 720)
@@ -235,14 +222,13 @@ def press_next_button(window, data, used_widgets):
         background.create_image(640 - 480, 10, anchor=tk.NW, image=diploma)
         reference.append(diploma)
 
-        background.create_text(640 - 320, 250, anchor=tk.NW, text = f"學生：{data['name']}", font = f)
+        background.create_text(640 - 320, 250, anchor=tk.NW, text = f"學生：{data['name']}", font = name_f)
 
 
         background.image = reference
         background.pack()
 
-
-        graduateButton = tk.Button(window, text = "最後的最後...", font = f, command = lambda: [press_graduate_button(window, data, background, graduateButton), sound.play_button_sound()])
+        graduateButton = tk.Button(window, text = "最後的最後...", font = name_f, command = lambda: [press_graduate_button(window, data, background, graduateButton), sound.play_button_sound()])
         graduateButton.place(x = 640 + 320 - graduateButton.winfo_reqwidth(), y = 250)
 
     elif data["time"] == "大一下" or data["time"] == "大二下" or data["time"] == "大三下":

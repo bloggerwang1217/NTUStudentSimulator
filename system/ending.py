@@ -11,11 +11,13 @@ import os
 time = ""
 achievement_pics = []
 
+f1 = tk.font.Font(size = 16)
+f2 = tk.font.Font(size = 32)
+f = tk.font.Font(size = 30)
+
 def show_ending_graph(window, data):
     global time
 
-    f1 = tk.font.Font(size = 16)
-    f2 = tk.font.Font(size = 32)
     background = tk.Canvas(data["status"].display, width = 1280, height = 720)
     reference = []
 
@@ -54,7 +56,7 @@ def show_ending_graph(window, data):
     nextButton.place(x = 1280 / 3 + 475, y = 630)
 
 def press_repeat_button(data, background, reference):
-    f = tk.font.Font(size = 30)
+    
 
     global time
     pic_list = data["ability_graph"]
@@ -74,8 +76,6 @@ def press_repeat_button(data, background, reference):
 
 
 def press_next_button(window, data, background, repeatButton, nextButton):
-    f = tk.font.Font(size = 30)
-    sound.play_button_sound()
     background.destroy()
     repeatButton.destroy()
     nextButton.destroy()
@@ -102,17 +102,21 @@ def press_next_button(window, data, background, repeatButton, nextButton):
 
 def show_achievement(window, data, queue, next_achi_button):
     global achievement_pics
+    name = {"情場浪子":"love_master", "好油ㄛpeko":"oh_oily_peko", "超級絕命韭菜":"garlic_chive", "傳說挑戰者":"christmas_challenger", "送子鳥之禮":"storks", "金錢管理大師":"money_manager"}
     
-    f = tk.font.Font(size = 30)
     if len(queue) == 1:
-        sound.play_achievement_music(queue[-1])
-        qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
+        next_achi_button.destroy()
+
+        sound.play_achievement_music(name[queue[-1]])
+
+        qq = Image.open(f"figure/achievement/{name[queue[-1]]}.jpg")
         qq = qq.resize((1280, 720), Image.ANTIALIAS)
         qq = ImageTk.PhotoImage(qq)
         achievement = tk.Label(window, image = qq)
         achievement.image = qq
         achievement_pics.append(achievement)
         achievement.pack()
+
         endButton = tk.Button(window,
             text = "沒成就囉",
             font = f, 
@@ -122,14 +126,19 @@ def show_achievement(window, data, queue, next_achi_button):
         achievement_pics.append(next_achi_button)
     else:
         next_achi_button.destroy()
-        qq = Image.open(f"figure/成就/{queue[-1]}.jpg")
+
+        sound.play_achievement_music(name[queue[-1]])
+
+        qq = Image.open(f"figure/achievement/{name[queue[-1]]}.jpg")
         qq = qq.resize((1280, 720), Image.ANTIALIAS)
         qq = ImageTk.PhotoImage(qq)
         achievement = tk.Label(window, image = qq)
         achievement.image = qq
-        achievement.pack()
         achievement_pics.append(achievement)
+        achievement.pack()
+        
         queue.pop()
+
         next_achi_button = tk.Button(window,
             text = "下一個成就",
             font = f, 
@@ -138,7 +147,6 @@ def show_achievement(window, data, queue, next_achi_button):
 
 
 def press_end_button(window, data, used_widget):
-    f = tk.font.Font(size = 30)
     for widget in used_widget:
         widget.destroy()
 

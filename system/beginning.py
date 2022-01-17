@@ -9,6 +9,14 @@ import function.status as status
 import function.sound_effect as sound
 import function.save_load as sl
 
+beginning_f = tk.font.Font(size = 28)
+open_letter_f = tk.font.Font(size = 42)
+confirm_f = tk.font.Font(size = 32)
+check_f = tk.font.Font(size = 16)
+title_f = tk.font.Font(size = 36)
+subtitle_f = tk.font.Font(size = 32)
+content_f = tk.font.Font(size = 20)
+
 
 def destroy_widgets(used_widgets):
     for widget in used_widgets:
@@ -24,8 +32,6 @@ def start_game(window, data):
 
     sound.play_background_music("title_bgm")
 
-    f = tk.font.Font(font = "TaipeiSans", size = 28)
-
     beginning = Image.open("figure/beginning.png")
     beginning = beginning.resize((1280, 720), Image.ANTIALIAS)
     beginning = ImageTk.PhotoImage(beginning)
@@ -34,29 +40,25 @@ def start_game(window, data):
     start_scene.image = beginning
     start_scene.pack(fill = "both")
 
-    name_list = tk.Label(window, text = "製作者：王敏行、劉健榮、羅士軒、陳利煌、周匯森、何峻德", font = f)
+    name_list = tk.Label(window, text = "製作者：王敏行、劉健榮、羅士軒、陳利煌、周匯森、何峻德", font = beginning_f)
     name_list.place(x = 640-name_list.winfo_reqwidth()/2, y = 660)
 
-    start_button = tk.Button(window, text = "遊戲開始",width = 7, font = f, command = lambda: [press_start_game(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
+    start_button = tk.Button(window, text = "遊戲開始",width = 7, font = beginning_f, command = lambda: [press_start_game(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
     start_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 250)
 
-    load_button = tk.Button(window, text = "讀檔開始",width = 7, font = f, command = lambda: [sl.load(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
+    load_button = tk.Button(window, text = "讀檔開始",width = 7, font = beginning_f, command = lambda: [sl.load(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
     load_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 320)
 
 def beginning_story(window, data):
 
-    f = tk.font.Font(size = 42)
-
-    # window.configure(bg="white")
     night = Image.open("figure/night.png")
-    # night = night.resize((1280, 720), Image.ANTIALIAS) 
     night = ImageTk.PhotoImage(night)
     background = tk.Label(window, image = night)
     background.image = night
     background.pack()
 
-    back_room_button = tk.Button(window, text = "回書房開信", font = f, relief = "solid", command = lambda: [press_back_room_button(window, background, back_room_button, data), sound.play_button_sound()])
-    back_room_button.place(x = 880, y = 500)
+    back_room_button = tk.Button(window, text = "回書房開信", font = open_letter_f, relief = "solid", command = lambda: [press_back_room_button(window, background, back_room_button, data), sound.play_button_sound()])
+    back_room_button.place(x = 1080 - 200, y = 720 - 200)
 
 
 def press_back_room_button(window, background, back_room_button, data):
@@ -66,8 +68,6 @@ def press_back_room_button(window, background, back_room_button, data):
 
 
 def input_basic_data(window, data):
-    f = tk.font.Font(size = 32)
-    check_f = tk.font.Font(size = 16)
 
     widgets = []
 
@@ -112,7 +112,7 @@ def input_basic_data(window, data):
     small_bg.place(x = 975, y = 130)
     widgets.append(small_bg)
 
-    confirmation = tk.Label(window, text = "資料確認", font = f)
+    confirmation = tk.Label(window, text = "資料確認", font = confirm_f)
     confirmation.place(x = 975+small_bg.winfo_reqwidth()/2-confirmation.winfo_reqwidth()/2, y = 155)
     widgets.append(confirmation)
 
@@ -140,7 +140,7 @@ def input_basic_data(window, data):
     printButton = tk.Button(window,
                             text = "確認",
                             font = check_f, 
-                            command = lambda: [save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, window, endButton, check_f, small_bg.winfo_reqwidth()), sound.play_button_sound()])
+                            command = lambda: [save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, window, endButton, small_bg.winfo_reqwidth()), sound.play_button_sound()])
     printButton.place(x = 975+small_bg.winfo_reqwidth()/2-printButton.winfo_reqwidth()/2, y = 260)
     widgets.append(printButton)
 
@@ -157,7 +157,7 @@ def input_basic_data(window, data):
     widgets.append(CsCsButton)
 
 
-def save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, frame, endButton, check_f, length):
+def save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, frame, endButton, length):
     sex = ""
     if (var1.get() + var2.get() == 1) and inputtxt.get(1.0, "end-1c") != "":        
         if (var1.get() == 1) and (var2.get() == 0):
@@ -189,7 +189,7 @@ def end_input(window, data, widgets):
 
 
 def read_letter(window, data):
-    sound.play_background_music("夜晚")
+    sound.play_background_music("night")
     desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
@@ -204,10 +204,6 @@ def read_letter(window, data):
     small_bg.image = white
     small_bg.place(x = 640-small_bg.winfo_reqwidth()/2, y = 10)
 
-    title_f = tk.font.Font(size = 36)
-    subtitle_f = tk.font.Font(size = 32)
-    f = tk.font.Font(size = 20)
-
     # 傳入句子多長要換行和讀檔名稱
     read_data = read.read_file(41, "beginning1.txt")
     read_data.insert(0, f"受文者：{data['name']}")
@@ -220,7 +216,7 @@ def read_letter(window, data):
         elif i == 1:
             text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
@@ -229,7 +225,7 @@ def read_letter(window, data):
         else:
             text[i].place(x = 220, y = 100 + text[i].winfo_reqheight() * i)
 
-    flip_button = tk.Button(window, text = "翻面", font = f, command = lambda: [press_flip_button(window, data, text, background, small_bg), sound.play_button_sound()])
+    flip_button = tk.Button(window, text = "翻面", font = content_f, command = lambda: [press_flip_button(window, data, text, background, small_bg), sound.play_button_sound()])
     flip_button.place(x = 1000, y = 625)
 
     text.append(flip_button)
@@ -239,26 +235,24 @@ def read_letter(window, data):
 def press_flip_button(window, data, used_widgets, widget1, widget2):
     for widget in used_widgets:
         widget.destroy()
-    
-    f = tk.font.Font(size = 20)
 
     read_data = read.read_file(45, "beginning2.txt")
 
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = content_f))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
 
         if i == 0:
             text[i].place(x = 180, y = 30)
         else:
             text[i].place(x = 180, y = 30 + text[i].winfo_reqheight() * i)
 
-    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
+    check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = content_f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
     check_ability_button.place(x = 800, y = 620)
 
     text.append(check_ability_button)
@@ -268,9 +262,6 @@ def press_flip_button(window, data, used_widgets, widget1, widget2):
 def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     for widget in used_widgets:
         widget.destroy()
-    
-    title_f = tk.font.Font(size = 36)
-    f = tk.font.Font(size = 20)
 
     read_data = ["各項能力檢驗量表"]
     read_data.append("下面是你各項能力值的分佈，你有四年的時間好好培養，期待你的表現")
@@ -280,7 +271,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
         if i == 0:
             text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)

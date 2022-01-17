@@ -2,9 +2,16 @@ import tkinter as tk
 import tkinter.font as tkFont
 from PIL import ImageTk, Image
 import function.status as status
-import function.觸發事件判定 as check
+import function.check_event_trigger as check
 import function.sound_effect as sound
 
+f = tkFont.Font(size = 24)
+title_f = tkFont.Font(size = 48)
+week_f = tkFont.Font(size = 16)
+money_f = tk.font.Font(size = 30)
+abi_f = tk.font.Font(size = 24)
+text_f = tkFont.Font(size=20)
+button_f = tkFont.Font(size=24)
 
 class Schedule:
 
@@ -17,10 +24,6 @@ class Schedule:
 
     def createWidgets(self, window, data):
         widgets = []
-        f = tkFont.Font(size = 24)
-        title_f = tkFont.Font(size = 48)
-        week_f = tkFont.Font(size = 16)
-
         clicked = []
         options = []
         class_time = list(self.classes.keys())
@@ -182,7 +185,6 @@ class Schedule:
         subtitle3.place(x=975, y=180)
         subtitle4.place(x=975, y=220)
 
-        money_f = tk.font.Font(size = 30)
         moneyLabel = tk.Label(window, text = f"錢包：{data['status'].money}元", font = money_f)
         moneyLabel.place(x = 1000, y = 640)
 
@@ -201,13 +203,11 @@ class Schedule:
         data["picked_schedule"] = result
 
         moneyLabel.destroy()
-        money_f = tk.font.Font(size = 30)
         moneyLabel = tk.Label(data["status"].display, text = f"錢包：{data['status'].money}元", font = money_f)
         moneyLabel.place(x = 1000, y = 640)
         used_widgets.append(moneyLabel)
 
         abilityLabel.destroy()
-        abi_f = tk.font.Font(size = 24)
         abilityLabel = tk.Label(data["status"].display, text = f"你的能力值\n魅力：{data['status'].charm}  體能：{data['status'].fitness}  社交能力：{data['status'].social}  健康：{data['status'].health}  智慧：{data['status'].wisdom}", font = abi_f)
         abilityLabel.place(x = 50, y = 620)
         used_widgets.append(abilityLabel)
@@ -217,9 +217,52 @@ class Schedule:
         else:
             show_cash_flow(data["status"].display, data, used_widgets)
 
-        
+
+
+def you_drank_coffee(window, data, money_need, widgets):
+    # Cute Pic Creation
+
+    coffee_pic = Image.open("figure/coffee.jpeg")
+    coffee_pic = coffee_pic.resize((300, 219), Image.ANTIALIAS)
+    coffee_pic = ImageTk.PhotoImage(coffee_pic)
+    coffee = tk.Label(window, image=coffee_pic, bd=4, relief="raised")
+    coffee.image = coffee_pic
+    coffee.place(x=947, y=340)
+    widgets.append(coffee)
+
+    # Label Creation
+    lbl = tk.Label(window, text=f"精力值不足\n你花了{money_need}元購買咖啡...", font=text_f, bg="#bebfbe", relief="raised")
+    lbl.place(x=950+coffee.winfo_reqwidth()/2-lbl.winfo_reqwidth()/2, y=275)
+    widgets.append(lbl)
+
+    show_cash_flow(data["status"].display, data, widgets)
+
+
+def show_cash_flow(window, data, widgets):
+    revenueLabel = tk.Label(window, text = f"收入-打工:{data['status'].cash_flow['打工']}元", font = text_f)
+    expenseLabel = tk.Label(window, text = f"支出-健身:{-data['status'].cash_flow['健身']}元、約會:{-data['status'].cash_flow['約會']}元、社交:{-data['status'].cash_flow['社交']}元、月伙食費:{-data['status'].cash_flow['月伙食費']}元", font = text_f)
+    revenueLabel.place(x = 50, y = 550)
+    expenseLabel.place(x = 50, y = 575)
+    widgets.append(revenueLabel)
+    widgets.append(expenseLabel)
+
+    for key in data["status"].cash_flow.keys():
+        data["status"].cash_flow[key] = 0
+
+    # Button Creation
+
+    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), sound.play_button_sound(), check.check_event(data)])
+    continueButton.place(x=810, y=640)
+    widgets.append(continueButton)
+
+
+def destroy_widgets(widgets):
+    for widget in widgets:
+        widget.destroy()
+
+
 def get_new_schedule(window, selected_class, data, is_new_semester):
-    sound.play_background_music("正式遊戲背景音樂")
+    sound.play_background_music("main_bgm")
     # 傳入格式
     # selected_class = {"1-1":"A課", "2-2":"B課", "4-3":"C課"}
     selected_class_list = list(selected_class.items())
@@ -244,50 +287,3 @@ def get_new_schedule(window, selected_class, data, is_new_semester):
     window.configure(background="#eeefee")
     sch = Schedule(selected_class, data["picked_schedule"], options)
     sch.createWidgets(window, data)
-
-
-def you_drank_coffee(window, data, money_need, widgets):
-    f = tkFont.Font(size=20)
-
-    # Cute Pic Creation
-
-    coffee_pic = Image.open("figure/coffee.jpeg")
-    coffee_pic = coffee_pic.resize((300, 219), Image.ANTIALIAS)
-    coffee_pic = ImageTk.PhotoImage(coffee_pic)
-    coffee = tk.Label(window, image=coffee_pic, bd=4, relief="raised")
-    coffee.image = coffee_pic
-    coffee.place(x=947, y=340)
-    widgets.append(coffee)
-
-    # Label Creation
-    lbl = tk.Label(window, text=f"精力值不足\n你花了{money_need}元購買咖啡...", font=f, bg="#bebfbe", relief="raised")
-    lbl.place(x=950+coffee.winfo_reqwidth()/2-lbl.winfo_reqwidth()/2, y=275)
-    widgets.append(lbl)
-
-    show_cash_flow(data["status"].display, data, widgets)
-
-
-def show_cash_flow(window, data, widgets):
-    f = tkFont.Font(size=20)
-    button_f = tkFont.Font(size=24)
-
-    revenueLabel = tk.Label(window, text = f"收入-打工:{data['status'].cash_flow['打工']}元", font = f)
-    expenseLabel = tk.Label(window, text = f"支出-健身:{-data['status'].cash_flow['健身']}元、約會:{-data['status'].cash_flow['約會']}元、社交:{-data['status'].cash_flow['社交']}元、月伙食費:{-data['status'].cash_flow['月伙食費']}元", font = f)
-    revenueLabel.place(x = 50, y = 550)
-    expenseLabel.place(x = 50, y = 575)
-    widgets.append(revenueLabel)
-    widgets.append(expenseLabel)
-
-    for key in data["status"].cash_flow.keys():
-        data["status"].cash_flow[key] = 0
-
-    # Button Creation
-
-    continueButton = tk.Button(window, text="繼續", width=5, font=button_f, command=lambda: [destroy_widgets(widgets), sound.play_button_sound(), check.check_event(data)])
-    continueButton.place(x=810, y=640)
-    widgets.append(continueButton)
-
-
-def destroy_widgets(widgets):
-    for widget in widgets:
-        widget.destroy()
