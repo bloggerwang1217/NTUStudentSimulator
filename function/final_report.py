@@ -162,7 +162,7 @@ def press_receipt_button(window, data, used_widgets, background, small_bg):
 
     for key in data["status"].cash_flow.keys():
         if data["status"].cash_flow[key] != 0:
-            if empty:
+            if expense_empty:
                 read_data.append("支出：")
                 expense_empty = False
             read_data.append(f"{key}：{-data['status'].cash_flow[key]}元")
