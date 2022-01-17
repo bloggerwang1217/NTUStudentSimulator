@@ -16,6 +16,7 @@ grade_f = tk.font.Font(size = 28)
 f = tk.font.Font(size = 20)
 name_f = tk.font.Font(size = 30)
 
+
 def show_final_report(window, data, grades):
     sound.play_background_music("night")
     desk = Image.open("figure/desk_texture.jpeg")
@@ -153,7 +154,7 @@ def press_receipt_button(window, data, used_widgets, background, small_bg):
 
     if data["status"].cash_flow["書卷獎"] != 0:
         read_data.append("收入：")
-        read_data.append(f"{key}：{data['status'].cash_flow['書卷獎']}元")
+        read_data.append(f"{'書卷獎'}：{data['status'].cash_flow['書卷獎']}元")
         data["status"].cash_flow["書卷獎"] = 0
         revenue_empty = False
 

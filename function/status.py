@@ -551,7 +551,7 @@ def event_adjust(status, event_name, choice):
             return
         else:
             status.yang_sheng -= 50
-            status.wisdom += 100
+            status.wisdom += 60
             status.grade += 25
             return
     elif event_name == "參加研究專案":
