@@ -72,7 +72,7 @@ def Vtuber_or_Not():  # 推坑Vt
 
 def Study_or_not():  # 參加讀書會
     global study_freq, status
-    if status.wisdom > 85 and status.wisdom <  100 and\
+    if status.wisdom > 75 and status.wisdom <  150 and\
        status.social > 70 and study_freq:
         study_freq = False
         return True
@@ -82,7 +82,7 @@ def Study_or_not():  # 參加讀書會
 
 def Research_or_not():  # 參加研究專案
     global res_freq, status
-    if status.wisdom > 100 and status.wisdom < 115 and\
+    if status.wisdom > 225 and status.wisdom < 300 and\
        status.social > 70 and res_freq:
         res_freq = False
         return True

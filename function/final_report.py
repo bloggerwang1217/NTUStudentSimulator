@@ -12,6 +12,7 @@ import function.course_selection as cs
 
 title_f = tk.font.Font(size = 36)
 subtitle_f = tk.font.Font(size = 32)
+grade_f = tk.font.Font(size = 28)
 f = tk.font.Font(size = 20)
 name_f = tk.font.Font(size = 30)
 
@@ -81,7 +82,7 @@ def press_flip_button(window, data, used_widgets, background, small_bg, grades):
             text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 30)
         else:
-            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = f))
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = grade_f))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
     if class_A_plus == 3:
@@ -133,7 +134,7 @@ def press_check_ability_button(window, data, used_widgets, background, small_bg)
     ability.image = ability_graph
     ability.place(x = 640 - small_bg.winfo_reqwidth()/2.3, y = 140)
     
-    receipt_button = tk.Button(window, text = "看學期收據", font = f, command = lambda: [press_receipt_button(window, data, text), sound.play_button_sound()])
+    receipt_button = tk.Button(window, text = "看學期收據", font = f, command = lambda: [press_receipt_button(window, data, text, background, small_bg), sound.play_button_sound()])
     receipt_button.place(x = 850, y = 620)
 
     text.append(receipt_button)
