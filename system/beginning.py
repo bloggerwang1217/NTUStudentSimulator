@@ -291,7 +291,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     ability.place(x = 640 - widget2.winfo_reqwidth()/2.3, y = 140)
     
 
-    go_course_selecting_button = tk.Button(window, text = "進入選課系統選課囉！", font = f, command = lambda: [press_go_course_selecting_button(window, data, text), sound.play_button_sound()])
+    go_course_selecting_button = tk.Button(window, text = "進入選課系統選課囉！", font = content_f, command = lambda: [press_go_course_selecting_button(window, data, text), sound.play_button_sound()])
     go_course_selecting_button.place(x = 850, y = 620)
 
     text.append(widget1)
