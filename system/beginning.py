@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
 import function.read_file as read
-import function.初始能力值設定 as init_abi
-import function.結算能力值圖片產生 as graph_abi
+import function.init_ability as init_abi
+import function.graph_ability_figure as graph_abi
 import function.course_selection as cs
 import function.status as status
 import function.sound_effect as sound
@@ -16,15 +16,15 @@ def destroy_widgets(used_widgets):
 
 
 def press_start_game(window, data):
-    sound.play_background_music("閱讀信封場景")
+    sound.play_background_music("read_letter_theme")
     beginning_story(window, data)
 
 
 def start_game(window, data):
 
-    sound.play_background_music("封面背景音樂")
+    sound.play_background_music("title_bgm")
 
-    f = tk.font.Font(size = 28)
+    f = tk.font.Font(font = "TaipeiSans", size = 28)
 
     beginning = Image.open("figure/beginning.png")
     beginning = beginning.resize((1280, 720), Image.ANTIALIAS)

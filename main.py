@@ -1,5 +1,12 @@
 import system.beginning as bg
 import tkinter as tk
+from fontTools.ttLib import TTFont
+import os
+
+
+path = os.getcwd()
+# TaipeiSans = TTFont('TaipeiSansTCBeta-Regular.ttf')
+# TaipeiSans.save(f'{path}/TaipeiSansTCBeta-Regular.ttf')
 
 window = tk.Tk()
 window.geometry("1280x720")

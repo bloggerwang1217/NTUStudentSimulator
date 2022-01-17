@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
-import function.結算能力值圖片產生 as graph_abi
-import function.結算評分值圖片產生 as graph_sco
+import function.graph_ability_figure as graph_abi
+import function.graph_score_figure as graph_sco
 import function.status as status
 import function.sound_effect as sound
 import function.achievement as achievement

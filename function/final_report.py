@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import font 
 from PIL import ImageTk, Image
-import function.初始能力值設定 as init_abi
-import function.結算能力值圖片產生 as graph_abi
-import function.暑假事件選擇 as summer
+import function.init_ability as init_abi
+import function.graph_ability_figure as graph_abi
+import function.choose_summer_event as summer
 import function.status as status
 import function.read_file as read
 import function.sound_effect as sound
