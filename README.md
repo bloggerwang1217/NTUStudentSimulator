@@ -26,5 +26,5 @@
 	- pip3 install Pillow
 	- pip3 install matplotlib
 	- pip3 install pygame
-	- pip3 install tkinter
+	- pip3 install tk
 - 在NTUStudentSimulator的資料夾內執行main.py即可開始遊戲
