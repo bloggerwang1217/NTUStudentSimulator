@@ -8,14 +8,24 @@ import function.course_selection as cs
 import function.status as status
 import function.sound_effect as sound
 import function.save_load as sl
+import sys
 
-beginning_f = tk.font.Font(size = 28)
-open_letter_f = tk.font.Font(size = 42)
-confirm_f = tk.font.Font(size = 32)
-check_f = tk.font.Font(size = 16)
-title_f = tk.font.Font(size = 36)
-subtitle_f = tk.font.Font(size = 32)
-content_f = tk.font.Font(size = 20)
+if sys.platform == "darwin":
+    beginning_f = tk.font.Font(size = 28)
+    open_letter_f = tk.font.Font(size = 42)
+    confirm_f = tk.font.Font(size = 32)
+    check_f = tk.font.Font(size = 16)
+    title_f = tk.font.Font(size = 36)
+    subtitle_f = tk.font.Font(size = 32)
+    content_f = tk.font.Font(size = 20)
+else:
+    beginning_f = tk.font.Font(size = 20)
+    open_letter_f = tk.font.Font(size = 24)
+    confirm_f = tk.font.Font(size = 24)
+    check_f = tk.font.Font(size = 8)
+    title_f = tk.font.Font(size = 26)
+    subtitle_f = tk.font.Font(size = 24)
+    content_f = tk.font.Font(size = 12)
 
 
 def destroy_widgets(used_widgets):
