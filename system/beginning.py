@@ -8,7 +8,6 @@ import function.course_selection as cs
 import function.status as status
 import function.sound_effect as sound
 import function.save_load as sl
-from function.path import path_transformation as path
 
 beginning_f = tk.font.Font(size = 28)
 open_letter_f = tk.font.Font(size = 42)
@@ -79,7 +78,7 @@ def input_basic_data(window, data):
     back_ground.pack()
     widgets.append(back_ground)
 
-    letter_of_admission = Image.open(path("figure/letter_of_admission.png"))
+    letter_of_admission = Image.open("figure/letter_of_admission.png")
     letter_of_admission = letter_of_admission.resize((829, 600), Image.ANTIALIAS)
     letter_of_admission = ImageTk.PhotoImage(letter_of_admission)
     letter = tk.Label(window, image = letter_of_admission)
@@ -190,7 +189,7 @@ def end_input(window, data, widgets):
 
 def read_letter(window, data):
     sound.play_background_music("night")
-    desk = Image.open(path("figure/desk_texture.jpeg"))
+    desk = Image.open("figure/desk_texture.jpeg")
     desk = desk.resize((1280, 720), Image.ANTIALIAS)
     desk = ImageTk.PhotoImage(desk)
     background = tk.Label(window, image = desk)
@@ -285,7 +284,7 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     time = graph_abi.abi_illu(wisdom, charm, fitness, social, health)
     data["ability_graph"] = []
     data["ability_graph"].append(time)
-    ability_graph = Image.open(path(f"figure/ability/{time}.png"))
+    ability_graph = Image.open(f"figure/ability/{time}.png")
     ability_graph = ImageTk.PhotoImage(ability_graph)
     ability = tk.Label(window, image = ability_graph)
     ability.image = ability_graph
