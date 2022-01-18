@@ -16,8 +16,8 @@ if sys.platform == "darwin":
     title_f = tk.font.Font(size = 48)
 else:
     f = tk.font.Font(size = 16)
-    list_f = tk.font.Font(size = 8)
-    button_f = tk.font.Font(size = 16)
+    list_f = tk.font.Font(size = 16)
+    button_f = tk.font.Font(size = 28)
     title_f = tk.font.Font(size = 40)
 
 
@@ -167,13 +167,13 @@ def display_course(window, data, used_widgets, picked_course_from_menu):
     title.pack()
     widgets.append(title)
 
-    text_title = tk.Label(window, text = "選課結果", fg = "#712322", font = title_f)
+    text_title = tk.Label(window, text = "選課結果", fg = "#712322", font = title_f, bg = "white")
     text_title.place(x = 640 - text_title.winfo_reqwidth()/2, y = title.winfo_reqheight())
     widgets.append(text_title)
 
-    course1 = tk.Label(window, text = f"1.{picked_course[0]}, 時間:{time[picked_time[0]]}\n", font = f)
-    course2 = tk.Label(window, text = f"2.{picked_course[1]}, 時間:{time[picked_time[1]]}\n", font = f)
-    course3 = tk.Label(window, text = f"3.{picked_course[2]}, 時間:{time[picked_time[2]]}\n", font = f)
+    course1 = tk.Label(window, text = f"1.{picked_course[0]}, 時間:{time[picked_time[0]]}\n", font = f, bg = "white")
+    course2 = tk.Label(window, text = f"2.{picked_course[1]}, 時間:{time[picked_time[1]]}\n", font = f, bg = "white")
+    course3 = tk.Label(window, text = f"3.{picked_course[2]}, 時間:{time[picked_time[2]]}\n", font = f, bg = "white")
     course1.place(x = 640 - 3 * text_title.winfo_reqwidth()/4, y = title.winfo_reqheight()+course1.winfo_reqheight()*2)
     course2.place(x = 640 - 3 * text_title.winfo_reqwidth()/4, y = title.winfo_reqheight()+course2.winfo_reqheight()*4)
     course3.place(x = 640 - 3 * text_title.winfo_reqwidth()/4, y = title.winfo_reqheight()+course3.winfo_reqheight()*6)    

@@ -57,18 +57,17 @@ class Schedule:
         background = tk.Label(window, image = schedule)
         widgets.append(background)
 
-        # self.imageNTU = ImageTk.PhotoImage(file = "figure/ntu.png")
-        # self.NTUButton = tk.Button(window, image = self.imageNTU)
-        MonLabel = tk.Label(window, text = " 星期一 ", font = week_f, bg = "#3895b9", fg = "white")
-        TueLabel = tk.Label(window, text = " 星期二 ", font = week_f, bg = "#3895b9", fg = "white")
-        WedLabel = tk.Label(window, text = " 星期三 ", font = week_f, bg = "#3895b9", fg = "white")
-        ThuLabel = tk.Label(window, text = " 星期四 ", font = week_f, bg = "#3895b9", fg = "white")
-        FriLabel = tk.Label(window, text = " 星期五 ", font = week_f, bg = "#3895b9", fg = "white")
-        widgets.append(MonLabel)
-        widgets.append(TueLabel)
-        widgets.append(WedLabel)
-        widgets.append(ThuLabel)
-        widgets.append(FriLabel)
+        if sys.platform == "darwin":
+            MonLabel = tk.Label(window, text = " 星期一 ", font = week_f, bg = "#3895b9", fg = "white")
+            TueLabel = tk.Label(window, text = " 星期二 ", font = week_f, bg = "#3895b9", fg = "white")
+            WedLabel = tk.Label(window, text = " 星期三 ", font = week_f, bg = "#3895b9", fg = "white")
+            ThuLabel = tk.Label(window, text = " 星期四 ", font = week_f, bg = "#3895b9", fg = "white")
+            FriLabel = tk.Label(window, text = " 星期五 ", font = week_f, bg = "#3895b9", fg = "white")
+            widgets.append(MonLabel)
+            widgets.append(TueLabel)
+            widgets.append(WedLabel)
+            widgets.append(ThuLabel)
+            widgets.append(FriLabel)
 
         MorningLabel = tk.Label(window, text = "早上", height = 1, width = 4, font = f, bg= "#eeefee")
         MonMorningList = tk.OptionMenu(window, clicked[0][0], *options[0][0])
@@ -154,12 +153,12 @@ class Schedule:
         background.place(x=0, y=0)
 
 
-        # NTUButton.place(x=20, y=50)
-        MonLabel.place(x=150, y=8)
-        TueLabel.place(x=315, y=8)
-        WedLabel.place(x=478, y=8)
-        ThuLabel.place(x=642, y=8)
-        FriLabel.place(x=807, y=8)
+        if sys.platform == "darwin":
+            MonLabel.place(x=150, y=8)
+            TueLabel.place(x=315, y=8)
+            WedLabel.place(x=478, y=8)
+            ThuLabel.place(x=642, y=8)
+            FriLabel.place(x=807, y=8)
 
         MorningLabel.place(x=20, y=100)
         MonMorningList.place(x=155, y=100)
@@ -257,7 +256,7 @@ def show_cash_flow(window, data, widgets):
     widgets.append(revenueLabel)
     widgets.append(expenseLabel)
 
-    for key in data["status"].cash_flow.keys():
+    for key in ["咖啡", "健身", "約會", "社交", "打工", "月伙食費"]:
         data["status"].cash_flow[key] = 0
 
     # Button Creation

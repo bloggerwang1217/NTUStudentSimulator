@@ -12,6 +12,7 @@ else:
 
 
 def choose_summer_event(data):
+    sound.play_background_music("main_bgm")
     background = tk.Canvas(data["status"].display, width = 1280, height = 720)
 
     beach = Image.open("figure/summer_vacation.jpeg")

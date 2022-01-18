@@ -13,13 +13,13 @@ import sys
 
 if sys.platform == "darwin":
     title_f = tk.font.Font(size = 36)
-    subtitle_f = tk.font.Font(size = 32)
+    subtitle_f = tk.font.Font(size = 28)
     grade_f = tk.font.Font(size = 28)
     f = tk.font.Font(size = 20)
     name_f = tk.font.Font(size = 30)
 else:
     title_f = tk.font.Font(size = 28)
-    subtitle_f = tk.font.Font(size = 24)
+    subtitle_f = tk.font.Font(size = 20)
     grade_f = tk.font.Font(size = 20)
     f = tk.font.Font(size = 14)
     name_f = tk.font.Font(size = 22)
@@ -49,11 +49,11 @@ def show_final_report(window, data, grades):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f, bg = "white"))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f, bg = "white"))
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f, bg = "white"))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
@@ -125,9 +125,9 @@ def press_check_ability_button(window, data, used_widgets, background, small_bg)
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f, bg = "white"))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f, bg = "white"))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
@@ -184,11 +184,11 @@ def press_receipt_button(window, data, used_widgets, background, small_bg):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f, bg = "white"))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f, bg = "white"))
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f, bg = "white"))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
