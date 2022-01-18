@@ -43,10 +43,10 @@ def start_game(window, data):
     name_list = tk.Label(window, text = "製作者：王敏行、劉健榮、羅士軒、陳利煌、周匯森、何峻德", font = beginning_f)
     name_list.place(x = 640-name_list.winfo_reqwidth()/2, y = 660)
 
-    start_button = tk.Button(window, text = "遊戲開始",width = 7, font = beginning_f, command = lambda: [press_start_game(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
+    start_button = tk.Button(window, text = "遊戲開始", font = beginning_f, command = lambda: [press_start_game(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
     start_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 250)
 
-    load_button = tk.Button(window, text = "讀檔開始",width = 7, font = beginning_f, command = lambda: [sl.load(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
+    load_button = tk.Button(window, text = "讀檔開始", font = beginning_f, command = lambda: [sl.load(window, data), destroy_widgets([start_scene, start_button, name_list, load_button]), sound.enter_game_button_sound()])
     load_button.place(x = 640-start_button.winfo_reqwidth()/2, y = 320)
 
 def beginning_story(window, data):
