@@ -25,7 +25,7 @@ else:
     check_f = tk.font.Font(size = 8)
     title_f = tk.font.Font(size = 26)
     subtitle_f = tk.font.Font(size = 24)
-    content_f = tk.font.Font(size = 12)
+    content_f = tk.font.Font(size = 16)
 
 
 def destroy_widgets(used_widgets):
@@ -97,7 +97,7 @@ def input_basic_data(window, data):
     widgets.append(letter)
 
     # TextBox Creation
-    description = tk.Label(window, text = "姓名輸入（無法顯示注音，但仍可方向鍵選字）")
+    description = tk.Label(window, text = "姓名輸入（無法顯示注音，但仍可方向鍵選字）", bg = "white")
     description.place(x = 450-description.winfo_reqwidth()/2, y = 265)
     widgets.append(description)
 
@@ -109,7 +109,7 @@ def input_basic_data(window, data):
     inputtxt.place(x = 450-inputtxt.winfo_reqwidth()/2, y = 290)
     widgets.append(inputtxt)
 
-    after_imputtxt = tk.Label(window, text = "同學       收", font = confirm_f)
+    after_imputtxt = tk.Label(window, text = "同學       收", font = confirm_f, bg = "white")
     after_imputtxt.place(x = 510+after_imputtxt.winfo_reqwidth()/2, y = 290)
     widgets.append(after_imputtxt)
 
@@ -121,22 +121,22 @@ def input_basic_data(window, data):
     small_bg.place(x = 975, y = 130)
     widgets.append(small_bg)
 
-    confirmation = tk.Label(window, text = "資料確認", font = confirm_f)
+    confirmation = tk.Label(window, text = "資料確認", font = confirm_f, bg = "white")
     confirmation.place(x = 975+small_bg.winfo_reqwidth()/2-confirmation.winfo_reqwidth()/2, y = 155)
     widgets.append(confirmation)
 
     var1 = tk.IntVar()
     var2 = tk.IntVar()
-    c1 = tk.Checkbutton(window, text="男性",font = check_f, variable=var1, onvalue=1, offvalue=0, command = sound.play_button_sound)
+    c1 = tk.Checkbutton(window, text="男性", font = check_f, bg = "white", variable=var1, onvalue=1, offvalue=0, command = sound.play_button_sound)
     c1.place(x = 1000, y = 220)
-    c2 = tk.Checkbutton(window, text='女性',font = check_f, variable=var2, onvalue=1, offvalue=0, command = sound.play_button_sound)
+    c2 = tk.Checkbutton(window, text='女性', font = check_f, bg = "white", variable=var2, onvalue=1, offvalue=0, command = sound.play_button_sound)
     c2.place(x = 1100, y = 220)
     widgets.append(c1)
     widgets.append(c2)
 
     # Label Creation
     lbl = tk.Label(window)
-    lbl.place(x = 990, y = 300)
+    lbl.place(x = 895 + small_bg.winfo_reqwidth()/2 - lbl.winfo_reqwidth()/2, y = 290)
     widgets.append(lbl)
 
     # Button Creation
@@ -157,6 +157,7 @@ def input_basic_data(window, data):
     CsCsButton = tk.Checkbutton(window,
                             text = "可以色色",
                             font = check_f, 
+                            bg = "white",
                             variable=yes_CsCs, 
                             onvalue=True,
                             offvalue=False,
@@ -168,22 +169,23 @@ def input_basic_data(window, data):
 
 def save_input(data, var1, var2, yes_CsCs, inputtxt, lbl, frame, endButton, length):
     sex = ""
+    inp = ""
     if (var1.get() + var2.get() == 1) and inputtxt.get(1.0, "end-1c") != "":        
         if (var1.get() == 1) and (var2.get() == 0):
             sex = "男性"
         elif (var1.get() == 0) & (var2.get() == 1):
             sex =  "女性"
         inp = inputtxt.get(1.0, "end-1c")
-        lbl.config(text = f"您的名字是\n「{inp}」\n{sex}\n不想重新輸入請按結束", font=check_f)
+        lbl.config(text = f"您的名字是\n「{inp}」\n{sex}\n不想重新輸入請按結束", font=check_f, bg = "white")
         endButton.place(x = 975+length/2-endButton.winfo_reqwidth()/2, y = 450)
 
     else:
         if inputtxt.get(1.0, "end-1c") == "":
-            lbl.config(text = f"          請輸入姓名", font=check_f)
+            lbl.config(text = f"          請輸入姓名", font=check_f, bg = "white")
             endButton.place_forget() 
         else:
             inp = inputtxt.get(1.0, "end-1c")
-            lbl.config(text = f"您的名字是\n「{inp}」\n請苟選一個最認同的性別", font=check_f)
+            lbl.config(text = f"您的名字是\n「{inp}」\n請苟選一個最認同的性別", font=check_f, bg = "white")
             endButton.place_forget()
     data["sex"] = sex
     data["name"] = inp
@@ -221,11 +223,11 @@ def read_letter(window, data):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f), bg = "white")
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f), bg = "white")
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f), bg = "white")
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
@@ -250,11 +252,11 @@ def press_flip_button(window, data, used_widgets, widget1, widget2):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = content_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = content_f), bg = "white")
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f), bg = "white")
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f), bg = "white")
 
         if i == 0:
             text[i].place(x = 180, y = 30)
@@ -278,9 +280,9 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f), bg = "white")
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = content_f), bg = "white")
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
