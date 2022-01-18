@@ -4,14 +4,25 @@ from PIL import ImageTk, Image
 import function.status as status
 import function.check_event_trigger as check
 import function.sound_effect as sound
+import sys
 
-f = tkFont.Font(size = 24)
-title_f = tkFont.Font(size = 48)
-week_f = tkFont.Font(size = 16)
-money_f = tk.font.Font(size = 30)
-abi_f = tk.font.Font(size = 24)
-text_f = tkFont.Font(size=20)
-button_f = tkFont.Font(size=24)
+if sys.platform == "darwin":
+    f = tkFont.Font(size = 24)
+    title_f = tkFont.Font(size = 48)
+    week_f = tkFont.Font(size = 16)
+    money_f = tk.font.Font(size = 30)
+    abi_f = tk.font.Font(size = 24)
+    text_f = tkFont.Font(size = 20)
+    button_f = tkFont.Font(size = 24)
+else:
+    f = tkFont.Font(size = 16)
+    title_f = tkFont.Font(size = 40)
+    week_f = tkFont.Font(size = 8)
+    money_f = tk.font.Font(size = 22)
+    abi_f = tk.font.Font(size = 16)
+    text_f = tkFont.Font(size = 12)
+    button_f = tkFont.Font(size = 16)
+
 
 class Schedule:
 

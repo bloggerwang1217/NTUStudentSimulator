@@ -9,12 +9,20 @@ import function.read_file as read
 import function.sound_effect as sound
 import function.show_event as show
 import function.course_selection as cs
+import sys
 
-title_f = tk.font.Font(size = 36)
-subtitle_f = tk.font.Font(size = 32)
-grade_f = tk.font.Font(size = 28)
-f = tk.font.Font(size = 20)
-name_f = tk.font.Font(size = 30)
+if sys.platform == "darwin":
+    title_f = tk.font.Font(size = 36)
+    subtitle_f = tk.font.Font(size = 32)
+    grade_f = tk.font.Font(size = 28)
+    f = tk.font.Font(size = 20)
+    name_f = tk.font.Font(size = 30)
+else:
+    title_f = tk.font.Font(size = 28)
+    subtitle_f = tk.font.Font(size = 24)
+    grade_f = tk.font.Font(size = 20)
+    f = tk.font.Font(size = 14)
+    name_f = tk.font.Font(size = 22)
 
 
 def show_final_report(window, data, grades):

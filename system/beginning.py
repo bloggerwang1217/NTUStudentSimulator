@@ -23,9 +23,9 @@ else:
     open_letter_f = tk.font.Font(size = 24)
     confirm_f = tk.font.Font(size = 24)
     check_f = tk.font.Font(size = 12)
-    title_f = tk.font.Font(size = 26)
+    title_f = tk.font.Font(size = 28)
     subtitle_f = tk.font.Font(size = 24)
-    content_f = tk.font.Font(size = 16)
+    content_f = tk.font.Font(size = 14)
 
 
 def destroy_widgets(used_widgets):

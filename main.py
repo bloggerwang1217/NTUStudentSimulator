@@ -1,5 +1,4 @@
 import tkinter as tk
-import sys
 
 window = tk.Tk()
 window.geometry("1280x720")

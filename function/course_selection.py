@@ -5,12 +5,21 @@ import function.status as status
 import function.sound_effect as sound
 import system.semester as semester
 import random
+import sys
 
 warning = "警示用全域變數"
-f = tk.font.Font(size = 24)
-list_f = tk.font.Font(size = 16)
-button_f = tk.font.Font(size = 36)
-title_f = tk.font.Font(size = 48)
+
+if sys.platform == "darwin":
+    f = tk.font.Font(size = 24)
+    list_f = tk.font.Font(size = 16)
+    button_f = tk.font.Font(size = 36)
+    title_f = tk.font.Font(size = 48)
+else:
+    f = tk.font.Font(size = 16)
+    list_f = tk.font.Font(size = 8)
+    button_f = tk.font.Font(size = 16)
+    title_f = tk.font.Font(size = 40)
+
 
 def course_selection(window, data):
     sound.play_background_music("main_bgm")

@@ -6,14 +6,20 @@ import function.graph_score_figure as graph_sco
 import function.status as status
 import function.sound_effect as sound
 import function.achievement as achievement
-import os
+import os, sys
 
 time = ""
 achievement_pics = []
 
-f1 = tk.font.Font(size = 16)
-f2 = tk.font.Font(size = 32)
-f = tk.font.Font(size = 30)
+if sys.platform == "darwin":
+    f1 = tk.font.Font(size = 16)
+    f2 = tk.font.Font(size = 32)
+    f = tk.font.Font(size = 30)
+else:
+    f1 = tk.font.Font(size = 8)
+    f2 = tk.font.Font(size = 16)
+    f = tk.font.Font(size = 22)
+
 
 def show_ending_graph(window, data):
     global time

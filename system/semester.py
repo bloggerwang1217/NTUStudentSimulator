@@ -5,13 +5,19 @@ import function.status as status
 import function.schedule as schedule
 import function.sound_effect as sound
 import function.save_load as sl
+import sys
+
+if sys.platform == "darwin":
+    title_f = tk.font.Font(size = 36)
+else:
+    title_f = tk.font.Font(size = 28)
 
 
 def start_semester(window, data, picked, time):
     name = {"大一上":"1", "大一下":"2", "大二上":"3", "大二下":"4","大三上":"5", "大三下":"6","大四上":"7","大四下":"8"}
 
     sound.play_background_music("title_bgm")
-    title_f = tk.font.Font(size = 36)
+
     data["time"] = time
     data["previous_event"] = "第一次排行程表"
 

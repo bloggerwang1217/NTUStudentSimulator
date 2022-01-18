@@ -1,4 +1,5 @@
 import csv
+from pathlib import Path
 
 
 def rearrange(line_len, ori_text):
@@ -12,7 +13,7 @@ def rearrange(line_len, ori_text):
 
 
 def read_file(line_len, file_name):
-    f = open(f"text/{file_name}", mode = "r", encoding = "utf-8")
+    f = open(Path(f"text/{file_name}"), mode = "r", encoding = "utf-8")
     text = f.readlines()
     seperated_text = []
     for line in text:
@@ -50,7 +51,7 @@ def get_course_type_dic(course_list):
 
 
 def read_event(event_type, name):
-    f = open(f"text/event/{event_type}/{name}.txt", mode = "r", encoding = "utf-8-sig")
+    f = open(Path(f"text/event/{event_type}/{name}.txt"), mode = "r", encoding = "utf-8-sig")
     text = f.readlines()
     seperated_text = []
     for line in text:

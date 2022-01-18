@@ -3,8 +3,12 @@ import tkinter.font
 from PIL import ImageTk, Image
 import function.show_event as show
 import function.sound_effect as sound
+import sys
 
-f = tk.font.Font(size = 28)
+if sys.platform == "darwin":
+    f = tk.font.Font(size = 28)
+else:
+    f = tk.font.Font(size = 20)
 
 
 def choose_summer_event(data):

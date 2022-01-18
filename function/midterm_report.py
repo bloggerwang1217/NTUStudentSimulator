@@ -7,11 +7,18 @@ import function.schedule as sch
 import function.status as status
 import function.read_file as read
 import function.sound_effect as sound
+import sys
 
-title_f = tk.font.Font(size = 36)
-subtitle_f = tk.font.Font(size = 32)
-grade_f = tk.font.Font(size = 28)
-f = tk.font.Font(size = 20)
+if sys.platform == "darwin":
+    title_f = tk.font.Font(size = 36)
+    subtitle_f = tk.font.Font(size = 32)
+    grade_f = tk.font.Font(size = 28)
+    f = tk.font.Font(size = 20)
+else:
+    title_f = tk.font.Font(size = 28)
+    subtitle_f = tk.font.Font(size = 24)
+    grade_f = tk.font.Font(size = 20)
+    f = tk.font.Font(size = 14)
 
 
 def show_midterm_report(window, data, grades):
@@ -38,11 +45,11 @@ def show_midterm_report(window, data, grades):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f, bg = "white"))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = subtitle_f, bg = "white"))
         else:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f, bg = "white"))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)
@@ -70,10 +77,10 @@ def press_flip_button(window, data, used_widgets, widget1, widget2, grades):
         show_grades.append(f"{item}:{grades[item]}分\n")
     for i in range(len(show_grades)): 
         if i == 0:
-            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = title_f, bg = "white"))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 30)
         else:
-            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = grade_f))
+            text.append(tk.Label(window, text = show_grades[i],fg = "black", font = grade_f, bg = "white"))
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 200 + text[i].winfo_reqheight() * i)
 
     check_ability_button = tk.Button(window, text = "你發現信封裡還有其他東西...", font = f, command = lambda: [press_check_ability_button(window, data, text, widget1, widget2), sound.play_button_sound()])
@@ -93,9 +100,9 @@ def press_check_ability_button(window, data, used_widgets, widget1, widget2):
     text = []
     for i in range(len(read_data)): 
         if i == 0:
-            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f))
+            text.append(tk.Label(window, text = read_data[i],fg = "black", font = title_f, bg = "white"))
         elif i == 1:
-            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f))
+            text.append(tk.Label(window, text = read_data[i].strip("\n"),fg = "black", font = f, bg = "white"))
 
         if i == 0:
             text[i].place(x = 640 - text[i].winfo_reqwidth()/2, y = 25)

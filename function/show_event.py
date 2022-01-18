@@ -7,13 +7,20 @@ import function.schedule as sch
 import function.sound_effect as sound
 import function.course_selection as cs
 import system.ending as ending
+import sys
 
 reach_event_type, reach_name = "", ""
 
-f = tk.font.Font(size = 30)
-text_f = tk.font.Font(size = 28)
-name_f = tk.font.Font(size = 30)
-button_f = tk.font.Font(size = 36)
+if sys.platform == "darwin":
+    f = tk.font.Font(size = 30)
+    text_f = tk.font.Font(size = 28)
+    name_f = tk.font.Font(size = 30)
+    button_f = tk.font.Font(size = 36)
+else:
+    f = tk.font.Font(size = 22)
+    text_f = tk.font.Font(size = 20)
+    name_f = tk.font.Font(size = 22)
+    button_f = tk.font.Font(size = 28)
 
 
 def process_event(data, events):

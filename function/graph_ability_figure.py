@@ -6,7 +6,6 @@ from matplotlib import font_manager as fm
 from time import strftime, gmtime
 from datetime import datetime
 
-
 path = os.getcwd()
 
 title_f = fm.FontProperties(fname=f"{path}/TaipeiSansTCBeta-Regular.ttf", size = 20)
