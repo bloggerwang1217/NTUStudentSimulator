@@ -2,6 +2,8 @@ import function.status as status
 import function.read_file as read
 import system.semester as semester
 from pathlib import Path
+from os import fspath
+
 
 def save(data):
     data["status"].yang_sheng = int(data["status"].yang_sheng)
