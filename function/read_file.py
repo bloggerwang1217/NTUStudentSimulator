@@ -51,8 +51,8 @@ def get_course_type_dic(course_list):
     return course_dic
 
 
-def read_event(event_type, name):
-    f = open(fspath(Path(f"text/event/{event_type}/{name}.txt")), mode = "r", encoding = "utf-8-sig")
+def read_event(event_type, name , sex):
+    f = open(fspath(Path(f"text/event/{sex}/{event_type}/{name}.txt")), mode = "r", encoding = "utf-8-sig")
     text = f.readlines()
     seperated_text = []
     for line in text:

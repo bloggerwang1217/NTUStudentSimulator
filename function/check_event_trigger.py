@@ -282,9 +282,8 @@ def check_event(data):
         outputList.append('期中考')
     elif data["time"] == "大二下"  and data["previous_event"] == "第三次排行程表":
         data["previous_event"] = "第四次排行程表"
-        if data["sex"] == "男性":
-            outputList.append('必然事件:舞會1-男')
-            outputList.append('必然事件:舞會2-男')
+        outputList.append('必然事件:舞會1')
+        outputList.append('必然事件:舞會2')
         outputList.append('第四次排行程表')
     elif data["time"] == "大二下"  and data["previous_event"] == "第四次排行程表":
         data["previous_event"] = "期末考"

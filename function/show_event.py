@@ -48,9 +48,10 @@ def show_event(data, event_type, name):
     event_name = {"暑假事件":"summer_event", "觸發事件":"trigger_event", "必然事件":"necessary_event", "中途結束事件":"middle_end_event", "破關":"final_end_event"\
     , "打工":"part_time_job", "服務學習":"learning_service", "耍廢":"doing_nothing", "唸書":"studying", "規律作息":"regular_life", "陪另一半":"accompany", "虛擬貨幣":"virtual_currency", "債券":"bond", "ETF":"ETF", "當兵":"military_service"\
     , "不想努力了":"no_more_work", "參加研究專案":"joining_research_project", "參加讀書會":"joining_study_group", "婚姻抉擇":"marriage", "推坑Vt":"recommend_vtuber", "第一次約會":"first_date", "腳踏車被拖吊":"goodbye_to_bike", "獲得考古題":"getting_more_practice", "翹課打ㄆ":"sex_experiment", "懷孕":"pregnant"\
-    , "比賽":"competition", "打疫苗":"being_vaccinated", "系隊":"sport_game", "系學會":"college_stands", "健康檢查":"health_check", "實習":"internship", "舞會1-男":"prom1_boy", "舞會2-男":"prom2_boy", "聯誼":"social_meetup", "Elite":"Elite"\
+    , "比賽":"competition", "打疫苗":"being_vaccinated", "系隊":"sport_game", "系學會":"college_stands", "健康檢查":"health_check", "實習":"internship", "舞會1":"prom1", "舞會2":"prom2", "聯誼":"social_meetup", "Elite":"Elite"\
     , "被二一":"21", "轉生異世界":"reborn", "阿姨結束":"love_you_aunty", "破產":"bankrupt", "財富自由":"freedom_of_wealth", "火化":"burnt", "樓頂吹風":"so_cold_up_here", "轉學":"transfer_to_new_school", "明明是我先來的":"me_first"\
-    , "正常結局":"normal_end"}
+    , "正常結局":"normal_end"
+    , "男性":"boy", "女性":"girl"}
 
     data["choose_result"] = []
 
@@ -59,7 +60,7 @@ def show_event(data, event_type, name):
     reference = []
 
     sound.play_event_background_music(event_name[event_type], event_name[name])
-    background_image = Image.open(f"figure/event/{event_name[event_type]}/{event_name[name]}.jpg")
+    background_image = Image.open(f"figure/event/{event_name[data["sex"]]}/{event_name[event_type]}/{event_name[name]}.jpg")
     background_image = background_image.resize((1280, 720), Image.ANTIALIAS)
     background_image = ImageTk.PhotoImage(background_image)
     background.create_image(0,0, anchor=tk.NW, image=background_image)
@@ -74,8 +75,8 @@ def show_event(data, event_type, name):
 
     background.image = reference
 
-    # 傳入事件類別與事件名稱
-    text = read.read_event(event_type, name)
+    # 傳入事件類別、事件名稱及性別
+    text = read.read_event(event_name[event_type], event_name[name], event_name[data["sex"]])
 
     # 處理主人公名稱
     if (event_type == "必然事件" and name == "聯誼") or (event_type == "中途結束事件" and name == "明明是我先來的") or (event_type == "中途結束事件" and name == "轉生異世界") or (event_type == "必然事件" and name == "系隊"):

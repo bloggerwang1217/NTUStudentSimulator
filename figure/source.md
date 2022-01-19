@@ -1,6 +1,6 @@
 # 圖片資料來源
 
-## 事件
+## 事件（經Prisma軟體編輯）
 
 ### 必然事件
 1. Elite:https://miro.medium.com/max/4000/1*_Wl78Hq3jsFHUZpr8usHow.jpeg
@@ -11,8 +11,8 @@
 6. 系隊:https://www.ntu.edu.tw/spotlight/2021/2014_20211215_top.jpg
 7. 系學會:https://nckuiim.files.wordpress.com/2018/07/e5a4a7e59088e785a71.jpg?w=640
 8. 聯誼:https://udn.com/upf/newmedia/2016_vist/05/20160509_love_01/image/bg.jpg
-9. 舞會（舞會1-男）:https://www.google.com/url?sa=i&url=http%3A%2F%2Fclubs.ntust.edu.tw%2FIntroduction%2Factivity%2F2109%2F&psig=AOvVaw1PMO6q81OnZUeyszUUpxeK&ust=1641820609837000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCOivscrgpPUCFQAAAAAdAAAAABAD
-10. 啤酒比賽（舞會2-男）:https://images1.epochhk.com/pictures/90750/GettyImages-1005419002@1200x1200.jpg
+9. 舞會:https://www.google.com/url?sa=i&url=http%3A%2F%2Fclubs.ntust.edu.tw%2FIntroduction%2Factivity%2F2109%2F&psig=AOvVaw1PMO6q81OnZUeyszUUpxeK&ust=1641820609837000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCOivscrgpPUCFQAAAAAdAAAAABAD
+10. 啤酒比賽:https://images1.epochhk.com/pictures/90750/GettyImages-1005419002@1200x1200.jpg
 
 
 ### 暑假事件
@@ -20,17 +20,21 @@
 2. 打工:https://cdn2.ettoday.net/images/3116/d3116851.jpg
 3. 服務學習:https://www.google.com/url?sa=i&url=https%3A%2F%2Flife.tw%2F%3Fapp%3Dview%26no%3D424347&psig=AOvVaw0wh8F4O4vCi_7YEn-qa4fU&ust=1641821032855000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCPi78ozipPUCFQAAAAAdAAAAABAD
 4. 當兵:https://1.bp.blogspot.com/-kpMwef-B4Ns/XjkSDr7GYMI/AAAAAAABPro/ZD4M3rlQtwcSsoUjQqOQp0Z5h5nvpIbsQCLcBGAsYHQ/s1600/071022770883.jpg
-5. 耍廢:https://image4.thenewslens.com/2020/1/x8xnal5aw5uwedl734u03zqugvecxt.jpg?auto=compress&h=240&q=80&w=400
+5. 耍廢:https://dailyview.hk/popular/detail/4468
 6. 規律作息:https://cdn.hk01.com/di/media/images/2927657/org/6686c657865cf8df278fdfef0de3d6de.jpg/83WykzI08_9UgVF0h8-bO_S-caMK2PJWUoYMuVKGDLk?v=w1920r16_9
 7. 陪另一半:https://cp.cw1.tw/files/md5/28/03/28038cc77be3ae244cd7bcd7857cfaa8-199005.png
 8. 投資(ETF、債券、虛擬貨幣):https://n.sinaimg.cn/astro/transform/20160830/ZukE-fxvkkcf6316916.jpg
 
 
 ### 觸發事件
-1. 不想努力了:https://png.is/f/female-cafe-clerk/xframe_79632-202106170556.html
+1. 不想努力了:
+    - https://png.is/f/female-cafe-clerk/xframe_79632-202106170556.html
+    - https://acarpblog.com/2018/10/cafein.html
 2. 參加研究專案:https://cp.cw1.tw/files/md5/e7/6c/e76c7ef0953ddc6c25b8e27b3d2b300d-277145.jpg
 3. 參加讀書會:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBN38NeijDN_oOdoFL5srrfM3Q91IhQmNMkA&usqp=CAU
-4. 婚姻抉擇:https://www.google.com/url?sa=i&url=https%3A%2F%2Fdq.yam.com%2Fpost.php%3Fid%3D5622&psig=AOvVaw3_efd1it6iBSsnL_KsMwf4&ust=1641821554902000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCIiyv4XkpPUCFQAAAAAdAAAAABAD
+4. 婚姻抉擇:
+        - https://www.google.com/url?sa=i&url=https%3A%2F%2Fdq.yam.com%2Fpost.php%3Fid%3D5622&psig=AOvVaw3_efd1it6iBSsnL_KsMwf4&ust=1641821554902000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCIiyv4XkpPUCFQAAAAAdAAAAABAD
+        - https://images.app.goo.gl/Q4jmGAL9ZHdv5jGX6
 5. 推坑Vt:https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.facebook.com%2FZackbabyo%2Fposts%2F4497664763640600&psig=AOvVaw3qUjXdczyAndRA0oB7GdHn&ust=1641822382939000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCKiQ6ZHnpPUCFQAAAAAdAAAAABAD
 6. 獲得考古題:http://i1.kknews.cc/MdfFQbuZx_gPPMph-ITur_YnbYtEiL7BsO8b8ZcGMsY/0.jpg
 7. 第一次約會:https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2018/10/18/20181018-104501_U3792_M463841_c2d8.PNG?itok=OHV9NfGF
@@ -43,6 +47,7 @@
 1. 轉身異世界:https://pic.pimg.tw/pan19861129/1389240994-1057361730_n.jpg
 1. 明明是我先來的: https://s.yimg.com/ny/api/res/1.2/FRq6kWCMPH10SsFUa0ub2A--/YXBwaWQ9aGlnaGxhbmRlcjtoPTY2Ng--/https://s.yimg.com/uu/api/res/1.2/znqNGzoNHU_xnuNQP_RD2w--~B/aD0wO3c9MDthcHBpZD15dGFjaHlvbg--/https://www.elle.com.hk/var/ellehk/storage/images/love_and_sex/relationship/ex-boyfriend-message/23306419-2-chi-HK/WhatsApp-8_img_885_590.jpg
 1. 阿姨結束:https://cdn2.ettoday.net/images/1720/1720082.jpg
+1. 總裁結束:https://images.chinatimes.com/newsphoto/2021-04-01/1024/20210401005345.jpg
 1. 破產:http://6.eewimg.cn/mp/uploads/2019/02/15/28609758-30f3-11e9-a9c9-00163e2e672a.jpg
 1. 財富自由:https://images.chinatimes.com/newsphoto/2021-02-04/656/20210204003339.jpg
 1. 轉學:https://p1.nanmuxuan.com/images/ff/3c4d9cc49639d257.jpg

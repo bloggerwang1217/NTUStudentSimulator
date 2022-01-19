@@ -13,7 +13,7 @@ def save(data):
     ability_graph = data["ability_graph"]
     freq = list(status.freq)
 
-    f1 = open(Path("text/save.csv"), "w")
+    f1 = open(fspath(Path("text/save.csv")), "w")
     str_course = []
     for i in range(len(status.course)):
         str_course.append([])
@@ -27,7 +27,7 @@ def save(data):
     
     f1.close()
 
-    f2 = open(Path("text/save.txt"), "w")
+    f2 = open(fspath(Path("text/save.txt")), "w")
 
     f2.write(sex+","+name+","+str(CsCs)+","+time+"\n")
     f2.write(f"{status.wisdom},{status.charm},{status.fitness},{status.social},{status.health},{status.luck},{status.love_progress},{status.grade},{status.yang_sheng},{status.prestige},{status.money},{status.time}\n")
@@ -41,7 +41,7 @@ def save(data):
     
     f2.close()
 
-    f3 = open(Path("text/picked.txt"), "w")
+    f3 = open(fspath(Path("text/picked.txt")), "w")
 
     f3.write(",".join(list(data["picked_course"].keys()))+"\n")
     f3.write(",".join(list(data["picked_course"].values())))
@@ -50,7 +50,7 @@ def save(data):
 
 
 def load(window, data):
-    f1 = open(Path("text/save.txt"), "r")
+    f1 = open(fspath(Path("text/save.txt")), "r")
     read_data = f1.readlines()
     for i in range(len(read_data)):
         read_data[i] = read_data[i].strip("\n").split(",")
@@ -100,7 +100,7 @@ def load(window, data):
 
     f1.close()
 
-    f2 = open(Path("text/picked.txt"), "r")
+    f2 = open(fspath(Path("text/picked.txt")), "r")
     picked_list = f2.readlines()
     picked_list[0] = picked_list[0].strip("\n").split(",")
     picked_list[1] = picked_list[1].split(",")
