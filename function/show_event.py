@@ -60,7 +60,7 @@ def show_event(data, event_type, name):
     reference = []
 
     sound.play_event_background_music(event_name[event_type], event_name[name])
-    background_image = Image.open(f"figure/event/{event_name[data["sex"]]}/{event_name[event_type]}/{event_name[name]}.jpg")
+    background_image = Image.open(f"figure/event/{event_name[data['sex']]}/{event_name[event_type]}/{event_name[name]}.jpg")
     background_image = background_image.resize((1280, 720), Image.ANTIALIAS)
     background_image = ImageTk.PhotoImage(background_image)
     background.create_image(0,0, anchor=tk.NW, image=background_image)
