@@ -361,24 +361,24 @@ def special_situation(data, event_type, name, text, index):
                         else:
                             data["choose_result"].append(2)
             shrinker(data, text, index, "（看看你多精明吧）")
-        elif name == "舞會1-男":
+        elif name == "舞會1":
             for i in range(len(text)):
                 if text[i][0] == "d":
                     if len(data["choose_result"]) == 0:
-                        if data["status"].charm < 60:
+                        if data["status"].charm < 100:
                             data["choose_result"].append(1)
                         else:
                             data["choose_result"].append(2)
                         shrinker(data, text, index, "（邀不邀的到異性舞伴間看你的魅力了！）")
                     elif len(data["choose_result"]) == 2:
                         if data["choose_result"][-1] == 1 and data["choose_result"][-2] == 1:
-                            if data["status"].charm >= 80 and data["status"].luck >= 20:
+                            if data["status"].charm >= 120 and data["status"].luck >= 20:
                                 data["choose_result"].append(1)
                             else:
                                 data["choose_result"].append(2)
                             shrinker(data, text, index, "（看你的魅力和運氣囉）")
                         elif data["choose_result"][-1] == 2 and data["choose_result"][-2] == 2:
-                            if data["status"].charm >= 70 and data["status"].luck >= 20:
+                            if data["status"].charm >= 110 and data["status"].luck >= 20:
                                 data["choose_result"].append(1)
                             else:
                                 data["choose_result"].append(2)

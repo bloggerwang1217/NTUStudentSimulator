@@ -141,7 +141,7 @@ class Status:
         self.wisdom -= 0
         self.charm += 1
         self.fitness += (4+random.randrange(0, 7))
-        self.health += (2+random.randrange(0, 3))
+        self.health += (2+random.randrange(0, 7))
 
         return self.check_san(25)
 
@@ -356,7 +356,7 @@ def event_adjust(status, event_name, choice):
         if choice[0] == 1:
             status.health -= 50
             status.prestige += 15
-            if status.wisdom >= 85:
+            if status.wisdom >= 250:
                 status.prestige += 25
                 return
             else:

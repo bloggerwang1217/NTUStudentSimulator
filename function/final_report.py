@@ -99,6 +99,8 @@ def press_flip_button(window, data, used_widgets, background, small_bg, grades):
         data["status"].cash_flow["書卷獎"] += 10000
 
     if class_fail >= 2:
+        text.append(small_bg)
+        text.append(background)
         drop_out_button = tk.Button(window, text = "繼續", font = f, command = lambda: [destroy_widgets(text), sound.play_button_sound(), show.process_event(data, ["中途結束事件:被二一"])])
         drop_out_button.place(x = 800, y = 600)
         text.append(drop_out_button)

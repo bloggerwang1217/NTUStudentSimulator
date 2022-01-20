@@ -34,23 +34,69 @@ def press_continue(data, background, nextButton, text):
     nextButton.destroy()
 
     choose_button = []
-    button1 = tk.Button(data["status"].display, text = "當兵", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "當兵"), sound.play_button_sound()])
-    button2 = tk.Button(data["status"].display, text = "打工", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "打工"), sound.play_button_sound()])
-    button3 = tk.Button(data["status"].display, text = "服務學習", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "服務學習"), sound.play_button_sound()])
-    button4 = tk.Button(data["status"].display, text = "陪另一半", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "陪另一半"), sound.play_button_sound()])
-    button5 = tk.Button(data["status"].display, text = "在家宅", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "在家宅"), sound.play_button_sound()])
-    
-    choose_button.append(button1)
-    choose_button.append(button2)
-    choose_button.append(button3)
-    choose_button.append(button4)
-    choose_button.append(button5)
 
-    button1.place(x = 1 * 1280 / 6 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
-    button2.place(x = 2 * 1280 / 6 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
-    button3.place(x = 3 * 1280 / 6 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
-    button4.place(x = 4 * 1280 / 6 - button4.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
-    button5.place(x = 5 * 1280 / 6 - button5.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+    if data["sex"] == "男性":
+        if data["status"].love_progress > 140:
+            button1 = tk.Button(data["status"].display, text = "當兵", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "當兵"), sound.play_button_sound()])
+            button2 = tk.Button(data["status"].display, text = "打工", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "打工"), sound.play_button_sound()])
+            button3 = tk.Button(data["status"].display, text = "服務學習", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "服務學習"), sound.play_button_sound()])
+            button4 = tk.Button(data["status"].display, text = "陪另一半", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "陪另一半"), sound.play_button_sound()])
+            button5 = tk.Button(data["status"].display, text = "在家宅", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "在家宅"), sound.play_button_sound()])
+            
+            choose_button.append(button1)
+            choose_button.append(button2)
+            choose_button.append(button3)
+            choose_button.append(button4)
+            choose_button.append(button5)
+
+            button1.place(x = 1 * 1280 / 6 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+            button2.place(x = 2 * 1280 / 6 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
+            button3.place(x = 3 * 1280 / 6 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
+            button4.place(x = 4 * 1280 / 6 - button4.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+            button5.place(x = 5 * 1280 / 6 - button5.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+        else:
+            button1 = tk.Button(data["status"].display, text = "當兵", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "當兵"), sound.play_button_sound()])
+            button2 = tk.Button(data["status"].display, text = "打工", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "打工"), sound.play_button_sound()])
+            button3 = tk.Button(data["status"].display, text = "服務學習", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "服務學習"), sound.play_button_sound()])
+            button4 = tk.Button(data["status"].display, text = "在家宅", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "在家宅"), sound.play_button_sound()])
+            
+            choose_button.append(button1)
+            choose_button.append(button2)
+            choose_button.append(button3)
+            choose_button.append(button4)
+
+            button1.place(x = 1 * 1280 / 5 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+            button2.place(x = 2 * 1280 / 5 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
+            button3.place(x = 3 * 1280 / 5 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
+            button4.place(x = 4 * 1280 / 5 - button4.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+    else:
+        if data["status"].love_progress > 140:
+            button1 = tk.Button(data["status"].display, text = "打工", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "打工"), sound.play_button_sound()])
+            button2 = tk.Button(data["status"].display, text = "服務學習", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "服務學習"), sound.play_button_sound()])
+            button3 = tk.Button(data["status"].display, text = "陪另一半", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "陪另一半"), sound.play_button_sound()])
+            button4 = tk.Button(data["status"].display, text = "在家宅", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "在家宅"), sound.play_button_sound()])
+            
+            choose_button.append(button1)
+            choose_button.append(button2)
+            choose_button.append(button3)
+            choose_button.append(button4)
+
+            button1.place(x = 1 * 1280 / 5 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+            button2.place(x = 2 * 1280 / 5 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
+            button3.place(x = 3 * 1280 / 5 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
+            button4.place(x = 4 * 1280 / 5 - button4.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+        else:
+            button1 = tk.Button(data["status"].display, text = "打工", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "打工"), sound.play_button_sound()])
+            button2 = tk.Button(data["status"].display, text = "服務學習", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "服務學習"), sound.play_button_sound()])
+            button3 = tk.Button(data["status"].display, text = "在家宅", relief = "raise", font = f, command = lambda: [choose(data, background, choose_button, "在家宅"), sound.play_button_sound()])
+            
+            choose_button.append(button1)
+            choose_button.append(button2)
+            choose_button.append(button3)
+
+            button1.place(x = 1 * 1280 / 5 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+            button2.place(x = 2 * 1280 / 5 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
+            button3.place(x = 3 * 1280 / 5 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
 
 
 def choose(data, background, used_button , chosen):
