@@ -81,7 +81,7 @@
 4. summer_vacation:https://7geese.com/how-to-motivate-your-employees-after-their-summer-vacation/
 4. oily:https://i.pinimg.com/originals/af/a0/f7/afa0f7a904cd703e5a7e49a1c39f03b6.gif
 4. 人物圖生成:https://picrew.me/
-4. 習:https://img.ltn.com.tw/Upload/news/600/2018/10/04/306.jpg
+4. 習近平:https://img.ltn.com.tw/Upload/news/600/2018/10/04/306.jpg
 4. 傅斯年:https://images.chinatimes.com/newsphoto/2018-12-11/590/20181211004581.jpg
 4. 管中閔:https://obs.line-scdn.net/0hzOU0XjeoJWBoSTKfrUBaN1AfKRFbLz9pSi89UR9IeAUSZWY-B392Ax4af0xNfGZlSH0-BUxJeQVGcWY3XA/w644
 4. 某女神、阿克雅:https://i.pinimg.com/originals/af/a0/f7/afa0f7a904cd703e5a7e49a1c39f03b6.gif

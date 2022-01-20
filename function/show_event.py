@@ -79,7 +79,7 @@ def show_event(data, event_type, name):
     text = read.read_event(event_name[event_type], event_name[name], event_name[data["sex"]])
 
     # 處理主人公名稱
-    if (event_type == "必然事件" and name == "聯誼") or (event_type == "中途結束事件" and name == "明明是我先來的") or (event_type == "中途結束事件" and name == "轉生異世界") or (event_type == "必然事件" and name == "系隊"):
+    if (event_type == "必然事件" and (name == "聯誼" or name == "系隊" or name == "系學會")) or (event_type == "中途結束事件" and (name == "明明是我先來的" or name == "轉生異世界")):
         for i in range(len(text)):
             if "{}" in text[i]:
                 text[i] = f"{data['name']}".join(text[i].split("{}"))
@@ -187,7 +187,7 @@ def call_status_u(background, reference, text_now, image_widget):
 
 
 def call_status_v(background, reference, text_now, image_widget):
-    npc_name = {"女方":"that_girl", "長官":"sir", "路人一":"girl1", "路人二":"girl2", "女友":"girlfriend", "學長":"senpai_boy", "朋友一":"girl1", "朋友二":"girl2", "阿姨":"aunty", "醫生":"doctor", "系隊學長":"sport_senpai_boy", "面試官":"interviewer", "老師":"teacher", "某同學":"some_student", "女孩":"girlfriend", "同學A":"girl1", "同學B":"girl2", "學姊":"senpai_girl", "習":"xi", "學妹":"koupai_girl", "同學":"classmate_girl", "曖昧對象":"flirt", "傅斯年":"fu", "管中閔":"principal", "某女神":"aqua", "阿克婭":"aqua"}
+    npc_name = {"女方":"that_girl", "長官":"sir", "路人一":"girl1", "路人二":"girl2", "女友":"girlfriend", "男友":"boyfriend", "系上學長":"department_senpai_boy", "朋友一":"girl1", "朋友二":"girl2", "阿姨":"aunty", "總裁":"boss", "醫生":"doctor", "系隊學長":"department_senpai_boy", "系隊學姊":"department_senpai_girl", "面試官":"interviewer", "老師":"teacher", "某同學":"some_student", "女孩":"girlfriend", "男孩":"boyfriend", "女同學A":"girl1", "女同學B":"girl2", "男同學A":"boy1", "男同學B":"boy2", "學姊":"senpai_girl", "學長":"senpai_boy", "習近平":"xi", "學妹":"koupai_girl", "同學":"classmate_girl", "曖昧對象":"flirt", "傅斯年":"fu", "管中閔":"principal", "某女神":"aqua", "阿克婭":"aqua"}
 
     name = text_now.split(text_now[1])[1]
     line = text_now.split(text_now[1])[2]
