@@ -171,9 +171,4 @@ def press_end_button(window, data, used_widget):
 def press_end_game(window):
     window.quit()
     path = os.getcwd()
-    try:
-        for name in data["ability_graph"]:
-            os.remove(f"{path}/figure/ability/{name}.png")
-        os.remove(f"{path}/figure/ability/finalpix.png")
-    except:
-        pass
+    os.remove(f"{path}/figure/ability/finalpix.png")

@@ -38,7 +38,7 @@ def To_New_World():  # 轉生異世界
 
 def Me_First():  # 明明是我先來的
     global status
-    if status.charm > 300 and status.love_progress < 110:
+    if status.charm > 350 and status.love_progress < 110:
         return True
 
 

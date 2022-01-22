@@ -3,6 +3,14 @@ import function.read_file as read
 import system.semester as semester
 from pathlib import Path
 from os import fspath
+import os
+
+
+def clear(graph_list):
+    path = os.getcwd()
+    for entry in os.listdir(f"{path}/figure/ability"):
+        if entry[0:-4] not in graph_list:
+            os.remove(f"{path}/figure/ability/{entry[0:-4]}.png")
 
 
 def save(data):
@@ -31,13 +39,21 @@ def save(data):
 
     f2 = open(fspath(Path("text/save.txt")), "w")
 
-    f2.write(sex+","+name+","+str(CsCs)+","+time+"\n")
+    if CsCs == True:
+        CsCs = "True"
+    else:
+        CsCs = "False"
+
+    f2.write(sex+","+name+","+CsCs+","+time+"\n")
     f2.write(f"{status.wisdom},{status.charm},{status.fitness},{status.social},{status.health},{status.luck},{status.love_progress},{status.grade},{status.yang_sheng},{status.prestige},{status.money},{status.time}\n")
     f2.write(f"{status.achievement.number_of_sex},{status.achievement.being_Vtuber},{status.achievement.stocks_surfing},{status.achievement.christmas},{status.achievement.birth}\n")
     f2.write(",".join(ability_graph)+"\n")
 
     for i in range(len(freq)):
-        freq[i] = str(freq[i])
+        if freq[i] == True:
+            freq[i] = "True"
+        else:
+            freq[i] = "False"
 
     f2.write(",".join(freq))
     
@@ -49,6 +65,8 @@ def save(data):
     f3.write(",".join(list(data["picked_course"].values())))
 
     f3.close()
+
+    clear(data["ability_graph"])  # 刪除名稱沒有在save.txt的圖片
 
 
 def load(window, data):

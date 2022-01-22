@@ -94,9 +94,9 @@ def press_continue(data, background, nextButton, text):
             choose_button.append(button2)
             choose_button.append(button3)
 
-            button1.place(x = 1 * 1280 / 5 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
-            button2.place(x = 2 * 1280 / 5 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
-            button3.place(x = 3 * 1280 / 5 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
+            button1.place(x = 1 * 1280 / 4 - button1.winfo_reqwidth()/2, y = 320/1.5 - button1.winfo_reqheight()/2)
+            button2.place(x = 2 * 1280 / 4 - button2.winfo_reqwidth()/2, y = 320/1.5 - button2.winfo_reqheight()/2)
+            button3.place(x = 3 * 1280 / 4 - button3.winfo_reqwidth()/2, y = 320/1.5 - button3.winfo_reqheight()/2)
 
 
 def choose(data, background, used_button , chosen):
