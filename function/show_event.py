@@ -187,7 +187,14 @@ def call_status_u(background, reference, text_now, image_widget):
 
 
 def call_status_v(background, reference, text_now, image_widget):
-    npc_name = {"女方":"that_girl", "長官":"sir", "路人一":"girl1", "路人二":"girl2", "女友":"girlfriend", "男友":"boyfriend", "系上學長":"department_senpai_boy", "朋友一":"girl1", "朋友二":"girl2", "阿姨":"aunty", "總裁":"boss", "醫生":"doctor", "系隊學長":"department_senpai_boy", "系隊學姊":"department_senpai_girl", "面試官":"interviewer", "老師":"teacher", "某同學":"some_student", "女孩":"girlfriend", "男孩":"boyfriend", "女同學A":"girl1", "女同學B":"girl2", "男同學A":"boy1", "男同學B":"boy2", "學姊":"senpai_girl", "學長":"senpai_boy", "習近平":"xi", "學妹":"koupai_girl", "同學":"classmate_girl", "曖昧對象":"flirt", "傅斯年":"fu", "管中閔":"principal", "某女神":"aqua", "阿克婭":"aqua"}
+    npc_name = {"女方":"that_girl", "長官":"sir", "路人一":"girl1", "路人二":"girl2", "女友":"girlfriend"\
+    , "男友":"boyfriend", "系上學長":"department_senpai_boy", "朋友一":"girl1", "朋友二":"girl2"\
+    , "阿姨":"aunty", "總裁":"boss", "醫生":"doctor", "系隊學長":"department_senpai_boy"\
+    , "系隊學姊":"department_senpai_girl", "面試官":"interviewer", "老師":"teacher"\
+    , "系上好友":"department_friend_girl", "系上帥朋友":"department_friend_boy", "某學長":"senpai_boy"\
+    , "某同學":"some_student", "女孩":"girlfriend", "男孩":"boyfriend", "女同學A":"girl1", "女同學B":"girl2"\
+    , "男同學A":"boy1", "男同學B":"boy2", "學姊":"straight_senpai_girl", "學長":"straight_senpai_boy", "習近平":"xi", "學妹":"koupai_girl"\
+    , "同學":"classmate_girl", "曖昧對象":"flirt", "傅斯年":"fu", "管中閔":"principal", "某女神":"aqua", "阿克婭":"aqua"}
 
     name = text_now.split(text_now[1])[1]
     line = text_now.split(text_now[1])[2]
@@ -270,7 +277,7 @@ def choose(data, choose_button, chosen, name, background, reference, text_widget
 
 
 def shrinker(data, text, index, name):  #index:c出現的位置；若為數值判定，則為c出現前一個
-    option_dict = {"1":{1:"1", 2:"2", 3:"3"}, "A":{1: "A", 2: "B", 3: "C"}, "a":{1: "a", 2:"b", 3:"c"}, "甲":{1: "甲", 2: "乙", 3:"丙"}, "子":{1: "子", 2: "丑", 3:"寅"}}
+    option_dict = {"1":{1:"1", 2:"2", 3:"3", 4:"4", 5:"5", 6:"6", 7:"7",8:"8", 9:"9", 10:"10"}, "A":{1: "A", 2: "B", 3: "C"}, "a":{1: "a", 2:"b", 3:"c"}, "甲":{1: "甲", 2: "乙", 3:"丙"}, "子":{1: "子", 2: "丑", 3:"寅"}}
     option_type = text[index+1][0]
     temp_index = index + 1
     ans = option_dict[option_type][data["choose_result"][-1]]
@@ -279,7 +286,7 @@ def shrinker(data, text, index, name):  #index:c出現的位置；若為數值�
             text.pop(temp_index)
             text.insert(temp_index, name)
             temp_index += 1
-            while len(text[temp_index]) != 1 or (len(text[temp_index]) == 1 and (not text[temp_index] in option_dict[option_type].values())):
+            while len(textˇㄓ[temp_index]) != 1 or (len(text[temp_index]) == 1 and (not text[temp_index] in option_dict[option_type].values())):
                 temp_index += 1
             for i in range(len(text)-1, temp_index-1, -1):
                 text.pop(i)
@@ -384,3 +391,33 @@ def special_situation(data, event_type, name, text, index):
                                 data["choose_result"].append(2)
                             shrinker(data, text, index, "（看你的魅力和運氣囉）")
                     break
+    elif event_type == "破關" and name == "正常結局":
+        score_list = [data["status"].love_progress, data["status"].grade, data["status"].yang_sheng, data["status"].prestige]
+        max_value = max(score_list)
+        min_value = min(score_list)
+
+        for i in range(len(text)):
+            if text[i][0] == "d":
+                if score_list[0] >= 1000 and score_list[1] >= 350 and score_list[2] >= 350 and score_list[3] >= 350:
+                    data["choose_result"].append(9)
+                elif max_value >= 350:
+                    if score_list.index(max_value)+1 == 1:
+                        data["choose_result"].append(1)
+                    elif score_list.index(max_value)+1 == 2:
+                        data["choose_result"].append(2)
+                    elif score_list.index(max_value)+1 == 3:
+                        data["choose_result"].append(3)
+                    else:
+                        data["choose_result"].append(4)
+                elif min_value < 200:
+                    if score_list.index(min_value)+5 == 5:
+                        data["choose_result"].append(5)
+                    elif score_list.index(min_value)+5 == 6:
+                        data["choose_result"].append(6)
+                    elif score_list.index(min_value)+5 == 7:
+                        data["choose_result"].append(7)
+                    else:
+                        data["choose_result"].append(8)
+                else:
+                    data["choose_result"].append(10)
+            shrinker(data, text, index, "後記：")
