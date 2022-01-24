@@ -21,10 +21,12 @@
 
 
 # 遊玩提醒
-- 建議使用mac系統，windows、linux系統將在未來測試
-- 請先下載python的pillow、pygame、matplotlib、tkinter，以便進行遊戲
+- 遊戲製作環境為3.9.7，故使用該版本下相容的tkinter會有最佳體驗
+- 請先下載python(建議為3.9.7)和python的套件pillow、pygame、matplotlib、tkinter，以便進行遊戲
 	- pip3 install Pillow
 	- pip3 install matplotlib
 	- pip3 install pygame
 	- pip3 install tk
 - 在NTUStudentSimulator的資料夾內執行main.py即可開始遊戲
+- 有鑑於3.9.7環境下打包的諸多問題，此遊戲有望再未來升級成3.10環境，並打包成app
+- 有bug歡迎在此（github）的回報區說明
