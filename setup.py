@@ -15,12 +15,12 @@ OPTIONS = {
     'iconfile':'ntu.icns',
     'argv_emulation': True,
     'packages': PACKAGES,
-    'resources': RESOURCE,
+    'resources': RESOURCE
     }
 
 setup(
     app=APP,
     data_files=DATA_FILES,
     options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
+    setup_requires=['py2app']
 )
