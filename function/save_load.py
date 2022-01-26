@@ -9,7 +9,7 @@ import os
 def clear(graph_list):
     path = os.getcwd()
     for entry in os.listdir(f"{path}/figure/ability"):
-        if entry[0:-4] not in graph_list:
+        if entry[0:-4] not in graph_list and entry[0] != ".":
             os.remove(fspath(Path(f"{path}/figure/ability/{entry[0:-4]}.png")))
 
 
