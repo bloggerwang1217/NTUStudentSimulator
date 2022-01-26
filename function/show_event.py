@@ -286,7 +286,7 @@ def shrinker(data, text, index, name):  #index:c出現的位置；若為數值�
             text.pop(temp_index)
             text.insert(temp_index, name)
             temp_index += 1
-            while len(textˇㄓ[temp_index]) != 1 or (len(text[temp_index]) == 1 and (not text[temp_index] in option_dict[option_type].values())):
+            while len(text[temp_index]) != 1 or (len(text[temp_index]) == 1 and (not text[temp_index] in option_dict[option_type].values())):
                 temp_index += 1
             for i in range(len(text)-1, temp_index-1, -1):
                 text.pop(i)
